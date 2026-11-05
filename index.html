@@ -1,0 +1,1346 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="משחק דפדפן: חייל מנסה להוציא ימי גימלים מהקר״פ. מכות, המ״פ, בית דין והרס״ר בש״ג.">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>גימלים במרפאה</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Rubik:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: one phone-width column. HUD = patient card, clinic room under flickering fluorescent light, then a console that swaps between lines / events / fight / argument. Single deliberate look: camo field, paper, rubber stamps. */
+:root{
+  --camo-1:#232a16; --camo-2:#2e3820; --camo-3:#3a4529; --camo-4:#1a200f;
+  --paper:#f2e9d0; --paper-2:#ddcfa6; --ink:#22251a; --ink-soft:#5f5c43;
+  --khaki:#cdb57a; --stamp:#c3352a; --go:#3c7a2b; --go-2:#8fd45f; --warn:#cf861c; --pill:#2d63a8; --pow:#ffd43b;
+  --wall:#cfe0c8; --wall-2:#b8cdae; --desk:#6f4a2c; --desk-2:#4f331d;
+  --coat:#fbfaf5; --coat-line:#d9d8cd; --hair:#3b2a1b; --skin:#eab68d; --skin-d:#c98e64;
+  --uni:#5b6b3c; --uni-d:#45532d; --beret:#6b2a2a; --night:#12150b;
+  --f-display:"Karantina","Rubik","Arial Hebrew",system-ui,sans-serif;
+  --f-body:"Rubik","Arial Hebrew","Segoe UI",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;font-family:var(--f-body);color:var(--paper);background-color:var(--camo-1);
+  background-image:
+    radial-gradient(ellipse 140px 70px at 18% 22%, var(--camo-2) 60%, transparent 62%),
+    radial-gradient(ellipse 110px 90px at 72% 30%, var(--camo-3) 58%, transparent 60%),
+    radial-gradient(ellipse 160px 60px at 48% 78%, var(--camo-4) 60%, transparent 62%),
+    radial-gradient(ellipse 90px 120px at 88% 82%, var(--camo-2) 58%, transparent 60%),
+    radial-gradient(ellipse 100px 70px at 8% 70%, var(--camo-3) 58%, transparent 60%);
+  background-size:420px 380px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+#app{max-width:520px;margin:0 auto;padding-block:14px 32px;display:grid;gap:12px}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--khaki);outline-offset:3px}
+
+/* ---------- HUD ---------- */
+.hud{background:var(--paper);color:var(--ink);border-radius:5px;padding:10px 14px 12px;box-shadow:0 2px 0 var(--paper-2),0 10px 24px rgba(0,0,0,.45);position:relative}
+.hud::before{content:"";position:absolute;inset:0 0 auto;height:6px;border-radius:5px 5px 0 0;background:repeating-linear-gradient(90deg,var(--stamp) 0 14px,var(--paper) 14px 22px)}
+.hud-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:4px}
+.tag{font-size:11px;letter-spacing:.06em;color:var(--ink-soft);font-weight:700}
+.mute{background:transparent;border:1.5px solid var(--ink);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500;flex:none}
+.days{display:flex;gap:4px;margin-top:8px}
+.days i{flex:1;height:22px;border:1.5px solid var(--ink);border-radius:2px;font-style:normal;font-size:12px;font-weight:800;display:grid;place-items:center;color:var(--ink-soft)}
+.days i.done{background:var(--go);border-color:var(--go);color:#fff}
+.days i.now{background:var(--ink);color:var(--paper)}
+.stats{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;margin-top:8px;align-items:end}
+.stat{display:grid;gap:2px;min-width:0}
+.lbl{font-size:12px;color:var(--ink-soft);font-weight:500}
+.num{font-family:var(--f-display);font-size:54px;line-height:.85;font-weight:700;font-variant-numeric:tabular-nums}
+.num.small{font-size:38px}
+.num .tgt{font-size:24px;color:var(--ink-soft);margin-inline-start:4px}
+.num .tgt.hit{color:var(--go)}
+.num.pop{animation:pop .45s ease}
+@keyframes pop{40%{transform:scale(1.2);color:var(--go)}}
+.streak{display:flex;gap:5px;padding-bottom:8px}
+.streak i{width:16px;height:16px;border-radius:50%;border:2px solid var(--ink)}
+.streak i.on{background:var(--stamp);border-color:var(--stamp);box-shadow:0 0 0 3px rgba(195,53,42,.2)}
+.row2{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;font-size:13px;font-weight:700}
+.row2 .late{color:var(--stamp)}
+.clock{font-variant-numeric:tabular-nums}
+.sus{margin-top:8px}
+.sus-lbl{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:4px}
+.sus-lbl span:last-child{font-variant-numeric:tabular-nums}
+.meter{height:14px;border:1.5px solid var(--ink);border-radius:3px;background:var(--paper-2);overflow:hidden}
+.meter > i{display:block;height:100%;width:0;background:var(--go);transition:width .6s cubic-bezier(.3,1.4,.5,1),background .3s}
+.meter.hot{animation:throb .7s ease-in-out infinite}
+@keyframes throb{50%{box-shadow:0 0 0 4px rgba(195,53,42,.35)}}
+.perks{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.perks span{font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--ink);color:var(--paper)}
+
+/* ---------- Room ---------- */
+.room{position:relative;height:320px;border-radius:5px;overflow:hidden;background:linear-gradient(var(--wall) 0 60%, var(--wall-2) 60%);
+  box-shadow:0 10px 24px rgba(0,0,0,.45);transition:filter .4s}
+.room::before{content:"";position:absolute;inset:60% 0 0;background-image:linear-gradient(rgba(255,255,255,.35) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.35) 1.5px,transparent 1.5px);background-size:30px 30px}
+.room::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:6;box-shadow:inset 0 0 70px rgba(20,30,10,.45);animation:flicker 7s infinite}
+@keyframes flicker{0%,91%,100%{background:transparent}92%{background:rgba(10,15,5,.35)}93%{background:transparent}95%{background:rgba(10,15,5,.25)}96%{background:transparent}}
+.room.ring::after{animation:ringpulse 1.2s ease-in-out infinite;box-shadow:inset 0 0 90px rgba(195,40,30,.6)}
+@keyframes ringpulse{50%{box-shadow:inset 0 0 50px rgba(195,40,30,.35)}}
+.room.dark{filter:brightness(.18) contrast(1.3)}
+.room.heat{filter:sepia(.45) saturate(1.4) hue-rotate(-12deg)}
+.lamp{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:9px;background:#f7fbef;border-radius:0 0 4px 4px;box-shadow:0 0 30px 8px rgba(240,255,220,.55);z-index:0}
+.chart{position:absolute;top:18px;inset-inline-start:14px;width:62px;background:#fff;color:#111;border:1px solid #aab;padding:6px 3px 4px;text-align:center;font-weight:800;line-height:1.05;box-shadow:0 2px 4px rgba(0,0,0,.2);transform:rotate(2deg)}
+.chart div:nth-child(1){font-size:24px}.chart div:nth-child(2){font-size:15px}.chart div:nth-child(3){font-size:11px}
+.chart div:nth-child(4){font-size:8px;letter-spacing:1px}.chart div:nth-child(5){font-size:6px;letter-spacing:1px;border-top:1px solid var(--stamp);margin-top:2px;padding-top:2px}
+.sign{position:absolute;top:116px;inset-inline-start:12px;background:#fff8e2;color:var(--ink);font-size:10px;font-weight:700;padding:4px 6px;border:1px solid #c9bc93;transform:rotate(-3deg);line-height:1.3}
+.sign b{display:block;font-family:var(--f-display);font-size:16px;color:var(--stamp)}
+.doc-wrap{position:absolute;bottom:38px;left:50%;width:180px;margin-left:-90px;z-index:1}
+.doc svg,.cmd svg{display:block;width:100%;height:auto;transform-origin:50% 100%;transition:transform .7s cubic-bezier(.5,-0.3,.4,1.4)}
+.doc .head,.cmd .head{transform-box:view-box;transform-origin:50% 70%;animation:breathe 3.2s ease-in-out infinite}
+@keyframes breathe{50%{transform:translateY(2px) rotate(-1deg)}}
+.doc[data-mood="angry"]{--skin:#ee8c6f;--skin-d:#c8644a}
+.doc[data-mood="sick"]{--skin:#bfcf90;--skin-d:#93a56a}
+.doc[data-mood="faint"] svg{transform:rotate(-82deg) translate(10px,40px)}
+.doc[data-mood="shock"] .head{animation:jolt .3s ease 2}
+@keyframes jolt{50%{transform:translateY(-8px)}}
+.doc.hit svg{animation:hitjolt .35s ease}
+@keyframes hitjolt{30%{transform:translateX(-22px) rotate(-8deg)}70%{transform:translateX(6px)}}
+.doc.swing svg{animation:swing .35s ease}
+@keyframes swing{40%{transform:translateX(26px) scale(1.1)}}
+.off{display:none}
+.cmd{position:absolute;bottom:38px;inset-inline-start:-170px;width:132px;z-index:1;transition:inset-inline-start .5s cubic-bezier(.3,1.3,.5,1)}
+.cmd.in{inset-inline-start:2px}
+.cmd[data-mood="yell"]{--skin:#f09577}
+.cmd[data-mood="hurt"] svg{transform:rotate(4deg) scale(.96)}
+.desk{position:absolute;left:0;right:0;bottom:0;height:58px;z-index:2;background:linear-gradient(var(--desk) 0 9px,var(--desk-2) 9px);box-shadow:0 -3px 0 rgba(0,0,0,.15)}
+.plate{position:absolute;top:16px;left:50%;transform:translateX(-50%);background:linear-gradient(#e6c76f,#b8923c);color:#2b1d07;font-size:11px;font-weight:800;padding:3px 10px;border-radius:2px;white-space:nowrap}
+.box{position:absolute;bottom:22px;inset-inline-start:22px;width:54px;height:36px;background:#fff;border-radius:2px;box-shadow:2px 2px 0 rgba(0,0,0,.25);overflow:hidden;font-size:10px;font-weight:800;color:var(--pill);text-align:center;line-height:1.1}
+.box::before{content:"";display:block;height:9px;background:var(--pill);margin-bottom:3px}
+.box small{display:block;font-size:8px;color:#555;font-weight:500}
+.papers{position:absolute;bottom:26px;inset-inline-end:40px;width:58px;height:12px;background:#fff;transform:rotate(-6deg);box-shadow:0 -4px 0 #f0ece0,0 -8px 0 #fff,2px 2px 0 rgba(0,0,0,.2)}
+.bubble{position:absolute;top:14px;inset-inline-end:12px;max-width:58%;z-index:3;background:#fff;color:var(--ink);border-radius:14px;padding:9px 12px 10px;box-shadow:0 4px 10px rgba(0,0,0,.2);font-size:15px;line-height:1.35}
+.bubble::after{content:"";position:absolute;bottom:-10px;inset-inline-start:34px;border:10px solid transparent;border-top-color:#fff;border-bottom:0}
+.bubble .me{font-size:12px;color:var(--ink-soft);margin-bottom:4px;padding-bottom:4px;border-bottom:1px dashed #ccc}
+.bubble .said{font-weight:700}
+.bubble .who{color:var(--stamp)}
+.bubble.fresh{animation:bubbleIn .35s cubic-bezier(.3,1.6,.5,1)}
+@keyframes bubbleIn{from{transform:scale(.6);opacity:0}}
+.dots span{animation:blink 1s infinite;font-size:22px;line-height:1}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{50%{opacity:.15}}
+.stamp{position:absolute;top:42%;left:50%;z-index:4;font-family:var(--f-display);font-weight:700;font-size:50px;line-height:1;padding:2px 16px 6px;border:5px solid currentColor;border-radius:6px;color:var(--stamp);white-space:nowrap;transform:translate(-50%,-50%) rotate(-12deg);background:rgba(255,255,255,.55);animation:slam .4s cubic-bezier(.2,1.6,.4,1) both}
+.stamp.ok{color:var(--go)}.stamp.pill{color:var(--pill)}
+@keyframes slam{from{transform:translate(-50%,-50%) rotate(-30deg) scale(3);opacity:0}}
+.floater{position:absolute;left:0;right:0;top:46%;text-align:center;z-index:5;pointer-events:none;font-family:var(--f-display);font-weight:700;font-size:50px;color:#fff;text-shadow:0 3px 0 var(--go),0 6px 14px rgba(0,0,0,.4)}
+.floater.go{animation:rise 1.3s ease-out forwards}
+.floater.bad{text-shadow:0 3px 0 var(--stamp),0 6px 14px rgba(0,0,0,.4)}
+@keyframes rise{0%{transform:translateY(20px) scale(.6);opacity:0}20%{transform:translateY(0) scale(1.1);opacity:1}100%{transform:translateY(-110px) scale(1);opacity:0}}
+.burst{position:absolute;z-index:5;pointer-events:none;font-family:var(--f-display);font-weight:700;font-size:58px;line-height:1;color:var(--pow);
+  -webkit-text-stroke:3px #1d1a0c;paint-order:stroke fill;text-shadow:4px 4px 0 var(--stamp);animation:burst .8s cubic-bezier(.2,1.8,.4,1) forwards}
+@keyframes burst{0%{transform:scale(.2) rotate(var(--r));opacity:0}25%{transform:scale(1.15) rotate(var(--r));opacity:1}80%{opacity:1}100%{transform:scale(1) rotate(var(--r));opacity:0}}
+
+/* ---------- Console ---------- */
+.prompt{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--khaki);margin:4px 2px -2px;min-height:4px}
+.choices{display:grid;gap:10px}
+.choice{display:grid;gap:8px;text-align:start;background:var(--paper);color:var(--ink);border:0;border-radius:4px;padding:12px 14px;font-size:17px;font-weight:500;line-height:1.35;box-shadow:0 3px 0 var(--paper-2),0 8px 16px rgba(0,0,0,.4);transition:transform .15s, opacity .25s;animation:dealIn .35s cubic-bezier(.3,1.4,.5,1) both;transform:rotate(var(--tilt))}
+.choice:nth-child(1){--tilt:-.6deg}.choice:nth-child(2){--tilt:.5deg;animation-delay:.06s}.choice:nth-child(3){--tilt:-.3deg;animation-delay:.12s}
+.choice:hover{transform:rotate(0) translateY(-2px)}
+.choice:active{transform:scale(.98)}
+.choice em{font-style:italic;color:var(--ink-soft)}
+.choice.dim{opacity:.25;pointer-events:none}
+.choice.picked{transform:rotate(0) scale(1.02);box-shadow:0 0 0 3px var(--khaki),0 8px 16px rgba(0,0,0,.4);pointer-events:none}
+@keyframes dealIn{from{transform:translateY(16px) rotate(var(--tilt,0deg));opacity:0}}
+.meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;color:#fff;letter-spacing:.02em}
+.chip.r1{background:var(--go)}.chip.r2{background:var(--warn)}.chip.r3{background:var(--stamp)}
+.chip.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.actbtn{border:0;border-radius:4px;padding:6px 10px 8px;font-family:var(--f-display);font-size:24px;font-weight:700;line-height:1.05}
+.cashout{background:var(--khaki);color:var(--ink);box-shadow:0 3px 0 #9c8752}
+.fightbtn{background:var(--stamp);color:#fff;box-shadow:0 3px 0 #8c2219}
+.reroll{background:var(--paper);color:var(--ink);box-shadow:0 3px 0 var(--paper-2)}
+.actbtn:disabled{opacity:.4;cursor:not-allowed}
+.console{background:var(--ink);color:var(--paper);border-radius:5px;padding:14px;display:grid;gap:12px;box-shadow:0 10px 24px rgba(0,0,0,.5);border:2px solid #3b3f2b;animation:dealIn .3s ease both}
+.console.event{background:#2a2414;border-color:var(--warn)}
+.c-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:var(--f-display);font-size:34px;line-height:1;color:var(--khaki)}
+.c-head span{font-family:var(--f-body);font-size:13px;color:var(--paper);opacity:.75}
+.c-text{font-size:16px;line-height:1.45;font-weight:500}
+.bar{display:grid;grid-template-columns:92px 1fr 34px;gap:8px;align-items:center;font-size:13px;font-weight:700}
+.bar span:last-child{text-align:end;font-variant-numeric:tabular-nums}
+.track{height:14px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
+.track i{display:block;height:100%;transition:width .35s ease;background:var(--go-2)}
+.track i.red{background:var(--stamp)}.track i.amber{background:var(--warn)}
+.intent{background:rgba(195,53,42,.18);border:1.5px dashed var(--stamp);border-radius:4px;padding:8px 10px;font-size:14px;line-height:1.4}
+.intent.guard{background:rgba(205,181,122,.15);border-color:var(--khaki)}
+.moves{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.moves button{display:grid;gap:2px;text-align:start;background:var(--paper);color:var(--ink);border:0;border-radius:4px;padding:8px 10px;font-family:var(--f-display);font-size:26px;font-weight:700;line-height:1;box-shadow:0 3px 0 var(--paper-2)}
+.moves button small{font-family:var(--f-body);font-size:11px;font-weight:500;color:var(--ink-soft)}
+.moves button[data-m="kick"]{background:#ffe7c2}.moves button[data-m="block"]{background:#dfe8d2}
+.moves button:disabled{opacity:.3}
+.timing{position:relative;height:42px;border:2px solid var(--paper);border-radius:4px;background:repeating-linear-gradient(90deg,#33372a 0 10px,#2b2e23 10px 20px);direction:ltr;overflow:hidden}
+.zone{position:absolute;top:0;bottom:0;background:rgba(143,212,95,.55);border-inline:2px solid var(--go-2)}
+.zone.blockz{background:rgba(120,170,230,.5);border-color:#9cc4f0}
+.crit{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);background:var(--go-2)}
+.needle{position:absolute;top:-2px;bottom:-2px;width:5px;margin-left:-2px;background:#fff;box-shadow:0 0 8px #fff}
+.punch{width:100%;background:var(--stamp);color:#fff;border:0;border-radius:4px;padding:6px 10px 9px;font-family:var(--f-display);font-size:42px;font-weight:700;line-height:1;box-shadow:0 4px 0 #8c2219;animation:throbBtn .6s ease-in-out infinite}
+@keyframes throbBtn{50%{transform:scale(1.02)}}
+.hint{font-size:12px;opacity:.75;text-align:center;line-height:1.4}
+.retort{display:grid;gap:6px;text-align:start;background:var(--paper);color:var(--ink);border:0;border-radius:4px;padding:10px 12px;font-size:16px;font-weight:500;line-height:1.35;box-shadow:0 3px 0 var(--paper-2)}
+.retort:hover{transform:translateY(-2px)}
+.retort:disabled{opacity:.3;transform:none}
+.opt2{display:grid;gap:10px}
+
+/* ---------- Overlay sheets ---------- */
+.overlay{position:fixed;inset:0;z-index:40;display:grid;place-items:center;overflow-y:auto;background:rgba(18,22,10,.88);backdrop-filter:blur(3px);
+  padding:max(20px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(20px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+.sheet{width:100%;max-width:440px;background:var(--paper);color:var(--ink);border-radius:5px;padding:22px 22px 20px;position:relative;transform:rotate(-1deg);box-shadow:0 20px 50px rgba(0,0,0,.6);animation:sheetIn .45s cubic-bezier(.3,1.4,.5,1)}
+.sheet.court{background:#e9e4d6;transform:rotate(.8deg)}
+.sheet.court::before{content:"";position:absolute;inset:0;border-radius:5px;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(30,30,30,.13) 46px 52px)}
+.sheet.intro{background:var(--night);color:var(--paper);transform:none;border:1px solid #3a4128}
+.sheet.intro::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:5px;opacity:.35;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 3px)}
+@keyframes sheetIn{from{transform:translateY(40px) rotate(-6deg);opacity:0}}
+.sheet h1{font-family:var(--f-display);font-size:96px;line-height:.8;margin:6px 0 0;color:var(--stamp);font-weight:700}
+.sheet h1 span{display:block;font-size:44px;color:var(--ink)}
+.intro h1{font-size:120px;color:var(--khaki)}
+.intro .time{font-family:var(--f-display);font-size:30px;color:var(--stamp);letter-spacing:.04em}
+.story{font-size:17px;line-height:1.6;min-height:5.2em;margin:12px 0;position:relative;cursor:pointer}
+.story::after{content:"▌";animation:blink 1s infinite;color:var(--khaki)}
+.story.done::after{content:""}
+.sheet h2{font-family:var(--f-display);font-size:58px;line-height:.9;margin:8px 0 4px;text-wrap:balance}
+.sheet p{margin:10px 0;line-height:1.5;font-size:15px;position:relative}
+.rules{margin:12px 0 16px;padding:0;list-style:none;display:grid;gap:8px;font-size:14px;line-height:1.4}
+.rules li{display:grid;grid-template-columns:22px 1fr;gap:6px}
+.rules b{font-family:var(--f-display);font-size:22px;line-height:.9;color:var(--stamp)}
+.rows{display:grid;margin:14px 0;border-top:1.5px solid currentColor;position:relative}
+.rows div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed #b5a87f;font-size:15px}
+.rows dt{opacity:.75}.rows dd{margin:0;font-weight:800;font-variant-numeric:tabular-nums}
+.big{width:100%;background:var(--stamp);color:#fff;border:0;border-radius:4px;padding:6px 12px 9px;font-family:var(--f-display);font-size:36px;font-weight:700;line-height:1;box-shadow:0 4px 0 #8c2219;position:relative}
+.big.green{background:var(--go);box-shadow:0 4px 0 #24521a}
+.big:disabled{opacity:.4;cursor:not-allowed}
+.big:active{transform:translateY(2px)}
+.ghostbtn{width:100%;margin-top:10px;background:transparent;border:1.5px solid currentColor;color:inherit;border-radius:4px;padding:8px;font-weight:700;font-size:14px;position:relative}
+.defense{width:100%;display:grid;gap:4px;text-align:start;margin-top:8px;background:#fff;color:var(--ink);border:1.5px solid var(--ink);border-radius:4px;padding:10px 12px;font-size:15px;font-weight:500;position:relative}
+.defense.mom{background:#fff3c9;border-color:var(--warn)}
+.defense small{font-size:12px;color:var(--ink-soft)}
+.perk-h{font-family:var(--f-display);font-size:28px;line-height:1;margin:14px 0 8px}
+.perkbox{display:grid;gap:8px;margin-bottom:14px}
+.perk{display:grid;gap:3px;text-align:start;background:#fff;color:var(--ink);border:2px solid var(--paper-2);border-radius:4px;padding:9px 12px;position:relative}
+.intro .perk{background:#20261a;color:var(--paper);border-color:#3a4128}
+.perk b{font-size:16px}.perk span{font-size:13px;opacity:.8;line-height:1.35}
+.perk.sel{border-color:var(--go);box-shadow:0 0 0 3px rgba(60,122,43,.3)}
+.intro .perk.sel{border-color:var(--go-2)}
+.best{font-size:13px;opacity:.75;text-align:center;margin-top:12px}
+.career{margin:12px 0;font-size:14px;font-weight:700}
+.career .track{background:rgba(0,0,0,.12);margin-top:5px}
+.career .track i{background:var(--stamp)}
+.end-stamp{position:absolute;top:18px;inset-inline-start:16px;font-family:var(--f-display);font-weight:700;font-size:30px;border:4px solid currentColor;border-radius:5px;padding:0 10px 3px;transform:rotate(14deg);animation:slam .5s .25s cubic-bezier(.2,1.6,.4,1) both}
+.end-stamp.ok{color:var(--go)}.end-stamp.no{color:var(--stamp)}
+.copytext{font-size:13px;background:#fff;border:1px solid #ccc;padding:6px;user-select:all}
+
+/* ---------- FX ---------- */
+.fx{position:fixed;inset:0;pointer-events:none;z-index:30;overflow:hidden}
+.pill{position:absolute;top:-40px;width:36px;height:15px;border-radius:8px;border:1px solid #9fb0c4;background:linear-gradient(90deg,#fff 50%,#dfe8f4 50%);animation:fall 1.6s linear forwards}
+.conf{position:absolute;top:-40px;width:28px;height:32px;display:grid;place-items:center;background:var(--paper);color:var(--go);font-family:var(--f-display);font-weight:700;font-size:24px;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.3);animation:fall 1.8s ease-in forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(var(--r))}}
+.siren{position:absolute;inset:0;animation:siren .36s steps(1) 5}
+@keyframes siren{0%{background:radial-gradient(circle at 0 0,rgba(230,30,30,.55),transparent 60%)}50%{background:radial-gradient(circle at 100% 0,rgba(30,90,240,.55),transparent 60%)}}
+.gas{position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,rgba(150,190,40,.55),rgba(120,160,30,.2) 60%,transparent);animation:gas 2.4s ease forwards}
+@keyframes gas{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+.flash{position:absolute;inset:0;background:#fff;animation:flash .5s ease-out forwards}
+.hurt{position:absolute;inset:0;background:radial-gradient(circle,transparent 40%,rgba(200,20,20,.6));animation:flash .5s ease-out forwards}
+@keyframes flash{from{opacity:.9}to{opacity:0}}
+.bars{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 40px,rgba(40,40,40,.85) 40px 50px);animation:barsdown .6s cubic-bezier(.5,1.6,.5,1) forwards}
+@keyframes barsdown{from{transform:translateY(-100%)}}
+#app.shake{animation:shake .5s}
+@keyframes shake{10%,50%,90%{transform:translateX(-8px)}30%,70%{transform:translateX(8px)}}
+/* ---------- Scene extras ---------- */
+.window{position:absolute;top:134px;inset-inline-end:14px;width:80px;height:62px;border:4px solid #eef2ea;border-radius:2px;overflow:hidden;
+  background:linear-gradient(#8ec5e8,#d8eef7 66%,#a9c789 66%);box-shadow:inset 0 0 0 2px #a9b9a1,0 2px 4px rgba(0,0,0,.15)}
+.window::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(#f4f6ef 0 3px,transparent 3px 9px);opacity:.8;z-index:1}
+.window .sun{position:absolute;top:7px;left:10px;width:16px;height:16px;border-radius:50%;background:#ffe27a;box-shadow:0 0 12px #ffe27a}
+.window .flag{position:absolute;bottom:20px;right:14px;width:2px;height:22px;background:#555}
+.window .flag::after{content:"";position:absolute;top:0;left:2px;width:14px;height:9px;background:linear-gradient(#fff 0 20%,#2d63a8 20% 32%,#fff 32% 68%,#2d63a8 68% 80%,#fff 80%);animation:wave 1.4s ease-in-out infinite;transform-origin:left}
+@keyframes wave{50%{transform:skewY(6deg) scaleX(.9)}}
+.wclock{position:absolute;top:24px;inset-inline-start:92px;width:42px;height:42px;border-radius:50%;background:#fff;border:3px solid #2b2f33;box-shadow:0 2px 3px rgba(0,0,0,.2)}
+.wclock::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:#2b2f33}
+.wclock i{position:absolute;left:50%;bottom:50%;width:3px;margin-left:-1.5px;background:#2b2f33;transform-origin:50% 100%;border-radius:2px;transition:transform .8s cubic-bezier(.3,1.6,.5,1)}
+.wclock .h{height:10px}.wclock .m{height:15px;width:2px;margin-left:-1px;background:var(--stamp)}
+.doc [data-k="eo"]{transform-box:fill-box;transform-origin:center;animation:blinkEye 4.2s infinite}
+@keyframes blinkEye{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.soldier{position:absolute;bottom:-8px;inset-inline-end:2px;width:150px;z-index:3;transform-origin:30% 100%;pointer-events:none}
+.soldier svg{display:block;width:100%;height:auto}
+.soldier .fist{opacity:0}
+.soldier.cheer{animation:cheer .6s ease}
+@keyframes cheer{30%{transform:translateY(-16px) rotate(-4deg)}60%{transform:none}}
+.soldier.slump{animation:slump .8s ease}
+@keyframes slump{40%{transform:scale(.95,.88) translateY(8px)}}
+.soldier.punch{animation:lunge .4s ease}
+.soldier.punch .fist{opacity:1}
+@keyframes lunge{40%{transform:translateX(64px) translateY(-14px) rotate(8deg)}}
+.soldier.flinch{animation:flinch .45s ease}
+@keyframes flinch{30%{transform:translateX(-12px) rotate(-7deg)}}
+.cmd .rmus{display:none}
+.cmd.rasar{--beret:#262626}
+.cmd.rasar .rmus{display:inline}
+.cmd.boss{inset-inline-start:calc(50% - 66px);bottom:58px;width:140px}
+.gatebar,.booth{display:none}
+.room.gate{background:linear-gradient(#93cbe9,#e4f2f6 60%,#8a8e82 60%)}
+.room.gate::before{display:none}
+.room.gate .cl{display:none}
+.room.gate .gatebar,.room.gate .booth{display:block}
+.gatebar{position:absolute;bottom:100px;inset-inline-end:0;width:58%;height:14px;z-index:2;background:repeating-linear-gradient(90deg,var(--stamp) 0 22px,#fff 22px 44px);border-radius:3px;box-shadow:0 2px 0 rgba(0,0,0,.25);transform-origin:100% 50%;transition:transform 1s cubic-bezier(.4,1.5,.5,1)}
+[dir="rtl"] .gatebar{transform-origin:0 50%}
+.gatebar.up{transform:rotate(-72deg)}
+.booth{position:absolute;bottom:56px;inset-inline-start:10px;width:88px;height:124px;background:#ded8c2;border:3px solid #8b8470;border-radius:3px}
+.booth::before{content:"ש״ג";position:absolute;top:6px;left:0;right:0;text-align:center;font-family:var(--f-display);font-size:28px;line-height:1;color:var(--ink)}
+.booth::after{content:"";position:absolute;top:40px;left:10px;right:10px;height:38px;background:#93cbe9;border:2px solid #8b8470}
+.timer{height:10px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.timer i{display:block;height:100%;background:var(--warn)}
+.toast{position:fixed;top:calc(env(safe-area-inset-top, 0px) + 12px);left:50%;z-index:60;background:var(--ink);color:var(--paper);border:2px solid var(--khaki);border-radius:6px;
+  padding:8px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 10px 24px rgba(0,0,0,.5);animation:toast 3.4s ease forwards;max-width:calc(100% - 32px);font-family:var(--f-body)}
+.toast b{display:block;font-family:var(--f-display);font-size:24px;color:var(--khaki);line-height:1}
+.toast small{display:block;font-size:12px;opacity:.8}
+@keyframes toast{0%{transform:translate(-50%,-90px)}10%,85%{transform:translate(-50%,0)}100%{transform:translate(-50%,-90px);opacity:0}}
+.medal{width:34px;height:34px;flex:none;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe9a0,#c79a2e);border:2px solid #7a5b12;
+  display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:20px;color:#4a3608;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.achs{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:10px 6px;margin:8px 0 14px}
+.ach{display:grid;justify-items:center;gap:4px;text-align:center;font-size:10px;font-weight:700;line-height:1.2}
+.ach .medal{width:38px;height:38px}
+.ach.locked .medal{background:#d8cfb1;border-color:#b0a684;color:#b0a684;box-shadow:none}
+.ach.locked span{opacity:.5}
+.ach-h{display:flex;justify-content:space-between;font-family:var(--f-display);font-size:26px;line-height:1;margin-top:12px}
+.ach-h span{font-family:var(--f-body);font-size:13px;font-weight:700;color:var(--ink-soft)}
+
+.patience{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-size:12px;font-weight:700;color:var(--khaki)}
+.pbar{height:8px;background:rgba(0,0,0,.35);border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:100%;background:var(--go-2)}
+.kbd{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border:1.5px solid var(--ink-soft);border-bottom-width:3px;border-radius:4px;font-size:11px;font-weight:800;color:var(--ink-soft);margin-inline-start:auto}
+.opt2{counter-reset:o}
+.opt2 .retort{position:relative;padding-inline-end:40px}
+.opt2 .retort::after{counter-increment:o;content:counter(o);position:absolute;top:9px;inset-inline-end:10px;font-size:11px;font-weight:800;border:1.5px solid var(--ink-soft);border-bottom-width:3px;border-radius:4px;padding:0 5px;color:var(--ink-soft)}
+.fstatus{text-align:center;font-family:var(--f-display);font-size:30px;line-height:1;min-height:30px;color:var(--khaki)}
+.fstatus.danger{color:#ff6b5b;animation:blink .3s infinite}
+.fstatus.open{color:var(--go-2)}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;direction:ltr}
+.pk{display:grid;place-items:center;gap:3px;background:var(--paper);color:var(--ink);border:0;border-radius:6px;padding:10px 4px 8px;font-family:var(--f-display);font-size:32px;font-weight:700;line-height:1;
+  box-shadow:0 4px 0 var(--paper-2);touch-action:none;user-select:none;-webkit-user-select:none;transition:transform .06s,box-shadow .06s}
+.pk small{font-family:var(--f-body);font-size:11px;font-weight:500;opacity:.75}
+.pk.hit{background:var(--stamp);color:#fff;box-shadow:0 4px 0 #8c2219}
+.pk.kick{background:var(--warn);color:#fff;box-shadow:0 4px 0 #8a5a12}
+.pk.on{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.3)}
+.pk:disabled{opacity:.35}
+.cue{position:absolute;top:22%;left:50%;z-index:5;transform:translateX(-50%);text-align:center;pointer-events:none;font-family:var(--f-display);font-weight:700;font-size:104px;line-height:.9;color:#fff;
+  -webkit-text-stroke:5px var(--stamp);paint-order:stroke fill;text-shadow:0 0 28px rgba(255,60,40,.85);animation:cuePulse .22s ease-in-out infinite alternate}
+.cue small{display:block;font-size:28px;-webkit-text-stroke:3px var(--stamp)}
+@keyframes cuePulse{to{transform:translateX(-50%) scale(1.14)}}
+.shield{position:absolute;bottom:96px;left:50%;width:118px;height:96px;margin-left:-59px;z-index:2;background:#f7f3e6;border:4px solid #8a7a52;border-radius:4px;
+  box-shadow:0 5px 0 rgba(0,0,0,.25);padding:8px 10px;display:grid;gap:7px;align-content:start;color:var(--ink);transform:rotate(-4deg);animation:shieldUp .2s ease-out}
+.shield b{font-family:var(--f-display);font-size:22px;line-height:1}
+.shield i{display:block;height:4px;background:#cfc6a8;border-radius:2px}
+@keyframes shieldUp{from{transform:translateY(40px) rotate(-4deg);opacity:0}}
+.room.ring .doc svg{transition:transform .18s ease}
+.doc.windup svg{transform:translateX(-16px) rotate(-7deg) scale(1.07)}
+.soldier.jab{animation:jab .16s ease}
+@keyframes jab{50%{transform:translateX(34px) translateY(-6px)}}
+.soldier.dodgeL{animation:dodgeL .45s ease}
+@keyframes dodgeL{35%{transform:translateX(-44px) rotate(-10deg)}}
+.soldier.dodgeR{animation:dodgeR .45s ease}
+@keyframes dodgeR{35%{transform:translateX(44px) rotate(10deg)}}
+.soldier.blocking{transform:scale(.9) translateY(10px);transition:transform .1s}
+.fly{position:absolute;z-index:5;width:36px;height:30px;margin:-15px 0 0 -18px;padding:0;border:0;background:none;cursor:crosshair;touch-action:manipulation}
+.fly svg{width:100%;height:100%;display:block}
+.fly .w{transform-box:fill-box;transform-origin:center;animation:flap .05s linear infinite alternate}
+@keyframes flap{to{transform:scaleY(.3)}}
+.fly.splat{transform:scale(1.5);opacity:0;transition:transform .4s,opacity .4s}
+
+@media (prefers-reduced-motion: reduce){
+  #app.shake,.doc .head,.cmd .head,.meter.hot,.room::after,.punch,.soldier,.doc [data-k="eo"],.window .flag::after{animation:none}
+  .choice,.sheet,.bubble.fresh,.console{animation:none}
+}
+</style>
+
+</head>
+<body>
+<div id="app" dir="rtl" lang="he">
+  <header class="hud">
+    <div class="hud-top">
+      <span class="tag" id="dayTag">יום ראשון · ביקור 1 מתוך 5</span>
+      <button id="mute" class="mute" type="button">צליל: פועל</button>
+    </div>
+    <div class="days" id="days"></div>
+    <div class="stats">
+      <div class="stat"><span class="lbl">גימלים בביקור / יעד</span><span class="num" id="gimelWrap"><span id="gimel" data-v="0">0</span><span id="tgt" class="tgt">/ 2</span></span></div>
+      <div class="stat"><span class="lbl">סה״כ בריצה</span><span id="total" class="num small">0</span></div>
+      <div class="stat"><span class="lbl">רצף (3 = בונוס)</span><div class="streak" id="streak"><i></i><i></i><i></i></div></div>
+    </div>
+    <div class="row2"><span class="clock" id="clock">07:00</span><span id="queue">בתור מאחוריך: 23</span></div>
+    <div class="sus">
+      <div class="sus-lbl"><span>חשד של הרופא</span><span id="susTxt">0%</span></div>
+      <div class="meter" id="meter"><i id="susBar"></i></div>
+    </div>
+    <div class="perks" id="perks"></div>
+  </header>
+
+  <section class="room" id="room" aria-live="polite">
+    <div class="lamp cl" aria-hidden="true"></div>
+    <div class="chart cl" aria-hidden="true"><div>ע</div><div>ל ב</div><div>ש ד ק</div><div>מ נ ר צ</div><div>פ ת ג ה ט</div></div>
+    <div class="wclock cl" aria-hidden="true"><i class="h" id="hH" style="transform:rotate(210deg)"></i><i class="m" id="hM"></i></div>
+    <div class="sign cl" aria-hidden="true"><b>שעות קבלה</b>07:00–<span id="closeSign">07:12</span><br>לא כולל אוכל</div>
+    <div class="window cl" aria-hidden="true"><span class="sun"></span><span class="flag"></span></div>
+    <div class="booth" aria-hidden="true"></div>
+    <div class="gatebar" id="gatebar" aria-hidden="true"></div>
+    <div class="doc-wrap cl"><div id="doc" class="doc" data-mood="neutral">
+      <svg viewBox="0 0 220 220" role="img" aria-label="הרופא">
+        <path d="M18 220 Q28 156 110 150 Q192 156 202 220Z" fill="var(--coat)"/>
+        <path d="M98 152 L110 178 L122 152Z" fill="#6f8150"/>
+        <path d="M110 152 L94 220 M110 152 L126 220" stroke="var(--coat-line)" stroke-width="3" fill="none"/>
+        <path d="M80 156 Q70 198 104 202 Q136 198 140 156" stroke="#2b2f33" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="104" cy="206" r="7" fill="#a9b3b8" stroke="#2b2f33" stroke-width="3"/>
+        <rect x="97" y="126" width="26" height="28" rx="6" fill="var(--skin-d)"/>
+        <g class="head">
+          <ellipse cx="60" cy="92" rx="9" ry="13" fill="var(--skin)"/>
+          <ellipse cx="160" cy="92" rx="9" ry="13" fill="var(--skin)"/>
+          <ellipse cx="110" cy="86" rx="50" ry="55" fill="var(--skin)"/>
+          <path d="M62 84 Q56 50 80 38 Q72 62 70 86Z" fill="var(--hair)"/>
+          <path d="M158 84 Q164 50 140 38 Q148 62 150 86Z" fill="var(--hair)"/>
+          <path d="M63 58 Q110 28 157 58" stroke="#2b2f33" stroke-width="5" fill="none"/>
+          <circle cx="110" cy="44" r="15" fill="#dfe5e8" stroke="#6f7a80" stroke-width="3"/>
+          <circle cx="110" cy="44" r="5" fill="#2b2f33"/>
+          <ellipse cx="104" cy="39" rx="4" ry="2.5" fill="#fff" opacity=".85"/>
+          <g stroke="var(--hair)" stroke-width="5" stroke-linecap="round" fill="none">
+            <path class="v" data-k="bn" d="M75 70 Q88 64 100 69 M120 69 Q132 64 145 70"/>
+            <path class="v" data-k="ba" d="M76 63 L100 74 M120 74 L144 63"/>
+            <path class="v" data-k="br" d="M75 62 Q88 52 100 59 M120 59 Q132 52 145 62"/>
+            <path class="v" data-k="bs" d="M76 73 L100 72 M120 61 Q133 51 145 59"/>
+          </g>
+          <g fill="#22251a" stroke="#22251a" stroke-linecap="round">
+            <g class="v" data-k="eo"><circle cx="88" cy="90" r="4.5"/><circle cx="132" cy="90" r="4.5"/></g>
+            <g class="v" data-k="ew"><circle cx="88" cy="90" r="9" fill="#fff" stroke-width="1"/><circle cx="132" cy="90" r="9" fill="#fff" stroke-width="1"/><circle cx="88" cy="90" r="3.5"/><circle cx="132" cy="90" r="3.5"/></g>
+            <g class="v" data-k="esq" stroke-width="3.5" fill="none"><path d="M81 91 L95 89 M125 89 L139 91"/></g>
+            <g class="v" data-k="eh" stroke-width="3.5" fill="none"><path d="M81 93 Q88 84 95 93 M125 93 Q132 84 139 93"/></g>
+            <g class="v" data-k="ex" stroke-width="3.5" fill="none"><path d="M82 84 L94 96 M94 84 L82 96 M126 84 L138 96 M138 84 L126 96"/></g>
+          </g>
+          <circle cx="88" cy="90" r="15" fill="rgba(255,255,255,.18)" stroke="#2b2f33" stroke-width="3"/>
+          <circle cx="132" cy="90" r="15" fill="rgba(255,255,255,.18)" stroke="#2b2f33" stroke-width="3"/>
+          <path d="M103 89 Q110 84 117 89" stroke="#2b2f33" stroke-width="3" fill="none"/>
+          <g class="v" data-k="blush" fill="#e57a6a" opacity=".45"><circle cx="76" cy="110" r="8"/><circle cx="144" cy="110" r="8"/></g>
+          <g class="v" data-k="bruise" fill="#7b5aa6" opacity=".7"><ellipse cx="132" cy="92" rx="17" ry="14"/></g>
+          <g class="v" data-k="sweatd" fill="#7fc4ef"><path d="M150 66 Q156 76 150 80 Q144 76 150 66Z"/><path d="M66 70 Q71 78 66 81 Q61 78 66 70Z"/></g>
+          <path d="M110 96 Q102 107 110 109 Q116 109 118 106" fill="none" stroke="var(--skin-d)" stroke-width="3" stroke-linecap="round"/>
+          <g stroke="#3a1a10" stroke-width="3.5" stroke-linecap="round" fill="none">
+            <path class="v" data-k="mn" d="M100 125 L120 125"/>
+            <path class="v" data-k="mh" d="M95 120 Q110 140 125 120Z" fill="#5a2318"/>
+            <ellipse class="v" data-k="ms" cx="110" cy="129" rx="7" ry="9" fill="#5a2318"/>
+            <path class="v" data-k="ma" d="M97 131 Q110 120 123 131"/>
+            <path class="v" data-k="mb" d="M100 126 Q112 123 122 127"/>
+            <path class="v" data-k="mw" d="M95 127 q4 -5 7.5 0 q4 5 7.5 0 q4 -5 7.5 0 q4 5 7.5 0"/>
+          </g>
+          <path d="M82 117 Q94 104 110 111 Q126 104 138 117 Q126 121 110 116 Q94 121 82 117Z" fill="var(--hair)"/>
+        </g>
+      </svg>
+    </div></div>
+    <div id="cmd" class="cmd" data-mood="yell" aria-hidden="true">
+      <svg viewBox="0 0 160 210">
+        <path d="M6 210 Q14 150 80 144 Q146 150 154 210Z" fill="var(--uni)"/>
+        <path d="M80 146 L66 178 L80 170 L94 178Z" fill="var(--uni-d)"/>
+        <path d="M80 170 L80 210" stroke="var(--uni-d)" stroke-width="3"/>
+        <g fill="#e2c35b"><rect x="22" y="160" width="5" height="10" rx="1"/><rect x="30" y="160" width="5" height="10" rx="1"/><rect x="38" y="160" width="5" height="10" rx="1"/>
+          <rect x="117" y="160" width="5" height="10" rx="1"/><rect x="125" y="160" width="5" height="10" rx="1"/><rect x="133" y="160" width="5" height="10" rx="1"/></g>
+        <rect x="68" y="126" width="24" height="24" rx="5" fill="var(--skin-d)"/>
+        <g class="head">
+          <ellipse cx="40" cy="98" rx="8" ry="11" fill="var(--skin)"/>
+          <ellipse cx="120" cy="98" rx="8" ry="11" fill="var(--skin)"/>
+          <ellipse cx="80" cy="94" rx="40" ry="46" fill="var(--skin)"/>
+          <path d="M36 80 Q32 42 84 38 Q132 40 126 70 Q104 60 72 68 Q50 72 36 80Z" fill="var(--beret)"/>
+          <circle cx="50" cy="70" r="6" fill="#d9b44a" stroke="#8a6d1f" stroke-width="1.5"/>
+          <g stroke="#2b1d12" stroke-width="5" stroke-linecap="round" fill="none">
+            <path class="v" data-k="cba" d="M54 84 L74 90 M86 90 L106 84"/>
+            <path class="v" data-k="cbs" d="M54 90 L72 84 M88 84 L106 90"/>
+          </g>
+          <g fill="#22251a"><circle cx="66" cy="99" r="4"/><circle cx="94" cy="99" r="4"/></g>
+          <path d="M80 102 Q74 112 80 114 Q85 114 87 111" fill="none" stroke="var(--skin-d)" stroke-width="3" stroke-linecap="round"/>
+          <path class="rmus" d="M54 120 Q67 108 80 115 Q93 108 106 120 Q93 125 80 119 Q67 125 54 120Z" fill="#1d1712"/>
+          <g class="v" data-k="vein" stroke="#b3261e" stroke-width="3" stroke-linecap="round"><path d="M98 72 l6 6 M104 72 l-6 6"/></g>
+          <g class="v" data-k="cblush" fill="#e57a6a" opacity=".55"><circle cx="56" cy="114" r="7"/><circle cx="104" cy="114" r="7"/></g>
+          <path class="v" data-k="sweat" d="M116 74 Q122 84 116 88 Q110 84 116 74Z" fill="#7fc4ef"/>
+          <g stroke="#3a1a10" stroke-width="3.5" stroke-linecap="round" fill="none">
+            <path class="v" data-k="cy" d="M64 120 Q80 142 96 120Z" fill="#5a2318"/>
+            <path class="v" data-k="ch" d="M64 126 q4 -5 8 0 q4 5 8 0 q4 -5 8 0 q4 5 8 0"/>
+            <path class="v" data-k="cs" d="M66 126 Q82 132 96 120"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="desk cl" aria-hidden="true">
+      <div class="papers"></div>
+      <div class="plate">ד״ר שמואלי · קר״פ</div>
+      <div class="box">אקמול<small>500 מ״ג · 1000 יח׳</small></div>
+    </div>
+    <div class="soldier" id="soldier" aria-hidden="true">
+      <svg viewBox="0 0 170 140">
+        <g class="fist"><path d="M104 100 L148 70" stroke="#5f7040" stroke-width="15" stroke-linecap="round"/><circle cx="152" cy="67" r="12" fill="var(--skin)" stroke="var(--skin-d)" stroke-width="2"/></g>
+        <path d="M6 140 Q10 92 70 86 Q130 92 134 140Z" fill="#5f7040"/>
+        <path d="M70 90 L70 140" stroke="#4b5a32" stroke-width="2"/>
+        <path d="M20 112 Q30 104 44 104" stroke="#4b5a32" stroke-width="2" fill="none"/>
+        <rect x="94" y="97" width="30" height="9" rx="3" fill="#4b5a32"/>
+        <path d="M96 95 q14 -10 28 0 l0 8 q-14 4 -28 0z" fill="#6b2a2a"/>
+        <rect x="57" y="68" width="26" height="24" rx="7" fill="var(--skin-d)"/>
+        <ellipse cx="39" cy="52" rx="7" ry="10" fill="var(--skin)"/>
+        <ellipse cx="101" cy="52" rx="7" ry="10" fill="var(--skin)"/>
+        <ellipse cx="70" cy="48" rx="31" ry="34" fill="var(--skin)"/>
+        <path d="M39 44 Q41 13 70 13 Q99 13 101 44 Q97 66 70 68 Q43 66 39 44Z" fill="#2c2118"/>
+        <path d="M50 26 Q60 20 72 22" stroke="#4a3a2c" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+    <div id="bubble" class="bubble"><div class="said">נו? מה כואב לך הפעם?</div></div>
+    <div id="shield" class="shield" hidden aria-hidden="true"><b>טופס 55</b><i></i><i></i><i></i></div>
+    <div id="cue" class="cue" hidden aria-hidden="true"></div>
+    <div id="stamp" class="stamp" hidden></div>
+    <div id="floater" class="floater"></div>
+  </section>
+
+  <div class="prompt" id="prompt">מה אתה אומר לו?</div>
+  <section class="choices" id="choices"></section>
+  <div class="actions" id="actions">
+    <button id="fightBtn" class="actbtn fightbtn" type="button">להזמין את הרופא למכות</button>
+    <button id="rerollBtn" class="actbtn reroll" type="button" hidden>להחליף משפטים (במבה)</button>
+    <button id="cashout" class="actbtn cashout" type="button" disabled>אין עדיין מה לקחת</button>
+  </div>
+
+  <div id="fx" class="fx" aria-hidden="true"></div>
+  <div id="overlay" class="overlay"></div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const app=$('#app'), fx=$('#fx'), room=$('#room');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+             set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* ================= content ================= */
+/* r: 1 נמוך, 2 בינוני, 3 מטורף · w/f: תגובת הרופא · j: ג׳קפוט ({g} = מספר הימים) */
+const LINES=[
+ {t:'דוקטור, יש לי חום של 41. לפחות בנשמה.',r:1,w:'מדדתי, יצא 37.2. אבל אתה נראה מסכן. {g}.',f:'המדחום עוד לא נכנס לך לפה, אחי.'},
+ {t:'אני משלשל בלי הפסקה מאז השבצ״ק של ראשון',r:2,w:'אל תתקרב אליי! {g}, ותצא דרך החלון.',f:'תביא דגימה. עכשיו. אני מחכה פה.',j:{g:4,t:'החובש התעלף רק מהתיאור. {g}, רק תלך.',fx:'gas'},wm:'shock'},
+ {t:'נתפס לי הגב כשהרמתי את הארגז של הרס״ר',r:1,w:'הארגז של הרס״ר? ידוע לשמצה. {g}.',f:'הרס״ר בדיוק התקשר. אמר שהרמת לו כוס קפה.'},
+ {t:'דוקטור... אני חושב שאני בהריון',r:3,w:'אני לא יודע מה לעשות עם המידע הזה. {g}. לך.',f:'רשמתי ״הזיות״. וגם שמירה כפולה.',j:{g:5,t:'הרופא התעלף. החובשת חתמה לך על {g}. אף אחד לא יודע למה.',fx:'faint'}},
+ {t:'יש לי אלרגיה לשמירות. אני מתנפח ליד הש״ג',r:1,w:'אלרגיה עונתית. עונת השמירות. {g}.',f:'יש לזה טיפול מוכח: עוד שמירות. כמו חיסון.'},
+ {t:'אני רואה כפול את המ״פ. וזה מפחיד אותי פעמיים',r:2,w:'גם אני הייתי מפחד. {g}.',f:'המ״פ עומד מאחוריך. ויש רק אחד.',ffx:'shake'},
+ {t:'*משתעל לו ישר בפנים*',r:3,w:'אני מרגיש לא טוב... {g} לך, שבוע לי.',f:'הדבר הכי לא מנומס שראיתי מאז הטירונות.',j:{g:4,t:'המרפאה נכנסה להסגר. כולם הביתה. {g}.',fx:'siren'},wm:'sick'},
+ {t:'יש לי פריחה. לא אגיד איפה.',r:2,w:'ו... אני לא רוצה לדעת. {g} ומשחה.',f:'בדקתי. זו עקיצת יתוש. אחת.'},
+ {t:'וואלה אחי, פשוט תן גימלים ונגמור עם זה',r:3,w:'סוף סוף מישהו כנה. {g}.',f:'רשמתי את השם שלך. בטוש. אדום.',j:{g:4,t:'הרופא בכה מהתרגשות. {g}, ובקשה שתהיה חבר שלו.'}},
+ {t:'הבאתי לך במבה ושוקו בשקית',r:2,w:'...במבה נוגט? טוב. {g}.',f:'שוקו בשקית חם?! זה שוחד וגם פשע מלחמה.'},
+ {t:'אמא שלי על הקו, היא רוצה לדבר איתך',r:2,w:'היא דיברה תשע דקות. נשברתי. {g}.',f:'אמא שלך מסכימה איתי. אתה עושה הצגות.',j:{g:3,t:'אמא שלך סידרה גימלים גם לי. {g} לך.'}},
+ {t:'*בוכה בלי הפסקה שלוש דקות*',r:1,w:'טוב טוב, {g}, רק תפסיק. גם אני מתחיל.',f:'גם אני בוכה כל יום. זה נקרא ״צבא״.'},
+ {t:'אכלתי את השניצל של חדר אוכל',r:2,w:'של יום שלישי?! קוראים לאמבולנס. {g}.',f:'כולם אכלו את השניצל. כולם חזרו לשטח.',wfx:'siren',wm:'shock'},
+ {t:'*מגיש צילום רנטגן בביטחון מלא*',r:3,w:'לא ראיתי שבר כזה בחיים. {g}.',f:'זה רנטגן של כלב. רואים את הזנב.',ffx:'shake',j:{g:4,t:'לפי הצילום יש לך שלוש ריאות. {g} למחקר.'}},
+ {t:'דוקטור, אתה נראה חולה. רוצה גימלים?',r:3,w:'אתה צודק. אני הולך הביתה ואתה בא איתי. {g}.',f:'אני לא חולה. אני עייף. ועכשיו גם עצבני.',j:{g:4,t:'הוא חתם לעצמו על שבוע ולך על {g}, שלא תלשין.'}},
+ {t:'יש לי טינטון באוזן. מה? מה אמרת?',r:1,w:'אמרתי {g}. מה? אמרתי {g}!',f:'אמרתי שמירה בשתיים בלילה. את זה שמעת, נכון?'},
+ {t:'המ״מ דרך לי על הרגל עם הנעליים החדשות',r:1,w:'נעליים חדשות זה פציעת קרב. {g}.',f:'המ״מ שוקל 52 קילו. תתבייש.'},
+ {t:'כואבים לי השרירים מהמחשבה על הקפ״פ',r:2,w:'זה אמיתי, קוראים לזה קפ״פופוביה. {g}.',f:'אז נתרגל: עשרים שכיבות סמיכה. עכשיו.'},
+ {t:'אני מפליץ בלי שליטה. רוצה שאדגים?',r:2,w:'לא! לא לא לא! {g}, רק אל תדגים!',f:'הדגמת. היה חלש. שמירה.',j:{g:3,t:'הדגמת. המרפאה פונתה. {g}.',fx:'gas'},wm:'shock'},
+ {t:'יש לי פוסט־טראומה מהמסדר של הבוקר',r:1,w:'הייתי במסדר. אני מבין אותך. {g}.',f:'המסדר נגמר לפני עשרים דקות. ״פוסט״ זה מוקדם מדי.'},
+ {t:'הגבות שלי כואבות',r:3,w:'לא שמעתי על זה אף פעם. נשמע מסוכן. {g}.',f:'אתה מזיז אותן כבר עשר דקות. שבת.',j:{g:3,t:'זה בלתי אפשרי מדעית. הרופא נבהל. {g}.'}},
+ {t:'אני חושב שנדבקתי בג׳ובניקיות',r:2,w:'זה מדבק! בידוד בבית, {g}.',f:'זו לא מחלה. זה אורח חיים. חזור לבסיס.'},
+ {t:'*מתעלף על הרצפה בצורה דרמטית*',r:3,w:'הנפילה הייתה יפה, אני מודה. {g}.',f:'עין אחת שלך פתוחה ואתה מציץ. קום.',j:{g:4,t:'נפלת על הרופא. עכשיו שניכם בגימלים. {g}.',fx:'faint'}},
+ {t:'יש לי פציעת ספורט. מהפלייסטיישן.',r:2,w:'אגודל פיפ״א. מכיר. {g}.',f:'אני מחזיק את השיא בפיפ״א בבסיס. לא עובד עליי.'},
+ {t:'החתול של השכנים חולה ואני היחיד שהוא סומך עליו',r:1,w:'...זה מרגש. אני אוהב חתולים. {g}.',f:'אני השכן. החתול בסדר גמור.'},
+ {t:'הלב שלי דופק מהר כל פעם שהרס״ר צועק',r:1,w:'גם שלי. זה מדעי. {g}.',f:'זה נקרא ״פחד״. ואין עליו גימלים.'},
+ {t:'דוקטור, אני חושב שאני אלרגי לחאקי',r:3,w:'...זה מסביר הרבה. {g}, ותלבש טרנינג.',f:'אתה בצבא. החאקי לא הולך לשום מקום. גם לא אתה.',j:{g:4,t:'הרופא בדק. אתה באמת אלרגי. {g}, ומכתב לשלישות.'}},
+ {t:'יש לי קרע במניסקוס. אני לא יודע מה זה, אבל יש לי',r:2,w:'לפחות אתה כנה שאתה לא יודע. {g}.',f:'מניסקוס זה בברך. הצבעת על הכתף.'},
+ {t:'נשכה אותי החתולה של הבסיס',r:1,w:'האפורה? היא נשכה גם אותי. {g}.',f:'זו לא נשיכה. זה סימן של שעון.'},
+ {t:'כל פעם שאני שומע ״מסדר״ אני מקבל פריחה',r:2,w:'בדקתי. ״מסדר״. ...באמת! {g}.',f:'מסדר. מסדר. מסדר. אני לא רואה כלום.'},
+ {t:'*מוציא מכתב מסבתא בכתב יד*',r:2,w:'סבתא כותבת שאתה ״ילד רגיש״. מי אני שאתווכח. {g}.',f:'סבתא כתבה את זה בעט הג׳ל של הפלוגה.',j:{g:3,t:'סבתא שלך הייתה הרופאה שלי בטירונות. {g}, ודרישת שלום.'}},
+ {t:'יש לי חוסר בוויטמין ש׳. שינה.',r:1,w:'גם לי. הנה {g}, ותישן גם בשבילי.',f:'ויטמין ש׳ מקבלים בשמירה. בעמידה.'},
+ {t:'הרגל שלי נרדמה ולא מתעוררת כבר יומיים',r:2,w:'תן לה לישון. {g}.',f:'צבטתי. קפצת. היא ערה.'},
+ {t:'כואב לי כל הגוף. במיוחד הגוף.',r:1,w:'אבחנה מדויקת. {g}.',f:'גם לי. ואני פה.'},
+ {t:'אכלתי לוף. מרצון.',r:3,w:'למה. למה עשית את זה. {g}.',f:'לוף זה מזין. אתה בריא.',j:{g:5,t:'אף אחד לא אכל לוף מרצון מאז 1973. {g} ומחקר.',fx:'gas'},wm:'shock'},
+ {t:'הנשק שלי כבד לי. רגשית.',r:3,w:'זה עמוק. מאוד. {g}.',f:'הנשק שלך שוקל 3.3 קילו. כמו חתול. תתמודד.',j:{g:4,t:'הרופא הוריד משקפיים ובכה. {g}.'}},
+ {t:'אני רואה נקודות שחורות כשאני מסתכל על הסמל',r:1,w:'אלה הגבות שלו. אבל טוב, {g}.',f:'אלה הגבות שלו. לך.'},
+ {t:'בוא נעשה עסקה: אתה לא ראית אותי, אני לא ראיתי אותך',r:3,w:'עסקה. {g}. ומעולם לא נפגשנו.',f:'אני רואה אותך מצוין. בשתי עיניים.',j:{g:4,t:'הרופא אהב את העסקה. {g}, והוא מצטרף אליך.'}},
+ {t:'הרס״ר צעק עליי כל כך חזק שנפלה לי עדשה',r:1,w:'יש לי פה עדשה של מישהו. {g}.',f:'אתה לא מרכיב עדשות.'},
+ {t:'*מחקה את הרופא בצורה מושלמת*',r:3,w:'אני... אני נראה ככה? {g}, ותפסיק.',f:'אני לא מדבר ככה. אני לא מדבר ככה! שמירה.',j:{g:4,t:'החובשת חשבה שאתה הרופא וחתמה לך. {g}.'}},
+ {t:'נפלתי מהמיטה העליונה. פעמיים. באותו לילה.',r:1,w:'פעמיים? כבוד. {g}.',f:'אתה ישן במיטה התחתונה. בדקתי.'},
+ {t:'הבסיס רדוף. המטבח מדבר אליי.',r:3,w:'גם אליי. {g}, ותיזהר מהשקשוקה.',f:'זה המש״ק מטבח. הוא מבקש שתחזיר את הסירים.',j:{g:3,t:'הרופא שמע את המטבח מדבר. {g}, וגם הוא בורח.'}},
+ {t:'הכומתה קטנה עליי. יש לי כאב ראש.',r:1,w:'ראש גדול זה סימן לחוכמה. {g}.',f:'הכומתה בסדר. הראש שלך נפוח מגאווה.'},
+ {t:'יש לי קרע בלב. היא עזבה אותי בוואטסאפ.',r:2,w:'בוואטסאפ?! {g}, ותחסום אותה.',f:'זה הקרע השלישי שלך החודש.',j:{g:3,t:'הרופא קרא את ההודעה. {g}, והוא כבר כותב לה בחזרה.'}},
+ {t:'האקמול שנתת לי אתמול לא עבד',r:1,w:'מוזר. מאוד מוזר. ...טוב. {g}.',f:'אז קח שניים.'},
+ {t:'יש לי חרדת נטישה מהמיטה',r:2,w:'זה קשר אמיתי. {g}.',f:'המיטה תחכה לך. גם השמירה.'},
+ {t:'אני כבר שלושה ימים לא מרגיש את הפזמ״ש',r:2,w:'פזמ״ש זה לא איבר. אבל אני מבין. {g}.',f:'אתה בצבא שלושה חודשים. אין לך פזמ״ש.'},
+ {t:'*מראה לרופא תמונה של הכלב שלו מהבית*',r:3,w:'איזה חמוד... לך אליו. {g}.',f:'זה הכלב שלי. איך יש לך תמונה של הכלב שלי?!',j:{g:4,t:'הרופא התגעגע לכלב שלו. {g} לך, ושבוע לו.'}}
+];
+const ACAMOL=['קח אקמול ותשתה מים.','אקמול. שני כדורים. חזור לשמירה.','יש לי פה רק אקמול. זה כל הכישרון שלי.',
+ 'אקמול, מים, ומנוחה. אחרי התורנות.','שמע, אקמול פותר הכל. גם אותך.','שלושה אקמולים: אחד לכאב, שניים לבדיחה.','אקמול. ואם זה לא עובר, עוד אקמול.'];
+const DAYS=['ראשון','שני','שלישי','רביעי','חמישי'], DL=['א׳','ב׳','ג׳','ד׳','ה׳'];
+const TARGET=[2,3,4,5,6], SUS0=[0,10,18,26,34];
+const GREET=['נו? מה כואב לך הפעם?','שוב אתה? אתמול היית פה.','שלישי ברצף. אני מתחיל לרשום.','אני כבר מכיר את כל התירוצים שלך.','חמישי. אני יודע שאתה רוצה הביתה. גם אני.'];
+const STORIES=[
+ 'שבצ״ק של המ״מ ב־05:30. ישנת שלוש שעות. בתור למרפאה עומדים 31 חיילים, ולכולם כואב הגב. גם לך, החל מעכשיו.',
+ 'הרס״ר תפס אותך אתמול עם כוס קפה בשמירה. היום הוא מחכה בחוץ עם מחברת. הרופא כבר שמע עליך.',
+ 'מישהו גנב לך את הכומתה, המקלחת קפואה, והחובשת זוכרת את הפרצוף שלך. יום שלישי. זה מתחיל להיות מסוכן.',
+ 'המ״פ הודיע במסדר שמי שנמצא במרפאה יותר מפעמיים בשבוע ״מקבל טיפול מיוחד״. זה הביקור הרביעי שלך.',
+ 'יום חמישי. כל הפלוגה יוצאת הביתה בצהריים. חוץ ממי שלא. זה הביקור האחרון שלך לפני שבת.'
+];
+const PERKS={
+ kaban:{n:'אישור מהקב״ן',d:'הכישלון הראשון בכל ביקור לא מוסיף חשד.'},
+ bamba:{n:'במבה בכיס',d:'פעם בביקור: מחליפים את שלושת המשפטים.'},
+ thermo:{n:'מדחום מחומם',d:'יותר סיכוי להצליח במשפטים בסיכון נמוך ובינוני.'},
+ gloves:{n:'כפפות מהש״ג',d:'במכות: אזור פגיעה רחב יותר ו־4 נזק נוסף.'},
+ tape:{n:'הקלטה של המ״פ',d:'בוויכוח: כל עקיצה מורידה לו 12 ביטחון נוסף.'},
+ shal:{n:'חבר בשלישות',d:'יום גימלים נוסף בכל פעם שעומדים ביעד היומי.'},
+ mom:{n:'הטלפון של אמא',d:'פעם אחת בריצה: זיכוי אוטומטי בבית הדין.'},
+ candy:{n:'ממתקים לחובשת',d:'כל ביקור מתחיל עם 10% חשד פחות.'},
+ acting:{n:'קורס משחק',d:'יותר סיכוי לג׳קפוט.'},
+ watch:{n:'שעון מכוון קדימה',d:'משפט נוסף בכל ביקור.'}
+};
+const RISK={1:['סיכון נמוך','r1'],2:['סיכון בינוני','r2'],3:['סיכון מטורף','r3']};
+const ODDS={1:{w:.6,j:0,a:.28},2:{w:.43,j:.08,a:.2},3:{w:.25,j:.18,a:.1}};
+const MOODS={neutral:['bn','eo','mn'],think:['bs','esq','mb'],happy:['br','eh','mh','blush'],shock:['br','ew','ms'],
+ angry:['ba','eo','ma'],bored:['bn','esq','mb'],sick:['bn','esq','mw'],faint:['br','ex','ms'],beaten:['br','eo','mw','bruise'],sweaty:['ba','esq','ma','sweatd']};
+const CMOODS={yell:['cba','cy','vein'],hurt:['cbs','ch','sweat','cblush'],smug:['cba','cs']};
+
+/* fight */
+const INTENTS=[{n:'הצלפת סטטוסקופ',d:12},{n:'פטיש רפלקסים לברך',d:16},{n:'זריקת אקמול לישבן',d:22},{n:'הפנס ישר בעיניים',d:13},
+ {n:'מכת לוח כתיבה',d:18},{n:'מתחבא מאחורי השולחן',d:0,guard:1},{n:'בעיטת מגפיים של קצין',d:20}];
+const MOVES={punch:{n:'אגרוף',w:24,d:[16,22]},kick:{n:'בעיטת קפ״פ',w:12,d:[30,38]},block:{n:'חסימה',w:30}};
+const BURSTS=['פאו!','טראח!','בום!','בדיש!','קרררץ׳!','טוּח!'];
+const DOC_PAIN=['אאוץ׳! אני קצין!','המשקפיים! לא המשקפיים!','אני אחתום! אני... רגע, לא!','זה יעלה לך ב... אאוץ׳!','אמא!','עשיתי קרב מגע בקורס קצינים. כנראה לא מספיק.'];
+const DOC_DODGE=['פספסת. אני עושה פילאטיס.','חיכיתי לזה כל הקריירה.','יש לי רפלקסים. בדקתי אותם בעצמי.','ככה מרביצים בשריון?'];
+
+/* argument */
+const RETORTS={
+ 1:['המפקד, עם כל הכבוד, יש לי אישור רפואי בתהליך','אני רק עושה מה שהרופא אומר, המפקד','המפקד, אתה נראה עייף. גם לך מגיע גימלים','אני מכבד אותך מאוד. מרחוק.','המפקד, אני פה כדי שהפלוגה לא תידבק'],
+ 2:['עם כל הכבוד, לא עברת קורס חובשים','המפקד, יש לך שבצ״ק על החולצה','אמא שלי יותר מפחידה ממך','המפקד, הכומתה שלך הפוכה','גם אתה הברזת ממסדר מג״ד, אני זוכר'],
+ 3:['אני אספר לכולם על השיר שאתה שר במקלחת','ראיתי אותך בורח מהשמירה בשבוע שעבר','המג״ד אמר לי שאתה בדרך החוצה','זה לא אתה שהזמין פיצה לש״ג בשלוש בלילה?','בוא נשאל את הרופא מי פה חולה באמת']
+};
+const TIER={1:{name:'מנומס',cls:'r1',dmg:[14,24],ang:[4,12],bf:0},2:{name:'חצוף',cls:'r2',dmg:[24,38],ang:[14,26],bf:.12},3:{name:'נשק אטומי',cls:'r3',dmg:[40,62],ang:[24,40],bf:.3}};
+const CMD_HURT=['זה... זה לא קשור!','מי סיפר לך את זה?!','שתוק! ...רגע, באמת?','זה היה רק פעם אחת!','אני... צריך לשבת רגע.'];
+const CMD_MAD=['אתה מדבר ככה למפקד שלך?!','עוד מילה אחת ואתה בכלא!','אני רושם אותך. בעט כחול!','אתה יודע מי אני?!'];
+const CMD_BACKFIRE=['זה בכלל היה המ״מ. ועכשיו אתה בבעיה.','שקר! ואני הולך להוכיח את זה. בבית דין.'];
+const DEFENSES=[
+ {t:'השופט, הייתי תחת השפעת אקמול',c:.48,ok:'השופט חשב על זה רגע. ״זה דווקא הגיוני.״ זוכה.',no:'״אקמול זה לא סם.״ אשם.'},
+ {t:'אני מבקש לזמן עדה: אמא שלי',c:.40,ok:'אמא שלך צעקה על השופט עשרים דקות. זוכה, והשופט ביקש סליחה.',no:'אמא שלך העידה נגדך. אשם.'},
+ {t:'אני מודה בכל. אבל תודו שזה היה מצחיק',c:.30,ok:'השופט צחק עד דמעות. זוכה מחוסר רצינות.',no:'השופט לא צחק. בכלל. אשם.'}
+];
+const CAREER=[['טוראי',0],['רב״ט',6],['סמל',15],['סמ״ר',30],['רס״ל',50],['רס״ר',80],['רס״ב',120],['אגדת המרפאה',180]];
+
+let RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0}, S, muted=store.get('gm_mute',false);
+
+/* ================= sound ================= */
+let AC=null;
+function ac(){if(muted)return null;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function tone(f,d,o={}){const a=ac();if(!a)return;const t=a.currentTime+(o.at||0);const osc=a.createOscillator(),g=a.createGain();
+ osc.type=o.type||'square';osc.frequency.setValueAtTime(f,t);if(o.to)osc.frequency.exponentialRampToValueAtTime(o.to,t+d);
+ g.gain.setValueAtTime(o.v||.06,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);osc.connect(g).connect(a.destination);osc.start(t);osc.stop(t+d+.03)}
+function noise(d,v,at){const a=ac();if(!a)return;const len=a.sampleRate*d|0,buf=a.createBuffer(1,len,a.sampleRate),ch=buf.getChannelData(0);
+ for(let i=0;i<len;i++)ch[i]=(Math.random()*2-1)*(1-i/len);const s=a.createBufferSource(),g=a.createGain(),f=a.createBiquadFilter();
+ f.type='lowpass';f.frequency.value=900;s.buffer=buf;g.gain.value=v;s.connect(f).connect(g).connect(a.destination);s.start(a.currentTime+(at||0))}
+const SFX={
+ stamp(){tone(150,.2,{type:'sine',v:.35,to:45});tone(1200,.03,{v:.04})},
+ win(){[523,659,784,1046].forEach((f,i)=>tone(f,.14,{at:i*.07,v:.05}))},
+ jack(){[392,523,659,784,1046,1318].forEach((f,i)=>tone(f,.16,{at:i*.06,v:.06}));tone(1568,.6,{at:.4,type:'triangle',v:.07})},
+ fail(){[392,370,349,294].forEach((f,i)=>tone(f,i===3?.7:.22,{type:'sawtooth',v:.045,at:i*.25,to:i===3?240:null}))},
+ acamol(){for(let i=0;i<10;i++)tone(1800+Math.random()*1600,.03,{at:i*.05+Math.random()*.03,v:.03})},
+ siren(){for(let i=0;i<4;i++)tone(620,.36,{type:'triangle',v:.06,to:980,at:i*.4})},
+ tick(){tone(380,.05,{v:.03})},
+ punch(){noise(.18,.6);tone(110,.18,{type:'sine',v:.35,to:40})},
+ big(){noise(.3,.8);tone(90,.4,{type:'sine',v:.45,to:30})},
+ slap(){noise(.08,.5);tone(900,.06,{type:'square',v:.04,to:300})},
+ block(){tone(1600,.08,{type:'triangle',v:.08});tone(800,.15,{type:'triangle',v:.06,at:.03})},
+ bell(){[0,.25,.5].forEach(a=>tone(1320,.5,{type:'sine',v:.08,at:a}))},
+ door(){noise(.25,.5);tone(80,.3,{type:'sine',v:.3,to:50})},
+ event(){tone(880,.1,{type:'triangle',v:.06});tone(660,.18,{type:'triangle',v:.06,at:.12})},
+ gavel(){[0,.22,.44].forEach(a=>{noise(.06,.6,a);tone(180,.12,{type:'sine',v:.3,at:a,to:70})})},
+ clang(){tone(220,.8,{type:'square',v:.06,to:110});noise(.4,.4)},
+ type(){tone(1800+Math.random()*400,.015,{v:.012})},
+ jab(){noise(.07,.35);tone(220,.06,{type:'sine',v:.15,to:120})},
+ whoosh(){noise(.15,.22)},
+ warn(){tone(1400,.07,{v:.05});tone(1400,.07,{v:.05,at:.11})}
+};
+
+/* ================= helpers ================= */
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const rnd=(a,b)=>a+Math.random()*(b-a+1)|0;
+const pickOne=a=>a[Math.random()*a.length|0];
+const fmt=s=>s.replace(/\*(.+?)\*/g,'<em>$1</em>');
+const days=n=>n===1?'יום גימלים אחד':n===2?'יומיים גימלים':n+' ימי גימלים';
+const has=k=>RUN.perks.has(k);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
+function face(el,set,m){el.dataset.mood=m;const on=set[m]||[];el.querySelectorAll('.v').forEach(v=>v.classList.toggle('off',!on.includes(v.dataset.k)))}
+const setMood=m=>face($('#doc'),MOODS,m), setCmd=m=>face($('#cmd'),CMOODS,m);
+let sayTok=0;
+function say(me,txt,o={}){const b=$('#bubble'),tok=++sayTok;
+ b.innerHTML=(me?`<div class="me">אתה: ${fmt(me)}</div>`:'')+(o.thinking?'<div class="said dots"><span>•</span><span>•</span><span>•</span></div>':`<div class="said">${o.who?`<span class="who">${o.who}:</span> `:''}<span class="tt"></span></div>`);
+ b.classList.remove('fresh');void b.offsetWidth;b.classList.add('fresh');
+ if(o.thinking)return;const el=b.querySelector('.tt');txt=String(txt);
+ if(reduced){el.textContent=txt;return}
+ let i=0;(function step(){if(tok!==sayTok)return;i+=2;el.textContent=txt.slice(0,i);if(i<txt.length)setTimeout(step,16)})();
+}
+function sol(c){const s=$('#soldier');s.classList.remove('cheer','slump','punch','flinch','jab','dodgeL','dodgeR');void s.offsetWidth;s.classList.add(c)}
+function stamp(text,kind){const el=$('#stamp');el.hidden=true;void el.offsetWidth;el.textContent=text;el.className='stamp '+(kind||'');el.hidden=false;SFX.stamp()}
+function floatTxt(t,bad){const el=$('#floater');el.className='floater';void el.offsetWidth;el.textContent=t;el.className='floater go'+(bad?' bad':'')}
+function shake(){if(reduced)return;app.classList.remove('shake');void app.offsetWidth;app.classList.add('shake')}
+function cls(el,c){el.classList.remove(c);void el.offsetWidth;el.classList.add(c)}
+function spawn(c,n,txt){for(let i=0;i<n;i++){const p=document.createElement('i');p.className=c;p.style.left=(Math.random()*96)+'%';
+ p.style.setProperty('--r',(Math.random()*900-450)+'deg');p.style.animationDuration=(1.2+Math.random()*1.3)+'s';p.style.animationDelay=(Math.random()*.6)+'s';
+ if(txt)p.textContent=txt;fx.appendChild(p);setTimeout(()=>p.remove(),3400)}}
+function overlayFx(c,ms){const d=document.createElement('div');d.className=c;fx.appendChild(d);setTimeout(()=>d.remove(),ms)}
+function burst(t){const b=document.createElement('div');b.className='burst';b.textContent=t;b.style.top=rnd(18,52)+'%';b.style.left=rnd(10,62)+'%';
+ b.style.setProperty('--r',rnd(-18,18)+'deg');room.appendChild(b);setTimeout(()=>b.remove(),850)}
+function runFx(k){
+ if(k==='siren'){overlayFx('siren',1900);SFX.siren()}
+ if(k==='gas')overlayFx('gas',2500);
+ if(k==='shake')shake();
+ if(k==='faint'){setMood('faint');overlayFx('flash',600);shake()}
+}
+function setPrompt(t){$('#prompt').textContent=t}
+function careerRank(c){let i=0;for(let k=0;k<CAREER.length;k++)if(c>=CAREER[k][1])i=k;return i}
+
+/* ================= HUD ================= */
+function setGimel(n){const el=$('#gimel');const from=+el.dataset.v||0;el.dataset.v=n;const t0=performance.now();
+ (function step(t){const k=Math.min(1,(t-t0)/600);el.textContent=Math.round(from+(n-from)*k);if(k<1)requestAnimationFrame(step)})(t0);
+ cls($('#gimelWrap'),'pop')}
+const hhmm=m=>'07:'+String(m).padStart(2,'0');
+function hud(){
+ const d=RUN.day,t=TARGET[d-1];
+ $('#dayTag').textContent=S.mode==='gate'?'יום חמישי · מחסום הרס״ר בש״ג':`יום ${DAYS[d-1]} · ביקור ${d} מתוך 5`;
+ const mm=S.turn*2;$('#hM').style.transform=`rotate(${mm*6}deg)`;$('#hH').style.transform=`rotate(${210+mm*.5}deg)`;
+ $('#days').innerHTML=DL.map((l,i)=>`<i class="${i<d-1?'done':i===d-1?'now':''}">${l} · ${TARGET[i]}</i>`).join('');
+ const tg=$('#tgt');tg.textContent='/ '+t;tg.classList.toggle('hit',S.gimel>=t);
+ $('#total').textContent=RUN.total;
+ [...$('#streak').children].forEach((el,i)=>el.classList.toggle('on',i<S.streak%3||(S.streak>0&&S.streak%3===0&&S.justBonus)));
+ const left=S.turns-S.turn,ck=$('#clock');ck.textContent=`השעה ${hhmm(S.turn*2)} · נשארו ${left} משפטים`;ck.classList.toggle('late',left<=1);
+ $('#closeSign').textContent=hhmm(S.turns*2);
+ $('#queue').textContent='בתור מאחוריך: '+S.queue;
+ const s=Math.max(0,Math.min(100,S.sus));$('#susTxt').textContent=s+'%';const bar=$('#susBar');bar.style.width=s+'%';
+ bar.style.background=s<40?'var(--go)':s<70?'var(--warn)':'var(--stamp)';$('#meter').classList.toggle('hot',s>=70);
+ $('#perks').innerHTML=[...RUN.perks].map(k=>`<span>${PERKS[k].n}</span>`).join('');
+ const talk=S.mode==='talk'&&!S.over;
+ $('#actions').hidden=!talk;
+ const fb=$('#fightBtn');fb.disabled=S.fought||S.busy;fb.textContent=S.fought?'כבר רבתם היום':'להזמין את הרופא למכות';
+ const rb=$('#rerollBtn');rb.hidden=!has('bamba');rb.disabled=S.busy||S.rerolled;
+ const co=$('#cashout');co.disabled=S.busy||(S.gimel<=0&&S.turn===0);
+ co.textContent=S.gimel>=t?`לוקח ${S.gimel} ויוצא`:S.gimel>0?`מוותר עם ${S.gimel} (סוף הריצה)`:'מוותר ויוצא (סוף הריצה)';
+}
+
+/* ================= run & visit ================= */
+function startRun(){RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0};introSheet(true)}
+function startVisit(){
+ const d=RUN.day;
+ S={gimel:0,sus:Math.max(0,SUS0[d-1]-(has('candy')?10:0)),turn:0,turns:6+(has('watch')?1:0),streak:0,justBonus:false,used:new Set(),
+    busy:false,over:false,fought:false,cmdDone:false,mode:'talk',hot:false,scared:false,kabanUsed:false,rerolled:false,evUsed:new Set(),queue:rnd(18,30)+d*4,clean:true};
+ $('#gimel').dataset.v=0;$('#gimel').textContent='0';$('#stamp').hidden=true;$('#cmd').className='cmd';$('#gatebar').classList.remove('up');room.className='room';
+ setMood('neutral');say(null,GREET[d-1]);hud();deal();
+}
+function deal(){
+ setPrompt('מה אתה אומר לו?');
+ const pool=LINES.map((_,i)=>i).filter(i=>!S.used.has(i)),pick=[];
+ for(const r of shuffle([1,2,3])){const c=pool.filter(i=>LINES[i].r===r&&!pick.includes(i));if(c.length)pick.push(pickOne(c))}
+ const box=$('#choices');box.innerHTML='<div class="patience"><span>הסבלנות של הרופא</span><div class="pbar"><i id="patBar"></i></div></div>';let kn=0;
+ shuffle(pick).forEach(i=>{kn++;const L=LINES[i],b=document.createElement('button');b.type='button';b.className='choice';
+  const lo=L.r===3?2:1,hi=L.j?L.j.g:(L.r===1?1:2);
+  b.innerHTML=`<span>${fmt(L.t)}</span><span class="meta"><span class="chip ${RISK[L.r][1]}">${RISK[L.r][0]}</span><span class="chip ghost">${lo===hi?lo:lo+'–'+hi} ימים</span><span class="kbd">${kn}</span></span>`;
+  b.addEventListener('click',()=>choose(i,b));box.appendChild(b)});
+ startPatience();maybeFly();
+}
+function roll(L){const d=RUN.day-1,p={...ODDS[L.r]};if(!L.j){p.w+=p.j;p.j=0}
+ if(has('acting')&&L.j){const x=Math.min(p.w,.07);p.w-=x;p.j+=x}
+ if(has('thermo')&&L.r<3)p.w+=.12;
+ const tough=Math.min(p.w,.035*d);p.w-=tough;p.a+=tough;
+ let shift=(S.sus/100)*(.3+.06*d)+(S.hot?.1:0)-(S.scared?.12:0);shift=Math.max(-.2,Math.min(p.w,shift));p.w-=shift;
+ const sum=p.w+p.j+p.a;if(sum>.96){const k=.96/sum;p.w*=k;p.j*=k;p.a*=k}
+ const x=Math.random();if(x<p.j)return'jack';if(x<p.j+p.w)return'win';if(x<p.j+p.w+p.a)return'acamol';return'fail'}
+
+async function choose(i,btn){
+ if(S.busy||S.over||S.mode!=='talk')return;stopPatience();S.busy=true;S.used.add(i);S.turn++;S.queue+=rnd(1,3);SFX.tick();
+ document.querySelectorAll('.choice').forEach(b=>b.classList.add(b===btn?'picked':'dim'));
+ const L=LINES[i];$('#stamp').hidden=true;setMood('think');say(L.t,'',{thinking:1});S.justBonus=false;hud();
+ await wait(1000);
+ const res=roll(L);
+ if(res==='win'||res==='jack'){
+  let gain=res==='jack'?L.j.g:(L.r===1?1:L.r===3?2:(Math.random()<.4?2:1));
+  S.streak++;let bonus=0;if(S.streak%3===0){bonus=1;S.justBonus=true}
+  S.gimel+=gain+bonus;S.sus+=res==='jack'?12:5+L.r*3;
+  setMood(res==='jack'?'shock':(L.wm||(S.hot?'sweaty':'happy')));say(L.t,(res==='jack'?L.j.t:L.w).replaceAll('{g}',days(gain)));setGimel(S.gimel);
+  floatTxt('+'+gain+(bonus?' · רצף! +1':''));sol('cheer');unlock('first');if(S.streak>=6)unlock('streak');
+  if(res==='jack'){unlock('jack');if(L.t.includes('בהריון'))unlock('preg')}
+  if(res==='jack'){stamp('ג׳קפוט!','ok');SFX.jack();spawn('conf',reduced?6:28,'ג׳');shake();if(L.j.fx)runFx(L.j.fx)}
+  else{stamp(bonus?'רצף!':'אושר','ok');bonus?SFX.jack():SFX.win();spawn('conf',reduced?3:(bonus?18:8),'ג׳');if(L.wfx)runFx(L.wfx)}
+ }else if(res==='acamol'){
+  S.streak=0;S.sus+=6;setMood('bored');say(L.t,pickOne(ACAMOL));stamp('אקמול','pill');SFX.acamol();spawn('pill',reduced?6:24);floatTxt('0 ימים',true);
+  store.set('gm_acamol',store.get('gm_acamol',0)+1);S.clean=false;sol('slump');if(store.get('gm_acamol',0)>=20)unlock('acamol');
+ }else{
+  S.streak=0;RUN.guards++;S.clean=false;sol('slump');
+  let ds=20+L.r*8+(RUN.day-1)*3;if(S.scared)ds=Math.round(ds/2);
+  if(has('kaban')&&!S.kabanUsed){S.kabanUsed=true;ds=0}
+  S.sus+=ds;setMood(S.hot?'sweaty':'angry');say(L.t,L.f+(ds===0?' (אישור הקב״ן הציל אותך.)':''));stamp('נדחה');SFX.fail();shake();
+  floatTxt(ds?'+'+ds+'% חשד':'חשד +0',true);if(L.ffx)runFx(L.ffx);
+ }
+ hud();await afterBeat(1500,true);
+}
+async function afterBeat(ms,allowEvent){
+ if(S.sus>=100){await wait(ms);return bust()}
+ if(S.turn>=S.turns){await wait(ms+200);return endVisit('time')}
+ if(allowEvent){
+  if(!S.cmdDone&&S.turn>=2&&Math.random()<.1+.07*RUN.day){await wait(ms);return commander()}
+  if(Math.random()<.3+.02*RUN.day){await wait(ms);return randomEvent()}
+ }
+ await wait(600);toTalk();
+}
+function toTalk(){S.busy=false;S.mode='talk';hud();deal()}
+async function bust(){
+ S.over=true;S.mode='end';hud();setMood('angry');say(null,'זהו. אני מתקשר לרס״ר. אתה סוגר שבת.');runFx('siren');shake();stamp('סוגר שבת');sol('slump');unlock('shabbat');
+ $('#choices').innerHTML='';setPrompt('');S.gimel=0;setGimel(0);await wait(1900);endRun('shabbat');
+}
+async function endVisit(kind){
+ S.over=true;S.mode='end';$('#choices').innerHTML='';setPrompt('');room.classList.remove('ring','heat');hud();
+ const ok=S.gimel>=TARGET[RUN.day-1];
+ setMood(ok?'happy':'bored');say(null,kind==='cash'?'יאללה, תעוף. ותגיד לבא בתור להיכנס.':'השעה '+hhmm(S.turns*2)+'. המרפאה סגורה. הבא בתור!');
+ stamp(ok?'עברת את היום':'לא עמדת ביעד',ok?'ok':'');if(ok)SFX.win();
+ await wait(1600);
+ let bonus=0;if(ok&&has('shal'))bonus=1;
+ if(ok&&S.clean)unlock('perfect');
+ RUN.total+=S.gimel+bonus;hud();
+ if(!ok)return endRun('routine');
+ if(RUN.day>=5)return gateIntro();
+ daySheet(bonus);
+}
+
+/* ================= random events ================= */
+function coin(p,a,b){return Math.random()<p?a():b()}
+async function res(txt,eff={},who){
+ $('#choices').innerHTML='';
+ if(eff.g){S.gimel+=eff.g;setGimel(S.gimel);floatTxt('+'+eff.g);SFX.win();spawn('conf',reduced?3:8,'ג׳')}
+ if(eff.sus){S.sus=Math.max(0,S.sus+eff.sus);if(eff.sus>0){floatTxt('+'+eff.sus+'% חשד',true);SFX.fail()}else{floatTxt(eff.sus+'% חשד');SFX.win()}}
+ if(eff.turn){S.turn=Math.min(S.turns,S.turn+eff.turn);S.queue+=4}
+ if(eff.guard){RUN.guards+=eff.guard}
+ say(null,txt,{who:who||''});hud();
+ await afterBeat(1700,false);
+}
+const EVENTS=[
+ {id:'nurse',who:'החובשת',text:'רגע... זה לא החייל שהיה פה אתמול עם הסיפור על ההריון?',opts:[
+  {t:'״זה אח שלי התאום. הוא הרבה פחות נחמד ממני.״',c:['r2','50/50'],go:()=>coin(.5,()=>res('אה. סליחה. הוא באמת נראה פחות נחמד.',{sus:-8},'החובשת'),()=>res('יש לך אותה שומה, אותו שם ואותו מספר אישי.',{sus:18},'החובשת'))},
+  {t:'לשתוק ולהסתכל על הרצפה',c:['r1','חשד +10'],go:()=>res('החובשת לחשה משהו לרופא. הוא רשם.',{sus:10})}]},
+ {id:'smoke',who:'הרופא',text:'אני יוצא לחמש דקות. אל תיגע בכלום.',enter:()=>setMood('neutral'),opts:[
+  {t:'לחטט לו במגירה',c:['r3','50/50 · +1 או חשד +25'],go:()=>coin(.5,()=>res('מצאת חותמת רופא! חתמת לעצמך.',{g:1}),()=>res('הוא חזר באמצע. אתה עם היד במגירה.',{sus:25},'הרופא'))},
+  {t:'לחכות יפה',c:['r1','מאבד משפט'],go:()=>res('חמש דקות של רופא צבאי זה שתים־עשרה דקות.',{turn:1})}]},
+ {id:'faint',who:'מהמסדרון',text:'״חובש!!!״ חייל אמיתי התעלף בכניסה. הרופא רוצה להיפטר ממך מהר.',enter:()=>{setMood('shock');runFx('siren')},opts:[
+  {t:'לקחת ולשתוק',c:['r1','+1 יום'],go:()=>res('חתם בלי להסתכל. תודה ולהתראות.',{g:1},'הרופא')}]},
+ {id:'ac',who:'',text:'המזגן נפל. 34 מעלות בחדר. הרופא מזיע ועצבני.',enter:()=>{room.classList.add('heat');setMood('sweaty')},opts:[
+  {t:'לרוץ להביא מאוורר מהש״ג',c:['r1','מאבד משפט · חשד −15'],go:()=>{room.classList.remove('heat');return res('אתה מלאך. מלאך מזיע.',{turn:1,sus:-15},'הרופא')}},
+  {t:'לסבול בשקט',c:['r2','עד סוף הביקור: יותר כישלונות'],go:()=>{S.hot=true;return res('הרופא מתחיל לשנוא את כולם. כולל אותך.')}}]},
+ {id:'mom',who:'וואטסאפ מאמא',text:'״אכלת? תגיד לרופא שאתה ילד רגיש ושאתה לא ישן טוב מאז הגן.״',opts:[
+  {t:'להקריא לרופא בקול',c:['r2','50/50'],go:()=>coin(.5,()=>res('גם אמא שלי אומרת לי את זה.',{sus:-15},'הרופא'),()=>res('אמא שלך שלחה לי את זה גם. אני בקבוצה.',{sus:10},'הרופא'))},
+  {t:'לשלוח לה ״כן אמא״',c:['r1','כלום'],go:()=>res('״למה אתה עונה ככה קצר?״',{},'אמא')}]},
+ {id:'kaban',who:'הקב״ן בדלת',text:'היי. רוצה לדבר על מה שאתה מרגיש? יש לי ספה ותה.',opts:[
+  {t:'כן. הרבה זמן חיכיתי לזה.',c:['r1','מאבד משפט · חשד −20'],go:()=>res('דיברת על השבצ״ק. הקב״ן בכה. הרופא התרכך.',{turn:1,sus:-20})},
+  {t:'לא תודה',c:['r1','כלום'],go:()=>res('הדלת שלי תמיד פתוחה. חוץ מבימי שלישי.',{},'הקב״ן')}]},
+ {id:'line',who:'חייל מהתור',text:'אחי, אתה פה כבר 40 דקות! יש בחוץ עוד חיילים שגם ״כואב להם הגב״!',opts:[
+  {t:'לטרוק לו את הדלת',c:['r2','חשד +8'],go:()=>res('אתה נעים כמו אקמול בלי מים.',{sus:8},'הרופא')},
+  {t:'להכניס אותו, ״זה דחוף״',c:['r1','מאבד משפט · חשד −10'],go:()=>res('הוא נכנס עם ״כואב הגב״. ליד הסיפור שלו, אתה נראה אמין.',{turn:1,sus:-10})}]},
+ {id:'urine',who:'הרופא',text:'בדיקת שתן. עכשיו. הנה כוס.',opts:[
+  {t:'להביא את הכוס של החבר מהתור',c:['r3','45% · +2 או חשד +30'],go:()=>coin(.45,()=>res('התוצאות: החבר שלך חולה מאוד. בשבילך זה טוב.',{g:2},'הרופא'),()=>res('הכוס עוד חמה מבחוץ. איך?!',{sus:30},'הרופא'))},
+  {t:'לשתות שלושה ליטר מים ולחכות',c:['r1','מאבד משפט'],go:()=>res('עשרים דקות בשירותים. הרופא שכח מה רצית.',{turn:1})}]},
+ {id:'rasar',who:'הרס״ר בטלפון',text:'״תגיד לחייל הזה שאם הוא לא בחוץ עד 07:10, הוא שומר בשבת.״',opts:[
+  {t:'״תגיד לו שאני בניתוח״',c:['r2','50/50'],go:()=>coin(.5,()=>res('ניתוח? טוב. תגיד לו רפואה שלמה.',{sus:-5},'הרס״ר'),()=>res('אני רואה אותו מהחלון. הוא אוכל במבה.',{sus:15,guard:1},'הרס״ר'))},
+  {t:'לחטוף שמירה ולהמשיך',c:['r1','+1 שמירה'],go:()=>res('נרשמה לך שמירה בשבת. אבל אתה עוד בחדר.',{guard:1})}]},
+ {id:'power',who:'',text:'הפסקת חשמל. חושך מוחלט. רק הפנס של הרופא דולק.',enter:()=>room.classList.add('dark'),opts:[
+  {t:'להחליף את הטופס שעל השולחן',c:['r3','50/50 · +2 או חשד +25'],go:()=>{room.classList.remove('dark');return coin(.5,()=>res('החשמל חזר. על השולחן יש טופס חתום. עליו השם שלך.',{g:2}),()=>res('החשמל חזר באמצע. אתה מחזיק את הטופס שלו.',{sus:25},'הרופא'))}},
+  {t:'לחכות',c:['r1','חשד +5'],go:()=>{room.classList.remove('dark');return res('החשמל חזר. הרופא מסתכל עליך כאילו עשית משהו.',{sus:5})}}]},
+ {id:'samal',who:'הסמל בחלון',text:'פססס! אחי! קח את זה. ״אישור״ שעשיתי בפוטושופ.',opts:[
+  {t:'להגיש לרופא',c:['r3','40% · +2 או חשד +30'],go:()=>coin(.4,()=>res('...החותמת נראית אמיתית. מה אני יודע. +2.',{g:2},'הרופא'),()=>res('כתוב פה ״רופא ראשי של צה״ל, ד״ר אחי״.',{sus:30},'הרופא'))},
+  {t:'לזרוק לפח',c:['r1','חשד −5'],go:()=>res('הרופא ראה שזרקת משהו לפח. משום מה הוא סומך עליך יותר.',{sus:-5})}]}
+];
+async function randomEvent(){
+ const pool=EVENTS.filter(e=>!S.evUsed.has(e.id));if(!pool.length)return toTalk();
+ const E=pickOne(pool);S.evUsed.add(E.id);S.mode='event';S.busy=true;hud();SFX.event();
+ if(E.enter)E.enter();say(null,E.text,{who:E.who});setPrompt('בינתיים...');
+ $('#choices').innerHTML=`<div class="console event"><div class="c-head">${E.who||'בינתיים'} <span>אירוע</span></div><div class="c-text">${E.text}</div><div class="opt2" id="evo"></div></div>`;
+ const box=$('#evo');
+ E.opts.forEach(o=>{const b=document.createElement('button');b.type='button';b.className='retort';
+  b.innerHTML=`<span>${o.t}</span><span class="meta"><span class="chip ${o.c[0]}">${o.c[1]}</span></span>`;
+  b.addEventListener('click',()=>{box.querySelectorAll('button').forEach(x=>x.disabled=true);o.go()});box.appendChild(b)});
+}
+
+/* ================= fight (real-time, keyboard + touch) ================= */
+const TAUNTS=['בוא, ג׳ובניק.','אני מחכה...','זה הכל?','אמא שלך מרביצה יותר חזק.'];
+function startFight(){
+ if(S.fought||S.busy||S.over||S.mode!=='talk')return;
+ stopPatience();S.fought=true;S.mode='fight';S.busy=true;RUN.fights++;hud();
+ const max=90+RUN.day*20,now=performance.now();
+ S.F={me:100,doc:max,max,start:now,dur:30000,phase:'idle',until:now+1300,dir:'L',wStart:0,cdJab:0,cdKick:0,blocking:false,heal:false,combo:0,dodge:null,raf:0,done:false};
+ room.classList.add('ring');SFX.bell();setMood('angry');burst('קרב!');
+ say('*מזמין את הרופא למכות*','אתה רציני? טוב. אני מוריד את החלוק.',{who:'הרופא'});
+ setPrompt('');renderFight();S.F.raf=requestAnimationFrame(fightLoop);
+}
+function renderFight(){
+ $('#choices').innerHTML=`<div class="console">
+  <div class="c-head">קרב במרפאה <span id="fTime">30 שניות</span></div>
+  <div class="bar"><span>אתה</span><div class="track"><i id="hpMe" style="width:100%"></i></div><span id="hpMeT">100</span></div>
+  <div class="bar"><span>ד״ר שמואלי</span><div class="track"><i id="hpDoc" class="red" style="width:100%"></i></div><span id="hpDocT"></span></div>
+  <div class="fstatus" id="fStatus">הרופא מתכונן...</div>
+  <div class="pad">
+   <button type="button" class="pk" data-k="ArrowLeft">←<small>התחמק שמאלה</small></button>
+   <button type="button" class="pk hit" data-k="Space">אגרוף<small>רווח</small></button>
+   <button type="button" class="pk" data-k="ArrowRight">→<small>התחמק ימינה</small></button>
+   <button type="button" class="pk" data-k="ArrowDown">חסימה<small>↓ להחזיק</small></button>
+   <button type="button" class="pk kick" data-k="Enter">בעיטה<small>Enter</small></button>
+   <button type="button" class="pk" data-k="ArrowUp" id="healK">אקמול<small>↑ · פעם אחת</small></button>
+  </div>
+  <div class="hint">כשמופיע חץ ענק, מתחמקים לכיוון שלו לפני שהמכה נוחתת. התחמקות מוצלחת פותחת אותו למכות כפולות. כשהוא מסתתר מאחורי הטופס, רק בעיטה שוברת אותו.</div>
+ </div>`;
+ document.querySelectorAll('.pad .pk').forEach(b=>{const k=b.dataset.k;
+  b.addEventListener('pointerdown',e=>{e.preventDefault();fightKey(k,true)});
+  if(k==='ArrowDown')['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>fightKey(k,false)));
+ });
+ updateBars();
+}
+function updateBars(){const F=S.F;if(!$('#hpMe'))return;
+ $('#hpMe').style.width=Math.max(0,F.me)+'%';$('#hpMeT').textContent=Math.max(0,F.me);
+ $('#hpDoc').style.width=Math.max(0,F.doc/F.max*100)+'%';$('#hpDocT').textContent=Math.max(0,F.doc)}
+function status(t,c){const el=$('#fStatus');if(!el)return;el.textContent=t;el.className='fstatus'+(c?' '+c:'')}
+function flashKey(k){const b=document.querySelector(`.pk[data-k="${k}"]`);if(!b)return;b.classList.add('on');setTimeout(()=>b.classList.remove('on'),120)}
+function showCue(dir){const c=$('#cue');c.innerHTML=(dir==='L'?'←':'→')+'<small>התחמק!</small>';c.hidden=false}
+function hideCue(){$('#cue').hidden=true}
+function fightKey(k,down){const F=S.F;if(!F||F.done||S.mode!=='fight')return;const now=performance.now();
+ if(k==='ArrowDown'){F.blocking=down;$('#soldier').classList.toggle('blocking',down);const b=document.querySelector('.pk[data-k="ArrowDown"]');if(b)b.classList.toggle('on',down);return}
+ if(!down)return;flashKey(k);
+ if(k==='ArrowLeft'||k==='ArrowRight'){F.dodge={dir:k==='ArrowLeft'?'L':'R',at:now};sol(k==='ArrowLeft'?'dodgeL':'dodgeR');SFX.whoosh();return}
+ if(F.blocking)return;
+ if(k==='ArrowUp'){if(F.heal)return;F.heal=true;F.me=Math.min(100,F.me+30);floatTxt('+30 חיים');SFX.acamol();spawn('pill',reduced?3:8);$('#healK').disabled=true;
+  say('*בולע אקמול באמצע הקרב*','זה שלי!',{who:'הרופא'});updateBars();return}
+ if(k==='Space'){if(now<F.cdJab)return;F.cdJab=now+230;attack(rnd(5,8)+(has('gloves')?2:0),'jab');return}
+ if(k==='Enter'){if(now<F.cdKick)return;F.cdKick=now+950;attack(rnd(14,20)+(has('gloves')?4:0),'kick')}
+}
+function attack(base,kind){const F=S.F,now=performance.now();let d=base+Math.min(F.combo,6),note='';
+ if(F.phase==='guard'){if(kind==='kick'){F.phase='stun';F.until=now+800;$('#shield').hidden=true;note='המגן נשבר!';status('המגן נשבר! תכה!','open');SFX.big()}else{d=Math.max(1,Math.round(d/3));note='מגן'}}
+ else if(F.phase==='windup'&&kind==='kick'&&Math.random()<.4){F.phase='stun';F.until=now+800;hideCue();$('#doc').classList.remove('windup');note='קטעת אותו!';status('קטעת אותו! תכה!','open')}
+ if(F.phase==='exposed'||F.phase==='stun'){d*=2;note=note||'כפול!'}
+ F.doc-=d;F.combo++;
+ sol(kind==='kick'?'punch':'jab');cls($('#doc'),'hit');
+ if(F.phase!=='windup')setMood(F.doc<F.max*.35?'beaten':'shock');
+ kind==='kick'?SFX.punch():SFX.jab();
+ if(kind==='kick'||d>=16){burst(pickOne(BURSTS));shake()}
+ floatTxt('−'+d+(note?' · '+note:'')+(F.combo>=5?' · קומבו '+F.combo:''));
+ if(Math.random()<.18)say(null,pickOne(DOC_PAIN),{who:'הרופא'});
+ updateBars();if(F.doc<=0)fightWin();
+}
+function fightLoop(now){const F=S.F;if(!F||F.done)return;
+ const left=Math.max(0,F.dur-(now-F.start)),te=$('#fTime');if(te){te.textContent=Math.ceil(left/1000)+' שניות';te.style.color=left<8000?'#ff6b5b':''}
+ if(left<=0)return fightTimeout();
+ const rage=F.doc<F.max*.35;
+ if(now>=F.until){
+  if(F.phase==='windup')strike(now,rage);
+  else{
+   if(F.phase==='guard')$('#shield').hidden=true;
+   const r=Math.random();
+   if(r<.66){const W=Math.max(420,950-RUN.day*60-(rage?180:0));F.phase='windup';F.dir=Math.random()<.5?'L':'R';F.wStart=now;F.until=now+W;
+    showCue(F.dir);$('#doc').classList.add('windup');setMood('angry');status(pickOne(INTENTS.filter(x=>x.d)).n+' בדרך!','danger');SFX.warn()}
+   else if(r<.9){F.phase='guard';F.until=now+rnd(1100,1900);$('#shield').hidden=false;setMood('think');status('מסתתר מאחורי הטופס · תבעט!')}
+   else{F.phase='idle';F.until=now+700;status(pickOne(TAUNTS));setMood('happy')}
+  }
+ }
+ F.raf=requestAnimationFrame(fightLoop);
+}
+function strike(now,rage){const F=S.F;hideCue();$('#doc').classList.remove('windup');cls($('#doc'),'swing');
+ const dodged=F.dodge&&F.dodge.at>=F.wStart;
+ if(dodged&&F.dodge.dir===F.dir){F.phase='exposed';F.until=now+1300;burst('התחמקת!');SFX.block();setMood('shock');status('הוא פתוח! תכה עכשיו!','open');F.dodge=null;return}
+ let dmg=12+RUN.day*2+(rage?4:0),note='';
+ if(dodged)note=' · לצד הלא נכון';
+ if(F.blocking){dmg=Math.round(dmg*.3);note=' · נחסם חלקית';SFX.block()}else{SFX.slap();overlayFx('hurt',450);shake()}
+ F.me-=dmg;F.combo=0;F.dodge=null;sol('flinch');setMood('angry');
+ floatTxt('−'+dmg+' לך'+note,true);status('חטפת!','danger');
+ updateBars();
+ if(F.me<=0)return fightLose();
+ F.phase='idle';F.until=now+(rage?rnd(350,700):rnd(550,1100));
+}
+function endFightUI(){const F=S.F;F.done=true;cancelAnimationFrame(F.raf);hideCue();$('#shield').hidden=true;room.classList.remove('ring');
+ $('#doc').classList.remove('windup');$('#soldier').classList.remove('blocking')}
+async function fightWin(){
+ endFightUI();S.mode='talk';
+ const gain=3;setMood('faint');overlayFx('flash',600);stamp('נוקאאוט','ok');sol('cheer');unlock('ko');SFX.jack();burst('נוקאאוט!');spawn('conf',reduced?6:30,'ג׳');
+ S.gimel+=gain;S.sus+=20;S.scared=true;setGimel(S.gimel);floatTxt('+'+gain);
+ say(null,`(מהרצפה) חתמתי... ${days(gain)}... רק אל תרביץ שוב.`,{who:'הרופא'});
+ $('#choices').innerHTML='';hud();
+ await wait(1300);setMood('beaten');await afterBeat(900,false);
+}
+async function fightTimeout(){
+ endFightUI();S.mode='talk';S.sus+=15;setMood('beaten');stamp('הפרדה');SFX.whoosh();
+ say(null,'החובשת נכנסה והפרידה ביניכם. אף אחד לא ניצח, וכולם כועסים.',{who:'החובשת'});floatTxt('+15% חשד',true);
+ $('#choices').innerHTML='';hud();await afterBeat(1500,false);
+}
+async function fightLose(){
+ endFightUI();S.mode='end';setMood('happy');stamp('הפסדת');SFX.fail();sol('slump');
+ say(null,'מישהו שיקרא למצ״ח. ושיביא לי קרח. לא בשבילי, בשבילו.',{who:'הרופא'});
+ $('#choices').innerHTML='';hud();await wait(1700);jail('תקיפת קצין רפואה');
+}
+
+/* ================= patience + fly ================= */
+const PT={raf:0,tok:0};
+function startPatience(){stopPatience();const tok=++PT.tok,T=Math.max(7000,13500-RUN.day*1300),t0=performance.now();
+ (function tk(now){if(tok!==PT.tok)return;const k=1-(now-t0)/T,bar=$('#patBar');
+  if(bar){bar.style.width=Math.max(0,k*100)+'%';bar.style.background=k<.3?'var(--stamp)':k<.6?'var(--warn)':'var(--go-2)'}
+  if(k<=0)return patienceOut();PT.raf=requestAnimationFrame(tk)})(t0)}
+function stopPatience(){PT.tok++;cancelAnimationFrame(PT.raf)}
+async function patienceOut(){
+ if(S.busy||S.mode!=='talk')return;S.busy=true;S.turn++;S.streak=0;S.sus+=8;S.clean=false;
+ document.querySelectorAll('.choice').forEach(b=>b.classList.add('dim'));
+ setMood('angry');say(null,pickOne(['נו?! אין לי כל היום.','הלו? אתה ישן?','הבא בתור! ...סתם. אבל עוד שנייה.','אני סופר עד שלוש. אחת...']),{who:'הרופא'});
+ stamp('נו?!');SFX.fail();sol('slump');floatTxt('+8% חשד · משפט הלך',true);hud();await afterBeat(1300,false);
+}
+function maybeFly(){
+ if(Math.random()>.3||document.querySelector('.fly'))return;
+ const f=document.createElement('button');f.type='button';f.className='fly';f.setAttribute('aria-label','זבוב');
+ f.innerHTML='<svg viewBox="0 0 30 24"><ellipse class="w" cx="8" cy="8" rx="7" ry="4" fill="rgba(200,220,255,.8)"/><ellipse class="w" cx="22" cy="8" rx="7" ry="4" fill="rgba(200,220,255,.8)"/><ellipse cx="15" cy="15" rx="6" ry="7" fill="#1b1b1b"/><circle cx="15" cy="7" r="4" fill="#1b1b1b"/><circle cx="13" cy="6" r="1.4" fill="#d33"/><circle cx="17" cy="6" r="1.4" fill="#d33"/></svg>';
+ room.appendChild(f);let alive=true;const t0=performance.now(),life=5000,ph=Math.random()*6;
+ for(let i=0;i<6;i++)tone(190+Math.random()*30,.12,{type:'sawtooth',v:.012,at:i*.13});
+ (function mv(now){if(!alive)return;const t=(now-t0)/1000;
+  f.style.left=(50+38*Math.sin(t*1.6+ph)+6*Math.sin(t*9))+'%';f.style.top=(42+24*Math.sin(t*2.2+ph*2)+5*Math.cos(t*11))+'%';
+  if(now-t0>life||S.mode!=='talk'){alive=false;f.remove();return}requestAnimationFrame(mv)})(t0);
+ f.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();if(!alive)return;alive=false;f.classList.add('splat');SFX.slap();
+  S.sus=Math.max(0,S.sus-6);floatTxt('זבוב! חשד −6');
+  say(null,pickOne(['סוף סוף מישהו עושה משהו פה.','הזבוב הזה מציק לי מאז הטירונות. תודה.','...רפלקסים טובים. חשוד.']),{who:'הרופא'});
+  hud();setTimeout(()=>f.remove(),450)});
+}
+
+/* ================= commander ================= */
+async function commander(){
+ S.mode='cmd';S.cmdDone=true;S.busy=true;hud();
+ SFX.door();$('#cmd').classList.add('in');setCmd('yell');setMood('shock');sol('flinch');
+ say(null,'מה אתה עושה פה?! כל הפלוגה בשטח ואתה במרפאה?!',{who:'המ״פ'});
+ setPrompt('המ״פ נכנס לחדר');
+ const half=Math.floor(S.gimel/2),lose=S.gimel-half;
+ $('#choices').innerHTML=`<div class="console"><div class="c-head">המ״פ פה <span>מה עושים?</span></div><div class="opt2">
+  <button class="retort" id="cmdSubmit" type="button"><span>״כן המפקד. הבנתי המפקד.״</span><span class="meta"><span class="chip r1">בטוח</span><span class="chip ghost">${lose?'מאבד '+lose+' ימים':'לא מאבד כלום (אין לך עדיין)'}</span></span></button>
+  <button class="retort" id="cmdFight" type="button"><span>לריב עם המ״פ מול הרופא</span><span class="meta"><span class="chip r3">סיכון כלא</span><span class="chip ghost">ניצחון: +2 ימים וחשד −25</span></span></button>
+ </div></div>`;
+ $('#cmdSubmit').addEventListener('click',async()=>{
+  S.gimel=half;setGimel(S.gimel);setCmd('smug');say(null,lose?'חצי מהגימלים שלך מבוטלים. ותגיד תודה.':'יופי. ככה אני אוהב.',{who:'המ״פ'});if(lose)stamp('קוצץ');$('#choices').innerHTML='';hud();
+  await wait(1500);$('#cmd').classList.remove('in');setMood('neutral');await afterBeat(500,false);
+ });
+ $('#cmdFight').addEventListener('click',()=>{S.A={conf:100,anger:15+RUN.day*6,round:1,used:new Set()};argue()});
+}
+function argue(){
+ const A=S.A;S.mode='argue';setPrompt('');
+ const opts=[1,2,3].map(t=>{const c=RETORTS[t].filter(x=>!A.used.has(x));return{t,line:pickOne(c.length?c:RETORTS[t])}});
+ const ang=Math.min(100,A.anger),bonus=has('tape')?12:0;
+ $('#choices').innerHTML=`<div class="console">
+  <div class="c-head">ויכוח עם המ״פ <span>סבב ${A.round} מתוך 4</span></div>
+  <div class="bar"><span>הביטחון שלו</span><div class="track"><i class="amber" style="width:${Math.max(0,A.conf)}%"></i></div><span>${Math.max(0,A.conf)}</span></div>
+  <div class="bar"><span>העצבים שלו</span><div class="track"><i class="red" style="width:${ang}%"></i></div><span>${ang}</span></div>
+  <div class="hint">מורידים לו את הביטחון לאפס לפני שהעצבים מגיעים ל־100. אחרת: בית דין.</div>
+  <div class="opt2" id="retorts"></div></div>`;
+ const box=$('#retorts');
+ opts.forEach(o=>{const T=TIER[o.t],b=document.createElement('button');b.type='button';b.className='retort';
+  b.innerHTML=`<span>״${o.line}״</span><span class="meta"><span class="chip ${T.cls}">${T.name}</span><span class="chip ghost">פגיעה ${T.dmg[0]+bonus}–${T.dmg[1]+bonus}</span><span class="chip ghost">עצבים +${T.ang[0]}–${T.ang[1]}</span></span>`;
+  b.addEventListener('click',()=>retort(o));box.appendChild(b)});
+}
+async function retort(o){
+ const A=S.A,T=TIER[o.t];document.querySelectorAll('.retort').forEach(b=>b.disabled=true);A.used.add(o.line);
+ let reply;
+ if(Math.random()<T.bf){A.anger+=35;setCmd('yell');reply=pickOne(CMD_BACKFIRE);SFX.fail();shake();floatTxt('פדיחה! +35 עצבים',true)}
+ else{const dmg=rnd(...T.dmg)+(has('tape')?12:0),an=rnd(...T.ang);A.conf-=dmg;A.anger+=an;
+  if(dmg>=30){setCmd('hurt');reply=pickOne(CMD_HURT);SFX.punch();setMood('shock');burst(pickOne(['אוּך!','בום!','טראח!']))}
+  else{setCmd('yell');reply=pickOne(CMD_MAD);SFX.slap()}
+  floatTxt('−'+dmg+' ביטחון')}
+ say(o.line,reply,{who:'המ״פ'});A.round++;
+ await wait(1300);
+ if(A.conf<=0)return argWin();
+ if(A.anger>=100)return argLose();
+ if(A.round>4)return argDraw();
+ argue();
+}
+async function argWin(){
+ const gain=2;S.gimel+=gain;S.sus=Math.max(0,S.sus-25);setGimel(S.gimel);
+ setCmd('hurt');say(null,`המ״פ יצא בוכה. בחיים לא ראיתי דבר כזה. קח ${days(gain)}.`,{who:'הרופא'});setMood('happy');
+ stamp('ניצחת','ok');SFX.jack();sol('cheer');unlock('cmd');spawn('conf',reduced?6:24,'ג׳');floatTxt('+'+gain+' · חשד −25');$('#choices').innerHTML='';hud();
+ await wait(900);$('#cmd').classList.remove('in');await afterBeat(1000,false);
+}
+async function argDraw(){
+ S.gimel=Math.floor(S.gimel/2);setGimel(S.gimel);setCmd('smug');say(null,'אין לי זמן אליך. חצי מהגימלים מבוטלים.',{who:'המ״פ'});
+ stamp('תיקו');$('#choices').innerHTML='';hud();await wait(1500);$('#cmd').classList.remove('in');setMood('neutral');await afterBeat(500,false);
+}
+async function argLose(){
+ S.mode='end';setCmd('yell');say(null,'זהו! מצ״ח! עכשיו!',{who:'המ״פ'});runFx('siren');shake();stamp('מצ״ח');$('#choices').innerHTML='';hud();
+ await wait(1800);$('#cmd').classList.remove('in');jail('התחצפות למפקד');
+}
+
+/* ================= court ================= */
+function jail(reason){
+ S.over=true;S.mode='end';hud();SFX.clang();overlayFx('bars',99999);
+ const sentence=7+RUN.day*4+rnd(0,6);
+ const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet court">
+  <div class="tag">בית הדין הצבאי · תיק ${rnd(1000,9999)}/${RUN.day}</div>
+  <h2>נעצרת</h2>
+  <p>האישום: <b>${reason}</b>. התובע מבקש ${sentence} ימי מחבוש. הגימלים מהביקור הזה נשרפו. יש לך הזדמנות אחת להתגונן.</p>
+  <div id="def"></div></div>`;
+ const box=$('#def');
+ const list=DEFENSES.map(D=>({...D,c:Math.max(.12,D.c-(RUN.day-1)*.03)}));
+ if(has('mom')&&!RUN.momUsed)list.unshift({t:'*מוציא את הטלפון של אמא*',c:1,mom:1,ok:'אמא התקשרה למג״ד, למח״ט ולשופט. בשתי דקות התיק נסגר. זוכה.'});
+ list.forEach(D=>{const b=document.createElement('button');b.type='button';b.className='defense'+(D.mom?' mom':'');
+  b.innerHTML=`<span>${D.mom?fmt(D.t):'״'+D.t+'״'}</span><small>סיכוי לזיכוי: ${Math.round(D.c*100)}%</small>`;
+  b.addEventListener('click',async()=>{
+   box.querySelectorAll('button').forEach(x=>x.disabled=true);if(D.mom)RUN.momUsed=true;SFX.gavel();await wait(800);
+   const free=Math.random()<D.c;
+   box.innerHTML=`<p><b>${free?'זוכה!':'אשם.'}</b> ${free?D.ok:D.no}</p>`;
+   const btn=document.createElement('button');btn.type='button';btn.className='big'+(free?' green':'');
+   if(free){btn.textContent=RUN.day>=5?'ניגש לש״ג':'חוזר לבסיס · יום '+DAYS[RUN.day];SFX.win();unlock('free');
+    btn.addEventListener('click',()=>{fx.innerHTML='';if(RUN.day>=5)return gateIntro();RUN.day++;introSheet(false)})}
+   else{btn.textContent='לתא';SFX.clang();btn.addEventListener('click',()=>{fx.innerHTML='';endRun('jail',sentence)})}
+   box.appendChild(btn);
+  });box.appendChild(b)});
+}
+
+/* ================= achievements ================= */
+const ACH={
+ first:{n:'הגימל הראשון',d:'קיבלת יום גימלים',g:'ג'},
+ jack:{n:'ג׳קפוט',d:'ג׳קפוט ראשון',g:'ק'},
+ preg:{n:'בהריון',d:'ג׳קפוט על ההריון',g:'ה'},
+ streak:{n:'רצף של 6',d:'שש הצלחות ברצף',g:'ר'},
+ perfect:{n:'יום נקי',d:'ביקור בלי כישלון ובלי אקמול',g:'ט'},
+ acamol:{n:'אספן אקמולים',d:'20 אקמולים בקריירה',g:'א'},
+ ko:{n:'נוקאאוט',d:'ניצחת את הרופא במכות',g:'נ'},
+ crit:{n:'מכה קריטית',d:'פגעת במרכז האזור',g:'פ'},
+ cmd:{n:'השפלת את המ״פ',d:'ניצחת בוויכוח',g:'מ'},
+ free:{n:'זוכה',d:'יצאת זכאי בבית הדין',g:'ז'},
+ jail:{n:'כלא 6',d:'נכנסת לכלא',g:'כ'},
+ shabbat:{n:'סוגר שבת',d:'החשד הגיע ל־100%',g:'ש'},
+ week:{n:'שבוע בבית',d:'עברת את כל השבוע ואת הש״ג',g:'ב'},
+ gate:{n:'עברת את הרס״ר',d:'מחסום מושלם בש״ג',g:'ס'},
+ rich:{n:'מיליונר גימלים',d:'25 ימים בריצה אחת',g:'י'}
+};
+function unlock(id){const got=store.get('gm_ach',[]);if(got.includes(id))return;got.push(id);store.set('gm_ach',got);
+ const A=ACH[id],t=document.createElement('div');t.className='toast';t.setAttribute('dir','rtl');
+ t.innerHTML=`<span class="medal">${A.g}</span><span><b>עיטור חדש: ${A.n}</b><small>${A.d}</small></span>`;
+ document.body.appendChild(t);setTimeout(()=>t.remove(),3500);
+ [0,.1,.2].forEach((a,i)=>tone([784,988,1318][i],.25,{type:'triangle',v:.06,at:a+.3}))}
+function achGrid(){const got=store.get('gm_ach',[]);
+ return `<div class="ach-h">עיטורים <span>${got.length} מתוך ${Object.keys(ACH).length}</span></div><div class="achs">`+
+  Object.entries(ACH).map(([k,A])=>`<div class="ach${got.includes(k)?'':' locked'}" title="${A.d}"><span class="medal">${got.includes(k)?A.g:'?'}</span><span>${A.n}</span></div>`).join('')+'</div>'}
+
+/* ================= boss: הרס״ר בש״ג ================= */
+const GATE_T=7;
+const GATEQ=[
+ {q:'למה אתה צולע על השמאלית? בטופס כתוב ימין.',a:[['הימנית כואבת כל כך שהשמאלית מפצה',2],['אה... התחלף לי',1],['איזה טופס?',0]]},
+ {q:'מה זה הכתם הזה על הטופס?',a:[['דמעות, הרס״ר',2],['במבה',1],['הרופא חתם עם הלשון',0]]},
+ {q:'איך קוראים לרופא שלך?',a:[['ד״ר שמואלי, קר״פ',2],['הוא הציג את עצמו רק כ״אקמול״',1],['דוקטור... אחי?',0]]},
+ {q:'אם אתה חולה, למה אתה מחייך?',a:[['זו עווית. גם זה תסמין.',2],['שמח לראות אותך, הרס״ר',1],['כי אני הולך הביתה ואתה לא',0]]},
+ {q:'תעשה עשר שכיבות סמיכה. אם אתה חולה, לא תצליח.',a:[['*עושה שתיים ומתמוטט בצורה משכנעת*',2],['אני אלרגי לרצפה',1],['*עושה עשר בקלות*',0]]},
+ {q:'הרופא התקשר. הוא אמר שמישהו הרביץ לו.',a:[['זו הייתה בדיקת רפלקסים, הרס״ר',2],['הוא התחיל',1],['ואני אעשה את זה שוב',0]]},
+ {q:'למה הטופס חתום בעט ירוק?',a:[['זה העט היחיד שעבד במרפאה',2],['ירוק זה צבע של בריאות',1],['כי הסמל לא מצא עט כחול',0]]},
+ {q:'ראיתי אותך רץ להסעה לפני שנייה.',a:[['זו הייתה ריצה רפואית. להגיע לתרופות.',2],['זה היה אח שלי התאום',1],['היא כמעט יצאה בלעדיי!',0]]}
+];
+let G=null;
+function gateIntro(){
+ const ov=$('#overlay');ov.hidden=false;S.mode='gate';
+ ov.innerHTML=`<div class="sheet intro">
+  <div class="time">13:00 · יום חמישי</div>
+  <h1>הש״ג</h1>
+  <p class="story" id="story"></p>
+  <dl class="rows">
+   <div><dt>ימי גימלים על הכף</dt><dd>${RUN.total}</dd></div>
+   <div><dt>שאלות</dt><dd>4, ${GATE_T} שניות לכל אחת</dd></div>
+   <div><dt>תשובה חלשה</dt><dd>−1 יום</dd></div>
+   <div><dt>טעות</dt><dd>−2 ימים · שתיים = שבת</dd></div>
+  </dl>
+  <button class="big" id="gateGo" type="button">ניגש למחסום</button></div>`;
+ typeOut($('#story'),'כל הפלוגה כבר בהסעה. המנוע עובד. רק דבר אחד עומד בינך לבין הבית: הרס״ר, בש״ג, עם הטפסים שלך ביד ומבט של מישהו שלא ישן מאז 2009.');
+ $('#gateGo').addEventListener('click',()=>{ov.hidden=true;startGate()});
+}
+function startGate(){
+ S.mode='gate';S.busy=true;S.over=true;
+ room.className='room gate';$('#cmd').className='cmd rasar boss in';setCmd('smug');$('#gatebar').classList.remove('up');
+ G={i:0,qs:shuffle([...GATEQ]).slice(0,4),strikes:0,perfect:true,answered:-1,timer:0,lost:0};
+ SFX.door();say(null,'עצור. תראה לי את הטופס. לאט.',{who:'הרס״ר'});setPrompt('');$('#choices').innerHTML='';hud();
+ setTimeout(gateQ,1500);
+}
+function gateQ(){
+ const q=G.qs[G.i];setCmd('yell');say(null,q.q,{who:'הרס״ר'});SFX.event();
+ $('#choices').innerHTML=`<div class="console"><div class="c-head">מחסום בש״ג <span>שאלה ${G.i+1} מתוך 4 · טעויות ${G.strikes}/2</span></div>
+  <div class="timer"><i id="tmr" style="width:100%"></i></div>
+  <div class="c-text">${q.q}</div><div class="opt2" id="gopts"></div></div>`;
+ const box=$('#gopts');
+ shuffle([...q.a]).forEach(([t,v])=>{const b=document.createElement('button');b.type='button';b.className='retort';
+  b.innerHTML=`<span>${t.startsWith('*')?fmt(t):'״'+t+'״'}</span>`;b.addEventListener('click',()=>gateAns(v,t));box.appendChild(b)});
+ const T=GATE_T*1000,t0=performance.now(),idx=G.i;
+ G.timer=requestAnimationFrame(function tk(now){if(G.answered===idx)return;const k=1-(now-t0)/T,el=$('#tmr');if(!el)return;
+  el.style.width=Math.max(0,k*100)+'%';if(k<=.3)el.style.background='var(--stamp)';if(k<=0)return gateAns(-1,null);G.timer=requestAnimationFrame(tk)});
+}
+async function gateAns(v,t){
+ if(G.answered===G.i)return;G.answered=G.i;cancelAnimationFrame(G.timer);
+ document.querySelectorAll('#gopts button').forEach(b=>b.disabled=true);
+ let reply;
+ if(v===2){reply=pickOne(['הממ. בסדר.','...זה דווקא הגיוני.','טוב. תמשיך.']);setCmd('smug');SFX.win();sol('cheer');floatTxt('עבר')}
+ else if(v===1){G.perfect=false;RUN.total=Math.max(0,RUN.total-1);G.lost++;reply=pickOne(['אני מוריד לך יום. על החוצפה.','חלש. מינוס יום.']);setCmd('yell');SFX.slap();sol('flinch');floatTxt('−1 יום',true)}
+ else{G.perfect=false;G.strikes++;const l=Math.min(2,RUN.total);RUN.total-=l;G.lost+=l;
+  reply=v===-1?'שתקת. אני שונא שתיקות.':pickOne(['אתה צוחק עליי?!','רשמתי. בעט אדום.','טעות!']);setCmd('yell');SFX.fail();shake();stamp('טעות');sol('slump');floatTxt('טעות · −2',true)}
+ say(t,reply,{who:'הרס״ר'});hud();
+ await wait(1600);$('#stamp').hidden=true;
+ if(G.strikes>=2)return gateFail();
+ G.i++;if(G.i>=G.qs.length)return gatePass();
+ gateQ();
+}
+async function gatePass(){
+ $('#choices').innerHTML='';$('#gatebar').classList.add('up');SFX.jack();setCmd('smug');sol('cheer');
+ if(G.perfect){RUN.total+=2;unlock('gate')}
+ say(null,G.perfect?'אני לא מאמין שאני אומר את זה. סע הביתה. ועוד יומיים, על האומץ.':'סע. ושלא אראה אותך פה בשבוע הבא.',{who:'הרס״ר'});
+ stamp(G.perfect?'מושלם':'עברת','ok');spawn('conf',reduced?6:34,'ג׳');floatTxt(G.perfect?'+2':'המחסום עולה');hud();
+ await wait(2600);endRun('victory');
+}
+async function gateFail(){
+ const l=Math.floor(RUN.total/2);RUN.total-=l;G.lost+=l;
+ say(null,'זהו. חצי מהטפסים שלך הולכים לפח. ואתה סוגר שבת.',{who:'הרס״ר'});runFx('siren');stamp('נתפסת');sol('slump');$('#choices').innerHTML='';hud();
+ await wait(2200);endRun('gate');
+}
+
+/* ================= sheets ================= */
+function perkPicker(box,onPick){
+ const opts=shuffle(Object.keys(PERKS).filter(k=>!RUN.perks.has(k))).slice(0,3);
+ if(!opts.length){box.innerHTML='<p>יש לך כבר את כל הציוד.</p>';onPick(null);return}
+ box.innerHTML='<div class="perk-h">בחר ציוד אחד לריצה</div><div class="perkbox"></div>';
+ const pb=box.querySelector('.perkbox');
+ opts.forEach(k=>{const b=document.createElement('button');b.type='button';b.className='perk';b.innerHTML=`<b>${PERKS[k].n}</b><span>${PERKS[k].d}</span>`;
+  b.addEventListener('click',()=>{SFX.tick();pb.querySelectorAll('.perk').forEach(x=>x.classList.toggle('sel',x===b));onPick(k)});pb.appendChild(b)});
+}
+function typeOut(el,text){
+ if(reduced){el.textContent=text;el.classList.add('done');return}
+ let i=0;const iv=setInterval(()=>{el.textContent=text.slice(0,++i);if(i%3===0)SFX.type();if(i>=text.length){clearInterval(iv);el.classList.add('done')}},24);
+ el.addEventListener('click',()=>{clearInterval(iv);el.textContent=text;el.classList.add('done')});
+}
+function introSheet(withPerk){
+ const d=RUN.day,ov=$('#overlay');ov.hidden=false;let chosen=null;
+ ov.innerHTML=`<div class="sheet intro">
+  <div class="time">06:58 · תור למרפאה</div>
+  <h1>יום ${DL[d-1]}</h1>
+  <p class="story" id="story"></p>
+  <dl class="rows">
+   <div><dt>היעד להיום</dt><dd>${TARGET[d-1]} ימי גימלים</dd></div>
+   <div><dt>החשד של הרופא מתחיל ב־</dt><dd>${Math.max(0,SUS0[d-1]-(has('candy')?10:0))}%</dd></div>
+   <div><dt>סה״כ בריצה</dt><dd>${RUN.total}</dd></div>
+  </dl>
+  <div id="pp"></div>
+  <button class="big" id="enter" type="button">נכנס לחדר</button>
+ </div>`;
+ typeOut($('#story'),STORIES[d-1]);
+ const btn=$('#enter');
+ if(withPerk){btn.disabled=true;perkPicker($('#pp'),k=>{chosen=k;btn.disabled=false})}
+ btn.addEventListener('click',()=>{if(chosen)RUN.perks.add(chosen);ov.hidden=true;ac();SFX.door();startVisit()});
+}
+function daySheet(bonus){
+ const ov=$('#overlay');ov.hidden=false;const d=RUN.day;let chosen=null;
+ ov.innerHTML=`<div class="sheet">
+  <div class="end-stamp ok">עבר</div>
+  <div class="tag">סוף יום ${DAYS[d-1]}</div>
+  <h2>שרדת את יום ${DL[d-1]}</h2>
+  <dl class="rows">
+   <div><dt>הוצאת היום</dt><dd>${S.gimel} (יעד ${TARGET[d-1]})</dd></div>
+   ${bonus?'<div><dt>בונוס מהחבר בשלישות</dt><dd>+1</dd></div>':''}
+   <div><dt>סה״כ בריצה</dt><dd>${RUN.total}</dd></div>
+   <div><dt>שמירות שחטפת בדרך</dt><dd>${RUN.guards}</dd></div>
+  </dl>
+  <div id="pp"></div>
+  <button class="big" id="next" type="button" disabled>ממשיך ליום ${DAYS[d]}</button>
+  <button class="ghostbtn" id="retire" type="button">פורש עכשיו עם ${RUN.total} ימים</button>
+ </div>`;
+ const btn=$('#next');perkPicker($('#pp'),k=>{chosen=k;btn.disabled=false});
+ btn.addEventListener('click',()=>{if(chosen)RUN.perks.add(chosen);RUN.day++;introSheet(false)});
+ $('#retire').addEventListener('click',()=>endRun('retire'));
+}
+const ENDS={
+ victory:{h:'שבוע שלם בבית',s:'אושר',ok:1,p:()=>'שרדת חמישה ביקורים ועברת את הרס״ר בש״ג. ביחידה כבר שוכחים איך אתה נראה.'},
+ gate:{h:'נתפסת בש״ג',s:'שבת',p:()=>`שתי טעויות מול הרס״ר. ${G?G.lost:0} ימים נשרפו בדרך להסעה, ואתה סוגר שבת.`},
+ retire:{h:'פרשת בזמן',s:'אושר',ok:1,p:()=>'ידעת מתי לעצור. נדיר אצל חיילים.'},
+ routine:{h:'חזרת לשגרה',s:'שגרה',p:()=>`לא עמדת ביעד של יום ${DAYS[RUN.day-1]}. מחר בבוקר: מסדר, שמירה ומטבח.`},
+ shabbat:{h:'סוגר שבת',s:'שבת',p:()=>'החשד הגיע ל־100%. הימים של הביקור הזה נשרפו, ואתה בבסיס בשבת.'},
+ jail:{h:'כלא 6',s:'כלוא',p:s=>`נגזרו עליך ${s} ימי מחבוש. הגימלים שצברת מחכים לך בחוץ.`}
+};
+function careerBlock(c){const i=careerRank(c),cur=CAREER[i],nxt=CAREER[i+1];
+ const pct=nxt?Math.round((c-cur[1])/(nxt[1]-cur[1])*100):100;
+ return `<div class="career">דרגה בקריירה: ${cur[0]}${nxt?` · עוד ${nxt[1]-c} ימים ל${nxt[0]}`:''}<div class="track"><i style="width:${pct}%"></i></div></div>`}
+function endRun(type,sentence){
+ fx.innerHTML='';room.className='room';$('#cmd').className='cmd';const E=ENDS[type],g=RUN.total;
+ if(type==='jail')unlock('jail');if(type==='victory')unlock('week');if(g>=25)unlock('rich');
+ const best=Math.max(store.get('gm_best3',0),g);store.set('gm_best3',best);
+ const runs=store.get('gm_runs',0)+1;store.set('gm_runs',runs);
+ const before=store.get('gm_career',0),career=before+g;store.set('gm_career',career);
+ const promoted=careerRank(career)>careerRank(before);
+ if(type==='jail')store.set('gm_jail',store.get('gm_jail',0)+1);
+ const daysDone=(type==='victory'||type==='gate')?5:RUN.day-1+(type==='retire'?1:0);
+ const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet${type==='jail'?' court':''}">
+  <div class="end-stamp ${E.ok?'ok':'no'}">${E.s}</div>
+  <div class="tag">סיכום ריצה · מרפאת גדוד</div>
+  <h2>${E.h}</h2>
+  <p>${E.p(sentence)}</p>
+  ${promoted?`<p><b>קידום! עלית לדרגת ${CAREER[careerRank(career)][0]}.</b></p>`:''}
+  <dl class="rows">
+   <div><dt>ימי גימלים בריצה</dt><dd>${g}</dd></div>
+   <div><dt>ימים שעברת</dt><dd>${daysDone} מתוך 5</dd></div>
+   <div><dt>שמירות שחטפת</dt><dd>${RUN.guards}</dd></div>
+   <div><dt>שיא אישי</dt><dd>${best}</dd></div>
+   <div><dt>אקמולים בקריירה</dt><dd>${store.get('gm_acamol',0)}</dd></div>
+   <div><dt>פעמים בכלא</dt><dd>${store.get('gm_jail',0)}</dd></div>
+  </dl>
+  ${careerBlock(career)}
+  ${achGrid()}
+  <button class="big" id="again" type="button">ריצה חדשה</button>
+  <button class="ghostbtn" id="copy" type="button">העתק את התוצאה לחבר׳ה</button>
+  <p class="copytext" id="copyText" hidden></p>
+ </div>`;
+ $('#again').addEventListener('click',()=>startRun());
+ $('#copy').addEventListener('click',e=>{
+  const txt=type==='jail'?`הוצאתי ${g} ימי גימלים מהקר״פ ואז נכנסתי לכלא ל־${sentence} ימים. השיא שלי: ${best}.`:`${E.h}: הוצאתי ${g} ימי גימלים מהקר״פ ב־${daysDone} ימים. השיא שלי: ${best}. נראה אותך.`;
+  const fall=()=>{const p=$('#copyText');p.hidden=false;p.textContent=txt;const rg=document.createRange();rg.selectNodeContents(p);const sel=getSelection();sel.removeAllRanges();sel.addRange(rg);e.target.textContent='סמן והעתק מלמטה'};
+  try{navigator.clipboard.writeText(txt).then(()=>{e.target.textContent='הועתק'},fall)}catch(err){fall()}
+ });
+}
+function showStart(){
+ const ov=$('#overlay'),best=store.get('gm_best3',0),career=store.get('gm_career',0);
+ ov.innerHTML=`<div class="sheet">
+  <div class="tag">זימון למרפאה · שבוע של ביקורים</div>
+  <h1>גימלים<span>במרפאה</span></h1>
+  <p>חמישה ימים, חמישה ביקורים אצל הקר״פ. בכל יום יש יעד שעולה: 2, 3, 4, 5, 6 ימי גימלים. כל משפט לוקח שתי דקות, והמרפאה נסגרת ב־07:12.</p>
+  <ul class="rules">
+   <li><b>1</b><span>משפט רגיל שווה יום או יומיים. משפט מטורף יכול להביא ג׳קפוט, או חשד ענק. חשד 100% = סוגר שבת.</span></li>
+   <li><b>2</b><span>שלוש הצלחות ברצף = יום בונוס.</span></li>
+   <li><b>3</b><span>פעם ביום אפשר להזמין את הרופא למכות. קרב בזמן אמת: רווח = אגרוף, Enter = בעיטה, חיצים ← → להתחמק, ↓ לחסום, ↑ אקמול. הפסד = בית דין.</span></li>
+   <li><b>·</b><span>במחשב: מקשים 1–3 בוחרים משפט, Enter ממשיך במסכים. הרופא לא מחכה לנצח, ויש זבוב. תרביץ לו.</span></li>
+   <li><b>4</b><span>יקרו דברים: חובשת חשדנית, הפסקת חשמל, הרס״ר בטלפון, והמ״פ שמתפרץ לחדר.</span></li>
+   <li><b>5</b><span>בכל יום בוחרים ציוד חדש שנשאר איתך עד סוף הריצה.</span></li>
+   <li><b>6</b><span>שרדת עד יום חמישי? הרס״ר מחכה בש״ג עם ארבע שאלות על זמן. שתי טעויות וחצי מהימים נשרפים.</span></li>
+  </ul>
+  ${careerBlock(career)}
+  ${achGrid()}
+  <button class="big" id="go" type="button">ריצה חדשה</button>
+  <div class="best">${best?`השיא שלך: ${best} ימי גימלים בריצה`:'עוד אין לך שיא. זה הזמן.'}</div>
+ </div>`;
+ $('#go').addEventListener('click',()=>{ac();SFX.tick();startRun()});
+}
+
+/* ================= wiring ================= */
+$('#cashout').addEventListener('click',()=>{if(S&&!S.busy&&!S.over&&S.mode==='talk'&&(S.gimel>0||S.turn>0)){stopPatience();S.busy=true;endVisit('cash')}});
+$('#fightBtn').addEventListener('click',startFight);
+$('#rerollBtn').addEventListener('click',()=>{if(S.busy||S.rerolled||S.mode!=='talk')return;S.rerolled=true;SFX.acamol();say('*מציע לרופא במבה*','...טוב. תתחיל מההתחלה.',{who:'הרופא'});hud();deal()});
+const FKEYS={Space:'Space',Enter:'Enter',NumpadEnter:'Enter',ArrowLeft:'ArrowLeft',ArrowRight:'ArrowRight',ArrowUp:'ArrowUp',ArrowDown:'ArrowDown'};
+document.addEventListener('keydown',e=>{if(!S)return;
+ if(S.mode==='fight'){const k=FKEYS[e.code];if(k){e.preventDefault();if(!e.repeat)fightKey(k,true)}return}
+ const ov=$('#overlay');
+ if(!ov.hidden){if(e.key==='Enter'){const b=ov.querySelector('.big:not(:disabled)');if(b){e.preventDefault();b.click()}}return}
+ const n=parseInt(e.key,10);
+ if(n>=1&&n<=4){const btns=[...document.querySelectorAll('#choices .choice:not(.dim), #choices .retort:not(:disabled)')];if(btns[n-1]){e.preventDefault();btns[n-1].click()}}
+});
+document.addEventListener('keyup',e=>{if(S&&S.mode==='fight'&&e.code==='ArrowDown')fightKey('ArrowDown',false)});
+const mb=$('#mute');const syncMute=()=>{mb.textContent='צליל: '+(muted?'כבוי':'פועל')};syncMute();
+mb.addEventListener('click',()=>{muted=!muted;store.set('gm_mute',muted);syncMute();if(!muted)SFX.tick()});
+
+S={gimel:0,sus:0,turn:0,turns:6,streak:0,used:new Set(),busy:true,over:false,fought:false,cmdDone:false,mode:'talk',queue:23,evUsed:new Set()};
+setMood('neutral');setCmd('yell');hud();deal();showStart();
+})();
+</script>
+
+</body>
+</html>
