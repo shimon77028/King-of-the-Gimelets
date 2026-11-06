@@ -533,6 +533,9 @@ body.fighting .soldier .glv{opacity:1}
 .tmb:active{transform:translateY(2px)}
 .ts-dl{color:var(--khaki)}
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
+.ts-live{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.35);font-size:13px;font-weight:700;color:var(--paper);animation:tsFade .4s both}
+.ts-live i{width:9px;height:9px;border-radius:50%;background:#5fe06a;box-shadow:0 0 0 0 rgba(95,224,106,.6);animation:livePulse 1.6s infinite}
+@keyframes livePulse{70%{box-shadow:0 0 0 8px rgba(95,224,106,0)}100%{box-shadow:0 0 0 0 rgba(95,224,106,0)}}
 .tab{border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:4px;padding:6px;font-weight:800;font-size:14px}
 .tab.on{background:var(--ink);color:var(--paper)}
 .lbwhy{text-align:start}
@@ -934,7 +937,7 @@ function hud(){
 }
 
 /* ================= run & visit ================= */
-function startRun(){RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId()};applySoldier();introSheet(true)}
+function startRun(){ping(true);RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId()};applySoldier();introSheet(true)}
 function startVisit(){
  const d=RUN.day;
  const V=RUN.next||pickVisit(d);RUN.next=null;
@@ -1818,6 +1821,17 @@ function wireLBSubmit(g){const inp=$('#lbName');if(!inp)return;inp.value=store.g
   try{const be=await lbBackend();if(!be)throw new Error('none');await be.submit(name,g,charId());msg.textContent='נשלח לטבלה המשותפת!';SFX.win();const box=$('#lbEnd');box.hidden=false;loadLB(box)}
   catch(e){msg.textContent=lbWhy(e)+' התוצאה נשמרה בשיאים שלך.';btn.disabled=false}})}
 
+/* ---- live player counter ---- */
+const IN_CLAUDE=!!(window.claude&&typeof window.claude.use==='function'),PLATFORM=location.protocol==='file:'?'app':'web';
+async function sbRpc(fn,body){const r=await fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body||{})});
+ if(!r.ok)throw new Error('http '+r.status);const t=await r.text();return t?JSON.parse(t):null}
+function ping(run){if(IN_CLAUDE)return;sbRpc('ping',{p_id:deviceId(),p_platform:PLATFORM,p_run:!!run}).catch(()=>{})}
+async function fillLive(){const el=$('#tsLive');if(!el||IN_CLAUDE)return;
+ try{const r=await sbRpc('game_stats');const x=r&&r[0];if(!x||!$('#tsLive'))return;
+  const n=v=>Number(v||0).toLocaleString('he-IL');
+  el.querySelector('span').textContent=`${n(Math.max(1,x.online))} משחקים עכשיו · ${n(x.players)} שחקנים · ${n(x.runs_today)} ריצות היום`;el.hidden=false}catch(e){}}
+if(!IN_CLAUDE){setTimeout(()=>ping(false),1500);setInterval(()=>{if(!document.hidden)ping(false)},45000);setInterval(()=>{if(!document.hidden)fillLive()},30000)}
+
 /* ---- progress sheet: missions, rank, achievements ---- */
 function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=store.get('gm_career',0);
  ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="big" id="prBack" type="button">חזרה</button></div>`;
@@ -1837,6 +1851,7 @@ function showStart(){
    <h1 class="ts-title"><span class="ts-small">מלך</span><span class="ts-big">הגימלים</span></h1>
    <div class="ts-stamp" aria-hidden="true">אושר</div>
    <p class="ts-sub">שבוע אחד. רופא אחד. הרבה תירוצים.</p>
+   <div class="ts-live" id="tsLive" hidden><i></i><span></span></div>
   </div>
   <div class="ts-pick">
    <button type="button" class="arr" id="pPrev" aria-label="הדמות הקודמת">›</button>
@@ -1871,10 +1886,11 @@ function showStart(){
  $('#toShop').addEventListener('click',()=>{SFX.tick();showShop()});
  $('#toLB').addEventListener('click',()=>{SFX.tick();showLB()});
  $('#toPr').addEventListener('click',()=>{SFX.tick();showProgress()});
+ fillLive();
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='2.2';
+const VERSION='2.3';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
