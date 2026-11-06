@@ -480,7 +480,7 @@ body.fighting .soldier .glv{opacity:1}
 .cardbtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px}
 
 .overlay:has(> .ts){display:block;padding:0;background:var(--camo-1);overflow-y:auto}
-.ts{position:relative;min-height:100%;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;justify-items:center;align-content:start;text-align:center;
+.ts{position:relative;min-height:100%;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;justify-items:center;align-content:start;text-align:center;
   padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   background:radial-gradient(ellipse 80% 45% at 50% 18%,rgba(205,181,122,.22),transparent 70%),
    radial-gradient(ellipse 140px 70px at 18% 22%, var(--camo-2) 60%, transparent 62%),radial-gradient(ellipse 110px 90px at 82% 34%, var(--camo-3) 58%, transparent 60%),
@@ -496,18 +496,18 @@ body.fighting .soldier .glv{opacity:1}
 .ts-hero{position:relative;padding-top:6px}
 .ts-kicker{font-size:12px;letter-spacing:.14em;font-weight:800;color:var(--stamp);text-transform:uppercase}
 .ts-title{margin:0;font-family:var(--f-display);font-weight:700;line-height:.78;color:var(--paper);text-shadow:0 6px 0 rgba(0,0,0,.35)}
-.ts-small{display:block;font-size:min(13vw,56px);color:var(--khaki);animation:tsDrop .5s .05s cubic-bezier(.3,1.6,.5,1) both}
-.ts-big{display:block;font-size:min(22vw,124px);white-space:nowrap;letter-spacing:-.01em;animation:tsDrop .6s .18s cubic-bezier(.3,1.6,.5,1) both}
+.ts-small{display:block;font-size:min(11vw,50px);color:var(--khaki);animation:tsDrop .5s .05s cubic-bezier(.3,1.6,.5,1) both}
+.ts-big{display:block;font-size:min(19vw,112px);white-space:nowrap;letter-spacing:-.01em;animation:tsDrop .6s .18s cubic-bezier(.3,1.6,.5,1) both}
 @keyframes tsDrop{from{transform:translateY(-60px) scale(1.3);opacity:0}}
 .ts-stamp{position:absolute;top:40%;inset-inline-start:4%;font-family:var(--f-display);font-weight:700;font-size:44px;line-height:1;color:var(--stamp);border:5px solid var(--stamp);border-radius:6px;
   padding:0 12px 4px;transform:rotate(-16deg);background:rgba(20,24,12,.55);box-shadow:0 4px 14px rgba(0,0,0,.35);animation:tsSlam .45s .8s cubic-bezier(.2,1.7,.4,1) both}
 @keyframes tsSlam{from{transform:rotate(-30deg) scale(3);opacity:0}}
-.ts-sub{margin:10px 0 0;font-size:15px;font-weight:500;color:var(--paper);opacity:.85;animation:tsFade .5s 1s both}
+.ts-sub{margin:6px 0 0;font-size:15px;font-weight:500;color:var(--paper);opacity:.85;animation:tsFade .5s 1s both}
 @keyframes tsFade{from{opacity:0;transform:translateY(8px)}}
 .ts-pick{display:grid;grid-template-columns:44px 1fr 44px;gap:8px;align-items:center;animation:tsFade .5s 1.1s both}
-.arr{height:64px;border:0;border-radius:6px;background:rgba(0,0,0,.35);color:var(--khaki);font-size:40px;font-weight:700;line-height:1}
+.arr{height:54px;border:0;border-radius:6px;background:rgba(0,0,0,.35);color:var(--khaki);font-size:40px;font-weight:700;line-height:1}
 .arr:active{transform:scale(.94)}
-.pcard{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;text-align:start;background:var(--paper);color:var(--ink);border-radius:6px;padding:10px 12px;
+.pcard{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;text-align:start;background:var(--paper);color:var(--ink);border-radius:6px;padding:8px 10px;
   box-shadow:0 4px 0 var(--paper-2),0 14px 30px rgba(0,0,0,.45);touch-action:pan-y;transform:rotate(-1deg)}
 .pcard.swap{animation:pswap .3s cubic-bezier(.3,1.5,.5,1)}
 @keyframes pswap{from{transform:scale(.9) rotate(-3deg);opacity:.4}}
@@ -517,29 +517,107 @@ body.fighting .soldier .glv{opacity:1}
 .pcard.locked .pimg svg{filter:grayscale(1) brightness(.55)}
 .lock{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg);background:var(--stamp);color:#fff;font-family:var(--f-display);font-size:26px;font-weight:700;padding:0 10px 2px;border-radius:3px}
 .pinfo{display:grid;gap:4px;justify-items:start;min-width:0}
-.pinfo b{font-family:var(--f-display);font-size:40px;line-height:.9}
+.pinfo b{font-family:var(--f-display);font-size:34px;line-height:.9}
 .pinfo span{font-size:13px;line-height:1.35;color:var(--ink-soft)}
 .pst{font-style:normal;font-size:12px;font-weight:800;color:var(--go)}
 .pdots{display:flex;justify-content:center;gap:6px}
 .pdots i{width:9px;height:9px;border-radius:50%;background:rgba(242,233,208,.25)}
 .pdots i.own{background:rgba(242,233,208,.55)}
 .pdots i.on{background:var(--khaki);transform:scale(1.3)}
-.cta{font-size:46px;padding:8px 12px 12px;animation:tsFade .5s 1.2s both,ctaPulse 1.6s 2s ease-in-out infinite}
+.cta{font-size:40px;padding:6px 12px 10px;animation:tsFade .5s 1.2s both,ctaPulse 1.6s 2s ease-in-out infinite}
 @keyframes ctaPulse{50%{box-shadow:0 4px 0 #8c2219,0 0 0 8px rgba(195,53,42,.25)}}
 .ts-menu{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tmb{display:grid;gap:2px;justify-items:center;background:rgba(0,0,0,.35);border:1.5px solid rgba(205,181,122,.45);color:var(--paper);border-radius:6px;padding:8px 4px}
-.tmb b{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--khaki)}
+.tmb b{font-family:var(--f-display);font-size:24px;line-height:1;color:var(--khaki)}
 .tmb span{font-size:11px;font-weight:700;opacity:.8}
 .tmb:active{transform:translateY(2px)}
 .ts-dl{color:var(--khaki)}
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
-.ts-live{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.35);font-size:13px;font-weight:700;color:var(--paper);animation:tsFade .4s both}
+.ts-live{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.35);font-size:13px;font-weight:700;color:var(--paper);animation:tsFade .4s both}
 .ts-live i{width:9px;height:9px;border-radius:50%;background:#5fe06a;box-shadow:0 0 0 0 rgba(95,224,106,.6);animation:livePulse 1.6s infinite}
 @keyframes livePulse{70%{box-shadow:0 0 0 8px rgba(95,224,106,0)}100%{box-shadow:0 0 0 0 rgba(95,224,106,0)}}
 .tab{border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:4px;padding:6px;font-weight:800;font-size:14px}
 .tab.on{background:var(--ink);color:var(--paper)}
 .lbwhy{text-align:start}
 @media (prefers-reduced-motion: reduce){.ts-rain{display:none!important}.ts *{animation:none!important}}
+
+.room.boxing .cl,.room.boxing .doc-wrap,.room.boxing #soldier,.room.boxing #cmd,.room.boxing .lamp{visibility:hidden}
+body.fighting .room{height:350px}
+.arena{position:absolute;inset:0;z-index:2;overflow:hidden;
+  background:radial-gradient(ellipse 60% 50% at 50% -5%,rgba(255,236,180,.55),transparent 70%),linear-gradient(#15180e,#23281a 52%,#2a2219 52%)}
+.crowd{position:absolute;left:0;right:0;top:14%;height:30%;
+  background:radial-gradient(circle at 13px 14px,#080a05 11px,transparent 12px) 0 0/27px 46px repeat-x,radial-gradient(circle at 13px 30px,#0c0e08 12px,transparent 13px) 0 0/27px 46px repeat-x,
+  radial-gradient(circle at 26px 22px,#0a0c06 12px,transparent 13px) 0 18px/31px 50px repeat-x}
+.crowd i{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 14px 6px rgba(255,255,255,.7);opacity:0;animation:camflash 3.4s infinite}
+.crowd i:nth-child(1){left:8%;top:30%}.crowd i:nth-child(2){left:27%;top:12%;animation-delay:.8s}.crowd i:nth-child(3){left:46%;top:40%;animation-delay:1.7s}
+.crowd i:nth-child(4){left:63%;top:18%;animation-delay:2.3s}.crowd i:nth-child(5){left:79%;top:34%;animation-delay:.4s}.crowd i:nth-child(6){left:92%;top:10%;animation-delay:2.9s}
+@keyframes camflash{0%,88%,100%{opacity:0}90%{opacity:1}93%{opacity:0}}
+.ringfloor{position:absolute;left:-12%;right:-12%;bottom:0;height:40%;background:repeating-linear-gradient(90deg,#4a3b2a 0 40px,#453727 40px 80px);
+  border-top:5px solid #e9e1c8;box-shadow:inset 0 14px 22px rgba(0,0,0,.45)}
+.ropes{position:absolute;left:0;right:0;top:44%;display:grid;gap:15px}
+.ropes i{display:block;height:4px;border-radius:2px;background:linear-gradient(90deg,#c3352a 0 33%,#f2e9d0 33% 66%,#2d63a8 66%);box-shadow:0 2px 3px rgba(0,0,0,.5)}
+.post{position:absolute;top:41%;width:11px;height:30%;border-radius:3px;background:linear-gradient(90deg,#d8d1bb,#9d967f)}.pl{left:3px}.pr{right:3px}
+.abanner{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1;color:var(--pow);
+  -webkit-text-stroke:2px #1d1a0c;paint-order:stroke fill;white-space:nowrap;letter-spacing:.02em}
+.agimel{position:absolute;top:42px;left:50%;margin-left:-23px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff1b8,#c79a2e);
+  border:3px solid #7a5b12;display:grid;place-items:center;font-family:var(--f-display);font-size:28px;font-weight:700;color:#4a3608;box-shadow:0 0 22px rgba(255,212,59,.6);animation:gspin 2.4s linear infinite}
+@keyframes gspin{to{transform:rotateY(360deg)}}
+.anames{position:absolute;bottom:6px;left:8px;right:8px;display:flex;justify-content:space-between;direction:ltr;z-index:3}
+.anames span{background:rgba(0,0,0,.6);color:var(--paper);font-size:12px;font-weight:800;padding:2px 8px;border-radius:3px;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fwrap{position:absolute;bottom:3%;width:56%;max-width:250px;z-index:2}
+.fwrap.me{left:-3%}.fwrap.op{right:-3%}
+.fwrap svg{display:block;width:100%;height:auto;overflow:visible}
+.fwrap.op svg{transform:scaleX(-1)}
+.fwrap .pose{display:none}
+.fwrap[data-f="guard"] .armF .guard,.fwrap[data-b="guard"] .armB .guard{display:inline}
+.fwrap[data-f="punch"] .armF .punch,.fwrap[data-b="punch"] .armB .punch{display:inline}
+.fwrap[data-f="upper"] .armF .upper,.fwrap[data-b="upper"] .armB .upper{display:inline}
+.fwrap[data-f="block"] .armF .block,.fwrap[data-b="block"] .armB .block{display:inline}
+.fwrap[data-f="cock"] .armF .cock,.fwrap[data-b="cock"] .armB .cock{display:inline}
+.fwrap .fbody{transform-box:view-box;transform-origin:100px 250px;animation:bob .5s ease-in-out infinite alternate;transition:transform .11s ease-out}
+@keyframes bob{to{transform:translateY(3px) rotate(.8deg)}}
+.fwrap.m-lunge .fbody{animation:none;transform:translateX(18px) rotate(5deg)}
+.fwrap.m-back .fbody{animation:none;transform:translateX(-28px) rotate(-11deg)}
+.fwrap.m-duck .fbody{animation:none;transform:translateY(32px) scale(.9) rotate(9deg)}
+.fwrap.m-hit .fbody{animation:hitF .3s ease}
+@keyframes hitF{30%{transform:translateX(-20px) rotate(-10deg)}}
+.fwrap.m-ko .fbody{animation:none;transform:translate(-36px,46px) rotate(-80deg);transition:transform .7s cubic-bezier(.5,-0.3,.4,1.3)}
+.fwrap.m-win .fbody{animation:winF .45s ease-in-out infinite alternate}
+@keyframes winF{to{transform:translateY(-12px)}}
+.fwrap.windup .fbody{animation:none;transform:translateX(-12px) rotate(-7deg)}
+.fwrap.windup svg{filter:drop-shadow(0 0 12px rgba(255,70,50,.95))}
+.fwrap.blocking .fbody{animation:none;transform:translateY(6px) scale(.97)}
+.fwrap .ouch{display:none}
+.fwrap.m-hit .ouch,.fwrap.m-ko .ouch,.fwrap.dazed .ouch{display:inline}
+.fwrap.m-hit .eye,.fwrap.m-ko .eye,.fwrap.dazed .eye,.fwrap.m-hit .mouth,.fwrap.m-ko .mouth,.fwrap.dazed .mouth{display:none}
+.dmgnum.bad{color:#ff6b5b}
+.boxc .c-head span{font-variant-numeric:tabular-nums}
+.streakbar{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--paper)}
+.streakbar b{font-family:var(--f-display);font-size:24px;line-height:1;color:var(--pow)}
+.streakbar span:last-child{opacity:.8}
+.streakbar.risk b{color:#ff8a5c}
+.flame{width:16px;height:22px;background:radial-gradient(circle at 50% 70%,#ffe066 0 30%,#ff8a2a 31% 60%,#e2401f 61%);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;transform:rotate(-8deg);animation:flick .5s ease-in-out infinite alternate}
+@keyframes flick{to{transform:rotate(6deg) scaleY(1.08)}}
+.dailybtn{display:grid;gap:1px;justify-items:center;width:100%;background:linear-gradient(135deg,#2f3a1e,#1c2311);border:2px solid var(--pow);color:var(--paper);border-radius:6px;padding:5px 8px 6px;box-shadow:0 4px 0 #0e1208;animation:tsFade .5s 1.3s both}
+.dailybtn b{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--pow)}
+.dailybtn span{font-size:12px;font-weight:700;opacity:.85}
+.dailybtn:active{transform:translateY(2px)}
+.tabs.three{grid-template-columns:repeat(3,1fr)}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:12px 0}
+.vsc{display:grid;justify-items:center;gap:4px}
+.vsc svg{width:96px;height:auto;background:radial-gradient(circle at 50% 60%,#dfe8d2,#c3cfb2);border-radius:50%;border:3px solid var(--ink)}
+.vsc b{font-size:15px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vsc span{font-family:var(--f-display);font-size:32px;line-height:1;color:var(--stamp)}
+.vsx{font-family:var(--f-display);font-size:34px;color:var(--ink-soft)}
+.dname{width:100%;font:inherit;font-size:16px;padding:9px 10px;border:2px solid var(--ink);border-radius:4px;background:#fff;color:var(--ink);margin:4px 0 10px}
+.duelbox{margin-top:12px;padding-top:4px;border-top:1.5px dashed #b5a87f}
+.duellink{margin-top:6px}
+.duelres{display:grid;gap:2px;justify-items:center;margin:10px 0;padding:10px;border-radius:5px;background:#e9e1c8;border:2px solid var(--ink)}
+.duelres b{font-family:var(--f-display);font-size:40px;line-height:1}
+.duelres.win{border-color:var(--go)}.duelres.win b{color:var(--go)}
+.duelres.lose{border-color:var(--stamp)}.duelres.lose b{color:var(--stamp)}
+.duelres span{font-weight:800}.duelres small{font-size:12px;color:var(--ink-soft)}
+@media (prefers-reduced-motion: reduce){.fwrap .fbody,.agimel,.flame,.crowd i{animation:none!important}}
 
 @media (prefers-reduced-motion: reduce){
   #app.shake,.doc .head,.cmd .head,.meter.hot,.room::after,.punch,.soldier,.doc [data-k="eo"],.window .flag::after{animation:none}
@@ -694,6 +772,15 @@ body.fighting .soldier .glv{opacity:1}
     </div>
     <div id="bubble" class="bubble"><div class="said">נו? מה כואב לך הפעם?</div></div>
     <div id="shield" class="shield" hidden aria-hidden="true"><b>טופס 55</b><i></i><i></i><i></i></div>
+    <div class="arena" id="arena" hidden aria-hidden="true">
+      <div class="crowd"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="ropes"><i></i><i></i><i></i></div><div class="post pl"></div><div class="post pr"></div>
+      <div class="ringfloor"></div>
+      <div class="abanner" id="arenaBanner">קרב במרפאה</div>
+      <div class="agimel" id="arenaGimel" hidden>ג׳</div>
+      <div class="anames" id="arenaNames"></div>
+      <div class="fwrap me" id="fMe"></div><div class="fwrap op" id="fOp"></div>
+    </div>
     <div id="cue" class="cue" hidden aria-hidden="true"></div>
     <div id="dweap" class="dweap" hidden aria-hidden="true"></div>
     <div id="stamp" class="stamp" hidden></div>
@@ -937,7 +1024,12 @@ function hud(){
 }
 
 /* ================= run & visit ================= */
-function startRun(){ping(true);RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId()};applySoldier();introSheet(true)}
+function startRun(o){o=o||{};ping(true);touchStreak();
+ const mode=o.mode||'normal',seed=o.seed!=null?o.seed:(mode==='daily'?dailySeed():Math.floor(Math.random()*2147483647));
+ GRNG=mulberry32(seed);
+ RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId(),mode,seed,duel:o.duel||null,boutDone:false,boutWon:false};
+ if(mode==='duel'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+ applySoldier();introSheet(true)}
 function startVisit(){
  const d=RUN.day;
  const V=RUN.next||pickVisit(d);RUN.next=null;
@@ -950,9 +1042,11 @@ function startVisit(){
 function deal(){
  setPrompt('מה אתה אומר לו?');
  const pool=LINES.map((_,i)=>i).filter(i=>!S.used.has(i)&&lineAvailable(LINES[i])),pick=[];
- for(const r of shuffle([1,2,3])){const c=pool.filter(i=>LINES[i].r===r&&!pick.includes(i));if(c.length)pick.push(pickOne(c))}
+ for(const r of gShuffle([1,2,3])){const c=pool.filter(i=>LINES[i].r===r&&!pick.includes(i));if(c.length)pick.push(gPick(c))}
+ gShuffle(pick);
+ if(RUN.mode==='normal'&&Math.random()<.3){const own=LINES.map((_,i)=>i).filter(i=>LINES[i].c&&lineAvailable(LINES[i],true)&&!S.used.has(i));if(own.length)pick[Math.floor(Math.random()*pick.length)]=pickOne(own)}
  const box=$('#choices');box.innerHTML='<div class="patience"><div class="pbar"><i id="patBar"></i></div></div>';let kn=0;
- shuffle(pick).forEach(i=>{kn++;const L=LINES[i],b=document.createElement('button');b.type='button';b.className='choice';
+ pick.forEach(i=>{kn++;const L=LINES[i],b=document.createElement('button');b.type='button';b.className='choice';
   const lo=L.r===3?2:1,hi=L.j?L.j.g:(L.r===1?1:2);
   b.classList.add('rk'+L.r);b.setAttribute('aria-label',RISK[L.r][0]+': '+L.t.replace(/\*/g,''));
   b.innerHTML=`<span class="kbd">${kn}</span><span class="ctext"><span>${fmt(L.t)}</span><span class="chip ${RISK[L.r][1]}">${RISK[L.r][0]}</span></span><span class="cdays" dir="ltr">+${lo===hi?lo:lo+'–'+hi}${L.j?'<b>!</b>':''}</span>`;
@@ -966,7 +1060,7 @@ function roll(L){const d=RUN.day-1,p={...ODDS[L.r]};if(!L.j){p.w+=p.j;p.j=0}
  const tough=Math.min(p.w,.035*d);p.w-=tough;p.a+=tough;
  let shift=(S.sus/100)*(.3+.06*d)+(S.hot?.1:0)-(S.scared?.12:0);shift=Math.max(-.2,Math.min(p.w,shift));p.w-=shift;
  const sum=p.w+p.j+p.a;if(sum>.96){const k=.96/sum;p.w*=k;p.j*=k;p.a*=k}
- const x=Math.random();if(x<p.j)return'jack';if(x<p.j+p.w)return'win';if(x<p.j+p.w+p.a)return'acamol';return'fail'}
+ const x=GR();if(x<p.j)return'jack';if(x<p.j+p.w)return'win';if(x<p.j+p.w+p.a)return'acamol';return'fail'}
 
 async function choose(i,btn){
  if(S.busy||S.over||S.mode!=='talk')return;stopPatience();S.busy=true;S.used.add(i);S.turn++;S.queue+=rnd(1,3);SFX.tick();
@@ -975,7 +1069,7 @@ async function choose(i,btn){
  await wait(1000);
  const res=roll(L);
  if(res==='win'||res==='jack'){
-  let gain=res==='jack'?L.j.g+(DOC().mod.jack||0):(L.r===1?1:L.r===3?2:(Math.random()<.4?2:1));
+  let gain=res==='jack'?L.j.g+(DOC().mod.jack||0):(L.r===1?1:L.r===3?2:(GR()<.4?2:1));
   S.streak++;let bonus=0;if(S.streak%3===0){bonus=1;S.justBonus=true}
   S.gimel+=gain+bonus;S.sus+=Math.round((res==='jack'?12:5+L.r*3)*(DOC().mod.sus||1));
   if(res==='jack')mission('jack');if(L.r===3)mission('crazy');if(S.streak>=3)mission('streak');if(moodMatch(L)){mission('mood');burst('בול!')}
@@ -1000,8 +1094,8 @@ async function afterBeat(ms,allowEvent){
  if(S.sus>=100){await wait(ms);return bust()}
  if(S.turn>=S.turns){await wait(ms+200);return endVisit('time')}
  if(allowEvent){
-  if(!S.cmdDone&&S.turn>=2&&Math.random()<.1+.07*RUN.day){await wait(ms);return commander()}
-  if(Math.random()<.3+.02*RUN.day){await wait(ms);return randomEvent()}
+  if(!S.cmdDone&&S.turn>=2&&GR()<.1+.07*RUN.day){await wait(ms);return commander()}
+  if(GR()<.3+.02*RUN.day){await wait(ms);return randomEvent()}
  }
  await wait(600);toTalk();
 }
@@ -1025,7 +1119,7 @@ async function endVisit(kind){
 }
 
 /* ================= random events ================= */
-function coin(p,a,b){return Math.random()<p?a():b()}
+function coin(p,a,b){return GR()<p?a():b()}
 async function res(txt,eff={},who){
  $('#choices').innerHTML='';
  if(eff.g){S.gimel+=eff.g;setGimel(S.gimel);floatTxt('+'+eff.g);SFX.win();spawn('conf',reduced?3:8,'ג׳')}
@@ -1077,7 +1171,7 @@ const EVENTS=[
 ];
 async function randomEvent(){
  const pool=EVENTS.filter(e=>!S.evUsed.has(e.id));if(!pool.length)return toTalk();
- const E=pickOne(pool);S.evUsed.add(E.id);S.mode='event';S.busy=true;hud();SFX.event();
+ const E=gPick(pool);S.evUsed.add(E.id);S.mode='event';S.busy=true;hud();SFX.event();
  if(E.enter)E.enter();say(null,E.text,{who:E.who});setPrompt('בינתיים...');
  $('#choices').innerHTML=`<div class="console event"><div class="c-head">${E.who||'בינתיים'} <span>אירוע</span></div><div class="opt2" id="evo"></div></div>`;
  const box=$('#evo');
@@ -1086,167 +1180,249 @@ async function randomEvent(){
   b.addEventListener('click',()=>{box.querySelectorAll('button').forEach(x=>x.disabled=true);o.go()});box.appendChild(b)});
 }
 
-/* ================= fight (real-time, keyboard + touch) ================= */
-const TAUNTS=['בוא, ג׳ובניק.','אני מחכה...','זה הכל?','אמא שלך מרביצה יותר חזק.','עשיתי קרב מגע. בזום.'];
-const WEAPONS={
- hammer:'<svg viewBox="0 0 120 120"><path d="M8 116 L58 64" stroke="#fbfaf5" stroke-width="24" stroke-linecap="round"/><path d="M8 116 L58 64" stroke="#d9d8cd" stroke-width="24" stroke-linecap="round" stroke-dasharray="2 18"/><circle cx="60" cy="62" r="13" fill="#eab68d" stroke="#c98e64" stroke-width="2"/><path d="M62 58 L98 22" stroke="#9aa3a8" stroke-width="6" stroke-linecap="round"/><path d="M84 8 L116 30 L102 42Z" fill="#e8742a" stroke="#9b4511" stroke-width="2"/></svg>',
- syringe:'<svg viewBox="0 0 120 120"><path d="M8 116 L54 70" stroke="#fbfaf5" stroke-width="24" stroke-linecap="round"/><circle cx="56" cy="68" r="13" fill="#eab68d" stroke="#c98e64" stroke-width="2"/><g transform="rotate(-45 80 44)"><rect x="56" y="36" width="44" height="16" rx="3" fill="#e9f3fb" stroke="#6f8aa3" stroke-width="2"/><rect x="58" y="38" width="22" height="12" fill="#8fd45f" opacity=".7"/><path d="M100 44 L122 44" stroke="#6f7a80" stroke-width="2.5"/><rect x="48" y="38" width="8" height="12" fill="#6f8aa3"/></g></svg>',
- clip:'<svg viewBox="0 0 120 120"><path d="M8 116 L54 70" stroke="#fbfaf5" stroke-width="24" stroke-linecap="round"/><g transform="rotate(-25 74 48)"><rect x="46" y="14" width="56" height="72" rx="4" fill="#a8783f" stroke="#6b4a22" stroke-width="2"/><rect x="52" y="22" width="44" height="58" fill="#fff"/><rect x="64" y="10" width="20" height="9" rx="2" fill="#9aa3a8"/><path d="M58 34 h32 M58 44 h32 M58 54 h24" stroke="#bbb" stroke-width="3"/></g><circle cx="56" cy="70" r="13" fill="#eab68d" stroke="#c98e64" stroke-width="2"/></svg>',
- fist:'<svg viewBox="0 0 120 120"><path d="M8 116 L62 62" stroke="#fbfaf5" stroke-width="26" stroke-linecap="round"/><circle cx="66" cy="58" r="20" fill="#eab68d" stroke="#c98e64" stroke-width="3"/><path d="M56 48 q10 -6 22 2 M54 58 h16 M54 66 h14" stroke="#c98e64" stroke-width="2.5" fill="none"/></svg>'
-};
-function weaponFor(n){return n.includes('פטיש')?'hammer':n.includes('זריקת')?'syringe':n.includes('לוח')?'clip':'fist'}
-function startFight(){
- if(S.fought||S.busy||S.over||S.mode!=='talk')return;
- stopPatience();S.fought=true;S.mode='fight';S.busy=true;RUN.fights++;hud();
- const max=Math.round((90+RUN.day*20)*(DOC().mod.hp||1)),now=performance.now(),meMax=100+upLevel('boots')*15+(charId()==='fighter'?30:0);
- S.F={me:meMax,meMax,doc:max,max,st:100,start:now,dur:30000,last:now,phase:'idle',until:now+1300,dir:'L',wStart:0,intent:null,feint:false,chain:false,
-      cdJab:0,cdKick:0,blocking:false,heal:false,combo:0,dodge:null,side:'R',raf:0,done:false,pausedAt:0};
- room.classList.add('ring');document.body.classList.add('fighting');SFX.bell();setMood('angry');burst('קרב!');buzz(40);
+/* ================= boxing ring (real-time, keyboard + touch) ================= */
+const TAUNTS=['בוא, ג׳ובניק.','זה הכל?','אמא שלך מרביצה יותר חזק.','עשיתי קרב מגע. בזום.','אני מחכה...'];
+const DOC_MOVES=['ישר לפנים','סטירה של קר״פ','אפרקאט רפואי','הוק עם סטטוסקופ','מכת לוח כתיבה'];
+const SOL_MOVES=['ג׳אב של טירון','הוק של ש״ג','אפרקאט מהמטבח','ישר מהג׳ימבורי','מכת קת'];
+const SOL_TAUNTS=['הגימל הזה שלי.','בוא נראה אותך בלי אמא.','אני סוגר לך שבת.','לוחם אמיתי לא בורח.'];
+/* ---- full-body fighter, drawn facing right ---- */
+function fighterLook(kind,id){
+ if(kind==='doc'){const D=DOCS[id]||DOCS.shmueli;
+  return{kind,id,shirt:'#fbfaf5',pants:'#3b3f45',gloves:'#7cc0e6',skin:id==='ronit'?'#f1c6a2':id==='noam'?'#f3c9a4':'#eab68d',
+   hair:id==='ronit'?'#7a2e1a':id==='avi'?'#8d8d86':id==='noam'?'#c9a14a':'#3b2a1b'}}
+ const C=CHARS[id]||CHARS.tiron;return{kind:'sol',id,shirt:C.shirt,pants:'#4b5a32',gloves:'#d23a2c',skin:'#eab68d',hair:C.hair,beret:C.beret}}
+function arm(sx,sy,ex,ey,gx,gy,L,r){return`<path d="M${sx} ${sy} L${ex} ${ey} L${gx} ${gy}" stroke="${L.shirt}" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="${gx}" cy="${gy}" r="${r}" fill="${L.gloves}" stroke="rgba(0,0,0,.35)" stroke-width="2.5"/><path d="M${gx-r*.55} ${gy-r*.2} q${r*.5} ${-r*.5} ${r} 0" stroke="rgba(255,255,255,.45)" stroke-width="2.5" fill="none" stroke-linecap="round"/>`}
+function fighterSVG(L){
+ const g=L.gloves,doc=L.kind==='doc',id=L.id;
+ const headX=106,headY=60;
+ let headExtra='',torsoExtra='',hairPath=`<path d="M84 52 Q86 30 108 30 Q128 31 130 50 Q120 42 104 44 Q92 46 84 58Z" fill="${L.hair}"/>`;
+ if(doc){
+  torsoExtra=`<path d="M94 92 Q100 120 108 128 Q116 120 120 94" stroke="#2b2f33" stroke-width="3" fill="none"/><circle cx="108" cy="130" r="5" fill="#a9b3b8" stroke="#2b2f33" stroke-width="2"/><path d="M104 92 L110 150" stroke="#d9d8cd" stroke-width="2"/>`;
+  if(id!=='noam')headExtra+=`<circle cx="118" cy="57" r="8" fill="rgba(255,255,255,.2)" stroke="#2b2f33" stroke-width="2.5"/><path d="M110 56 L98 54" stroke="#2b2f33" stroke-width="2.5"/>`;
+  headExtra+=`<circle cx="106" cy="34" r="8" fill="#dfe5e8" stroke="#6f7a80" stroke-width="2.5"/>`;
+  if(id==='shmueli'||id==='avi')headExtra+=`<path d="M114 72 Q122 66 130 72 Q122 75 114 72Z" fill="${L.hair}"/>`;
+  if(id==='avi')headExtra+=`<ellipse cx="114" cy="76" rx="14" ry="8" fill="rgba(60,40,30,.25)"/>`;
+  if(id==='ronit')hairPath=`<path d="M82 60 Q76 30 106 28 Q132 29 130 50 Q118 40 102 44 Q92 48 90 70 Q90 96 80 104 Q72 84 82 60Z" fill="${L.hair}"/>`;
+ }else{
+  if(id==='jobnik')headExtra=`<circle cx="118" cy="57" r="8" fill="rgba(255,255,255,.2)" stroke="#2b2f33" stroke-width="2.5"/><path d="M110 56 L98 54" stroke="#2b2f33" stroke-width="2.5"/>`,torsoExtra=`<path d="M96 94 L104 124 L112 94" stroke="#2d63a8" stroke-width="2.5" fill="none"/><rect x="99" y="122" width="11" height="14" rx="2" fill="#fff" stroke="#2d63a8" stroke-width="1.5"/>`;
+  if(id==='cook')hairPath=`<path d="M84 46 Q78 18 98 22 Q104 8 118 14 Q132 10 132 28 Q144 30 132 48Z" fill="#fff" stroke="#d8d4c6" stroke-width="2"/><rect x="84" y="42" width="48" height="9" rx="3" fill="#ece7d8" stroke="#d8d4c6"/>`,torsoExtra=`<path d="M86 104 L122 104 L124 154 L84 154Z" fill="#fff" opacity=".9"/><path d="M86 104 Q104 96 122 104" stroke="#d8d4c6" stroke-width="2" fill="none"/>`;
+  if(id==='fighter')headExtra=`<path d="M110 64 l12 2 M110 70 l12 2" stroke="#2f3d1e" stroke-width="4" stroke-linecap="round"/>`,torsoExtra=`<path d="M84 96 L118 152 M122 96 L90 152" stroke="#2a3418" stroke-width="9"/><rect x="94" y="114" width="22" height="16" rx="2" fill="#2a3418"/>`,hairPath=`<path d="M84 50 Q88 28 108 28 Q128 30 130 48 Q108 40 84 50Z" fill="${L.hair}"/><path d="M82 46 L132 44" stroke="${L.beret}" stroke-width="7" stroke-linecap="round"/><path d="M84 46 L72 56" stroke="${L.beret}" stroke-width="5" stroke-linecap="round"/>`;
+  if(id==='driver')headExtra=`<rect x="110" y="51" width="22" height="11" rx="4" fill="#1b1b1b"/><path d="M110 55 L96 53" stroke="#1b1b1b" stroke-width="3"/>`,hairPath=`<path d="M84 50 Q86 28 108 28 Q128 30 130 46 Z" fill="${L.beret}"/><path d="M86 48 L64 52 Q70 44 86 42Z" fill="${L.beret}"/>`;
+  if(id==='tiron')hairPath=`<path d="M78 56 Q78 20 108 20 Q138 22 136 54 Q108 46 78 56Z" fill="#6b7b46" stroke="#4b5a32" stroke-width="2"/><path d="M76 56 L138 52" stroke="#4b5a32" stroke-width="4"/>`,headExtra=`<path d="M130 40 Q136 50 130 54 Q124 50 130 40Z" fill="#7fc4ef"/>`;
+ }
+ const coatTail=doc?`<path d="M76 140 L66 206 L136 206 L128 140Z" fill="#fbfaf5" stroke="#d9d8cd" stroke-width="2"/><path d="M101 150 L100 206" stroke="#d9d8cd" stroke-width="2"/>`:'';
+ const belt=doc?'':`<rect x="74" y="146" width="56" height="8" rx="2" fill="#2a2416"/><rect x="99" y="146" width="8" height="8" fill="#c9b27a"/>`;
+ return`<svg viewBox="0 0 200 262" aria-hidden="true"><ellipse cx="100" cy="252" rx="62" ry="9" fill="rgba(0,0,0,.35)"/>
+ <g class="fbody">
+  <g class="legs">
+   <path d="M90 150 L76 198 L70 238" stroke="${L.pants}" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+   <path d="M112 150 L126 198 L132 238" stroke="${L.pants}" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+   <path d="M52 232 h28 q10 0 10 9 v7 h-38z" fill="#1d150d"/><path d="M118 232 h28 q10 0 10 9 v7 h-38z" fill="#1d150d"/>
+  </g>
+  ${coatTail}
+  <g class="armB">
+   <g class="pose guard">${arm(88,102,78,128,100,96,L,14)}</g>
+   <g class="pose punch">${arm(88,102,132,98,160,94,L,16)}</g>
+   <g class="pose upper">${arm(88,102,122,124,144,80,L,16)}</g>
+   <g class="pose block">${arm(88,102,104,120,118,72,L,15)}</g>
+   <g class="pose cock">${arm(88,102,66,122,58,92,L,15)}</g>
+  </g>
+  <path d="M74 94 Q100 82 126 94 L130 154 Q100 162 70 154Z" fill="${L.shirt}"/>
+  <path d="M74 94 Q100 82 126 94" stroke="rgba(0,0,0,.18)" stroke-width="2" fill="none"/>
+  ${belt}${torsoExtra}
+  ${L.beret&&id!=='fighter'&&id!=='driver'?`<path d="M80 98 q14 -9 28 0 l0 7 q-14 4 -28 0z" fill="${L.beret}"/>`:''}
+  <g class="fhead">
+   <rect x="96" y="76" width="20" height="20" rx="6" fill="${L.skin}"/><rect x="96" y="76" width="20" height="20" rx="6" fill="rgba(0,0,0,.12)"/>
+   <ellipse cx="${headX}" cy="${headY}" rx="23" ry="25" fill="${L.skin}"/>
+   <ellipse cx="88" cy="62" rx="6" ry="8" fill="${L.skin}" stroke="rgba(0,0,0,.18)" stroke-width="1.5"/>
+   ${hairPath}
+   <path class="brow" d="M110 50 L124 48" stroke="${doc?'#2b2f33':L.hair}" stroke-width="4" stroke-linecap="round"/>
+   <circle class="eye" cx="119" cy="57" r="3.6" fill="#22251a"/>
+   <path d="M128 58 Q134 64 128 68" fill="${L.skin}" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+   <path class="mouth" d="M116 76 Q122 74 126 72" stroke="#3a1a10" stroke-width="3" fill="none" stroke-linecap="round"/>
+   <g class="ouch"><path d="M114 52 l8 8 M122 52 l-8 8" stroke="#22251a" stroke-width="3"/><ellipse cx="121" cy="76" rx="5" ry="6" fill="#5a2318"/></g>
+   ${headExtra}
+  </g>
+  <g class="armF">
+   <g class="pose guard">${arm(112,102,126,128,132,92,L,15)}</g>
+   <g class="pose punch">${arm(112,102,148,98,174,94,L,17)}</g>
+   <g class="pose upper">${arm(112,102,138,126,156,80,L,17)}</g>
+   <g class="pose block">${arm(112,102,128,118,134,66,L,16)}</g>
+   <g class="pose cock">${arm(112,102,128,126,134,96,L,15)}</g>
+  </g>
+ </g></svg>`}
+function setPose(el,arm,pose){el.dataset[arm]=pose}
+function poseFor(el,armF,armB,ms){setPose(el,'f',armF);setPose(el,'b',armB);clearTimeout(el._pt);if(ms)el._pt=setTimeout(()=>{setPose(el,'f','guard');setPose(el,'b','guard')},ms)}
+function moveFor(el,m,ms){el.classList.remove('m-back','m-duck','m-hit','m-lunge','m-ko','m-win');void el.offsetWidth;el.classList.add(m);clearTimeout(el._mt);if(ms)el._mt=setTimeout(()=>el.classList.remove(m),ms)}
+
+/* ---- ring setup ---- */
+function setupRing(opp){
+ const A=$('#arena');A.hidden=false;$('#stamp').hidden=true;room.classList.add('boxing');
+ $('#fMe').innerHTML=fighterSVG(fighterLook('sol',charId()));$('#fOp').innerHTML=fighterSVG(opp.look);
+ ['#fMe','#fOp'].forEach(s=>{const e=$(s);e.className='fwrap '+(s==='#fMe'?'me':'op');poseFor(e,'guard','guard')});
+ $('#arenaBanner').textContent=opp.banner;$('#arenaGimel').hidden=!opp.decisive;
+ $('#arenaNames').innerHTML='';const n1=document.createElement('span'),n2=document.createElement('span');n1.textContent='אתה';n2.textContent=opp.name;$('#arenaNames').append(n1,n2);
+}
+function teardownRing(){$('#arena').hidden=true;room.classList.remove('boxing')}
+function headPoint(sel){const e=$(sel),r=room.getBoundingClientRect(),b=e.getBoundingClientRect();
+ const fx=sel==='#fOp'?(1-118/200):(118/200);return{x:b.left-r.left+b.width*fx+rnd(-10,10),y:b.top-r.top+b.height*(60/262)+rnd(-8,8)}}
+
+/* ---- fight state ---- */
+function docOpponent(){const D=DOC();const max=Math.round((100+RUN.day*22)*(D.mod.hp||1));
+ return{name:D.n,banner:'קרב במרפאה',look:fighterLook('doc',S.doc||'shmueli'),max,speed:1,dmg:1,moves:DOC_MOVES,taunts:TAUNTS,pain:DOC_PAIN,who:'הרופא',decisive:false}}
+function startFight(cfg){
+ cfg=cfg||{};
+ if(!cfg.force&&(S.fought||S.busy||S.over||S.mode!=='talk'))return;
+ stopPatience();if(!cfg.force)S.fought=true;S.mode='fight';S.busy=true;RUN.fights++;hud();
+ const opp=cfg.opp||docOpponent(),now=performance.now(),meMax=100+upLevel('boots')*15+(charId()==='fighter'?30:0);
+ S.F={cfg,opp,me:meMax,meMax,doc:opp.max,max:opp.max,st:100,start:now,dur:35000,last:now,phase:'idle',until:now+1400,dir:'L',wStart:0,move:'',feint:false,chain:0,
+      cdJab:0,cdPow:0,blocking:false,heal:false,combo:0,dodge:null,raf:0,done:false,pausedAt:0,pow:0};
+ setupRing(opp);document.body.classList.add('fighting');SFX.bell();buzz(40);burst(opp.decisive?'הגימל המכריע!':'קרב!');
  try{room.scrollIntoView({block:'start',behavior:reduced?'auto':'smooth'})}catch(e){}
- say('*מזמין את הרופא למכות*','אתה רציני? טוב. אני מוריד את החלוק.',{who:'הרופא'});
+ say(cfg.force?null:'*מזמין את '+opp.name+' לקרב*',opp.decisive?pickOne(SOL_TAUNTS):'אתה רציני? טוב. אני מוריד את החלוק.',{who:opp.who});
  setPrompt('');renderFight();S.F.raf=requestAnimationFrame(fightLoop);
 }
-function renderFight(){
- $('#choices').innerHTML=`<div class="console">
-  <div class="c-head">קרב במרפאה <span id="fTime">30 שניות</span></div>
-  <div class="bar"><span>אתה</span><div class="track"><i id="hpMe" style="width:100%"></i></div><span id="hpMeT">100</span></div>
+function renderFight(){const F=S.F;
+ $('#choices').innerHTML=`<div class="console boxc">
+  <div class="c-head">${F.opp.banner} <span id="fTime">35</span></div>
+  <div class="bar"><span>אתה</span><div class="track"><i id="hpMe" style="width:100%"></i></div><span id="hpMeT">${F.me}</span></div>
   <div class="bar"><span>אוויר</span><div class="track"><i id="stMe" class="amber" style="width:100%"></i></div><span id="combo">×0</span></div>
-  <div class="bar"><span>ד״ר שמואלי</span><div class="track"><i id="hpDoc" class="red" style="width:100%"></i></div><span id="hpDocT"></span></div>
-  <div class="fstatus" id="fStatus">ברח לכיוון החץ!</div>
+  <div class="bar"><span></span><div class="track"><i id="hpDoc" class="red" style="width:100%"></i></div><span id="hpDocT">${F.doc}</span></div>
+  <div class="fstatus" id="fStatus">תחמוק לכיוון החץ!</div>
   <div class="pad">
-   <button type="button" class="pk" data-k="ArrowLeft">←<small>←</small></button>
-   <button type="button" class="pk hit" data-k="Space">אגרוף<small>רווח</small></button>
-   <button type="button" class="pk" data-k="ArrowRight">→<small>→</small></button>
-   <button type="button" class="pk" data-k="ArrowDown">חסימה<small>↓</small></button>
-   <button type="button" class="pk kick" data-k="Enter">בעיטה<small>Enter</small></button>
+   <button type="button" class="pk" data-k="ArrowLeft">←<small>אחורה</small></button>
+   <button type="button" class="pk hit" data-k="Space">ג׳אב<small>רווח</small></button>
+   <button type="button" class="pk" data-k="ArrowRight">→<small>התכופף</small></button>
+   <button type="button" class="pk" data-k="ArrowDown">שמירה<small>↓ להחזיק</small></button>
+   <button type="button" class="pk kick" data-k="Enter">אפרקאט<small>Enter</small></button>
    <button type="button" class="pk" data-k="ArrowUp" id="healK">אקמול<small>↑</small></button>
-  </div>
-
- </div>`;
+  </div></div>`;
+ $('#choices .bar:nth-child(4) span').textContent=F.opp.name;
  document.querySelectorAll('.pad .pk').forEach(b=>{const k=b.dataset.k;
   b.addEventListener('pointerdown',e=>{e.preventDefault();fightKey(k,true)});
-  if(k==='ArrowDown')['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>fightKey(k,false)));
- });
+  if(k==='ArrowDown')['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>fightKey(k,false)))});
  updateBars();
 }
 function updateBars(){const F=S.F;if(!$('#hpMe'))return;
  $('#hpMe').style.width=Math.max(0,F.me/F.meMax*100)+'%';$('#hpMeT').textContent=Math.max(0,F.me);
  $('#stMe').style.width=Math.max(0,F.st)+'%';$('#combo').textContent='×'+F.combo;
  $('#hpDoc').style.width=Math.max(0,F.doc/F.max*100)+'%';$('#hpDocT').textContent=Math.max(0,F.doc);
- const pct=F.doc/F.max,doc=$('#doc');doc.classList.toggle('dmg1',pct<.72);doc.classList.toggle('dmg2',pct<.46);doc.classList.toggle('dmg3',pct<.22)}
+ $('#fOp').classList.toggle('hurt2',F.doc<F.max*.45);$('#fMe').classList.toggle('hurt2',F.me<F.meMax*.4)}
 function status(t,c){const el=$('#fStatus');if(!el)return;el.textContent=t;el.className='fstatus'+(c?' '+c:'')}
 function flashKey(k){const b=document.querySelector(`.pk[data-k="${k}"]`);if(!b)return;b.classList.add('on');setTimeout(()=>b.classList.remove('on'),120)}
-function showCue(dir){const c=$('#cue');c.innerHTML=(dir==='L'?'←':'→')+'<small>התחמק!</small>';c.hidden=false}
+function showCue(dir){const c=$('#cue');c.innerHTML=(dir==='L'?'←':'→')+`<small>${dir==='L'?'אחורה!':'התכופף!'}</small>`;c.hidden=false}
 function hideCue(){$('#cue').hidden=true}
-function showWeapon(kind,fromSide){const w=$('#dweap');w.innerHTML=WEAPONS[kind];w.className='dweap from'+fromSide;
- w.style.setProperty('--sx',fromSide==='L'?'70px':'-70px');w.style.setProperty('--mx',fromSide==='L'?'300px':'-300px');w.hidden=false}
-function weaponOut(cls){const w=$('#dweap');if(w.hidden)return;w.classList.add(cls);setTimeout(()=>{w.hidden=true},cls==='back'?200:320)}
-function limb(c){const s=$('#soldier');s.classList.remove('jabL','jabR','kicking');void s.offsetWidth;s.classList.add(c);setTimeout(()=>s.classList.remove(c),c==='kicking'?380:150)}
-function docPoint(){const d=$('#doc').parentElement;return{x:d.offsetLeft+d.offsetWidth/2+rnd(-14,14),y:d.offsetTop+d.offsetHeight*.38+rnd(-10,10)}}
-function sparks(n,color){const p=docPoint();for(let i=0;i<n;i++){const s=document.createElement('i');s.className='spark';s.style.left=p.x+'px';s.style.top=p.y+'px';
- const a=Math.random()*Math.PI*2,r=rnd(30,70);s.style.setProperty('--dx',Math.cos(a)*r+'px');s.style.setProperty('--dy',Math.sin(a)*r+'px');if(color)s.style.background=color;
- room.appendChild(s);setTimeout(()=>s.remove(),400)}}
-function dmgNum(t,big){const p=docPoint(),el=document.createElement('div');el.className='dmgnum'+(big?' big':'');el.textContent=t;el.style.left=(p.x+rnd(-30,20))+'px';el.style.top=(p.y-20)+'px';
+function sparksAt(p,n,color){for(let i=0;i<n;i++){const s=document.createElement('i');s.className='spark';s.style.left=p.x+'px';s.style.top=p.y+'px';
+ const a=Math.random()*Math.PI*2,r=rnd(30,80);s.style.setProperty('--dx',Math.cos(a)*r+'px');s.style.setProperty('--dy',Math.sin(a)*r+'px');if(color)s.style.background=color;
+ room.appendChild(s);setTimeout(()=>s.remove(),420)}}
+function dmgAt(p,t,big,bad){const el=document.createElement('div');el.className='dmgnum'+(big?' big':'')+(bad?' bad':'');el.textContent=t;el.style.left=(p.x-20)+'px';el.style.top=(p.y-24)+'px';
  room.appendChild(el);setTimeout(()=>el.remove(),720)}
-function fightKey(k,down){const F=S.F;if(!F||F.done||S.mode!=='fight'||F.pausedAt)return;const now=performance.now();
- if(k==='ArrowDown'){F.blocking=down;$('#soldier').classList.toggle('blocking',down);const b=document.querySelector('.pk[data-k="ArrowDown"]');if(b)b.classList.toggle('on',down);return}
+function sparks(n,color){sparksAt(headPoint('#fOp'),n,color)}
+function dmgNum(t,big){dmgAt(headPoint('#fOp'),t,big)}
+
+/* ---- player input ---- */
+function fightKey(k,down){const F=S.F;if(!F||F.done||S.mode!=='fight'||F.pausedAt)return;const now=performance.now(),me=$('#fMe');
+ if(k==='ArrowDown'){F.blocking=down;me.classList.toggle('blocking',down);if(down)poseFor(me,'block','block');else poseFor(me,'guard','guard');
+  const b=document.querySelector('.pk[data-k="ArrowDown"]');if(b)b.classList.toggle('on',down);return}
  if(!down)return;flashKey(k);
- if(k==='ArrowLeft'||k==='ArrowRight'){F.dodge={dir:k==='ArrowLeft'?'L':'R',at:now};sol(k==='ArrowLeft'?'dodgeL':'dodgeR');SFX.whoosh();return}
+ if(k==='ArrowLeft'||k==='ArrowRight'){F.dodge={dir:k==='ArrowLeft'?'L':'R',at:now};moveFor(me,k==='ArrowLeft'?'m-back':'m-duck',380);SFX.whoosh();return}
  if(F.blocking)return;
- if(k==='ArrowUp'){if(F.heal)return;F.heal=true;F.me=Math.min(F.meMax,F.me+30);F.st=100;floatTxt('+30 חיים · אוויר מלא');SFX.acamol();spawn('pill',reduced?3:8);$('#healK').disabled=true;
-  say('*בולע אקמול באמצע הקרב*','זה שלי!',{who:'הרופא'});updateBars();return}
- if(k==='Space'){if(now<F.cdJab)return;F.cdJab=now+210;attack(rnd(5,8)+(has('gloves')?2:0),'jab');return}
- if(k==='Enter'){if(now<F.cdKick)return;F.cdKick=now+900;attack(rnd(14,20)+(has('gloves')?4:0),'kick')}
+ if(k==='ArrowUp'){if(F.heal)return;F.heal=true;F.me=Math.min(F.meMax,F.me+30);F.st=100;floatTxt('+30 חיים');SFX.acamol();spawn('pill',reduced?3:8);$('#healK').disabled=true;updateBars();return}
+ if(k==='Space'){if(now<F.cdJab)return;F.cdJab=now+210;attack(rnd(4,7)+(has('gloves')?2:0),'jab');return}
+ if(k==='Enter'){if(now<F.cdPow)return;F.cdPow=now+820;attack(rnd(15,21)+(has('gloves')?4:0),'power')}
 }
-function attack(base,kind){const F=S.F,now=performance.now(),cost=kind==='kick'?24:9;
- if(F.st<cost){status('אין לך אוויר! תנשום רגע','danger');SFX.tick();sol('slump');return}
+function attack(base,kind){const F=S.F,now=performance.now(),cost=kind==='power'?28:11,me=$('#fMe'),op=$('#fOp');
+ if(F.st<cost){status('אין לך אוויר! תנשום','danger');SFX.tick();moveFor(me,'m-duck',200);return}
  F.st-=cost;
- if(kind==='kick')limb('kicking');else{F.side=F.side==='L'?'R':'L';limb(F.side==='L'?'jabL':'jabR')}
- let d=Math.round(base*(charId()==='fighter'?1.35:1))+Math.min(F.combo,8),note='',blocked=false;
+ if(kind==='power'){F.pow++;poseFor(me,F.pow%2?'upper':'guard',F.pow%2?'guard':'punch',260)}else poseFor(me,'punch','guard',150);
+ moveFor(me,'m-lunge',kind==='power'?260:150);
+ let d=Math.round(base*(charId()==='fighter'?1.35:1))+Math.min(Math.floor(F.combo/2),5),note='',blocked=false;
  if(F.phase==='guard'){
-  if(kind==='kick'){F.phase='stun';F.until=now+850;$('#shield').hidden=true;note='המגן נשבר!';status('המגן נשבר! תכה!','open');SFX.big();$('#doc').classList.add('dazed')}
-  else{d=Math.max(1,Math.round(d/3));blocked=true}}
- else if(F.phase==='windup'&&kind==='kick'&&Math.random()<.4){F.phase='stun';F.until=now+850;hideCue();weaponOut('back');$('#doc').classList.remove('windup');$('#doc').classList.add('dazed');note='קטעת אותו!';status('קטעת אותו! תכה!','open')}
+  if(kind==='power'){F.phase='stun';F.until=now+900;note='השמירה נשברה!';status('השמירה נשברה! תכה!','open');SFX.big();poseFor(op,'guard','guard');op.classList.add('dazed')}
+  else{d=Math.max(1,Math.round(d/4));blocked=true}}
+ else if(F.phase==='windup'&&kind==='power'&&Math.random()<.35){F.phase='stun';F.until=now+900;hideCue();poseFor(op,'guard','guard');op.classList.add('dazed');note='קטעת אותו!';status('קטעת אותו! תכה!','open')}
+ else if(F.phase==='windup'&&kind==='jab'&&Math.random()<.5){d=Math.max(1,Math.round(d/2))}
  const dbl=F.phase==='exposed'||F.phase==='stun';if(dbl){d*=2;note=note||'כפול!'}
- setTimeout(()=>{
-  if(F.done)return;F.doc-=d;
-  if(blocked){SFX.block();sparks(4,'#cfd6da');dmgNum(String(d))}
-  else{F.combo++;
-   cls($('#doc'),kind==='kick'?'hit':(F.side==='L'?'hitR':'hitL'));
-   if(F.phase!=='windup'&&F.phase!=='guard')setMood(F.doc<F.max*.35?'beaten':'shock');
-   kind==='kick'||dbl?SFX.punch():SFX.jab();cls(room,'impact');sparks(kind==='kick'||dbl?10:5);
-   dmgNum((dbl?'!':'')+d,kind==='kick'||dbl);
-   if(kind==='kick'||d>=16){burst(pickOne(BURSTS));shake();buzz(20)}
-   if(note)floatTxt(note);
-   if(Math.random()<.16)say(null,pickOne(DOC_PAIN),{who:'הרופא'});}
-  updateBars();if(F.doc<=0)fightWin();
- },kind==='kick'?150:70);
+ setTimeout(()=>{if(F.done)return;F.doc-=d;const p=headPoint('#fOp');
+  if(blocked){SFX.block();sparksAt(p,4,'#cfd6da');dmgAt(p,String(d))}
+  else{F.combo++;moveFor(op,'m-hit',260);kind==='power'||dbl?SFX.punch():SFX.jab();cls(room,'impact');sparksAt(p,kind==='power'||dbl?12:5);
+   dmgAt(p,(dbl?'!':'')+d,kind==='power'||dbl);
+   if(kind==='power'||d>=16){burst(pickOne(BURSTS));shake();buzz(20)}
+   if(note)floatTxt(note);if(F.combo>=6&&F.combo%3===0)status('קומבו '+F.combo+'!','open');
+   if(Math.random()<.14)say(null,pickOne(F.opp.pain),{who:F.opp.who})}
+  updateBars();if(F.doc<=0)fightWin()},kind==='power'?140:70);
 }
+
+/* ---- opponent AI ---- */
 function fightLoop(now){const F=S.F;if(!F||F.done)return;
  if(F.pausedAt){F.last=now;F.raf=requestAnimationFrame(fightLoop);return}
  const dt=Math.min(.05,(now-F.last)/1000);F.last=now;
- F.st=Math.min(100,F.st+(F.blocking?12:30)*dt);const sm=$('#stMe');if(sm){sm.style.width=F.st+'%';sm.classList.toggle('red',F.st<20)}
- const left=Math.max(0,F.dur-(now-F.start)),te=$('#fTime');if(te){te.textContent=Math.ceil(left/1000)+' שניות';te.style.color=left<8000?'#ff6b5b':''}
+ F.st=Math.min(100,F.st+(F.blocking?9:25)*dt);const sm=$('#stMe');if(sm){sm.style.width=F.st+'%';sm.classList.toggle('red',F.st<25)}
+ const left=Math.max(0,F.dur-(now-F.start)),te=$('#fTime');if(te){te.textContent=Math.ceil(left/1000);te.style.color=left<8000?'#ff6b5b':''}
  if(left<=0)return fightTimeout();
- const rage=F.doc<F.max*.35;
+ const rage=F.doc<F.max*.35,op=$('#fOp');
  if(now>=F.until){
   if(F.phase==='windup')strike(now,rage);
   else{
-   if(F.phase==='guard')$('#shield').hidden=true;
-   $('#doc').classList.remove('dazed');
-   const r=F.chain?0:Math.random();F.chain=false;
-   if(r<.66){
-    const W=Math.max(400,950-RUN.day*60-(rage?180:0))*(r===0?.7:1);
-    F.phase='windup';F.dir=Math.random()<.5?'L':'R';F.wStart=now;F.until=now+W;F.feint=Math.random()<.15;
-    F.intent=pickOne(INTENTS.filter(x=>x.d));
-    showCue(F.dir);showWeapon(weaponFor(F.intent.n),F.dir==='L'?'R':'L');
-    $('#doc').classList.add('windup');setMood('angry');status(F.intent.n+' בדרך!','danger');SFX.warn()}
-   else if(r<.9){F.phase='guard';F.until=now+rnd(1100,1900);$('#shield').hidden=false;setMood('think');status('מסתתר מאחורי הטופס · תבעט!')}
-   else{F.phase='idle';F.until=now+700;status(pickOne(TAUNTS));setMood('happy')}
+   op.classList.remove('dazed');
+   const r=F.chain>0?0:Math.random();
+   if(r<.64){
+    const W=Math.max(300,(760-RUN.day*55-(rage?170:0))*(F.opp.speed||1))*(F.chain>0?.6:1);
+    if(F.chain>0)F.chain--;
+    F.phase='windup';F.dir=Math.random()<.5?'L':'R';F.wStart=now;F.until=now+W;F.feint=F.chain===0&&Math.random()<.2;F.move=pickOne(F.opp.moves);
+    showCue(F.dir);poseFor(op,'guard','cock');op.classList.add('windup');status(F.move+'!','danger');SFX.warn()}
+   else if(r<.86){F.phase='guard';F.until=now+rnd(1000,1800);poseFor(op,'block','block');status('הוא בשמירה · אפרקאט שובר!')}
+   else{F.phase='idle';F.until=now+600;status(pickOne(F.opp.taunts));moveFor(op,'m-win',500)}
   }
  }
  F.raf=requestAnimationFrame(fightLoop);
 }
-function strike(now,rage){const F=S.F;hideCue();$('#doc').classList.remove('windup');
+function strike(now,rage){const F=S.F,op=$('#fOp'),me=$('#fMe');hideCue();op.classList.remove('windup');
  const dodged=F.dodge&&F.dodge.at>=F.wStart;
- if(F.feint){weaponOut('back');setMood('happy');status('הטעיה!','');say(null,'חח, נבהלת?',{who:'הרופא'});
+ if(F.feint){poseFor(op,'guard','guard');status('הטעיה!');say(null,'חח, נבהלת?',{who:F.opp.who});
   if(dodged){F.st=Math.max(0,F.st-15);floatTxt('נפלת בהטעיה · −15 אוויר',true)}
-  F.dodge=null;F.phase='idle';F.until=now+rnd(300,600);return}
- cls($('#doc'),'swing');
- if(dodged&&F.dodge.dir===F.dir){weaponOut('miss');F.phase='exposed';F.until=now+1300;burst('התחמקת!');SFX.whoosh();setMood('shock');$('#doc').classList.add('dazed');
-  status('הוא פתוח! תכה עכשיו!','open');F.dodge=null;if(rage&&Math.random()<.35)F.chain=true;return}
- weaponOut('strike');
- let dmg=12+RUN.day*2+(rage?4:0),note='';
+  F.dodge=null;F.phase='idle';F.until=now+rnd(260,520);return}
+ poseFor(op,F.dir==='L'?'guard':'upper',F.dir==='L'?'punch':'guard',300);moveFor(op,'m-lunge',300);
+ if(dodged&&F.dodge.dir===F.dir){F.phase='exposed';F.until=now+1150;burst('התחמקת!');SFX.whoosh();op.classList.add('dazed');
+  status('הוא פתוח! תכה עכשיו!','open');F.dodge=null;if(rage&&Math.random()<.4)F.chain=1;return}
+ let dmg=Math.round((16+RUN.day*3+(rage?5:0))*(F.opp.dmg||1)),note='';
  if(dodged)note=' · לצד הלא נכון';
- if(F.blocking){dmg=Math.round(dmg*.3);note=' · נחסם חלקית';SFX.block();sparks(5,'#cfd6da')}
- else{SFX.slap();overlayFx('hurt',450);shake()}
- F.me-=dmg;F.combo=0;F.dodge=null;sol('flinch');setMood('angry');buzz(F.blocking?25:70);
- floatTxt('−'+dmg+' לך'+note,true);status(F.intent.n+'!','danger');
- updateBars();
+ const p=headPoint('#fMe');
+ if(F.blocking){dmg=Math.round(dmg*.3);note=' · נחסם';SFX.block();sparksAt(p,5,'#cfd6da')}
+ else{SFX.slap();overlayFx('hurt',450);shake();moveFor(me,'m-hit',300);sparksAt(p,6,'#ff7a5c')}
+ F.me-=dmg;F.combo=0;F.dodge=null;buzz(F.blocking?25:70);dmgAt(p,'−'+dmg,false,true);
+ status(F.move+note,'danger');updateBars();
  if(F.me<=0)return fightLose();
  F.phase='idle';
- if(rage&&Math.random()<.35){F.chain=true;F.until=now+260;status('עוד אחת!','danger')}
- else F.until=now+(rage?rnd(350,700):rnd(550,1100));
+ if(F.chain<=0&&rage&&Math.random()<.45){F.chain=rnd(1,2);F.until=now+220;status('קומבו שלו!','danger')}
+ else F.until=now+(F.chain>0?200:(rage?rnd(320,640):rnd(520,1000)));
 }
-function endFightUI(){const F=S.F;F.done=true;document.body.classList.remove('fighting');cancelAnimationFrame(F.raf);hideCue();$('#shield').hidden=true;$('#dweap').hidden=true;
- room.classList.remove('ring');$('#doc').classList.remove('windup','dazed');$('#soldier').classList.remove('blocking','jabL','jabR','kicking')}
-async function fightWin(){
- if(S.F.done)return;endFightUI();S.mode='talk';
- const gain=3;setMood('faint');$('#doc').classList.add('dazed');overlayFx('flash',600);buzz([40,40,90]);stamp('נוקאאוט','ok');sol('cheer');unlock('ko');mission('ko');SFX.jack();burst('נוקאאוט!');spawn('conf',reduced?6:30,'ג׳');
- S.gimel+=gain;S.sus+=20;S.scared=true;setGimel(S.gimel);floatTxt('+'+gain);
+function endFightUI(){const F=S.F;F.done=true;document.body.classList.remove('fighting');cancelAnimationFrame(F.raf);hideCue();
+ $('#fMe').classList.remove('blocking')}
+async function fightWin(){const F=S.F;if(F.done)return;endFightUI();
+ const op=$('#fOp'),me=$('#fMe');moveFor(op,'m-ko');op.classList.add('dazed');moveFor(me,'m-win');poseFor(me,'block','block');
+ overlayFx('flash',600);buzz([40,40,90]);stamp('נוקאאוט','ok');SFX.jack();burst('נוקאאוט!');spawn('conf',reduced?6:30,'ג׳');sol('cheer');unlock('ko');
+ if(F.cfg.onWin){await wait(1900);teardownRing();$('#choices').innerHTML='';return F.cfg.onWin()}
+ mission('ko');S.mode='talk';
+ const gain=3;S.gimel+=gain;S.sus+=20;S.scared=true;setGimel(S.gimel);floatTxt('+'+gain);
  say(null,`(מהרצפה) חתמתי... ${days(gain)}... רק אל תרביץ שוב.`,{who:'הרופא'});
  $('#choices').innerHTML='';hud();
- await wait(1600);$('#doc').classList.remove('dazed');setMood('beaten');await afterBeat(900,false);
+ await wait(1900);teardownRing();setMood('beaten');await afterBeat(700,false);
 }
-async function fightTimeout(){
- endFightUI();S.mode='talk';S.sus+=15;setMood('beaten');stamp('הפרדה');SFX.whoosh();
+async function fightTimeout(){const F=S.F;endFightUI();stamp('נגמר הזמן');SFX.whoosh();
+ const won=F.doc/F.max<F.me/F.meMax;
+ if(F.cfg.onTimeout||F.cfg.onWin){say(null,won?'השופט נותן לך את הקרב בנקודות!':'השופט נותן לו את הקרב בנקודות.',{who:'השופט'});await wait(1700);teardownRing();$('#choices').innerHTML='';
+  return won?(F.cfg.onWin&&F.cfg.onWin()):(F.cfg.onLose&&F.cfg.onLose())}
+ S.mode='talk';S.sus+=15;setMood('beaten');
  say(null,'החובשת נכנסה והפרידה ביניכם. אף אחד לא ניצח, וכולם כועסים.',{who:'החובשת'});floatTxt('+15% חשד',true);
- $('#choices').innerHTML='';hud();await afterBeat(1500,false);
+ $('#choices').innerHTML='';hud();await wait(900);teardownRing();await afterBeat(900,false);
 }
-async function fightLose(){
- endFightUI();S.mode='end';setMood('happy');stamp('הפסדת');SFX.fail();sol('slump');
- say(null,'מישהו שיקרא למצ״ח. ושיביא לי קרח. לא בשבילי, בשבילו.',{who:'הרופא'});
- $('#choices').innerHTML='';hud();await wait(1700);jail('תקיפת קצין רפואה');
+async function fightLose(){const F=S.F;endFightUI();
+ const op=$('#fOp'),me=$('#fMe');moveFor(me,'m-ko');me.classList.add('dazed');moveFor(op,'m-win');poseFor(op,'block','block');
+ stamp('הפסדת');SFX.fail();sol('slump');
+ if(F.cfg.onLose){await wait(1900);teardownRing();$('#choices').innerHTML='';return F.cfg.onLose()}
+ S.mode='end';say(null,'מישהו שיקרא למצ״ח. ושיביא לי קרח. לא בשבילי, בשבילו.',{who:'הרופא'});
+ $('#choices').innerHTML='';hud();await wait(1900);teardownRing();jail('תקיפת קצין רפואה');
 }
 
 /* ================= patience + fly ================= */
@@ -1471,7 +1647,7 @@ async function gateFail(){
 
 /* ================= sheets ================= */
 function perkPicker(box,onPick){
- const opts=shuffle(Object.keys(PERKS).filter(k=>!RUN.perks.has(k))).slice(0,3);
+ const opts=gShuffle(Object.keys(PERKS).filter(k=>!RUN.perks.has(k))).slice(0,3);
  if(!opts.length){box.innerHTML='<p>יש לך כבר את כל הציוד.</p>';onPick(null);return}
  box.innerHTML='<div class="perk-h">בחר ציוד אחד לריצה</div><div class="perkbox"></div>';
  const pb=box.querySelector('.perkbox');
@@ -1537,6 +1713,9 @@ function careerBlock(c){const i=careerRank(c),cur=CAREER[i],nxt=CAREER[i+1];
  const pct=nxt?Math.round((c-cur[1])/(nxt[1]-cur[1])*100):100;
  return `<div class="career">דרגה בקריירה: ${cur[0]}${nxt?` · עוד ${nxt[1]-c} ימים ל${nxt[0]}`:''}<div class="track"><i style="width:${pct}%"></i></div></div>`}
 function endRun(type,sentence){
+ if(RUN.mode==='duel'&&RUN.duel&&!RUN.boutDone){RUN.boutDone=true;fx.innerHTML='';return duelBout(()=>endRunCore(type,sentence))}
+ return endRunCore(type,sentence)}
+function endRunCore(type,sentence){
  fx.innerHTML='';room.className='room';$('#cmd').className='cmd';const E=ENDS[type],g=RUN.total;
  if(type==='jail')unlock('jail');if(type==='victory')unlock('week');if(g>=25)unlock('rich');
  const best=Math.max(store.get('gm_best3',0),g);store.set('gm_best3',best);
@@ -1546,12 +1725,16 @@ function endRun(type,sentence){
  if(type==='jail')store.set('gm_jail',store.get('gm_jail',0)+1);
  const daysDone=(type==='victory'||type==='gate')?5:RUN.day-1+(type==='retire'?1:0);
  const earned=g*5+daysDone*6+(type==='victory'?60:0);addCoins(earned);saveLocal(g);
+ if(RUN.mode==='daily')setDailyBest(g);
+ if(RUN.mode==='duel'&&RUN.duel&&ONLINE)sbRpc('finish_duel',{p_code:RUN.duel.code,p_name:cleanName(store.get('gm_name',''))||'חייל',p_hero:charId(),p_score:g,p_bout:!!RUN.boutWon}).catch(()=>{});
+ const modeTag=RUN.mode==='daily'?'אתגר יומי · ':RUN.mode==='duel'?'דו־קרב · ':'';
  const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="sheet${type==='jail'?' court':''}">
   <div class="end-stamp ${E.ok?'ok':'no'}">${E.s}</div>
-  <div class="tag">סיכום ריצה · מרפאת גדוד</div>
+  <div class="tag">${modeTag}סיכום ריצה · מרפאת גדוד</div>
   <h2>${E.h}</h2>
   <p>${E.p(sentence)}</p>
+  ${duelResultBlock()}
   ${promoted?`<p><b>קידום! עלית לדרגת ${CAREER[careerRank(career)][0]}.</b></p>`:''}
   <dl class="rows">
    <div><dt>ימי גימלים בריצה</dt><dd>${g}</dd></div>
@@ -1566,12 +1749,15 @@ function endRun(type,sentence){
   <button class="big" id="again" type="button">ריצה חדשה</button>
   <button class="ghostbtn" id="cardBtn" type="button">כרטיס תוצאה לשיתוף</button>
   ${lbSubmitBlock(g)}
+  ${RUN.mode==='duel'?'':duelBlock(g)}
   <button class="ghostbtn" id="toMenu" type="button">לתפריט</button>
   <details class="more"><summary>עיטורים</summary>${achGrid()}</details>
   <button class="ghostbtn" id="copy" type="button">העתק את התוצאה לחבר׳ה</button>
   <p class="copytext" id="copyText" hidden></p>
  </div>`;
- $('#again').addEventListener('click',()=>startRun());
+ $('#again').addEventListener('click',()=>startRun(RUN.mode==='daily'?{mode:'daily'}:{}));
+ const drh=$('#drHost');if(drh)drh.textContent=RUN.duel.host_name;
+ wireDuel(g);
  $('#toMenu').addEventListener('click',showStart);
  wireLBSubmit(g);
  $('#cardBtn').addEventListener('click',()=>showCard({g,ok:!!E.ok,title:E.h,stamp:E.s,rank:CAREER[careerRank(career)][0],char:CHARS[charId()].n,days:daysDone,best},showStart));
@@ -1650,8 +1836,8 @@ function succMod(L){const D=DOC().mod,M=MOOD();let m=(D.all||0)+(M.all||0)+upLev
  if(L.r===3)m+=(D.r3||0)+(M.r3||0);if(L.r===1)m+=(D.r1||0)+(M.r1||0);if(moodMatch(L))m+=.25;return m}
 const patMul=()=>(DOC().mod.pat||1)*(MOOD().pat||1)*(charId()==='jobnik'?1.35:1);
 function startSus(d){return Math.max(0,SUS0[d-1]-(has('candy')?10:0)-upLevel('connect')*5-(charId()==='jobnik'?10:0)+(charId()==='fighter'?8:0))}
-function lineAvailable(L){return !L.c||L.c===charId()||(L.c==='vip'&&upLevel('vip')>0)}
-function pickVisit(d){const dk=d===1?'shmueli':pickOne(Object.keys(DOCS));return{doc:dk,mood:pickOne(Object.keys(DMOODS))}}
+function lineAvailable(L,own){if(!own)return !L.c;return !L.c||L.c===charId()||(L.c==='vip'&&upLevel('vip')>0)}
+function pickVisit(d){const dk=d===1?'shmueli':gPick(Object.keys(DOCS));return{doc:dk,mood:gPick(Object.keys(DMOODS))}}
 function applySoldier(){const c=CHARS[charId()],s=$('#soldier');s.style.setProperty('--s-shirt',c.shirt);s.style.setProperty('--s-beret',c.beret);s.style.setProperty('--s-hair',c.hair);s.dataset.char=charId()}
 function applyDoctor(){const D=DOC();const d=$('#doc');D.cls.split(' ').filter(Boolean).forEach(c=>d.classList.add(c));
  const pl=document.querySelector('.plate');if(pl)pl.textContent=D.n+' · '+D.role}
@@ -1729,7 +1915,7 @@ function renderLB(box,rows){box.innerHTML='';if(!rows.length){box.innerHTML='<p 
  rows.forEach((r,i)=>{const d=document.createElement('div');d.className='lbrow'+(me&&r.name===me?' me':'');
   d.innerHTML='<span class="rk"></span><span class="nm"></span><span class="ch"></span><span class="sc"></span>';
   d.querySelector('.rk').textContent=i+1;d.querySelector('.nm').textContent=r.name||'חייל';d.querySelector('.ch').textContent=(CHARS[r.char]||{}).n||'';d.querySelector('.sc').textContent=r.score;box.appendChild(d)})}
-function lbSubmitBlock(g){if(g<1)return'';
+function lbSubmitBlock(g){if(g<1&&RUN.mode!=='daily')return'';
  return `<div class="lbsub"><div class="ach-h">טבלת השיאים</div><div class="lbform"><input id="lbName" maxlength="14" placeholder="השם שלך" autocomplete="nickname"><button type="button" class="buy" id="lbSend">שלח ${g}</button></div><p class="best" id="lbMsg"></p><div class="lb" id="lbEnd" hidden></div></div>`}
 
 /* ---- score card ---- */
@@ -1802,23 +1988,30 @@ async function loadLB(box,whyEl){box.innerHTML='<p class="best">טוען...</p>'
  let timer;const to=new Promise((_,rej)=>{timer=setTimeout(()=>rej(new Error('timeout')),10000)});
  try{const be=await Promise.race([lbBackend(),to]);if(!be)throw new Error('none');const rows=await Promise.race([be.top(),to]);clearTimeout(timer);renderLB(box,rows);if(whyEl)whyEl.textContent='';return true}
  catch(e){clearTimeout(timer);box.innerHTML='';if(whyEl)whyEl.textContent=lbWhy(e);return false}}
+async function loadDaily(box,why){box.innerHTML='<p class="best">טוען...</p>';if(why)why.textContent='';
+ if(!ONLINE){box.innerHTML='';if(why)why.textContent='האתגר היומי זמין באתר ובאפליקציה.';return false}
+ try{const rows=await sbRpc('top_daily',{p_day:isoDay(),p_limit:15});renderLB(box,(rows||[]).map(x=>({name:x.name,score:x.score,char:x.hero})));
+  if(why)why.textContent='האתגר של '+new Date().toLocaleDateString('he-IL')+'. כולם משחקים את אותה ריצה.';return true}
+ catch(e){box.innerHTML='';if(why)why.textContent=lbWhy(e);return false}}
 function showLB(){const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="sheet"><h2>טבלת שיאים</h2>
-  <div class="tabs"><button type="button" class="tab on" data-t="all">כל השחקנים</button><button type="button" class="tab" data-t="me">השיאים שלי</button></div>
+  <div class="tabs three"><button type="button" class="tab on" data-t="day">היום</button><button type="button" class="tab" data-t="all">כל הזמנים</button><button type="button" class="tab" data-t="me">שלי</button></div>
   <p class="best lbwhy" id="lbWhy"></p><div class="lb" id="lbBox"></div>
   <button class="big" id="lbBack" type="button">חזרה</button></div>`;
  const box=$('#lbBox'),why=$('#lbWhy');
  const showMine=()=>{why.textContent='';renderLB(box,store.get('gm_local',[]))};
  const tabs=[...ov.querySelectorAll('.tab')];
  tabs.forEach(t=>t.addEventListener('click',async()=>{tabs.forEach(x=>x.classList.toggle('on',x===t));
-  if(t.dataset.t==='me')showMine();else{const ok=await loadLB(box,why);if(!ok)why.textContent+=' בינתיים אפשר לראות את השיאים שלך בלשונית השנייה.'}}));
- loadLB(box,why).then(ok=>{if(!ok){tabs.forEach(x=>x.classList.toggle('on',x.dataset.t==='me'));const w=why.textContent;showMine();why.textContent=w+' מוצגים השיאים שלך.'}});
+  if(t.dataset.t==='me')showMine();else if(t.dataset.t==='day')loadDaily(box,why);else{const ok=await loadLB(box,why);if(!ok)why.textContent+=' בינתיים אפשר לראות את השיאים שלך בלשונית "שלי".'}}));
+ loadDaily(box,why).then(ok=>{if(!ok){tabs.forEach(x=>x.classList.toggle('on',x.dataset.t==='me'));const w=why.textContent;showMine();why.textContent=w+' מוצגים השיאים שלך.'}});
  $('#lbBack').addEventListener('click',showStart)}
 function wireLBSubmit(g){const inp=$('#lbName');if(!inp)return;inp.value=store.get('gm_name','');
  $('#lbSend').addEventListener('click',async()=>{const name=cleanName(inp.value);const msg=$('#lbMsg');if(!name){msg.textContent='צריך שם.';inp.focus();return}
   store.set('gm_name',name);const L=store.get('gm_local',[]);L.forEach(r=>{if(r.name==='אני')r.name=name});store.set('gm_local',L);
   const btn=$('#lbSend');btn.disabled=true;msg.textContent='שולח...';
-  try{const be=await lbBackend();if(!be)throw new Error('none');await be.submit(name,g,charId());msg.textContent='נשלח לטבלה המשותפת!';SFX.win();const box=$('#lbEnd');box.hidden=false;loadLB(box)}
+  try{if(RUN.mode==='daily'&&ONLINE)await sbRpc('submit_daily',{p_day:isoDay(),p_id:deviceId(),p_name:name,p_score:g,p_hero:charId()}).catch(()=>{});
+   if(g<1){msg.textContent='נשלח לטבלת היום!';btn.disabled=false;return}
+   const be=await lbBackend();if(!be)throw new Error('none');await be.submit(name,g,charId());msg.textContent=RUN.mode==='daily'?'נשלח לטבלת היום ולטבלה הכללית!':'נשלח לטבלה המשותפת!';SFX.win();const box=$('#lbEnd');box.hidden=false;loadLB(box)}
   catch(e){msg.textContent=lbWhy(e)+' התוצאה נשמרה בשיאים שלך.';btn.disabled=false}})}
 
 /* ---- live player counter ---- */
@@ -1831,6 +2024,83 @@ async function fillLive(){const el=$('#tsLive');if(!el||IN_CLAUDE)return;
   const n=v=>Number(v||0).toLocaleString('he-IL');
   el.querySelector('span').textContent=`${n(Math.max(1,x.online))} משחקים עכשיו · ${n(x.players)} שחקנים · ${n(x.runs_today)} ריצות היום`;el.hidden=false}catch(e){}}
 if(!IN_CLAUDE){setTimeout(()=>ping(false),1500);setInterval(()=>{if(!document.hidden)ping(false)},45000);setInterval(()=>{if(!document.hidden)fillLive()},30000)}
+
+/* ================= modes: seeded runs, daily challenge, streak, duels ================= */
+let GRNG=null;
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const GR=()=>GRNG?GRNG():Math.random();
+const gPick=a=>a[Math.floor(GR()*a.length)];
+function gShuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(GR()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function hashStr(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function isoDay(d){d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+const ONLINE=!IN_CLAUDE;
+const SHARE_BASE=location.protocol==='file:'?'https://king-of-the-gimelets.vercel.app/':location.origin+location.pathname;
+
+/* ---- streak of days ---- */
+function streakInfo(){const st=store.get('gm_streak',{last:'',n:0}),t=isoDay(),y=new Date();y.setDate(y.getDate()-1);
+ const alive=st.last===t||st.last===isoDay(y);return{n:alive?st.n:0,playedToday:st.last===t,atRisk:st.last===isoDay(y)}}
+function touchStreak(){const st=store.get('gm_streak',{last:'',n:0}),t=isoDay();if(st.last===t)return;
+ const y=new Date();y.setDate(y.getDate()-1);st.n=st.last===isoDay(y)?st.n+1:1;st.last=t;store.set('gm_streak',st);
+ const bonus=Math.min(st.n,10)*10;addCoins(bonus);
+ setTimeout(()=>toastMsg('★',`רצף ${st.n} ${st.n===1?'יום':'ימים'}! +${bonus} ${COIN}`,st.n>=10?'בונוס מקסימלי. אל תשבור את הרצף':'תחזור מחר והבונוס יגדל'),900)}
+
+/* ---- daily challenge ---- */
+const dailySeed=()=>hashStr('gimel-daily-'+isoDay());
+function dailyBest(){const d=store.get('gm_dailybest',{day:'',best:-1});return d.day===isoDay()?d.best:-1}
+function setDailyBest(g){const b=dailyBest();if(g>b)store.set('gm_dailybest',{day:isoDay(),best:g});
+ if(b<0&&!store.get('gm_dailypaid_'+isoDay(),false)){store.set('gm_dailypaid_'+isoDay(),true);addCoins(50);setTimeout(()=>toastMsg('★','סיימת את האתגר היומי! +50 '+COIN,'מחר יש אתגר חדש'),2600)}}
+
+/* ---- duels ---- */
+let DUEL_INVITE=null;
+async function createDuel(name,g){const code=await sbRpc('create_duel',{p_id:deviceId(),p_name:name,p_hero:charId(),p_seed:RUN.seed,p_score:g});
+ const list=store.get('gm_myduels',[]);list.unshift(code);store.set('gm_myduels',list.slice(0,20));return code}
+function duelShareText(name,g,url){return `${name} מאתגר אותך במלך הגימלים: הוצאתי ${g} ימי גימלים. אותה ריצה בדיוק, ובסוף קרב אגרוף על הגימל המכריע. ${url}`}
+function duelBlock(g){if(!ONLINE)return'';return `<div class="duelbox"><div class="ach-h">דו־קרב</div><p class="tip">שלח לחבר את אותה ריצה בדיוק. בסוף הוא יילחם בחייל שלך על הגימל המכריע.</p>
+  <button class="big green" id="duelBtn" type="button">אתגר חבר</button><p class="best" id="duelMsg"></p><div class="duellink" id="duelLink" hidden></div></div>`}
+function wireDuel(g){const b=$('#duelBtn');if(!b)return;
+ b.addEventListener('click',async()=>{const msg=$('#duelMsg');let name=cleanName(($('#lbName')&&$('#lbName').value)||store.get('gm_name',''));
+  if(!name){msg.textContent='כתוב קודם את השם שלך בתיבה של טבלת השיאים.';const i=$('#lbName');if(i)i.focus();return}
+  store.set('gm_name',name);b.disabled=true;msg.textContent='יוצר קישור...';
+  try{const code=await createDuel(name,g),url=SHARE_BASE+'#d-'+code,txt=duelShareText(name,g,url);
+   const box=$('#duelLink');box.hidden=false;box.innerHTML='<p class="copytext"></p><div class="cardbtns"><button type="button" class="buy" id="dShare">שיתוף</button><button type="button" class="buy" id="dCopy">העתק</button></div>';
+   box.querySelector('.copytext').textContent=url;msg.textContent='הקישור מוכן. שלח אותו לחבר.';
+   const sh=$('#dShare');if(navigator.share)sh.addEventListener('click',()=>navigator.share({title:'מלך הגימלים · דו־קרב',text:txt}).catch(()=>{}));else sh.hidden=true;
+   $('#dCopy').addEventListener('click',e=>{try{navigator.clipboard.writeText(txt).then(()=>{e.target.textContent='הועתק'},()=>selectText(box.querySelector('.copytext')))}catch(err){selectText(box.querySelector('.copytext'))}});
+  }catch(e){msg.textContent='לא הצלחתי ליצור דו־קרב כרגע.';b.disabled=false}})}
+function selectText(el){const rg=document.createRange();rg.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(rg)}
+async function checkDuelHash(){const m=(location.hash||'').match(/^#d-([a-z0-9]{5,12})$/);if(!m||!ONLINE)return;
+ try{const r=await sbRpc('get_duel',{p_code:m[1]});const d=r&&r[0];if(!d)return toastMsg('!','הדו־קרב לא נמצא','אולי הקישור לא שלם');
+  if(d.finished)return toastMsg('!','הדו־קרב הזה כבר נגמר',`${d.guest_name} ${d.guest_score} · ${d.host_name} ${d.host_score}`);
+  DUEL_INVITE=d;showDuelInvite()}catch(e){}}
+function showDuelInvite(){const d=DUEL_INVITE,ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet duel">
+  <div class="tag">הזמנה לדו־קרב</div><h2>${'<span id="dHost"></span>'} מאתגר אותך</h2>
+  <div class="vs"><div class="vsc">${portrait(CHARS[d.host_hero]?d.host_hero:'tiron')}<b id="dHost2"></b><span>${d.host_score} ימים</span></div><div class="vsx">נגד</div><div class="vsc">${portrait(charId())}<b>אתה</b><span>?</span></div></div>
+  <p>אותה ריצה בדיוק: אותם רופאים, אותם משפטים, אותו מזל. בסוף, קרב אגרוף נגד החייל שלו על <b>הגימל המכריע</b> (+2).</p>
+  <input id="dName" maxlength="14" placeholder="השם שלך" autocomplete="nickname" class="dname">
+  <button class="big" id="dGo" type="button">קבל את האתגר</button><button class="ghostbtn" id="dNo" type="button">לא עכשיו</button></div>`;
+ $('#dHost').textContent=d.host_name;$('#dHost2').textContent=d.host_name;$('#dName').value=store.get('gm_name','');
+ $('#dGo').addEventListener('click',()=>{const n=cleanName($('#dName').value);if(!n){$('#dName').focus();return}store.set('gm_name',n);ac();startRun({mode:'duel',seed:d.seed,duel:d})});
+ $('#dNo').addEventListener('click',()=>{DUEL_INVITE=null;try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}showStart()})}
+function duelBout(next){const d=RUN.duel,ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet duel"><div class="tag">סוף הריצה · ${RUN.total} ימים מול ${d.host_score}</div><h2>הגימל המכריע</h2>
+  <div class="vs"><div class="vsc">${portrait(charId())}<b>אתה</b><span>${RUN.total}</span></div><div class="vsx">נגד</div><div class="vsc">${portrait(CHARS[d.host_hero]?d.host_hero:'tiron')}<b id="bHost"></b><span>${d.host_score}</span></div></div>
+  <p>מי שמנצח בקרב לוקח את הגימל המכריע: <b>+2 ימים</b>.</p><button class="big" id="bGo" type="button">לזירה</button></div>`;
+ $('#bHost').textContent=d.host_name;
+ $('#bGo').addEventListener('click',()=>{ov.hidden=true;S.over=false;
+  const opp={name:d.host_name,banner:'הגימל המכריע',look:fighterLook('sol',CHARS[d.host_hero]?d.host_hero:'tiron'),max:170+RUN.day*10,speed:.9,dmg:1.05,
+   moves:SOL_MOVES,taunts:SOL_TAUNTS,pain:['אאוץ׳!','זה היה מזל!','הגימל שלי!','אמא!'],who:d.host_name,decisive:true};
+  opp.look.gloves='#2d63a8';
+  const fin=won=>{RUN.boutWon=won;if(won){RUN.total+=2;toastMsg('ג','לקחת את הגימל המכריע! +2','')}next()};
+  startFight({force:true,opp,onWin:()=>fin(true),onLose:()=>fin(false)})})}
+function duelResultBlock(){const d=RUN.duel;if(!d)return'';const me=RUN.total,him=d.host_score,res=me>him?'ניצחת':me<him?'הפסדת':'תיקו';
+ return `<div class="duelres ${me>him?'win':me<him?'lose':''}"><b>${res} בדו־קרב</b><span>אתה ${me} · <span id="drHost"></span> ${him}</span><small>${RUN.boutWon?'לקחת את הגימל המכריע':'הגימל המכריע הלך לו'}</small></div>`}
+async function checkMyDuels(){if(!ONLINE||!store.get('gm_myduels',[]).length)return;
+ try{const rows=await sbRpc('my_duels',{p_id:deviceId()});const seen=store.get('gm_duelseen',[]);let shown=0;
+  for(const r of rows||[]){if(seen.includes(r.code))continue;seen.push(r.code);if(shown++>=2)continue;
+   const w=r.guest_score>r.host_score?'הוא ניצח':r.guest_score<r.host_score?'ניצחת':'תיקו';
+   setTimeout(()=>toastMsg('!',`${r.guest_name} קיבל את האתגר: ${w}`,`הוא ${r.guest_score} · אתה ${r.host_score}`),1200+shown*3600)}
+  store.set('gm_duelseen',seen.slice(-50))}catch(e){}}
 
 /* ---- progress sheet: missions, rank, achievements ---- */
 function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=store.get('gm_career',0);
@@ -1846,6 +2116,7 @@ function showStart(){
  ov.innerHTML=`<div class="ts">
   <div class="ts-rain" aria-hidden="true">${rain}</div>
   <div class="ts-top"><span class="tpill coinpill">${getCoins()} ${COIN}</span><span class="tpill">${CAREER[careerRank(career)][0]}${best?' · שיא '+best:''}</span></div>
+  ${(()=>{const si=streakInfo();return si.n?`<div class="streakbar${si.atRisk&&!si.playedToday?' risk':''}"><span class="flame"></span><b>${si.n} ${si.n===1?'יום':'ימים'} ברצף</b><span>${si.playedToday?'נתראה מחר':'תשחק היום כדי לא לשבור'}</span></div>`:''})()}
   <div class="ts-hero">
    <div class="ts-kicker">מרפאת גדוד · תור 06:58</div>
    <h1 class="ts-title"><span class="ts-small">מלך</span><span class="ts-big">הגימלים</span></h1>
@@ -1860,6 +2131,7 @@ function showStart(){
   </div>
   <div class="pdots" id="pDots">${keys.map((k,i)=>`<i class="${owned().includes(k)?'own':''}"></i>`).join('')}</div>
   <button class="big cta" id="go" type="button">ריצה חדשה</button>
+  ${ONLINE?`<button class="dailybtn" id="goDaily" type="button"><b>אתגר יומי</b><span>${dailyBest()>=0?'השיא שלך היום: '+dailyBest():'אותה ריצה לכולם · +50 '+COIN}</span></button>`:''}
   <div class="ts-menu">
    <button type="button" class="tmb" id="toShop"><b>קנטינה</b><span>שדרוגים ודמויות</span></button>
    <button type="button" class="tmb" id="toLB"><b>שיאים</b><span>כל השחקנים</span></button>
@@ -1883,6 +2155,8 @@ function showStart(){
  let sx=null;card.addEventListener('pointerdown',e=>{sx=e.clientX});card.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)step(dx<0?1:-1)});
  render();
  $('#go').addEventListener('click',()=>{ac();SFX.tick();startRun()});
+ const gd=$('#goDaily');if(gd)gd.addEventListener('click',()=>{ac();SFX.tick();startRun({mode:'daily'})});
+ checkMyDuels();
  $('#toShop').addEventListener('click',()=>{SFX.tick();showShop()});
  $('#toLB').addEventListener('click',()=>{SFX.tick();showLB()});
  $('#toPr').addEventListener('click',()=>{SFX.tick();showProgress()});
@@ -1890,7 +2164,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='2.3';
+const VERSION='3.0';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
@@ -1905,6 +2179,7 @@ async function checkUpdate(){try{const r=await fetch('version.json?t='+Date.now(
  if(j.version&&j.version!==VERSION&&!document.querySelector('.upd')){const b=document.createElement('button');b.type='button';b.className='upd';b.setAttribute('dir','rtl');
   b.textContent='גרסה חדשה של המשחק זמינה · לחיצה לרענון';b.addEventListener('click',()=>location.reload());document.body.appendChild(b)}}catch(e){}}
 setTimeout(checkUpdate,4000);setInterval(checkUpdate,300000);
+setTimeout(checkDuelHash,600);window.addEventListener('hashchange',checkDuelHash);
 
 /* ================= wiring ================= */
 $('#cashout').addEventListener('click',()=>{if(S&&!S.busy&&!S.over&&S.mode==='talk'&&(S.gimel>0||S.turn>0)){stopPatience();S.busy=true;endVisit('cash')}});
