@@ -630,6 +630,22 @@ body.fighting .room{height:350px}
 .duelres span{font-weight:800}.duelres small{font-size:12px;color:var(--ink-soft)}
 @media (prefers-reduced-motion: reduce){.fwrap .fbody,.agimel,.flame,.crowd i{animation:none!important}}
 
+.coach{position:fixed;z-index:80;display:grid;gap:6px;text-align:start;background:var(--pow);color:#1d1a0c;border:3px solid #1d1a0c;border-radius:8px;padding:10px 12px;
+  font:inherit;font-size:15px;font-weight:800;line-height:1.35;box-shadow:0 10px 26px rgba(0,0,0,.55);animation:coachIn .35s cubic-bezier(.3,1.6,.5,1)}
+.coach small{justify-self:end;font-size:12px;background:#1d1a0c;color:var(--pow);border-radius:999px;padding:2px 10px}
+.coach::after{content:"";position:absolute;left:calc(var(--ax) - 10px);border:10px solid transparent}
+.coach.up::after{top:100%;border-top-color:#1d1a0c}.coach.down::after{bottom:100%;border-bottom-color:#1d1a0c}
+@keyframes coachIn{from{transform:scale(.7);opacity:0}}
+.coach-target{position:relative;z-index:79;box-shadow:0 0 0 4px var(--pow),0 0 0 9999px rgba(0,0,0,.45)!important;border-radius:6px}
+.sharebtn{display:grid;gap:1px;justify-items:center;width:100%;background:#25d366;color:#08331a;border:0;border-radius:6px;padding:6px 8px;box-shadow:0 4px 0 #128c4b;animation:tsFade .5s 1.4s both}
+.sharebtn b{font-family:var(--f-display);font-size:26px;line-height:1}
+.sharebtn span{font-size:12px;font-weight:800}
+.sharebtn:active{transform:translateY(2px);box-shadow:0 2px 0 #128c4b}
+a.big.wa{display:block;text-align:center;text-decoration:none;background:#25d366;color:#08331a;box-shadow:0 4px 0 #128c4b}
+.duelbox.top{border-top:0;margin:12px 0;padding:12px;background:#e3edd5;border:2px solid var(--go);border-radius:6px}
+.duelbox .dtitle{display:block;font-family:var(--f-display);font-size:30px;line-height:1;text-align:center}
+@media (prefers-reduced-motion: reduce){.coach{animation:none}}
+
 @media (prefers-reduced-motion: reduce){
   #app.shake,.doc .head,.cmd .head,.meter.hot,.room::after,.punch,.soldier,.doc [data-k="eo"],.window .flag::after{animation:none}
   .choice,.sheet,.bubble.fresh,.console{animation:none}
@@ -1035,12 +1051,14 @@ function hud(){
 }
 
 /* ================= run & visit ================= */
-function startRun(o){o=o||{};ping(true);touchStreak();
+function startRun(o){o=o||{};ping(true);touchStreak();track('start');
  const mode=o.mode||'normal',seed=o.seed!=null?o.seed:(mode==='daily'?dailySeed():Math.floor(Math.random()*2147483647));
  GRNG=mulberry32(seed);
  RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId(),mode,seed,duel:o.duel||null,boutDone:false,boutWon:false};
  if(mode==='duel'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
- applySoldier();introSheet(true)}
+ applySoldier();
+ if(isNewbie()&&mode==='normal'){TUT={step:0,auto:false};$('#overlay').hidden=true;ac();SFX.door();startVisit();return}
+ TUT=null;introSheet(true)}
 function startVisit(){
  const d=RUN.day;
  const V=RUN.next||pickVisit(d);RUN.next=null;
@@ -1062,7 +1080,8 @@ function deal(){
   b.classList.add('rk'+L.r);b.setAttribute('aria-label',RISK[L.r][0]+': '+L.t.replace(/\*/g,''));
   b.innerHTML=`<span class="kbd">${kn}</span><span class="ctext"><span>${fmt(L.t)}</span><span class="chip ${RISK[L.r][1]}">${RISK[L.r][0]}</span></span><span class="cdays" dir="ltr">+${lo===hi?lo:lo+'–'+hi}${L.j?'<b>!</b>':''}</span>`;
   b.addEventListener('click',()=>choose(i,b));box.appendChild(b)});
- startPatience();maybeFly();
+ if(TUT&&TUT.step===0&&RUN.day===1){TUT.step=1;stopPatience();setTimeout(()=>coach('#choices .choice','בחר מה להגיד לרופא. אדום מסוכן, אבל שווה יותר ימים. ירוק בטוח.',()=>{if(S.mode==='talk'&&!S.busy)startPatience()}),350)}
+ else{startPatience();maybeFly()}
 }
 function roll(L){const d=RUN.day-1,p={...ODDS[L.r]};if(!L.j){p.w+=p.j;p.j=0}
  if(has('acting')&&L.j){const x=Math.min(p.w,.07);p.w-=x;p.j+=x}
@@ -1074,11 +1093,11 @@ function roll(L){const d=RUN.day-1,p={...ODDS[L.r]};if(!L.j){p.w+=p.j;p.j=0}
  const x=GR();if(x<p.j)return'jack';if(x<p.j+p.w)return'win';if(x<p.j+p.w+p.a)return'acamol';return'fail'}
 
 async function choose(i,btn){
- if(S.busy||S.over||S.mode!=='talk')return;stopPatience();S.busy=true;S.used.add(i);S.turn++;S.queue+=rnd(1,3);SFX.tick();
+ if(S.busy||S.over||S.mode!=='talk')return;closeCoach();stopPatience();if(!store.get('gm_played',false)){store.set('gm_played',true);track('choice1')}if(S.turn===2)track('choice3');S.busy=true;S.used.add(i);S.turn++;S.queue+=rnd(1,3);SFX.tick();
  document.querySelectorAll('.choice').forEach(b=>b.classList.add(b===btn?'picked':'dim'));
  const L=LINES[i];$('#stamp').hidden=true;setMood('think');say(L.t,'',{thinking:1});S.justBonus=false;hud();
  await wait(1000);
- const res=roll(L);
+ const res=(TUT&&RUN.day===1&&S.turn===1)?'win':roll(L);
  if(res==='win'||res==='jack'){
   let gain=res==='jack'?L.j.g+(DOC().mod.jack||0):(L.r===1?1:L.r===3?2:(GR()<.4?2:1));
   S.streak++;let bonus=0;if(S.streak%3===0){bonus=1;S.justBonus=true}
@@ -1102,6 +1121,8 @@ async function choose(i,btn){
  hud();await afterBeat(1500,true);
 }
 async function afterBeat(ms,allowEvent){
+ if(TUT&&RUN.day===1&&TUT.step===1&&!S.over){TUT.step=2;await wait(ms);await new Promise(r=>coach('#meter','זה החשד של הרופא. כל משפט מעלה אותו. ב־100% אתה סוגר שבת.',r));ms=0}
+ else if(TUT&&RUN.day===1&&TUT.step===2&&S.gimel>=TARGET[0]&&!S.over){TUT.step=3;await wait(ms);await new Promise(r=>coach('#cashout','הגעת ליעד של היום! אפשר לצאת עכשיו, או להמשיך לסחוט עוד.',r));ms=0}
  if(S.sus>=100){await wait(ms);return bust()}
  if(S.turn>=S.turns){await wait(ms+200);return endVisit('time')}
  if(allowEvent){
@@ -1116,6 +1137,7 @@ async function bust(){
  $('#choices').innerHTML='';setPrompt('');S.gimel=0;setGimel(0);await wait(1900);endRun('shabbat');
 }
 async function endVisit(kind){
+ closeCoach();if(RUN.day===1)track('day1_end');
  S.over=true;S.mode='end';$('#choices').innerHTML='';setPrompt('');room.classList.remove('ring','heat');hud();
  const ok=S.gimel>=TARGET[RUN.day-1];
  setMood(ok?'happy':'bored');say(null,kind==='cash'?'יאללה, תעוף. ותגיד לבא בתור להיכנס.':'השעה '+hhmm(S.turns*2)+'. המרפאה סגורה. הבא בתור!');
@@ -1693,6 +1715,7 @@ function introSheet(withPerk){
  btn.addEventListener('click',()=>{if(chosen)RUN.perks.add(chosen);ov.hidden=true;ac();SFX.door();startVisit()});
 }
 function daySheet(bonus){
+ TUT=null;
  const ov=$('#overlay');ov.hidden=false;const d=RUN.day;let chosen=null;
  ov.innerHTML=`<div class="sheet">
   <div class="end-stamp ok">עבר</div>
@@ -1746,6 +1769,7 @@ function endRunCore(type,sentence){
   <h2>${E.h}</h2>
   <p>${E.p(sentence)}</p>
   ${duelResultBlock()}
+  ${RUN.mode==='duel'?'':duelBlock(g)}
   ${promoted?`<p><b>קידום! עלית לדרגת ${CAREER[careerRank(career)][0]}.</b></p>`:''}
   <dl class="rows">
    <div><dt>ימי גימלים בריצה</dt><dd>${g}</dd></div>
@@ -1760,7 +1784,6 @@ function endRunCore(type,sentence){
   <button class="big" id="again" type="button">ריצה חדשה</button>
   <button class="ghostbtn" id="cardBtn" type="button">כרטיס תוצאה לשיתוף</button>
   ${lbSubmitBlock(g)}
-  ${RUN.mode==='duel'?'':duelBlock(g)}
   <button class="ghostbtn" id="toMenu" type="button">לתפריט</button>
   <details class="more"><summary>עיטורים</summary>${achGrid()}</details>
   <button class="ghostbtn" id="copy" type="button">העתק את התוצאה לחבר׳ה</button>
@@ -2034,7 +2057,7 @@ async function fillLive(){const el=$('#tsLive');if(!el||IN_CLAUDE)return;
  try{const r=await sbRpc('game_stats');const x=r&&r[0];if(!x||!$('#tsLive'))return;
   const n=v=>Number(v||0).toLocaleString('he-IL');
   el.querySelector('span').textContent=`${n(Math.max(1,x.online))} משחקים עכשיו · ${n(x.players)} שחקנים · ${n(x.runs_today)} ריצות היום`;el.hidden=false}catch(e){}}
-if(!IN_CLAUDE){setTimeout(()=>ping(false),1500);setInterval(()=>{if(!document.hidden)ping(false)},45000);setInterval(()=>{if(!document.hidden)fillLive()},30000)}
+if(!IN_CLAUDE){setTimeout(()=>{ping(false);track('open')},1500);setInterval(()=>{if(!document.hidden)ping(false)},45000);setInterval(()=>{if(!document.hidden)fillLive()},30000)}
 
 /* ================= modes: seeded runs, daily challenge, streak, duels ================= */
 let GRNG=null;
@@ -2065,14 +2088,18 @@ function setDailyBest(g){const b=dailyBest();if(g>b)store.set('gm_dailybest',{da
 let DUEL_INVITE=null;
 async function createDuel(name,g){const code=await sbRpc('create_duel',{p_id:deviceId(),p_name:name,p_hero:charId(),p_seed:RUN.seed,p_score:g});
  const list=store.get('gm_myduels',[]);list.unshift(code);store.set('gm_myduels',list.slice(0,20));return code}
-function duelShareText(name,g,url){return `${name} מאתגר אותך במלך הגימלים: הוצאתי ${g} ימי גימלים. אותה ריצה בדיוק, ובסוף קרב אגרוף על הגימל המכריע. ${url}`}
-function duelBlock(g){if(!ONLINE)return'';return `<div class="duelbox"><div class="ach-h">דו־קרב</div><p class="tip">שלח לחבר את אותה ריצה בדיוק. בסוף הוא יילחם בחייל שלך על הגימל המכריע.</p>
-  <button class="big green" id="duelBtn" type="button">אתגר חבר</button><p class="best" id="duelMsg"></p><div class="duellink" id="duelLink" hidden></div></div>`}
+function duelShareText(name,g,url){return `${name} מאתגר אותך 🥊 הוצאתי ${g} ימי גימלים מהקר״פ. אותה ריצה בדיוק, ובסוף קרב על הגימל המכריע. יש לך סיכוי?\n${url}`}
+function duelBlock(g){if(!ONLINE)return'';const nm=store.get('gm_name','');
+ return `<div class="duelbox top"><b class="dtitle">שיראו אם הם מוציאים יותר מ־${g}</b>
+  <p class="tip">החבר משחק בדיוק את אותה ריצה, ובסוף נלחם בחייל שלך על הגימל המכריע.</p>
+  ${nm?'':'<input id="duelName" class="dname" maxlength="14" placeholder="השם שלך" autocomplete="nickname">'}
+  <button class="big green" id="duelBtn" type="button">אתגר חבר לדו־קרב</button><p class="best" id="duelMsg"></p><div class="duellink" id="duelLink" hidden></div></div>`}
 function wireDuel(g){const b=$('#duelBtn');if(!b)return;
- b.addEventListener('click',async()=>{const msg=$('#duelMsg');let name=cleanName(($('#lbName')&&$('#lbName').value)||store.get('gm_name',''));
-  if(!name){msg.textContent='כתוב קודם את השם שלך בתיבה של טבלת השיאים.';const i=$('#lbName');if(i)i.focus();return}
+ b.addEventListener('click',async()=>{const msg=$('#duelMsg');let name=cleanName(($('#duelName')&&$('#duelName').value)||($('#lbName')&&$('#lbName').value)||store.get('gm_name',''));
+  if(!name){msg.textContent='כתוב את השם שלך כדי שהחבר יידע מי מאתגר אותו.';const i=$('#duelName')||$('#lbName');if(i)i.focus();return}
   store.set('gm_name',name);b.disabled=true;msg.textContent='יוצר קישור...';
-  try{const code=await createDuel(name,g),url=SHARE_BASE+'#d-'+code,txt=duelShareText(name,g,url);
+  try{track('duel_create');const code=await createDuel(name,g),url=SHARE_BASE+'#d-'+code,txt=duelShareText(name,g,url);
+   if(navigator.share){navigator.share({title:'מלך הגימלים · דו־קרב',text:txt}).catch(()=>{})}
    const box=$('#duelLink');box.hidden=false;box.innerHTML='<p class="copytext"></p><div class="cardbtns"><button type="button" class="buy" id="dShare">שיתוף</button><button type="button" class="buy" id="dCopy">העתק</button></div>';
    box.querySelector('.copytext').textContent=url;msg.textContent='הקישור מוכן. שלח אותו לחבר.';
    const sh=$('#dShare');if(navigator.share)sh.addEventListener('click',()=>navigator.share({title:'מלך הגימלים · דו־קרב',text:txt}).catch(()=>{}));else sh.hidden=true;
@@ -2113,6 +2140,35 @@ async function checkMyDuels(){if(!ONLINE||!store.get('gm_myduels',[]).length)ret
    setTimeout(()=>toastMsg('!',`${r.guest_name} קיבל את האתגר: ${w}`,`הוא ${r.guest_score} · אתה ${r.host_score}`),1200+shown*3600)}
   store.set('gm_duelseen',seen.slice(-50))}catch(e){}}
 
+/* ---- funnel tracking ---- */
+function track(step){if(IN_CLAUDE)return;sbRpc('track',{p_id:deviceId(),p_step:step}).catch(()=>{})}
+/* ---- first-run guide ---- */
+const isNewbie=()=>!store.get('gm_played',false);
+let TUT=null;
+function coach(sel,text,onDone){const t=$(sel);closeCoach();if(!t){onDone&&onDone();return}
+ const c=document.createElement('button');c.type='button';c.className='coach';c.setAttribute('dir','rtl');
+ c.innerHTML='<span></span><small>הבנתי ✓</small>';c.querySelector('span').textContent=text;document.body.appendChild(c);
+ const r=t.getBoundingClientRect(),cw=Math.min(300,innerWidth-32);c.style.width=cw+'px';
+ const above=r.top>170;c.style.left=Math.max(16,Math.min(innerWidth-cw-16,r.left+r.width/2-cw/2))+'px';
+ const ch=c.offsetHeight;c.style.top=(above?r.top-ch-14:r.bottom+14)+'px';c.classList.add(above?'up':'down');
+ c.style.setProperty('--ax',Math.max(18,Math.min(cw-18,r.left+r.width/2-parseFloat(c.style.left)))+'px');
+ t.classList.add('coach-target');SFX.event();
+ const done=()=>{if(!c.isConnected)return;c.remove();t.classList.remove('coach-target');onDone&&onDone()};
+ c.addEventListener('click',done);c._done=done;setTimeout(()=>{if(c.isConnected&&TUT&&TUT.auto)done()},9000)}
+function closeCoach(){document.querySelectorAll('.coach').forEach(c=>c._done?c._done():c.remove())}
+/* ---- share the game ---- */
+const GAME_URL='https://king-of-the-gimelets.vercel.app';
+const SHARE_TXT='בוא נראה מי מלך הגימלים של הבסיס 👑 יש לך סיכוי?';
+function shareGame(){track('share_game');const txt=SHARE_TXT+'\n'+GAME_URL;
+ if(navigator.share){navigator.share({title:'מלך הגימלים',text:txt}).catch(()=>{});return}
+ const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet"><h2>שלח לחבר׳ה</h2><p class="copytext" id="shTxt"></p>
+  <div class="cardbtns"><a class="big green wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(txt)}">וואטסאפ</a><button class="big" id="shCopy" type="button">העתק</button></div>
+  <button class="ghostbtn" id="shBack" type="button">חזרה</button></div>`;
+ $('#shTxt').textContent=txt;
+ $('#shCopy').addEventListener('click',e=>{try{navigator.clipboard.writeText(txt).then(()=>{e.target.textContent='הועתק'},()=>selectText($('#shTxt')))}catch(err){selectText($('#shTxt'))}});
+ $('#shBack').addEventListener('click',showStart)}
+
 /* ---- progress sheet: missions, rank, achievements ---- */
 function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=store.get('gm_career',0);
  ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="big" id="prBack" type="button">חזרה</button></div>`;
@@ -2141,13 +2197,14 @@ function showStart(){
    <button type="button" class="arr" id="pNext" aria-label="הדמות הבאה">‹</button>
   </div>
   <div class="pdots" id="pDots">${keys.map((k,i)=>`<i class="${owned().includes(k)?'own':''}"></i>`).join('')}</div>
-  <button class="big cta" id="go" type="button">ריצה חדשה</button>
+  <button class="big cta" id="go" type="button">${isNewbie()?'שחק עכשיו':'ריצה חדשה'}</button>
   ${ONLINE?`<button class="dailybtn" id="goDaily" type="button"><b>אתגר יומי</b><span>${dailyBest()>=0?'השיא שלך היום: '+dailyBest():'אותה ריצה לכולם · +50 '+COIN}</span></button>`:''}
   <div class="ts-menu">
    <button type="button" class="tmb" id="toShop"><b>קנטינה</b><span>שדרוגים ודמויות</span></button>
    <button type="button" class="tmb" id="toLB"><b>שיאים</b><span>כל השחקנים</span></button>
    <button type="button" class="tmb" id="toPr"><b>משימות</b><span>${D.done.length}/3 היום</span></button>
   </div>
+  <button type="button" class="sharebtn" id="toShare"><b>שלח לחבר׳ה</b><span>מי מלך הגימלים של הבסיס?</span></button>
   ${location.protocol==='file:'?'':'<a class="dl ts-dl" href="https://github.com/shimon77028/King-of-the-Gimelets/releases/latest/download/gimelim.apk" target="_blank" rel="noopener">הורדה לאנדרואיד</a>'}
  </div>`;
  const card=$('#pCard');
@@ -2165,17 +2222,18 @@ function showStart(){
  $('#pNext').addEventListener('click',()=>step(1));$('#pPrev').addEventListener('click',()=>step(-1));
  let sx=null;card.addEventListener('pointerdown',e=>{sx=e.clientX});card.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)step(dx<0?1:-1)});
  render();
- $('#go').addEventListener('click',()=>{ac();SFX.tick();startRun()});
+ $('#go').addEventListener('click',()=>{ac();SFX.tick();track('title_cta');startRun()});
  const gd=$('#goDaily');if(gd)gd.addEventListener('click',()=>{ac();SFX.tick();startRun({mode:'daily'})});
  checkMyDuels();
  $('#toShop').addEventListener('click',()=>{SFX.tick();showShop()});
  $('#toLB').addEventListener('click',()=>{SFX.tick();showLB()});
  $('#toPr').addEventListener('click',()=>{SFX.tick();showProgress()});
+ $('#toShare').addEventListener('click',()=>{SFX.tick();shareGame()});
  fillLive();
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='3.0';
+const VERSION='3.1';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
