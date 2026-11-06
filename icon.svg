@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#232a16"/>
+  <circle cx="140" cy="130" r="90" fill="#2e3820"/><circle cx="400" cy="400" r="110" fill="#3a4529"/>
+  <rect x="96" y="96" width="320" height="320" rx="28" fill="#f2e9d0" transform="rotate(-6 256 256)"/>
+  <g transform="rotate(-14 256 256)">
+    <rect x="118" y="186" width="276" height="140" rx="16" fill="none" stroke="#c3352a" stroke-width="18"/>
+    <text x="256" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="128" fill="#c3352a">ג׳</text>
+  </g>
+</svg>

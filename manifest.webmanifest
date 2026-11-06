@@ -1,0 +1,13 @@
+{
+  "name": "מלך הגימלים",
+  "short_name": "גימלים",
+  "description": "חייל מנסה להוציא ימי גימלים מהקר״פ",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#232a16",
+  "theme_color": "#232a16",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
