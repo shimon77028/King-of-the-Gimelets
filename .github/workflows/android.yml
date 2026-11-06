@@ -3,7 +3,7 @@ name: Build Android APK
 on:
   push:
     branches: [main]
-    paths: ['index.html', 'icon.svg', 'android/**', '.github/workflows/android.yml']
+    paths: ['index.html', '*.png', 'android/**', '.github/workflows/android.yml']
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
       - name: Copy the game into the app
         run: |
           mkdir -p android/app/src/main/assets
-          cp index.html icon.svg android/app/src/main/assets/
+          cp index.html favicon.png android/app/src/main/assets/
           echo "GAME_VERSION=$(grep -o '"version":"[^"]*"' version.json | cut -d'"' -f4)" >> "$GITHUB_ENV"
 
       - name: Build APK
