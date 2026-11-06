@@ -424,6 +424,8 @@ body.fighting .soldier .glv{opacity:1}
 .choice{grid-template-columns:auto 1fr auto;align-items:center;gap:12px;font-size:18px;font-weight:700;border-inline-start:8px solid var(--go)}
 .choice.rk2{border-inline-start-color:var(--warn)}.choice.rk3{border-inline-start-color:var(--stamp)}
 .choice .kbd{margin:0}
+.ctext{display:grid;gap:6px;justify-items:start;min-width:0}
+.ctext .chip{font-size:11px;padding:1px 8px}
 .cdays{font-family:var(--f-display);font-size:32px;line-height:1;font-weight:700;color:var(--ink-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
 .choice.rk3 .cdays{color:var(--stamp)}
 .cdays b{color:var(--stamp);margin-inline-start:2px}
@@ -841,7 +843,7 @@ function deal(){
  shuffle(pick).forEach(i=>{kn++;const L=LINES[i],b=document.createElement('button');b.type='button';b.className='choice';
   const lo=L.r===3?2:1,hi=L.j?L.j.g:(L.r===1?1:2);
   b.classList.add('rk'+L.r);b.setAttribute('aria-label',RISK[L.r][0]+': '+L.t.replace(/\*/g,''));
-  b.innerHTML=`<span class="kbd">${kn}</span><span class="ctext">${fmt(L.t)}</span><span class="cdays" dir="ltr">+${lo===hi?lo:lo+'–'+hi}${L.j?'<b>!</b>':''}</span>`;
+  b.innerHTML=`<span class="kbd">${kn}</span><span class="ctext"><span>${fmt(L.t)}</span><span class="chip ${RISK[L.r][1]}">${RISK[L.r][0]}</span></span><span class="cdays" dir="ltr">+${lo===hi?lo:lo+'–'+hi}${L.j?'<b>!</b>':''}</span>`;
   b.addEventListener('click',()=>choose(i,b));box.appendChild(b)});
  startPatience();maybeFly();
 }
@@ -1471,7 +1473,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='1.3';
+const VERSION='1.4';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
