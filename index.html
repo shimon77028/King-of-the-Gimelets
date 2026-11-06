@@ -437,6 +437,48 @@ body.fighting .soldier .glv{opacity:1}
 .rules{font-size:16px}
 @media (hover:none){.kbd,.pk small,.opt2 .retort::after{display:none}.opt2 .retort{padding-inline-end:12px}}
 
+.doc .lhair,.doc .stub{display:none}
+.doc.d-ronit{--hair:#7a2e1a;--skin:#f1c6a2;--skin-d:#d29c76}
+.doc.d-ronit .lhair{display:inline}.doc.d-ronit .mus{display:none}
+.doc.d-avi{--hair:#8d8d86}.doc.d-avi .stub{display:inline}
+.doc.d-noam{--hair:#c9a14a;--skin:#f3c9a4}.doc.d-noam .glasses,.doc.d-noam .mus{display:none}
+.tip{font-size:14px;opacity:.85;margin:4px 0 0}
+.missions{display:grid;gap:8px;margin:14px 0}
+.missions .ach-h{margin:0}
+.mis{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:14px;font-weight:700}
+.mis .track{grid-column:1/-1;height:6px;background:rgba(0,0,0,.12)}
+.mis .track i{background:var(--go)}
+.mis .mr{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.mis.ok .mt{text-decoration:line-through;opacity:.6}.mis.ok .mr{color:var(--go)}
+.menu3{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 10px}
+.mbtn{display:grid;gap:2px;justify-items:center;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:5px;padding:8px 6px;box-shadow:0 3px 0 var(--ink)}
+.mbtn b{font-family:var(--f-display);font-size:30px;line-height:1}
+.mbtn span{font-size:12px;font-weight:700;color:var(--ink-soft)}
+.mbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.asWho{text-align:center;font-size:14px;margin:0 0 8px}
+.shop-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.coins{font-family:var(--f-display);font-size:40px;line-height:1;color:var(--go)}
+.cards{display:grid;gap:8px;margin:6px 0 10px}
+.card{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:#fff;border:2px solid var(--paper-2);border-radius:5px;padding:8px 10px}
+.card.sel{border-color:var(--go)}
+.card .ci{display:grid;gap:2px;min-width:0}.card .ci b{font-size:15px}.card .ci span{font-size:12px;color:var(--ink-soft);line-height:1.35}
+.sw{width:28px;height:28px;border-radius:50%;border:5px solid}
+.lv{font-size:11px;letter-spacing:1px;color:var(--go)}
+.buy{background:var(--ink);color:var(--paper);border:0;border-radius:4px;padding:7px 10px;font-weight:800;font-size:13px;white-space:nowrap}
+.buy:disabled{opacity:.35}
+.lb{display:grid;gap:0;margin:10px 0;border-top:1.5px solid var(--ink)}
+.lbrow{display:grid;grid-template-columns:28px 1fr auto 44px;gap:8px;align-items:center;padding:7px 2px;border-bottom:1px dashed #b5a87f;font-size:15px}
+.lbrow .rk{font-family:var(--f-display);font-size:24px;line-height:1;color:var(--ink-soft)}
+.lbrow:nth-child(1) .rk{color:#c79a2e}.lbrow .nm{font-weight:800;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbrow .ch{font-size:12px;color:var(--ink-soft)}.lbrow .sc{font-family:var(--f-display);font-size:28px;line-height:1;text-align:end}
+.lbrow.me{background:rgba(60,122,43,.12)}
+.lbsub{margin-top:10px}
+.lbform{display:grid;grid-template-columns:1fr auto;gap:8px}
+.lbform input{font:inherit;font-size:16px;padding:8px 10px;border:2px solid var(--ink);border-radius:4px;background:#fff;color:var(--ink);min-width:0}
+.earn{font-weight:800;color:var(--go)}
+.cardimg img{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.cardbtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px}
+
 @media (prefers-reduced-motion: reduce){
   #app.shake,.doc .head,.cmd .head,.meter.hot,.room::after,.punch,.soldier,.doc [data-k="eo"],.window .flag::after{animation:none}
   .choice,.sheet,.bubble.fresh,.console{animation:none}
@@ -482,11 +524,13 @@ body.fighting .soldier .glv{opacity:1}
         <circle cx="104" cy="206" r="7" fill="#a9b3b8" stroke="#2b2f33" stroke-width="3"/>
         <rect x="97" y="126" width="26" height="28" rx="6" fill="var(--skin-d)"/>
         <g class="head">
+          <path class="lhair" d="M58 74 Q46 146 74 166 L146 166 Q174 146 162 74 Q150 30 110 28 Q70 30 58 74Z" fill="var(--hair)"/>
           <ellipse cx="60" cy="92" rx="9" ry="13" fill="var(--skin)"/>
           <ellipse cx="160" cy="92" rx="9" ry="13" fill="var(--skin)"/>
           <ellipse cx="110" cy="86" rx="50" ry="55" fill="var(--skin)"/>
           <path d="M62 84 Q56 50 80 38 Q72 62 70 86Z" fill="var(--hair)"/>
           <path d="M158 84 Q164 50 140 38 Q148 62 150 86Z" fill="var(--hair)"/>
+          <path class="lhair" d="M60 74 Q66 34 110 30 Q154 34 160 74 Q140 50 110 52 Q80 50 60 74Z" fill="var(--hair)"/>
           <path d="M63 58 Q110 28 157 58" stroke="#2b2f33" stroke-width="5" fill="none"/>
           <g class="mirror"><circle cx="110" cy="44" r="15" fill="#dfe5e8" stroke="#6f7a80" stroke-width="3"/>
           <circle cx="110" cy="44" r="5" fill="#2b2f33"/>
@@ -504,9 +548,10 @@ body.fighting .soldier .glv{opacity:1}
             <g class="v" data-k="eh" stroke-width="3.5" fill="none"><path d="M81 93 Q88 84 95 93 M125 93 Q132 84 139 93"/></g>
             <g class="v" data-k="ex" stroke-width="3.5" fill="none"><path d="M82 84 L94 96 M94 84 L82 96 M126 84 L138 96 M138 84 L126 96"/></g>
           </g>
-          <circle cx="88" cy="90" r="15" fill="rgba(255,255,255,.18)" stroke="#2b2f33" stroke-width="3"/>
+          <g class="glasses"><circle cx="88" cy="90" r="15" fill="rgba(255,255,255,.18)" stroke="#2b2f33" stroke-width="3"/>
           <circle cx="132" cy="90" r="15" fill="rgba(255,255,255,.18)" stroke="#2b2f33" stroke-width="3"/>
-          <path d="M103 89 Q110 84 117 89" stroke="#2b2f33" stroke-width="3" fill="none"/>
+          <path d="M103 89 Q110 84 117 89" stroke="#2b2f33" stroke-width="3" fill="none"/></g>
+          <g class="stub"><path d="M80 105 q8 5 16 0 M124 105 q8 5 16 0" stroke="#8a6a8a" stroke-width="2.5" fill="none"/><ellipse cx="110" cy="124" rx="30" ry="15" fill="rgba(60,40,30,.22)"/></g>
           <g class="dm dm1"><ellipse cx="88" cy="93" rx="17" ry="13" fill="#7b5aa6" opacity=".5"/></g>
           <g class="dm dm2"><path d="M125 79 L133 91 L127 97 M133 91 L143 86 M133 91 L136 103" stroke="#fff" stroke-width="1.8" fill="none"/>
             <g transform="rotate(-18 134 62)"><rect x="116" y="56" width="36" height="11" rx="3" fill="#f3e3c8" stroke="#c9b18c"/><path d="M126 58 v7 M134 58 v7 M142 58 v7" stroke="#c9b18c"/></g></g>
@@ -525,7 +570,7 @@ body.fighting .soldier .glv{opacity:1}
             <path class="v" data-k="mb" d="M100 126 Q112 123 122 127"/>
             <path class="v" data-k="mw" d="M95 127 q4 -5 7.5 0 q4 5 7.5 0 q4 -5 7.5 0 q4 5 7.5 0"/>
           </g>
-          <path d="M82 117 Q94 104 110 111 Q126 104 138 117 Q126 121 110 116 Q94 121 82 117Z" fill="var(--hair)"/>
+          <path class="mus" d="M82 117 Q94 104 110 111 Q126 104 138 117 Q126 121 110 116 Q94 121 82 117Z" fill="var(--hair)"/>
         </g>
       </svg>
     </div></div>
@@ -569,20 +614,20 @@ body.fighting .soldier .glv{opacity:1}
     <div class="soldier" id="soldier" aria-hidden="true">
       <svg viewBox="0 0 170 140">
         
-        <path d="M6 140 Q10 92 70 86 Q130 92 134 140Z" fill="#5f7040"/>
+        <path d="M6 140 Q10 92 70 86 Q130 92 134 140Z" fill="var(--s-shirt,#5f7040)"/>
         <path d="M70 90 L70 140" stroke="#4b5a32" stroke-width="2"/>
         <path d="M20 112 Q30 104 44 104" stroke="#4b5a32" stroke-width="2" fill="none"/>
         <rect x="94" y="97" width="30" height="9" rx="3" fill="#4b5a32"/>
-        <path d="M96 95 q14 -10 28 0 l0 8 q-14 4 -28 0z" fill="#6b2a2a"/>
+        <path d="M96 95 q14 -10 28 0 l0 8 q-14 4 -28 0z" fill="var(--s-beret,#6b2a2a)"/>
         <rect x="57" y="68" width="26" height="24" rx="7" fill="var(--skin-d)"/>
         <ellipse cx="39" cy="52" rx="7" ry="10" fill="var(--skin)"/>
         <ellipse cx="101" cy="52" rx="7" ry="10" fill="var(--skin)"/>
         <ellipse cx="70" cy="48" rx="31" ry="34" fill="var(--skin)"/>
-        <path d="M39 44 Q41 13 70 13 Q99 13 101 44 Q97 66 70 68 Q43 66 39 44Z" fill="#2c2118"/>
+        <path d="M39 44 Q41 13 70 13 Q99 13 101 44 Q97 66 70 68 Q43 66 39 44Z" fill="var(--s-hair,#2c2118)"/>
         <path d="M50 26 Q60 20 72 22" stroke="#4a3a2c" stroke-width="2" fill="none"/>
         <g class="boot"><path d="M62 142 L72 100 L92 100 L88 142Z" fill="#45532d"/><path d="M64 96 h34 q6 0 6 8 v6 h-42z" fill="#2a1d12"/><path d="M62 110 h44" stroke="#14100a" stroke-width="3"/></g>
-        <g class="glv gl"><rect x="18" y="98" width="20" height="34" rx="9" fill="#5f7040"/><circle cx="28" cy="92" r="14" fill="var(--skin)" stroke="var(--skin-d)" stroke-width="2.5"/><path d="M19 86 q9 -6 18 0 M18 94 h10" stroke="var(--skin-d)" stroke-width="2" fill="none"/></g>
-        <g class="glv gr"><rect x="102" y="98" width="20" height="34" rx="9" fill="#5f7040"/><circle cx="112" cy="92" r="14" fill="var(--skin)" stroke="var(--skin-d)" stroke-width="2.5"/><path d="M103 86 q9 -6 18 0 M112 94 h10" stroke="var(--skin-d)" stroke-width="2" fill="none"/></g>
+        <g class="glv gl"><rect x="18" y="98" width="20" height="34" rx="9" fill="var(--s-shirt,#5f7040)"/><circle cx="28" cy="92" r="14" fill="var(--skin)" stroke="var(--skin-d)" stroke-width="2.5"/><path d="M19 86 q9 -6 18 0 M18 94 h10" stroke="var(--skin-d)" stroke-width="2" fill="none"/></g>
+        <g class="glv gr"><rect x="102" y="98" width="20" height="34" rx="9" fill="var(--s-shirt,#5f7040)"/><circle cx="112" cy="92" r="14" fill="var(--skin)" stroke="var(--skin-d)" stroke-width="2.5"/><path d="M103 86 q9 -6 18 0 M112 94 h10" stroke="var(--skin-d)" stroke-width="2" fill="none"/></g>
       </svg>
     </div>
     <div id="bubble" class="bubble"><div class="said">נו? מה כואב לך הפעם?</div></div>
@@ -598,6 +643,7 @@ body.fighting .soldier .glv{opacity:1}
   <div class="actions" id="actions">
     <button id="fightBtn" class="actbtn fightbtn" type="button">להזמין את הרופא למכות</button>
     <button id="rerollBtn" class="actbtn reroll" type="button" hidden>להחליף משפטים (במבה)</button>
+    <button id="skillBtn" class="actbtn reroll" type="button" hidden>שקשוקה לרופא</button>
     <button id="cashout" class="actbtn cashout" type="button" disabled>אין עדיין מה לקחת</button>
   </div>
 
@@ -817,27 +863,31 @@ function hud(){
  $('#closeSign').textContent=hhmm(S.turns*2);
  const s=Math.max(0,Math.min(100,S.sus));$('#susTxt').textContent=s+'%';const bar=$('#susBar');bar.style.width=s+'%';
  bar.style.background=s<40?'var(--go)':s<70?'var(--warn)':'var(--stamp)';$('#meter').classList.toggle('hot',s>=70);
+ $('#queue').textContent=S.doc?`${DOC().n} · ${MOOD().n}`:'';
  $('#perks').innerHTML=[...RUN.perks].map(k=>`<span>${PERKS[k].n}</span>`).join('');
  const talk=S.mode==='talk'&&!S.over;
  $('#actions').hidden=!talk;
  const fb=$('#fightBtn');fb.disabled=S.fought||S.busy;fb.textContent=S.fought?'כבר רבתם היום':'להזמין את הרופא למכות';
+ const sk=$('#skillBtn');sk.hidden=charId()!=='cook';sk.disabled=S.busy||S.skill;
  const rb=$('#rerollBtn');rb.hidden=!has('bamba');rb.disabled=S.busy||S.rerolled;
  const co=$('#cashout');co.disabled=S.busy||(S.gimel<=0&&S.turn===0);
  co.textContent=S.gimel>=t?`לוקח ${S.gimel} ויוצא`:S.gimel>0?`מוותר עם ${S.gimel} (סוף הריצה)`:'מוותר ויוצא (סוף הריצה)';
 }
 
 /* ================= run & visit ================= */
-function startRun(){RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0};introSheet(true)}
+function startRun(){RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId()};applySoldier();introSheet(true)}
 function startVisit(){
  const d=RUN.day;
- S={gimel:0,sus:Math.max(0,SUS0[d-1]-(has('candy')?10:0)),turn:0,turns:6+(has('watch')?1:0),streak:0,justBonus:false,used:new Set(),
+ const V=RUN.next||pickVisit(d);RUN.next=null;
+ S={doc:V.doc,moodK:V.mood,skill:false,gimel:0,sus:startSus(d),turn:0,turns:6+(has('watch')?1:0)+(charId()==='driver'?1:0),streak:0,justBonus:false,used:new Set(),
     busy:false,over:false,fought:false,cmdDone:false,mode:'talk',hot:false,scared:false,kabanUsed:false,rerolled:false,evUsed:new Set(),queue:rnd(18,30)+d*4,clean:true};
  $('#gimel').dataset.v=0;$('#gimel').textContent='0';$('#stamp').hidden=true;$('#cmd').className='cmd';$('#doc').className='doc';$('#gatebar').classList.remove('up');room.className='room';
+ applyDoctor();if(d>=3)mission('day3');
  setMood('neutral');say(null,GREET[d-1]);hud();deal();
 }
 function deal(){
  setPrompt('מה אתה אומר לו?');
- const pool=LINES.map((_,i)=>i).filter(i=>!S.used.has(i)),pick=[];
+ const pool=LINES.map((_,i)=>i).filter(i=>!S.used.has(i)&&lineAvailable(LINES[i])),pick=[];
  for(const r of shuffle([1,2,3])){const c=pool.filter(i=>LINES[i].r===r&&!pick.includes(i));if(c.length)pick.push(pickOne(c))}
  const box=$('#choices');box.innerHTML='<div class="patience"><div class="pbar"><i id="patBar"></i></div></div>';let kn=0;
  shuffle(pick).forEach(i=>{kn++;const L=LINES[i],b=document.createElement('button');b.type='button';b.className='choice';
@@ -850,6 +900,7 @@ function deal(){
 function roll(L){const d=RUN.day-1,p={...ODDS[L.r]};if(!L.j){p.w+=p.j;p.j=0}
  if(has('acting')&&L.j){const x=Math.min(p.w,.07);p.w-=x;p.j+=x}
  if(has('thermo')&&L.r<3)p.w+=.12;
+ p.w=Math.max(.05,p.w+succMod(L));
  const tough=Math.min(p.w,.035*d);p.w-=tough;p.a+=tough;
  let shift=(S.sus/100)*(.3+.06*d)+(S.hot?.1:0)-(S.scared?.12:0);shift=Math.max(-.2,Math.min(p.w,shift));p.w-=shift;
  const sum=p.w+p.j+p.a;if(sum>.96){const k=.96/sum;p.w*=k;p.j*=k;p.a*=k}
@@ -862,9 +913,10 @@ async function choose(i,btn){
  await wait(1000);
  const res=roll(L);
  if(res==='win'||res==='jack'){
-  let gain=res==='jack'?L.j.g:(L.r===1?1:L.r===3?2:(Math.random()<.4?2:1));
+  let gain=res==='jack'?L.j.g+(DOC().mod.jack||0):(L.r===1?1:L.r===3?2:(Math.random()<.4?2:1));
   S.streak++;let bonus=0;if(S.streak%3===0){bonus=1;S.justBonus=true}
-  S.gimel+=gain+bonus;S.sus+=res==='jack'?12:5+L.r*3;
+  S.gimel+=gain+bonus;S.sus+=Math.round((res==='jack'?12:5+L.r*3)*(DOC().mod.sus||1));
+  if(res==='jack')mission('jack');if(L.r===3)mission('crazy');if(S.streak>=3)mission('streak');if(moodMatch(L)){mission('mood');burst('בול!')}
   setMood(res==='jack'?'shock':(L.wm||(S.hot?'sweaty':'happy')));say(L.t,(res==='jack'?L.j.t:L.w).replaceAll('{g}',days(gain)));setGimel(S.gimel);
   floatTxt('+'+gain+(bonus?' · רצף! +1':''));sol('cheer');unlock('first');if(S.streak>=6)unlock('streak');
   if(res==='jack'){unlock('jack');if(L.t.includes('בהריון'))unlock('preg')}
@@ -875,7 +927,7 @@ async function choose(i,btn){
   store.set('gm_acamol',store.get('gm_acamol',0)+1);S.clean=false;sol('slump');if(store.get('gm_acamol',0)>=20)unlock('acamol');
  }else{
   S.streak=0;RUN.guards++;S.clean=false;sol('slump');
-  let ds=20+L.r*8+(RUN.day-1)*3;if(S.scared)ds=Math.round(ds/2);
+  let ds=Math.round((20+L.r*8+(RUN.day-1)*3+(DOC().mod.fail||0))*(MOOD().fail||1)*(DOC().mod.sus||1));if(S.scared)ds=Math.round(ds/2);
   if(has('kaban')&&!S.kabanUsed){S.kabanUsed=true;ds=0}
   S.sus+=ds;setMood(S.hot?'sweaty':'angry');say(L.t,L.f+(ds===0?' (אישור הקב״ן הציל אותך.)':''));stamp('נדחה');SFX.fail();shake();
   floatTxt(ds?'+'+ds+'% חשד':'חשד +0',true);if(L.ffx)runFx(L.ffx);
@@ -903,8 +955,8 @@ async function endVisit(kind){
  stamp(ok?'עברת את היום':'לא עמדת ביעד',ok?'ok':'');if(ok)SFX.win();
  await wait(1600);
  let bonus=0;if(ok&&has('shal'))bonus=1;
- if(ok&&S.clean)unlock('perfect');
- RUN.total+=S.gimel+bonus;hud();
+ if(ok&&S.clean){unlock('perfect');mission('clean')}
+ RUN.total+=S.gimel+bonus;mission('g10',RUN.total,'max');hud();
  if(!ok)return endRun('routine');
  if(RUN.day>=5)return gateIntro();
  daySheet(bonus);
@@ -984,8 +1036,8 @@ function weaponFor(n){return n.includes('פטיש')?'hammer':n.includes('זרי�
 function startFight(){
  if(S.fought||S.busy||S.over||S.mode!=='talk')return;
  stopPatience();S.fought=true;S.mode='fight';S.busy=true;RUN.fights++;hud();
- const max=90+RUN.day*20,now=performance.now();
- S.F={me:100,doc:max,max,st:100,start:now,dur:30000,last:now,phase:'idle',until:now+1300,dir:'L',wStart:0,intent:null,feint:false,chain:false,
+ const max=Math.round((90+RUN.day*20)*(DOC().mod.hp||1)),now=performance.now(),meMax=100+upLevel('boots')*15+(charId()==='fighter'?30:0);
+ S.F={me:meMax,meMax,doc:max,max,st:100,start:now,dur:30000,last:now,phase:'idle',until:now+1300,dir:'L',wStart:0,intent:null,feint:false,chain:false,
       cdJab:0,cdKick:0,blocking:false,heal:false,combo:0,dodge:null,side:'R',raf:0,done:false,pausedAt:0};
  room.classList.add('ring');document.body.classList.add('fighting');SFX.bell();setMood('angry');burst('קרב!');buzz(40);
  try{room.scrollIntoView({block:'start',behavior:reduced?'auto':'smooth'})}catch(e){}
@@ -1016,7 +1068,7 @@ function renderFight(){
  updateBars();
 }
 function updateBars(){const F=S.F;if(!$('#hpMe'))return;
- $('#hpMe').style.width=Math.max(0,F.me)+'%';$('#hpMeT').textContent=Math.max(0,F.me);
+ $('#hpMe').style.width=Math.max(0,F.me/F.meMax*100)+'%';$('#hpMeT').textContent=Math.max(0,F.me);
  $('#stMe').style.width=Math.max(0,F.st)+'%';$('#combo').textContent='×'+F.combo;
  $('#hpDoc').style.width=Math.max(0,F.doc/F.max*100)+'%';$('#hpDocT').textContent=Math.max(0,F.doc);
  const pct=F.doc/F.max,doc=$('#doc');doc.classList.toggle('dmg1',pct<.72);doc.classList.toggle('dmg2',pct<.46);doc.classList.toggle('dmg3',pct<.22)}
@@ -1039,7 +1091,7 @@ function fightKey(k,down){const F=S.F;if(!F||F.done||S.mode!=='fight'||F.pausedA
  if(!down)return;flashKey(k);
  if(k==='ArrowLeft'||k==='ArrowRight'){F.dodge={dir:k==='ArrowLeft'?'L':'R',at:now};sol(k==='ArrowLeft'?'dodgeL':'dodgeR');SFX.whoosh();return}
  if(F.blocking)return;
- if(k==='ArrowUp'){if(F.heal)return;F.heal=true;F.me=Math.min(100,F.me+30);F.st=100;floatTxt('+30 חיים · אוויר מלא');SFX.acamol();spawn('pill',reduced?3:8);$('#healK').disabled=true;
+ if(k==='ArrowUp'){if(F.heal)return;F.heal=true;F.me=Math.min(F.meMax,F.me+30);F.st=100;floatTxt('+30 חיים · אוויר מלא');SFX.acamol();spawn('pill',reduced?3:8);$('#healK').disabled=true;
   say('*בולע אקמול באמצע הקרב*','זה שלי!',{who:'הרופא'});updateBars();return}
  if(k==='Space'){if(now<F.cdJab)return;F.cdJab=now+210;attack(rnd(5,8)+(has('gloves')?2:0),'jab');return}
  if(k==='Enter'){if(now<F.cdKick)return;F.cdKick=now+900;attack(rnd(14,20)+(has('gloves')?4:0),'kick')}
@@ -1048,7 +1100,7 @@ function attack(base,kind){const F=S.F,now=performance.now(),cost=kind==='kick'?
  if(F.st<cost){status('אין לך אוויר! תנשום רגע','danger');SFX.tick();sol('slump');return}
  F.st-=cost;
  if(kind==='kick')limb('kicking');else{F.side=F.side==='L'?'R':'L';limb(F.side==='L'?'jabL':'jabR')}
- let d=base+Math.min(F.combo,8),note='',blocked=false;
+ let d=Math.round(base*(charId()==='fighter'?1.35:1))+Math.min(F.combo,8),note='',blocked=false;
  if(F.phase==='guard'){
   if(kind==='kick'){F.phase='stun';F.until=now+850;$('#shield').hidden=true;note='המגן נשבר!';status('המגן נשבר! תכה!','open');SFX.big();$('#doc').classList.add('dazed')}
   else{d=Math.max(1,Math.round(d/3));blocked=true}}
@@ -1118,7 +1170,7 @@ function endFightUI(){const F=S.F;F.done=true;document.body.classList.remove('fi
  room.classList.remove('ring');$('#doc').classList.remove('windup','dazed');$('#soldier').classList.remove('blocking','jabL','jabR','kicking')}
 async function fightWin(){
  if(S.F.done)return;endFightUI();S.mode='talk';
- const gain=3;setMood('faint');$('#doc').classList.add('dazed');overlayFx('flash',600);buzz([40,40,90]);stamp('נוקאאוט','ok');sol('cheer');unlock('ko');SFX.jack();burst('נוקאאוט!');spawn('conf',reduced?6:30,'ג׳');
+ const gain=3;setMood('faint');$('#doc').classList.add('dazed');overlayFx('flash',600);buzz([40,40,90]);stamp('נוקאאוט','ok');sol('cheer');unlock('ko');mission('ko');SFX.jack();burst('נוקאאוט!');spawn('conf',reduced?6:30,'ג׳');
  S.gimel+=gain;S.sus+=20;S.scared=true;setGimel(S.gimel);floatTxt('+'+gain);
  say(null,`(מהרצפה) חתמתי... ${days(gain)}... רק אל תרביץ שוב.`,{who:'הרופא'});
  $('#choices').innerHTML='';hud();
@@ -1137,7 +1189,7 @@ async function fightLose(){
 
 /* ================= patience + fly ================= */
 const PT={raf:0,tok:0};
-function startPatience(){stopPatience();const tok=++PT.tok,T=Math.max(13000,22000-RUN.day*1800),t0=performance.now();
+function startPatience(){stopPatience();const tok=++PT.tok,T=(Math.max(13000,22000-RUN.day*1800)+upLevel('notebook')*3000)*patMul(),t0=performance.now();
  (function tk(now){if(tok!==PT.tok)return;const k=1-(now-t0)/T,bar=$('#patBar');
   if(bar){bar.style.width=Math.max(0,k*100)+'%';bar.style.background=k<.3?'var(--stamp)':k<.6?'var(--warn)':'var(--go-2)'}
   if(k<=0)return patienceOut();PT.raf=requestAnimationFrame(tk)})(t0)}
@@ -1157,7 +1209,7 @@ function maybeFly(){
  (function mv(now){if(!alive)return;const t=(now-t0)/1000;
   f.style.left=(50+38*Math.sin(t*1.6+ph)+6*Math.sin(t*9))+'%';f.style.top=(42+24*Math.sin(t*2.2+ph*2)+5*Math.cos(t*11))+'%';
   if(now-t0>life||S.mode!=='talk'){alive=false;f.remove();return}requestAnimationFrame(mv)})(t0);
- f.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();if(!alive)return;alive=false;f.classList.add('splat');SFX.slap();
+ f.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();if(!alive)return;alive=false;f.classList.add('splat');SFX.slap();mission('fly');
   S.sus=Math.max(0,S.sus-6);floatTxt('זבוב! חשד −6');
   say(null,pickOne(['סוף סוף מישהו עושה משהו פה.','הזבוב הזה מציק לי מאז הטירונות. תודה.','...רפלקסים טובים. חשוד.']),{who:'הרופא'});
   hud();setTimeout(()=>f.remove(),450)});
@@ -1210,6 +1262,7 @@ async function retort(o){
  argue();
 }
 async function argWin(){
+ mission('cmd');
  const gain=2;S.gimel+=gain;S.sus=Math.max(0,S.sus-25);setGimel(S.gimel);
  setCmd('hurt');say(null,`המ״פ יצא בוכה. בחיים לא ראיתי דבר כזה. קח ${days(gain)}.`,{who:'הרופא'});setMood('happy');
  stamp('ניצחת','ok');SFX.jack();sol('cheer');unlock('cmd');spawn('conf',reduced?6:24,'ג׳');floatTxt('+'+gain+' · חשד −25');$('#choices').innerHTML='';hud();
@@ -1322,7 +1375,7 @@ function gateQ(){
  const box=$('#gopts');
  shuffle([...q.a]).forEach(([t,v])=>{const b=document.createElement('button');b.type='button';b.className='retort';
   b.innerHTML=`<span>${t.startsWith('*')?fmt(t):'״'+t+'״'}</span>`;b.addEventListener('click',()=>gateAns(v,t));box.appendChild(b)});
- const T=GATE_T*1000,t0=performance.now(),idx=G.i;
+ const T=(GATE_T+(charId()==='driver'?4:0))*1000,t0=performance.now(),idx=G.i;
  G.timer=requestAnimationFrame(function tk(now){if(G.answered===idx)return;const k=1-(now-t0)/T,el=$('#tmr');if(!el)return;
   el.style.width=Math.max(0,k*100)+'%';if(k<=.3)el.style.background='var(--stamp)';if(k<=0)return gateAns(-1,null);G.timer=requestAnimationFrame(tk)});
 }
@@ -1341,6 +1394,7 @@ async function gateAns(v,t){
  gateQ();
 }
 async function gatePass(){
+ mission('gate');
  $('#choices').innerHTML='';$('#gatebar').classList.add('up');SFX.jack();setCmd('smug');sol('cheer');
  if(G.perfect){RUN.total+=2;unlock('gate')}
  say(null,G.perfect?'אני לא מאמין שאני אומר את זה. סע הביתה. ועוד יומיים, על האומץ.':'סע. ושלא אראה אותך פה בשבוע הבא.',{who:'הרס״ר'});
@@ -1369,15 +1423,18 @@ function typeOut(el,text){
 }
 function introSheet(withPerk){
  const d=RUN.day,ov=$('#overlay');ov.hidden=false;let chosen=null;
+ RUN.next=pickVisit(d);const ND=DOCS[RUN.next.doc],NM=DMOODS[RUN.next.mood];
  ov.innerHTML=`<div class="sheet intro">
   <div class="time">06:58 · תור למרפאה</div>
   <h1>יום ${DL[d-1]}</h1>
   <p class="story" id="story"></p>
   <dl class="rows">
    <div><dt>היעד להיום</dt><dd>${TARGET[d-1]} ימי גימלים</dd></div>
-   <div><dt>החשד של הרופא מתחיל ב־</dt><dd>${Math.max(0,SUS0[d-1]-(has('candy')?10:0))}%</dd></div>
-   <div><dt>סה״כ בריצה</dt><dd>${RUN.total}</dd></div>
+   <div><dt>הרופא</dt><dd>${ND.n} · ${ND.role}</dd></div>
+   <div><dt>מצב רוח</dt><dd>${NM.n}</dd></div>
+   <div><dt>חשד התחלתי</dt><dd>${startSus(d)}%</dd></div>
   </dl>
+  <p class="tip">${ND.d} ${NM.d}.</p>
   <div id="pp"></div>
   <button class="big" id="enter" type="button">נכנס לחדר</button>
  </div>`;
@@ -1426,6 +1483,7 @@ function endRun(type,sentence){
  const promoted=careerRank(career)>careerRank(before);
  if(type==='jail')store.set('gm_jail',store.get('gm_jail',0)+1);
  const daysDone=(type==='victory'||type==='gate')?5:RUN.day-1+(type==='retire'?1:0);
+ const earned=g*5+daysDone*6+(type==='victory'?60:0);addCoins(earned);
  const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="sheet${type==='jail'?' court':''}">
   <div class="end-stamp ${E.ok?'ok':'no'}">${E.s}</div>
@@ -1441,13 +1499,20 @@ function endRun(type,sentence){
    <div><dt>אקמולים בקריירה</dt><dd>${store.get('gm_acamol',0)}</dd></div>
    <div><dt>פעמים בכלא</dt><dd>${store.get('gm_jail',0)}</dd></div>
   </dl>
+  <p class="earn">+${earned} ${COIN} לקנטינה · יש לך ${getCoins()} ${COIN}</p>
   ${careerBlock(career)}
   <button class="big" id="again" type="button">ריצה חדשה</button>
+  <button class="ghostbtn" id="cardBtn" type="button">כרטיס תוצאה לשיתוף</button>
+  ${lbSubmitBlock(g)}
+  <button class="ghostbtn" id="toMenu" type="button">לתפריט</button>
   <details class="more"><summary>עיטורים</summary>${achGrid()}</details>
   <button class="ghostbtn" id="copy" type="button">העתק את התוצאה לחבר׳ה</button>
   <p class="copytext" id="copyText" hidden></p>
  </div>`;
  $('#again').addEventListener('click',()=>startRun());
+ $('#toMenu').addEventListener('click',showStart);
+ wireLBSubmit(g);
+ $('#cardBtn').addEventListener('click',()=>showCard({g,ok:!!E.ok,title:E.h,stamp:E.s,rank:CAREER[careerRank(career)][0],char:CHARS[charId()].n,days:daysDone,best},showStart));
  $('#copy').addEventListener('click',e=>{
   const txt=type==='jail'?`הוצאתי ${g} ימי גימלים מהקר״פ ואז נכנסתי לכלא ל־${sentence} ימים. השיא שלי: ${best}.`:`${E.h}: הוצאתי ${g} ימי גימלים מהקר״פ ב־${daysDone} ימים. השיא שלי: ${best}. נראה אותך.`;
   const fall=()=>{const p=$('#copyText');p.hidden=false;p.textContent=txt;const rg=document.createRange();rg.selectNodeContents(p);const sel=getSelection();sel.removeAllRanges();sel.addRange(rg);e.target.textContent='סמן והעתק מלמטה'};
@@ -1461,19 +1526,221 @@ function showStart(){
   <h1>גימלים<span>במרפאה</span></h1>
   <ul class="rules">
    <li><b>1</b><span>בוחרים מה להגיד. מגיעים ליעד של היום.</span></li>
-   <li><b>2</b><span>חשד 100% = סוגר שבת.</span></li>
-   <li><b>3</b><span>מכות, המ״פ, ובסוף הרס״ר בש״ג.</span></li>
+   <li><b>2</b><span>תקרא את מצב הרוח של הרופא. חשד 100% = שבת.</span></li>
   </ul>
+  ${missionsBlock()}
+  <div class="menu3">
+   <button type="button" class="mbtn" id="toShop"><b>קנטינה</b><span>${getCoins()} ${COIN}</span></button>
+   <button type="button" class="mbtn" id="toLB"><b>שיאים</b><span>כל השחקנים</span></button>
+  </div>
+  <p class="asWho">משחק בתור: <b>${CHARS[charId()].n}</b></p>
   <button class="big" id="go" type="button">ריצה חדשה</button>
   <div class="best">${best?`שיא: ${best} ימים`:''}</div>
   <details class="more"><summary>דרגה ועיטורים</summary>${careerBlock(career)}${achGrid()}</details>
   ${location.protocol==='file:'?'':'<a class="dl" href="https://github.com/shimon77028/King-of-the-Gimelets/releases/latest/download/gimelim.apk" target="_blank" rel="noopener">הורדה לאנדרואיד (APK)</a>'}
  </div>`;
  $('#go').addEventListener('click',()=>{ac();SFX.tick();startRun()});
+ $('#toShop').addEventListener('click',()=>{SFX.tick();showShop()});
+ $('#toLB').addEventListener('click',()=>{SFX.tick();showLB()});
+}
+
+/* ================= meta: coins, shop, characters, doctors, moods, missions, leaderboard, score card ================= */
+const API_ABS='https://king-of-the-gimelets.vercel.app/api/scores';
+const COIN='₪';
+const getCoins=()=>store.get('gm_coins',0);
+function addCoins(n){store.set('gm_coins',Math.max(0,getCoins()+Math.round(n)))}
+const owned=()=>store.get('gm_owned',['tiron']);
+const upLevel=k=>(store.get('gm_up',{})[k])||0;
+function charId(){const c=store.get('gm_char','tiron');return owned().includes(c)&&CHARS[c]?c:'tiron'}
+
+const CHARS={
+ tiron:{n:'טירון',d:'בלי יכולת מיוחדת. רק פחד.',price:0,shirt:'#5f7040',beret:'#6b2a2a',hair:'#2c2118'},
+ jobnik:{n:'ג׳ובניק',d:'נראה תמים: פחות חשד, והרופא מחכה לו יותר.',price:150,shirt:'#9aa679',beret:'#5b6b3c',hair:'#6b4a2a'},
+ cook:{n:'טבח',d:'פעם בביקור: שקשוקה לרופא, חשד −20.',price:250,shirt:'#ece7d8',beret:'#bdb59c',hair:'#3a2a1a'},
+ fighter:{n:'לוחם',d:'חזק במכות. אבל ״לוחמים לא חולים״: מתחיל עם יותר חשד.',price:300,shirt:'#3f4d2a',beret:'#7a5a2a',hair:'#1a120c'},
+ driver:{n:'נהג',d:'משפט נוסף בכל ביקור, ועוד 4 שניות בש״ג.',price:400,shirt:'#706c4a',beret:'#2f2f2f',hair:'#4a3020'}
+};
+const EXTRA_LINES=[
+ {c:'jobnik',t:'נתקעה לי המקלדת על האצבע',r:1,w:'פציעת משרד. מכיר. {g}.',f:'הורדתי אותה. אתה בריא.'},
+ {c:'jobnik',t:'יש לי פציעת אקסל. מהמשרד.',r:2,w:'אקסל זה מסוכן. {g}.',f:'אקסל זה לא ספורט.'},
+ {c:'jobnik',t:'אני מכיר את המג״ד. אישית. אני מזכיר שלו.',r:3,w:'...תגיד לו שלום. {g}.',f:'אני מכיר אותו יותר. שמירה.',j:{g:4,t:'המג״ד בדיוק התקשר. {g}, ותגיד לו שאני בסדר.'}},
+ {c:'cook',t:'נכוויתי מהשקשוקה של שישי',r:1,w:'השקשוקה של שישי? כוויה מדרגה שנייה. {g}.',f:'זה רוטב. תנגב.'},
+ {c:'cook',t:'טעמתי את האוכל שבישלתי',r:2,w:'אתה גיבור. {g}.',f:'כולם אכלו אותו. כולם פה.'},
+ {c:'cook',t:'*מגיש לרופא פלאפל חם*',r:3,w:'...עם עמבה? {g}.',f:'שוחד בצורת פלאפל. רשמתי.',j:{g:4,t:'הפלאפל הכי טוב בצה״ל. {g}, ועוד אחד.'}},
+ {c:'fighter',t:'רצתי מסע 40 ק״מ. בחלום. אבל רצתי.',r:1,w:'החלום נחשב. {g}.',f:'גם אני חלמתי שאתה בשמירה.'},
+ {c:'fighter',t:'נשבר לי הגב מהאפוד',r:2,w:'אפוד זה כבד. {g}.',f:'האפוד שלך ריק.'},
+ {c:'fighter',t:'לוחמים לא חולים. אני פשוט מת.',r:3,w:'מוות זה סיבה מוצדקת. {g}.',f:'מת? אתה מדבר.',j:{g:5,t:'דרמטי ומשכנע. {g}, ולך לנוח, גיבור.'}},
+ {c:'driver',t:'הרגל נתקעה לי על הגז',r:1,w:'תוריד אותה מהגז. {g}.',f:'אתה מדבר. הרגל בסדר.'},
+ {c:'driver',t:'נרדמתי בהגה. והרכב היה כבוי.',r:2,w:'בטיחות קודם. {g}.',f:'זה נקרא ״לישון״.'},
+ {c:'driver',t:'הדיונה התהפכה. גם אני.',r:3,w:'שניכם צריכים מוסך. {g}.',f:'הדיונה בסדר. אתה בסדר.',j:{g:4,t:'הרכב בטיפול. גם אתה. {g}.'}},
+ {c:'vip',t:'דוקטור, אני חושב שאני יותר מדי מוכשר בשביל צבא',r:3,w:'אולי. {g}.',f:'לא.',j:{g:5,t:'הרופא הסכים. {g}, וגם הוא עוזב.'}},
+ {c:'vip',t:'יש לי אלרגיה לשבת בבסיס',r:2,w:'שמעתי שזה מדבק. {g}.',f:'אז תסגור שבת ונבדוק.'},
+ {c:'vip',t:'הצבא פוגע לי בבריאות הנפשית. וגם בשיער.',r:2,w:'השיער באמת נראה רע. {g}.',f:'השיער שלך נראה מצוין.'},
+ {c:'vip',t:'*נותן לרופא כרטיס ביקור של עורך דין*',r:3,w:'...אין צורך. {g}.',f:'זה כרטיס של פיצרייה.',j:{g:4,t:'עורך הדין הוא אח שלו. {g}.'}},
+ {c:'vip',t:'שרתי בשבילך את ״התקווה״ בבוקר. זה לא שווה משהו?',r:1,w:'היה מרגש. {g}.',f:'זייפת.'},
+ {c:'vip',t:'אני רואה אור בקצה המנהרה. זה הש״ג.',r:1,w:'גם אני רוצה לראות אותו. {g}.',f:'זה פנס של הרס״ר.'},
+ {c:'vip',t:'הבאתי פתק מהרב',r:2,w:'עם הרב לא מתווכחים. {g}.',f:'הרב כתב ״לך לשמירה״.'},
+ {c:'vip',t:'אני חושב שאני הבן האבוד של הרמטכ״ל',r:3,w:'יש דמיון. {g}.',f:'הרמטכ״ל בלי ילדים.',j:{g:5,t:'יש דמיון מפחיד. {g}, אדוני.'}}
+];
+const UPGRADES={
+ boots:{n:'מגפיים טובים',d:'+15 חיים בקרב',max:3,price:[120,200,320]},
+ connect:{n:'קשרים במרפאה',d:'−5% חשד התחלתי',max:3,price:[150,250,400]},
+ notebook:{n:'פנקס תירוצים',d:'+3 שניות לבחור משפט',max:3,price:[100,180,280]},
+ charm:{n:'חיוך מנצח',d:'+3% הצלחה',max:3,price:[200,350,500]},
+ vip:{n:'חבילת משפטי VIP',d:'8 משפטים חדשים',max:1,price:[250]}
+};
+const DOCS={
+ shmueli:{n:'ד״ר שמואלי',role:'קר״פ',d:'הקלאסי. לא מאמין לאף אחד.',cls:'',mod:{}},
+ ronit:{n:'ד״ר רונית',role:'רופאה קשוחה',d:'קשה להצליח, אבל ג׳קפוט שווה יותר.',cls:'d-ronit',mod:{all:-.08,fail:6,jack:1}},
+ avi:{n:'ד״ר אבי',role:'מילואימניק עייף',d:'עייף מכדי לחשוד. חלש במכות.',cls:'d-avi',mod:{all:.08,sus:.7,pat:1.25,hp:.75}},
+ noam:{n:'ד״ר נועם',role:'סטאז׳ר',d:'מאמין לכל דבר מטורף. רגיל משעמם אותו.',cls:'d-noam',mod:{r3:.16,r1:-.1}}
+};
+const DMOODS={
+ hungry:{n:'רעב',d:'אוכל ידבר אליו',tag:'food'},
+ love:{n:'מאוהב בחובשת',d:'רגש עובד עליו',tag:'emo'},
+ queasy:{n:'בחילה',d:'דברים מגעילים יעבדו',tag:'gross'},
+ night:{n:'אחרי משמרת לילה',d:'פחות סבלנות, אבל מוותר מהר',all:.06,pat:.7},
+ paranoid:{n:'פרנואיד',d:'כל כישלון מקפיץ חשד',fail:1.4},
+ bored:{n:'משועמם',d:'רק משהו מטורף יעניין אותו',r3:.15,r1:-.1},
+ party:{n:'יום הולדת',d:'במצב רוח טוב. נצל.',all:.1}
+};
+const TAGRX={food:/שניצל|במבה|שוקו|לוף|אכלתי|שקשוקה|פלאפל|אוכל/,emo:/בוכה|אמא|סבתא|חתול|כלב|עזבה|בלב|רגשית|נטישה|מתגעגע|התקווה|הרב/,gross:/משלשל|מפליץ|פריחה|משתעל|שלפוחית|שתן|גועל|הקאתי/};
+const lineTag=L=>Object.keys(TAGRX).find(k=>TAGRX[k].test(L.t))||'';
+const DOC=()=>DOCS[(S&&S.doc)||'shmueli'], MOOD=()=>DMOODS[(S&&S.moodK)||'party'];
+function moodMatch(L){const t=MOOD().tag;return !!t&&lineTag(L)===t}
+function succMod(L){const D=DOC().mod,M=MOOD();let m=(D.all||0)+(M.all||0)+upLevel('charm')*.03;
+ if(L.r===3)m+=(D.r3||0)+(M.r3||0);if(L.r===1)m+=(D.r1||0)+(M.r1||0);if(moodMatch(L))m+=.25;return m}
+const patMul=()=>(DOC().mod.pat||1)*(MOOD().pat||1)*(charId()==='jobnik'?1.35:1);
+function startSus(d){return Math.max(0,SUS0[d-1]-(has('candy')?10:0)-upLevel('connect')*5-(charId()==='jobnik'?10:0)+(charId()==='fighter'?8:0))}
+function lineAvailable(L){return !L.c||L.c===charId()||(L.c==='vip'&&upLevel('vip')>0)}
+function pickVisit(d){const dk=d===1?'shmueli':pickOne(Object.keys(DOCS));return{doc:dk,mood:pickOne(Object.keys(DMOODS))}}
+function applySoldier(){const c=CHARS[charId()],s=$('#soldier');s.style.setProperty('--s-shirt',c.shirt);s.style.setProperty('--s-beret',c.beret);s.style.setProperty('--s-hair',c.hair);s.dataset.char=charId()}
+function applyDoctor(){const D=DOC();const d=$('#doc');D.cls.split(' ').filter(Boolean).forEach(c=>d.classList.add(c));
+ const pl=document.querySelector('.plate');if(pl)pl.textContent=D.n+' · '+D.role}
+
+LINES.push(...EXTRA_LINES);
+
+/* ---- daily missions ---- */
+const MISSIONS={
+ ko:{t:'נצח את הרופא במכות',n:1,r:80},jack:{t:'קבל ג׳קפוט',n:1,r:60},clean:{t:'ביקור בלי כישלון ובלי אקמול',n:1,r:70},
+ g10:{t:'צבור 10 ימים בריצה אחת',n:10,r:80},fly:{t:'הרוג 3 זבובים',n:3,r:40},cmd:{t:'נצח את המ״פ בוויכוח',n:1,r:90},
+ crazy:{t:'הצלח ב־3 משפטים מטורפים',n:3,r:60},day3:{t:'הגע ליום ג׳',n:1,r:50},streak:{t:'רצף של 3 הצלחות',n:1,r:40},
+ gate:{t:'עבור את הש״ג',n:1,r:120},mood:{t:'הצלח 3 פעמים לפי מצב הרוח',n:3,r:60}
+};
+function todayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function daily(){let D=store.get('gm_daily',null);const k=todayKey();
+ if(!D||D.date!==k){let h=0;for(const ch of k)h=(h*31+ch.charCodeAt(0))>>>0;const keys=Object.keys(MISSIONS),ids=[];
+  while(ids.length<3){h=(h*1103515245+12345)>>>0;const id=keys[h%keys.length];if(!ids.includes(id))ids.push(id)}
+  D={date:k,ids,prog:{},done:[]};store.set('gm_daily',D)}
+ return D}
+function mission(id,val=1,mode){const D=daily();if(!D.ids.includes(id)||D.done.includes(id))return;const M=MISSIONS[id];
+ D.prog[id]=mode==='max'?Math.max(D.prog[id]||0,val):(D.prog[id]||0)+val;
+ if(D.prog[id]>=M.n){D.done.push(id);addCoins(M.r);toastMsg(COIN,'משימה הושלמה! +'+M.r+' '+COIN,M.t);
+  if(D.done.length===3){addCoins(100);setTimeout(()=>toastMsg('★','כל המשימות של היום! +100 '+COIN,'בוא מחר לעוד'),3600)}}
+ store.set('gm_daily',D)}
+function missionsBlock(){const D=daily();
+ return `<div class="missions"><div class="ach-h">משימות היום <span>${D.done.length}/3</span></div>`+D.ids.map(id=>{const M=MISSIONS[id],p=Math.min(M.n,D.prog[id]||0),ok=D.done.includes(id);
+  return `<div class="mis${ok?' ok':''}"><span class="mt">${M.t}</span><span class="mr">${ok?'✓':'+'+M.r+' '+COIN}</span><div class="track"><i style="width:${p/M.n*100}%"></i></div></div>`}).join('')+'</div>'}
+function toastMsg(g,title,sub){const t=document.createElement('div');t.className='toast';t.setAttribute('dir','rtl');
+ t.innerHTML=`<span class="medal">${g}</span><span><b></b><small></small></span>`;t.querySelector('b').textContent=title;t.querySelector('small').textContent=sub||'';
+ document.body.appendChild(t);setTimeout(()=>t.remove(),3500);[0,.1].forEach((a,i)=>tone([988,1318][i],.2,{type:'triangle',v:.06,at:a+.2}))}
+
+/* ---- canteen (shop) ---- */
+function showShop(){const ov=$('#overlay');ov.hidden=false;const own=owned(),cur=charId(),c=getCoins();
+ ov.innerHTML=`<div class="sheet shop">
+  <div class="shop-top"><h2>קנטינה</h2><span class="coins">${c} ${COIN}</span></div>
+  <div class="ach-h">דמויות</div>
+  <div class="cards">${Object.entries(CHARS).map(([k,C])=>{const has=own.includes(k);
+   return `<div class="card${cur===k?' sel':''}"><span class="sw" style="background:${C.shirt};border-color:${C.beret}"></span><div class="ci"><b>${C.n}</b><span>${C.d}</span></div>
+   ${has?`<button type="button" class="buy" data-pick="${k}" ${cur===k?'disabled':''}>${cur===k?'נבחר':'בחר'}</button>`:`<button type="button" class="buy" data-char="${k}" ${c<C.price?'disabled':''}>${C.price} ${COIN}</button>`}</div>`}).join('')}</div>
+  <div class="ach-h">שדרוגים</div>
+  <div class="cards">${Object.entries(UPGRADES).map(([k,U])=>{const lv=upLevel(k),full=lv>=U.max,pr=U.price[lv];
+   return `<div class="card"><span class="lv">${'●'.repeat(lv)}${'○'.repeat(U.max-lv)}</span><div class="ci"><b>${U.n}</b><span>${U.d}</span></div>
+   <button type="button" class="buy" data-up="${k}" ${full||c<pr?'disabled':''}>${full?'מקסימום':pr+' '+COIN}</button></div>`}).join('')}</div>
+  <button class="big" id="shopBack" type="button">חזרה</button>
+  <p class="best">מרוויחים ${COIN} מכל ריצה ומהמשימות היומיות.</p>
+ </div>`;
+ ov.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{store.set('gm_char',b.dataset.pick);applySoldier();SFX.tick();showShop()}));
+ ov.querySelectorAll('[data-char]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.char,C=CHARS[k];if(getCoins()<C.price)return;
+  addCoins(-C.price);store.set('gm_owned',[...owned(),k]);store.set('gm_char',k);applySoldier();SFX.jack();toastMsg('★','דמות חדשה: '+C.n,C.d);showShop()}));
+ ov.querySelectorAll('[data-up]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.up,U=UPGRADES[k],lv=upLevel(k);if(lv>=U.max||getCoins()<U.price[lv])return;
+  addCoins(-U.price[lv]);const up=store.get('gm_up',{});up[k]=lv+1;store.set('gm_up',up);SFX.win();showShop()}));
+ $('#shopBack').addEventListener('click',showStart);
+}
+
+/* ---- leaderboard ---- */
+function deviceId(){let id=store.get('gm_id','');if(!id){id=Math.random().toString(36).slice(2,12)+Date.now().toString(36);store.set('gm_id',id)}return id}
+let LB=null;
+async function lbBackend(){
+ if(LB)return LB;
+ if(window.claude&&typeof window.claude.use==='function'){
+  const [db,user]=await Promise.all([window.claude.use('db'),window.claude.use('user')]);
+  if(!db||!user)return null;
+  LB={async top(){const q=await db.collection('scores').orderBy('best','desc').limit(15).get();return q.docs.map(d=>{const x=d.data()||{};return{name:x.name,score:x.best,char:x.char}})},
+      async submit(name,score,ch){const id=await user.id();if(!id)throw new Error('signed_out');const ref=db.collection('scores').doc(id);const cur=await ref.get();
+       const prev=cur.exists?(cur.data().best||0):0;if(score>prev||(cur.exists&&cur.data().name!==name))await ref.set({name,best:Math.max(prev,score),char:ch,at:Date.now()})}};
+  return LB}
+ const url=location.protocol==='file:'?API_ABS:'/api/scores';
+ LB={async top(){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('http '+r.status);return (await r.json()).scores||[]},
+     async submit(name,score,ch){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:deviceId(),name,score,char:ch})});if(!r.ok)throw new Error('http '+r.status)}};
+ return LB}
+function cleanName(s){return String(s||'').replace(/[<>\u0000-\u001f]/g,'').trim().slice(0,14)}
+function renderLB(box,rows){box.innerHTML='';if(!rows.length){box.innerHTML='<p class="best">עוד אין שיאים. תהיה הראשון.</p>';return}
+ const me=cleanName(store.get('gm_name',''));
+ rows.forEach((r,i)=>{const d=document.createElement('div');d.className='lbrow'+(me&&r.name===me?' me':'');
+  d.innerHTML='<span class="rk"></span><span class="nm"></span><span class="ch"></span><span class="sc"></span>';
+  d.querySelector('.rk').textContent=i+1;d.querySelector('.nm').textContent=r.name||'חייל';d.querySelector('.ch').textContent=(CHARS[r.char]||{}).n||'';d.querySelector('.sc').textContent=r.score;box.appendChild(d)})}
+async function loadLB(box){box.innerHTML='<p class="best">טוען...</p>';
+ const timer=new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),10000));
+ try{const be=await Promise.race([lbBackend(),timer]);if(!be)throw new Error('none');renderLB(box,await Promise.race([be.top(),timer]))}
+ catch(e){box.innerHTML='<p class="best">טבלת השיאים לא זמינה כרגע.</p>'}}
+function showLB(){const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet"><div class="tag">כל השחקנים</div><h2>טבלת שיאים</h2><div class="lb" id="lbBox"></div>
+  <button class="big" id="lbBack" type="button">חזרה</button></div>`;
+ loadLB($('#lbBox'));$('#lbBack').addEventListener('click',showStart)}
+function lbSubmitBlock(g){if(g<1)return'';
+ return `<div class="lbsub"><div class="ach-h">טבלת השיאים</div><div class="lbform"><input id="lbName" maxlength="14" placeholder="השם שלך" autocomplete="nickname"><button type="button" class="buy" id="lbSend">שלח ${g}</button></div><p class="best" id="lbMsg"></p><div class="lb" id="lbEnd" hidden></div></div>`}
+function wireLBSubmit(g){const inp=$('#lbName');if(!inp)return;inp.value=store.get('gm_name','');
+ $('#lbSend').addEventListener('click',async()=>{const name=cleanName(inp.value);const msg=$('#lbMsg');if(!name){msg.textContent='צריך שם.';inp.focus();return}
+  store.set('gm_name',name);const btn=$('#lbSend');btn.disabled=true;msg.textContent='שולח...';
+  try{const be=await lbBackend();if(!be)throw new Error('none');await be.submit(name,g,charId());msg.textContent='נשלח!';const box=$('#lbEnd');box.hidden=false;loadLB(box)}
+  catch(e){msg.textContent='לא הצלחתי לשלוח כרגע.';btn.disabled=false}})}
+
+/* ---- score card ---- */
+async function makeCard(o){const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext&&c.getContext('2d');if(!x)return null;
+ try{await Promise.all([document.fonts.load('700 100px Karantina'),document.fonts.load('700 40px Rubik')])}catch(e){}
+ x.fillStyle='#232a16';x.fillRect(0,0,W,H);
+ [['#2e3820',180,220,260,130],['#3a4529',820,300,220,180],['#1a200f',520,1150,320,120],['#2e3820',900,1100,180,240],['#3a4529',140,900,200,140]].forEach(([f,cx,cy,rx,ry])=>{x.fillStyle=f;x.beginPath();x.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);x.fill()});
+ x.save();x.translate(W/2,H/2);x.rotate(-.025);x.fillStyle='#f2e9d0';x.shadowColor='rgba(0,0,0,.5)';x.shadowBlur=40;x.fillRect(-430,-560,860,1120);x.restore();
+ x.fillStyle='#c3352a';for(let i=0;i<20;i++)x.fillRect(110+i*44,148,28,12);
+ x.direction='rtl';x.textAlign='center';x.fillStyle='#5f5c43';x.font='700 40px Rubik, Arial';x.fillText('מלך הגימלים · סיכום ריצה',W/2,240);
+ x.fillStyle='#22251a';x.font='700 100px Karantina, Rubik, Arial';x.fillText(o.title,W/2,360);
+ x.font='700 360px Karantina, Rubik, Arial';x.fillStyle=o.ok?'#3c7a2b':'#c3352a';x.fillText(String(o.g),W/2,690);
+ x.fillStyle='#22251a';x.font='700 64px Karantina, Rubik, Arial';x.fillText('ימי גימלים',W/2,770);
+ x.font='500 40px Rubik, Arial';x.fillStyle='#5f5c43';
+ [['דרגה',o.rank],['דמות',o.char],['ימים שעברת',o.days+' מתוך 5'],['שיא אישי',String(o.best)]].forEach(([k,v],i)=>{const y=860+i*62;
+  x.textAlign='right';x.fillStyle='#5f5c43';x.fillText(k,W-180,y);x.textAlign='left';x.fillStyle='#22251a';x.font='700 40px Rubik, Arial';x.fillText(v,180,y);x.font='500 40px Rubik, Arial';
+  x.strokeStyle='#b5a87f';x.setLineDash([6,8]);x.beginPath();x.moveTo(180,y+20);x.lineTo(W-180,y+20);x.stroke();x.setLineDash([])});
+ x.save();x.translate(W/2,1150);x.rotate(-.12);x.strokeStyle=o.ok?'#3c7a2b':'#c3352a';x.fillStyle=x.strokeStyle;x.lineWidth=10;x.strokeRect(-150,-70,300,120);
+ x.textAlign='center';x.font='700 96px Karantina, Rubik, Arial';x.fillText(o.stamp,0,30);x.restore();
+ x.textAlign='center';x.fillStyle='#cdb57a';x.font='700 34px Rubik, Arial';x.fillText('נראה אותך · king-of-the-gimelets.vercel.app',W/2,1310);
+ return new Promise(r=>c.toBlob(b=>r(b),'image/png'))}
+async function showCard(o,back){const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet"><h2>כרטיס תוצאה</h2><div class="cardimg" id="cardImg"><p class="best">מכין...</p></div>
+  <div class="cardbtns"><button class="big" id="cardShare" type="button" hidden>שיתוף</button><button class="big green" id="cardSave" type="button" hidden>שמירה</button></div>
+  <p class="best" id="cardHint">לחיצה ארוכה על התמונה כדי לשמור.</p><button class="ghostbtn" id="cardBack" type="button">חזרה</button></div>`;
+ $('#cardBack').addEventListener('click',back);
+ const blob=await makeCard(o);if(!blob){$('#cardImg').innerHTML='<p class="best">לא הצלחתי ליצור תמונה.</p>';return}
+ const url=URL.createObjectURL(blob),img=new Image();img.alt='כרטיס תוצאה';img.src=url;$('#cardImg').innerHTML='';$('#cardImg').appendChild(img);
+ const file=new File([blob],'gimelim.png',{type:'image/png'}),txt=`הוצאתי ${o.g} ימי גימלים מהקר״פ. נראה אותך.`;
+ try{if(navigator.canShare&&navigator.canShare({files:[file]})){const b=$('#cardShare');b.hidden=false;b.addEventListener('click',()=>navigator.share({files:[file],text:txt}).catch(()=>{}))}}catch(e){}
+ const sb=$('#cardSave');
+ if(window.claude&&typeof window.claude.use==='function'){window.claude.use('downloads').then(dl=>{if(!dl)return;sb.hidden=false;sb.addEventListener('click',()=>dl.save({filename:'gimelim.png',data:blob}).catch(()=>{}))})}
+ else if(location.protocol!=='file:'){sb.hidden=false;sb.addEventListener('click',()=>{const a=document.createElement('a');a.href=url;a.download='gimelim.png';document.body.appendChild(a);a.click();a.remove()})}
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='1.4';
+const VERSION='2.0';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
@@ -1492,6 +1759,7 @@ setTimeout(checkUpdate,4000);setInterval(checkUpdate,300000);
 /* ================= wiring ================= */
 $('#cashout').addEventListener('click',()=>{if(S&&!S.busy&&!S.over&&S.mode==='talk'&&(S.gimel>0||S.turn>0)){stopPatience();S.busy=true;endVisit('cash')}});
 $('#fightBtn').addEventListener('click',startFight);
+$('#skillBtn').addEventListener('click',()=>{if(S.busy||S.skill||S.mode!=='talk')return;S.skill=true;S.sus=Math.max(0,S.sus-20);SFX.win();floatTxt('חשד −20');setMood('happy');say('*מגיש שקשוקה חמה*','...עם לחם? אני סולח לך על הכל.',{who:'הרופא'});hud()});
 $('#rerollBtn').addEventListener('click',()=>{if(S.busy||S.rerolled||S.mode!=='talk')return;S.rerolled=true;SFX.acamol();say('*מציע לרופא במבה*','...טוב. תתחיל מההתחלה.',{who:'הרופא'});hud();deal()});
 const FKEYS={Space:'Space',Enter:'Enter',NumpadEnter:'Enter',ArrowLeft:'ArrowLeft',ArrowRight:'ArrowRight',ArrowUp:'ArrowUp',ArrowDown:'ArrowDown'};
 document.addEventListener('keydown',e=>{if(!S)return;
