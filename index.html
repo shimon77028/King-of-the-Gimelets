@@ -1580,7 +1580,7 @@ function endRun(type,sentence){
 }
 
 /* ================= meta: coins, shop, characters, doctors, moods, missions, leaderboard, score card ================= */
-const API_ABS='https://king-of-the-gimelets.vercel.app/api/scores';
+const SB_URL='https://fwemsagnsjghljghvdom.supabase.co',SB_KEY='sb_publishable_zmpj-avYWjlSUz3eFk6vQw_cokwAdfa';
 const COIN='₪';
 const getCoins=()=>store.get('gm_coins',0);
 function addCoins(n){store.set('gm_coins',Math.max(0,getCoins()+Math.round(n)))}
@@ -1715,9 +1715,10 @@ async function lbBackend(){
       async submit(name,score,ch){const id=await user.id();if(!id)throw new Error('signed_out');const ref=db.collection('scores').doc(id);const cur=await ref.get();
        const prev=cur.exists?(cur.data().best||0):0;if(score>prev||(cur.exists&&cur.data().name!==name))await ref.set({name,best:Math.max(prev,score),char:ch,at:Date.now()})}};
   return LB}
- const url=location.protocol==='file:'?API_ABS:'/api/scores';
- LB={async top(){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('http '+r.status);return (await r.json()).scores||[]},
-     async submit(name,score,ch){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:deviceId(),name,score,char:ch})});if(!r.ok)throw new Error('http '+r.status)}};
+ const rpc=async(fn,body)=>{const r=await fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok)throw new Error('http '+r.status);const t=await r.text();return t?JSON.parse(t):null};
+ LB={async top(){const rows=await rpc('top_scores',{p_limit:15});return (rows||[]).map(x=>({name:x.name,score:x.score,char:x.hero}))},
+     async submit(name,score,ch){await rpc('submit_score',{p_id:deviceId(),p_name:name,p_score:score,p_hero:ch})}};
  return LB}
 function cleanName(s){return String(s||'').replace(/[<>\u0000-\u001f]/g,'').trim().slice(0,14)}
 function renderLB(box,rows){box.innerHTML='';if(!rows.length){box.innerHTML='<p class="best">עוד אין שיאים. תהיה הראשון.</p>';return}
@@ -1825,7 +1826,7 @@ function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=stor
 /* ---- title screen ---- */
 let pickIdx=-1;
 function showStart(){
- const ov=$('#overlay');ov.hidden=false;const keys=Object.keys(CHARS);if(pickIdx<0)pickIdx=keys.indexOf(charId());
+ const ov=$('#overlay');ov.hidden=false;const keys=Object.keys(CHARS);pickIdx=keys.indexOf(charId());
  const best=store.get('gm_best3',0),career=store.get('gm_career',0),D=daily();
  const rain=Array.from({length:14},(_,i)=>`<i style="left:${(i*7.3+3)%100}%;animation-delay:${(i*.9)%7}s;animation-duration:${7+(i%5)}s">ג׳</i>`).join('');
  ov.innerHTML=`<div class="ts">
@@ -1873,7 +1874,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='2.1';
+const VERSION='2.2';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
