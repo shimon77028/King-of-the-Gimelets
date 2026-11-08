@@ -762,6 +762,117 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
   #app.shake,.doc .head,.cmd .head,.meter.hot,.room::after,.punch,.soldier,.doc [data-k="eo"],.window .flag::after{animation:none}
   .choice,.sheet,.bubble.fresh,.console{animation:none}
 }
+
+.achs{grid-template-columns:repeat(5,1fr);gap:6px 4px;margin:6px 0 10px}
+.ach{font-size:9px;gap:2px}.ach .medal{width:30px;height:30px;font-size:16px}
+.missions{gap:6px;margin:8px 0}.mis{font-size:13px}
+.career{margin:8px 0;font-size:13px}
+/* ===== one-screen layout (v4.3) ===== */
+html,body{height:100%}
+#app{height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));min-height:520px;display:flex;flex-direction:column;gap:7px;padding-block:8px;overflow:hidden}
+#app>*{flex:0 0 auto}
+#app>.room{flex:1 1 0;min-height:150px;height:auto}
+body.fighting .room{height:auto}
+.prompt{display:none}
+.hud{padding:5px 12px 8px}
+.hud::before{height:4px}
+.days,.perks,.sign{display:none}
+.hud-top{margin-top:2px}
+.tag{font-size:11px}
+.mute{padding:1px 8px;font-size:11px}
+.stats{grid-template-columns:1.25fr 1fr 1fr;margin-top:0;gap:6px}
+.num{font-size:38px}.num.small{font-size:28px}.num .tgt{font-size:18px}
+.lbl{font-size:10.5px}
+.streak{padding-bottom:4px;gap:4px}.streak i{width:12px;height:12px}
+.row2{margin-top:3px;font-size:11.5px}
+.sus{margin-top:5px;display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center}
+.sus-lbl{display:contents;font-size:12px}
+.sus-lbl span:first-child{order:1}.meter{order:2;height:10px}.sus-lbl span:last-child{order:3}
+.doc-wrap{width:auto;height:calc(100% - 60px);max-height:215px;aspect-ratio:1;left:50%;margin-left:0;transform:translateX(-50%);bottom:32px}
+.doc svg{width:100%;height:100%}
+.desk{height:44px}.plate{top:11px}.box{bottom:12px;height:30px}.papers{bottom:16px}
+.soldier{width:min(140px,36%)}
+.cmd{width:auto;height:calc(100% - 66px);max-height:205px;aspect-ratio:160/210;bottom:32px}
+.bubble{font-size:14px;padding:7px 10px 8px;top:10px;max-width:60%}
+.window{top:14px}
+.chart{top:12px;transform:rotate(2deg) scale(.85);transform-origin:top right}
+.fwrap{height:calc(100% - 30px);width:auto;max-width:none;aspect-ratio:200/262;bottom:3%}
+.abanner{display:none}
+.cue{font-size:80px;top:16%}
+#choices{gap:6px}
+.choice{padding:8px 10px;font-size:15px;line-height:1.28;gap:8px;border-inline-start-width:7px}
+.ctext{display:block}
+.ctext .chip{display:inline-block;margin-inline-start:6px;vertical-align:1px;font-size:10px;padding:0 6px}
+.cdays{font-size:26px}
+.patience{margin-bottom:-1px}
+.pbar{height:5px}
+.actions{gap:6px}
+.actbtn{font-size:20px;padding:4px 8px 6px}
+.console{padding:9px 10px;gap:7px}
+.c-head{font-size:26px}
+.c-head span{font-size:12px}
+.bar{grid-template-columns:78px 1fr 30px;font-size:12px}
+.track{height:11px}
+.fstatus{font-size:24px;min-height:24px}
+.pk{min-height:48px;padding:5px 4px;font-size:26px}
+.pad{gap:6px}
+.retort{padding:8px 10px;font-size:15px}
+.opt2{gap:7px}
+.hint{display:none}
+.sheet{padding:16px 16px 14px}
+.sheet h2{font-size:44px;margin:4px 0 2px}
+.sheet p{font-size:14px;margin:6px 0}
+.rows{margin:8px 0}.rows div{padding:4px 0;font-size:14px}
+.big{font-size:32px;padding:5px 12px 8px}
+.ghostbtn{margin-top:7px;padding:6px}
+.intro h1{font-size:84px}
+.story{min-height:0;font-size:15px;margin:8px 0;line-height:1.5}
+.ibox{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
+.ibox div{display:grid;gap:1px;background:#20261a;border:1px solid #3a4128;border-radius:5px;padding:6px 8px}
+.ibox span{font-size:11px;opacity:.7}.ibox b{font-size:15px;color:var(--pow)}
+.perk-h{font-size:22px;margin:6px 0}
+.perkbox{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.perk{padding:7px;gap:2px;align-content:start}.perk b{font-size:13px;line-height:1.2}.perk span{font-size:11px;line-height:1.25}
+.betbox{padding:8px;gap:4px;margin:8px 0}.betbox .tip{margin:0}
+.coin3d{width:56px;height:56px}.coin3d>div{font-size:26px}.coin3d .cb{font-size:15px}
+.betbox .big{font-size:26px}
+.sum .end-stamp{font-size:24px;top:14px}
+.sump{text-align:center}
+.bigscore{display:flex;align-items:baseline;justify-content:center;gap:10px;margin:2px 0}
+.bigscore b{font-family:var(--f-display);font-size:92px;line-height:.85;color:var(--go)}
+.sum.lose .bigscore b{color:var(--stamp)}
+.bigscore span{font-family:var(--f-display);font-size:28px}
+.sumline{text-align:center;font-weight:800;font-size:13px!important;color:var(--ink-soft)}
+.sumgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.sbtn{border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:5px;padding:9px 6px;font-weight:800;font-size:14px}
+.sbtn.green{background:var(--go);border-color:var(--go);color:#fff}
+.sbtn:active{transform:translateY(2px)}
+.basebox{padding:8px 10px;margin:8px 0;gap:4px}.basebox b{font-size:22px}.basebox .chips{max-height:58px;overflow:hidden}
+.lb{max-height:46vh;overflow:auto}
+.shop .cards{max-height:56vh;overflow:auto}
+.ts-hero{padding-bottom:44px}
+.ts{gap:9px}
+/* atmosphere */
+.dust{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.55;
+  background-image:radial-gradient(circle,rgba(255,255,235,.7) 0 1px,transparent 1.6px),radial-gradient(circle,rgba(255,255,235,.5) 0 1.2px,transparent 1.8px);
+  background-size:90px 110px,130px 95px;background-position:0 0,40px 60px;animation:dust 22s linear infinite;
+  -webkit-mask-image:radial-gradient(ellipse 45% 75% at 50% 0%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 45% 75% at 50% 0%,#000 30%,transparent 75%)}
+@keyframes dust{to{background-position:30px 220px,-30px 290px}}
+.lamp::after{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:440px;height:320px;pointer-events:none;
+  background:radial-gradient(ellipse 50% 70% at 50% 0,rgba(255,255,225,.22),transparent 70%)}
+.room{background:linear-gradient(transparent 57%,rgba(0,0,0,.08) 57% 58.5%,transparent 58.5%),repeating-linear-gradient(90deg,transparent 0 59px,rgba(255,255,255,.18) 59px 60px),linear-gradient(var(--wall) 0 60%,var(--wall-2) 60%)}
+.doc-wrap::after{content:"";position:absolute;left:12%;right:12%;bottom:-6px;height:14px;border-radius:50%;background:rgba(0,0,0,.18);filter:blur(3px);z-index:-1}
+@media (max-height:600px){.hud .row2{display:none}.choice{padding:6px 9px;font-size:14px}.cdays{font-size:22px}.num{font-size:32px}}
+@media (prefers-reduced-motion: reduce){.dust{animation:none}}
+@media (max-height:700px){.ts-hero{padding-bottom:34px}.ts-stage{height:44px}.ts-kicker{display:none}.ts{gap:7px}.ts-big{font-size:min(17vw,96px)}.pcard{padding:6px 8px}.cta{font-size:34px}.arr{height:48px}}
+@media (max-height:600px){.ts-sub,.ts-live,.streakbar,.season,.ts-stage,.ts-dl{display:none}.dailybtn span,.sharebtn span,.tmb span{display:none}.ts-hero{padding-bottom:0}
+ .statgrid{gap:5px}.statgrid b{font-size:26px}.statgrid div{padding:4px}.profile .prof-top{grid-template-columns:70px 1fr}.profile .pimg{width:70px}
+ .achs .ach span{display:none}.career{display:none}.sheet h2{font-size:38px}.big{font-size:28px}}
+.actions{grid-template-columns:repeat(auto-fit,minmax(84px,1fr))}
+.actbtn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pad{grid-template-columns:repeat(3,minmax(0,1fr))}.pk{min-width:0}
+.console,.boxc{min-width:0;max-width:100%}
+@media (max-width:360px){.pk{font-size:21px}.pk small{font-size:10px}.actbtn{font-size:17px}.bar{grid-template-columns:62px 1fr 28px}.c-head{font-size:22px}}
 </style>
 
 </head>
@@ -788,6 +899,7 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
 
   <section class="room" id="room" aria-live="polite">
     <div class="lamp cl" aria-hidden="true"></div>
+    <div class="dust cl" aria-hidden="true"></div>
     <div class="chart cl" aria-hidden="true"><div>ע</div><div>ל ב</div><div>ש ד ק</div><div>מ נ ר צ</div><div>פ ת ג ה ט</div></div>
     <div class="wclock cl" aria-hidden="true"><i class="h" id="hH" style="transform:rotate(210deg)"></i><i class="m" id="hM"></i></div>
     <div class="sign cl" aria-hidden="true"><b>שעות קבלה</b><span id="openSign">07:00</span>–<span id="closeSign">07:12</span><br>לא כולל אוכל</div>
@@ -932,9 +1044,9 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
   <div class="prompt" id="prompt">מה אתה אומר לו?</div>
   <section class="choices" id="choices"></section>
   <div class="actions" id="actions">
-    <button id="fightBtn" class="actbtn fightbtn" type="button">להזמין את הרופא למכות</button>
-    <button id="rerollBtn" class="actbtn reroll" type="button" hidden>להחליף משפטים (במבה)</button>
-    <button id="skillBtn" class="actbtn reroll" type="button" hidden>שקשוקה לרופא</button>
+    <button id="fightBtn" class="actbtn fightbtn" type="button">🥊 למכות!</button>
+    <button id="rerollBtn" class="actbtn reroll" type="button" hidden>במבה: החלף</button>
+    <button id="skillBtn" class="actbtn reroll" type="button" hidden>שקשוקה</button>
     <button id="cashout" class="actbtn cashout" type="button" disabled>אין עדיין מה לקחת</button>
   </div>
 
@@ -1158,11 +1270,11 @@ function hud(){
  $('#perks').innerHTML=[...RUN.perks].map(k=>`<span>${PERKS[k].n}</span>`).join('');
  const talk=S.mode==='talk'&&!S.over;
  $('#actions').hidden=!talk;
- const fb=$('#fightBtn');fb.disabled=S.fought||S.busy;fb.textContent=S.fought?'כבר רבתם היום':'להזמין את הרופא למכות';
+ const fb=$('#fightBtn');fb.disabled=S.fought||S.busy;fb.textContent=S.fought?'כבר רבתם':'🥊 למכות!';
  const sk=$('#skillBtn');sk.hidden=charId()!=='cook';sk.disabled=S.busy||S.skill;
  const rb=$('#rerollBtn');rb.hidden=!has('bamba');rb.disabled=S.busy||S.rerolled;
  const co=$('#cashout');co.disabled=S.busy||(S.gimel<=0&&S.turn===0);
- co.textContent=S.gimel>=t?`לוקח ${S.gimel} ויוצא`:S.gimel>0?`מוותר עם ${S.gimel} (סוף הריצה)`:'מוותר ויוצא (סוף הריצה)';
+ co.textContent=S.gimel>=t?`לוקח ${S.gimel} ויוצא`:S.gimel>0?`מוותר עם ${S.gimel}`:'מוותר';co.title=S.gimel>=t?'':'יציאה לפני היעד מסיימת את הריצה';
 }
 
 /* ================= run & visit ================= */
@@ -1833,14 +1945,8 @@ function introSheet(withPerk){
   <div class="time">${NN?'01:58 · ביקור לילה':'06:58 · תור למרפאה'}</div>
   <h1>יום ${DL[d-1]}</h1>
   <p class="story" id="story"></p>
-  <dl class="rows">
-   <div><dt>היעד להיום</dt><dd>${TARGET[d-1]} ימי גימלים</dd></div>
-   <div><dt>הרופא</dt><dd>${ND.legend?'???':ND.n+' · '+ND.role}</dd></div>
-   <div><dt>מצב רוח</dt><dd>${NM.n}</dd></div>
-   <div><dt>חשד התחלתי</dt><dd>${startSus(d)}%</dd></div>
-  </dl>
-  ${NN?'<p class="tip">ביקור לילה: הרופא חצי ישן. קצת יותר קל לעבוד עליו, ויש משפטים שעובדים רק בלילה.</p>':''}
-  <p class="tip">${ND.legend?'משהו מוזר באוויר היום. הרס״ר נראה לחוץ.':ND.d} ${NM.d}.</p>
+  <div class="ibox"><div><span>יעד</span><b>${TARGET[d-1]} ימים</b></div><div><span>רופא</span><b>${ND.legend?'???':ND.n}</b></div><div><span>מצב רוח</span><b>${NM.n}</b></div><div><span>חשד</span><b>${startSus(d)}%</b></div></div>
+  <p class="tip">${NN?'ביקור לילה, הרופא חצי ישן. ':''}${ND.legend?'משהו מוזר באוויר היום.':''}${NM.d}.</p>
   <div id="pp"></div>
   <button class="big" id="enter" type="button">נכנס לחדר</button>
  </div>`;
@@ -1860,7 +1966,6 @@ function daySheet(bonus){
    <div><dt>הוצאת היום</dt><dd>${S.gimel} (יעד ${TARGET[d-1]})</dd></div>
    ${bonus?'<div><dt>בונוס מהחבר בשלישות</dt><dd>+1</dd></div>':''}
    <div><dt>סה״כ בריצה</dt><dd id="dsTotal">${RUN.total}</dd></div>
-   <div><dt>שמירות שחטפת בדרך</dt><dd>${RUN.guards}</dd></div>
   </dl>
   ${betBlock()}
   <div id="pp"></div>
@@ -1901,46 +2006,33 @@ function endRunCore(type,sentence){
  if(RUN.mode==='duel'&&RUN.duel&&RUN.total>RUN.duel.host_score)store.set('gm_duelwins',store.get('gm_duelwins',0)+1);
  if(RUN.mode==='duel'&&RUN.duel&&ONLINE)sbRpc('finish_duel',{p_code:RUN.duel.code,p_name:cleanName(store.get('gm_name',''))||'חייל',p_hero:charId(),p_score:g,p_bout:!!RUN.boutWon}).catch(()=>{});
  const modeTag=RUN.mode==='daily'?'אתגר יומי · ':RUN.mode==='duel'?'דו־קרב · ':'';
- const ov=$('#overlay');ov.hidden=false;
- ov.innerHTML=`<div class="sheet${type==='jail'?' court':''}">
+ renderSummary({type,sentence,g,E,best,career,daysDone,earned,promoted,modeTag});
+}
+function renderSummary(X){const {type,sentence,g,E,best,career,daysDone,earned,promoted,modeTag}=X;const ov=$('#overlay');ov.hidden=false;const back=()=>renderSummary(X);
+ ov.innerHTML=`<div class="sheet sum${type==='jail'?' court':''}${E.ok?'':' lose'}">
   <div class="end-stamp ${E.ok?'ok':'no'}">${E.s}</div>
-  <div class="tag">${modeTag}סיכום ריצה · מרפאת גדוד</div>
+  <div class="tag">${modeTag}סיכום ריצה</div>
   <h2>${E.h}</h2>
-  <p>${E.p(sentence)}</p>
+  <p class="sump">${E.p(sentence)}</p>
   ${duelResultBlock()}
-  ${RUN.mode==='duel'?'':duelBlock(g)}
-  ${baseInline()}
-  ${promoted?`<p><b>קידום! עלית לדרגת ${CAREER[careerRank(career)][0]}.</b></p>`:''}
-  <dl class="rows">
-   <div><dt>ימי גימלים בריצה</dt><dd>${g}</dd></div>
-   <div><dt>ימים שעברת</dt><dd>${daysDone} מתוך 5</dd></div>
-   <div><dt>שמירות שחטפת</dt><dd>${RUN.guards}</dd></div>
-   <div><dt>שיא אישי</dt><dd>${best}</dd></div>
-   <div><dt>אקמולים בקריירה</dt><dd>${store.get('gm_acamol',0)}</dd></div>
-   <div><dt>פעמים בכלא</dt><dd>${store.get('gm_jail',0)}</dd></div>
-  </dl>
-  <p class="earn">+${earned} ${COIN} לקנטינה · יש לך ${getCoins()} ${COIN}</p>
-  ${careerBlock(career)}
+  <div class="bigscore"><b>${g}</b><span>ימי גימלים</span></div>
+  <p class="sumline">${daysDone}/5 ימים · שיא ${best} · +${earned} ${COIN}${promoted?' · קידום ל'+CAREER[careerRank(career)][0]+'!':''}</p>
   <button class="big" id="again" type="button">ריצה חדשה</button>
-  <button class="ghostbtn" id="cardBtn" type="button">כרטיס תוצאה לשיתוף</button>
-  ${lbSubmitBlock(g)}
-  <button class="ghostbtn" id="toMenu" type="button">לתפריט</button>
-  <details class="more"><summary>עיטורים</summary>${achGrid()}</details>
-  <button class="ghostbtn" id="copy" type="button">העתק את התוצאה לחבר׳ה</button>
-  <p class="copytext" id="copyText" hidden></p>
+  <div class="sumgrid">
+   ${ONLINE&&RUN.mode!=='duel'?'<button class="sbtn green" id="duelOpen" type="button">אתגר חבר</button>':''}
+   <button class="sbtn" id="cardBtn" type="button">כרטיס תוצאה</button>
+   ${g>0||RUN.mode==='daily'?'<button class="sbtn" id="lbOpen" type="button">שלח לטבלה</button>':''}
+   <button class="sbtn" id="toMenu" type="button">תפריט</button>
+  </div>
+  ${baseInline()}
  </div>`;
- $('#again').addEventListener('click',()=>{flushRun();startRun(RUN.mode==='daily'?{mode:'daily'}:{})});
- wireBaseInline();
  const drh=$('#drHost');if(drh)drh.textContent=RUN.duel.host_name;
- wireDuel(g);
+ $('#again').addEventListener('click',()=>{flushRun();startRun(RUN.mode==='daily'?{mode:'daily'}:{})});
  $('#toMenu').addEventListener('click',()=>{flushRun();showStart()});
- wireLBSubmit(g);
- $('#cardBtn').addEventListener('click',()=>showCard({g,ok:!!E.ok,title:E.h,stamp:E.s,rank:CAREER[careerRank(career)][0],char:CHARS[charId()].n,days:daysDone,best},showStart));
- $('#copy').addEventListener('click',e=>{
-  const txt=type==='jail'?`הוצאתי ${g} ימי גימלים מהקר״פ ואז נכנסתי לכלא ל־${sentence} ימים. השיא שלי: ${best}.`:`${E.h}: הוצאתי ${g} ימי גימלים מהקר״פ ב־${daysDone} ימים. השיא שלי: ${best}. נראה אותך.`;
-  const fall=()=>{const p=$('#copyText');p.hidden=false;p.textContent=txt;const rg=document.createRange();rg.selectNodeContents(p);const sel=getSelection();sel.removeAllRanges();sel.addRange(rg);e.target.textContent='סמן והעתק מלמטה'};
-  try{navigator.clipboard.writeText(txt).then(()=>{e.target.textContent='הועתק'},fall)}catch(err){fall()}
- });
+ $('#cardBtn').addEventListener('click',()=>showCard({g,ok:!!E.ok,title:E.h,stamp:E.s,rank:CAREER[careerRank(career)][0],char:CHARS[charId()].n,days:daysDone,best},back));
+ const dO=$('#duelOpen');if(dO)dO.addEventListener('click',()=>{ov.innerHTML=`<div class="sheet">${duelBlock(g)}<button class="ghostbtn" id="subBack" type="button">חזרה</button></div>`;wireDuel(g);$('#subBack').addEventListener('click',back)});
+ const lO=$('#lbOpen');if(lO)lO.addEventListener('click',()=>{ov.innerHTML=`<div class="sheet"><h2>טבלת השיאים</h2>${lbSubmitBlock(g)}<button class="ghostbtn" id="subBack" type="button">חזרה</button></div>`;wireLBSubmit(g);$('#subBack').addEventListener('click',back)});
+ wireBaseInline();
 }
 
 /* ================= meta: coins, shop, characters, doctors, moods, missions, leaderboard, score card ================= */
@@ -2064,25 +2156,25 @@ function toastMsg(g,title,sub){const t=document.createElement('div');t.className
  document.body.appendChild(t);setTimeout(()=>t.remove(),3500);[0,.1].forEach((a,i)=>tone([988,1318][i],.2,{type:'triangle',v:.06,at:a+.2}))}
 
 /* ---- canteen (shop) ---- */
-function showShop(){const ov=$('#overlay');ov.hidden=false;const own=owned(),cur=charId(),c=getCoins();
+let SHOPTAB='chars';
+function showShop(tab){if(tab)SHOPTAB=tab;const ov=$('#overlay');ov.hidden=false;const own=owned(),cur=charId(),c=getCoins(),T=SHOPTAB;
  ov.innerHTML=`<div class="sheet shop">
   <div class="shop-top"><h2>קנטינה</h2><span class="coins">${c} ${COIN}</span></div>
-  <div class="ach-h">דמויות</div>
-  <div class="cards">${Object.entries(CHARS).map(([k,C])=>{const has=own.includes(k);
+  <div class="tabs"><button type="button" class="tab${T==='chars'?' on':''}" data-st="chars">דמויות</button><button type="button" class="tab${T==='ups'?' on':''}" data-st="ups">שדרוגים</button></div>
+  <div class="cards" ${T==='chars'?'':'hidden'}>${Object.entries(CHARS).map(([k,C])=>{const has=own.includes(k);
    return `<div class="card${cur===k?' sel':''}"><span class="sw" style="background:${C.shirt};border-color:${C.beret}"></span><div class="ci"><b>${C.n}</b><span>${C.d}</span></div>
    ${has?`<button type="button" class="buy" data-pick="${k}" ${cur===k?'disabled':''}>${cur===k?'נבחר':'בחר'}</button>`:`<button type="button" class="buy" data-char="${k}" ${c<C.price?'disabled':''}>${C.price} ${COIN}</button>`}</div>`}).join('')}</div>
-  <div class="ach-h">שדרוגים</div>
-  <div class="cards">${Object.entries(UPGRADES).map(([k,U])=>{const lv=upLevel(k),full=lv>=U.max,pr=U.price[lv];
+  <div class="cards" ${T==='ups'?'':'hidden'}>${Object.entries(UPGRADES).map(([k,U])=>{const lv=upLevel(k),full=lv>=U.max,pr=U.price[lv];
    return `<div class="card"><span class="lv">${'●'.repeat(lv)}${'○'.repeat(U.max-lv)}</span><div class="ci"><b>${U.n}</b><span>${U.d}</span></div>
    <button type="button" class="buy" data-up="${k}" ${full||c<pr?'disabled':''}>${full?'מקסימום':pr+' '+COIN}</button></div>`}).join('')}</div>
   <button class="big" id="shopBack" type="button">חזרה</button>
-  <p class="best">מרוויחים ${COIN} מכל ריצה ומהמשימות היומיות.</p>
  </div>`;
  ov.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{store.set('gm_char',b.dataset.pick);applySoldier();SFX.tick();showShop()}));
  ov.querySelectorAll('[data-char]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.char,C=CHARS[k];if(getCoins()<C.price)return;
   addCoins(-C.price);store.set('gm_owned',[...owned(),k]);store.set('gm_char',k);applySoldier();SFX.jack();toastMsg('★','דמות חדשה: '+C.n,C.d);showShop()}));
  ov.querySelectorAll('[data-up]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.up,U=UPGRADES[k],lv=upLevel(k);if(lv>=U.max||getCoins()<U.price[lv])return;
   addCoins(-U.price[lv]);const up=store.get('gm_up',{});up[k]=lv+1;store.set('gm_up',up);SFX.win();showShop()}));
+ ov.querySelectorAll('[data-st]').forEach(b=>b.addEventListener('click',()=>{SFX.tick();showShop(b.dataset.st)}));
  $('#shopBack').addEventListener('click',showStart);
 }
 
@@ -2673,7 +2765,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='4.2';
+const VERSION='4.3';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
