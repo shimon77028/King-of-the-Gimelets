@@ -454,6 +454,12 @@ body.fighting .soldier .glv{opacity:1}
 .doc.d-ronit .lhair{display:inline}.doc.d-ronit .mus{display:none}
 .doc.d-avi{--hair:#8d8d86}.doc.d-avi .stub{display:inline}
 .doc.d-noam{--hair:#c9a14a;--skin:#f3c9a4}.doc.d-noam .glasses,.doc.d-noam .mus{display:none}
+.doc .xtra{display:none}
+.doc.d-olga{--hair:#f0cf6e;--skin:#f6d2b4;--skin-d:#d9a885}.doc.d-olga .lhair,.doc.d-olga .bun,.doc.d-olga .lips{display:inline}.doc.d-olga .mus,.doc.d-olga .glasses{display:none}
+.doc.d-rav{--hair:#3b2a1c}.doc.d-rav .kip,.doc.d-rav .beard{display:inline}.doc.d-rav .mirror{opacity:0}.doc.d-rav .mus{display:none}
+.doc.d-ido{--hair:#2a2a2a;--skin:#f3cfae}.doc.d-ido .mus{display:none}.doc.d-ido .sweat2{display:inline}.doc.d-ido .glasses circle{r:17px}
+.doc.d-moti{--hair:#6b5a4a;--skin:#efc2a0}.doc.d-moti .scarf,.doc.d-moti .rnose,.doc.d-moti .therm{display:inline}.doc.d-moti .stub{display:inline}
+.doc.d-moti svg{animation:cough 3.2s ease-in-out infinite}@keyframes cough{0%,86%,100%{transform:none}89%{transform:translateY(3px) scale(.99)}93%{transform:translateY(-1px)}}
 .tip{font-size:14px;opacity:.85;margin:4px 0 0}
 .missions{display:grid;gap:8px;margin:14px 0}
 .missions .ach-h{margin:0}
@@ -614,6 +620,17 @@ body.fighting .room{height:350px}
 .dailybtn b{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--pow)}
 .dailybtn span{font-size:12px;font-weight:700;opacity:.85}
 .dailybtn:active{transform:translateY(2px)}
+.choice.gold{background:linear-gradient(135deg,#fff3c4,#ffd76a 55%,#f5b81f);border-color:#8a6400!important;box-shadow:0 0 0 2px #ffe58a,0 0 22px rgba(255,200,40,.75);animation:goldGlow 1.4s ease-in-out infinite alternate}
+@keyframes goldGlow{from{box-shadow:0 0 0 2px #ffe58a,0 0 10px rgba(255,200,40,.5)}to{box-shadow:0 0 0 2px #fff2b8,0 0 26px rgba(255,200,40,.95)}}
+.chip.goldchip{background:#5a3d00;color:#ffe58a}
+.newb{display:inline-block;margin-inline-start:6px;font-size:10px;font-weight:900;color:#fff;background:#3b82f6;border-radius:99px;padding:1px 7px;vertical-align:middle}
+.console.chain .c-head{background:#3b2a7a}
+.sheet.album{max-width:520px}.alstat{display:flex;gap:6px;align-items:baseline;justify-content:center}.alstat b{font-family:var(--f-display);font-size:56px;line-height:1}.alstat span{font-weight:800;color:var(--ink-soft)}
+.albar{height:10px;border-radius:99px;background:rgba(0,0,0,.12);overflow:hidden;margin:6px 0}.albar i{display:block;height:100%;background:linear-gradient(90deg,#3b82f6,#7c3aed)}
+.algold{display:flex;gap:6px;justify-content:center;margin:8px 0}.algold span{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#e8e2d0;color:#9a917a;font-weight:900}.algold span.on{background:#ffd76a;color:#5a3d00;box-shadow:0 0 10px rgba(255,200,40,.8)}
+.allist{list-style:none;margin:8px 0;padding:0;max-height:38vh;overflow:auto;display:grid;gap:4px;text-align:start}
+.allist li{font-size:13px;font-weight:700;padding:6px 10px;border-radius:8px;background:#fff;border-inline-start:5px solid #9aa}
+.allist li.r1{border-color:#3e9d4a}.allist li.r2{border-color:#e0a21b}.allist li.r3{border-color:#d0392b}.allist li.rg{border-color:#f5b81f;background:#fff6d6}
 .ts-duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
 .ts-duo .dailybtn b{font-size:24px}.ts-duo .dailybtn span{font-size:11px}
 .pvpbtn{background:linear-gradient(135deg,#5a1b14,#2c0d0a);border-color:#ff6b5b;box-shadow:0 4px 0 #1a0605}.pvpbtn b{color:#ffb4a8}
@@ -1113,7 +1130,9 @@ body[data-bgskin="gold"]{--bfr:#1a1206;--bframe:linear-gradient(135deg,#7a5a12,#
         <path d="M80 156 Q70 198 104 202 Q136 198 140 156" stroke="#2b2f33" stroke-width="4" fill="none" stroke-linecap="round"/>
         <circle cx="104" cy="206" r="7" fill="#a9b3b8" stroke="#2b2f33" stroke-width="3"/>
         <rect x="97" y="126" width="26" height="28" rx="6" fill="var(--skin-d)"/>
+        <g class="xtra scarf"><path d="M66 146 Q110 168 154 146 L158 164 Q110 190 62 164Z" fill="#c0392b"/><path d="M126 160 l12 44 l-13 3 l-8 -42z" fill="#a93226"/><path d="M70 156 Q110 176 150 156" stroke="#f5d0c5" stroke-width="3" fill="none" stroke-dasharray="6 6"/></g>
         <g class="head">
+          <g class="xtra bun"><circle cx="110" cy="22" r="17" fill="var(--hair)"/><path d="M96 24 Q110 14 124 24" stroke="rgba(0,0,0,.18)" stroke-width="2" fill="none"/></g>
           <path class="lhair" d="M58 74 Q46 146 74 166 L146 166 Q174 146 162 74 Q150 30 110 28 Q70 30 58 74Z" fill="var(--hair)"/>
           <ellipse cx="60" cy="92" rx="9" ry="13" fill="var(--skin)"/>
           <ellipse cx="160" cy="92" rx="9" ry="13" fill="var(--skin)"/>
@@ -1161,6 +1180,11 @@ body[data-bgskin="gold"]{--bfr:#1a1206;--bframe:linear-gradient(135deg,#7a5a12,#
             <path class="v" data-k="mw" d="M95 127 q4 -5 7.5 0 q4 5 7.5 0 q4 -5 7.5 0 q4 5 7.5 0"/>
           </g>
           <g class="sweat2"><path class="drop" d="M154 58 Q160 68 154 72 Q148 68 154 58Z" fill="#7fc4ef"/><path class="drop d2" d="M66 64 Q71 72 66 75 Q61 72 66 64Z" fill="#7fc4ef"/><path class="drop d3" d="M140 40 Q145 48 140 51 Q135 48 140 40Z" fill="#7fc4ef"/></g>
+          <g class="xtra beard"><path d="M60 96 Q62 162 110 172 Q158 162 160 96 Q152 140 132 142 Q120 134 110 136 Q100 134 88 142 Q68 140 60 96Z" fill="var(--hair)"/></g>
+          <g class="xtra lips"><path d="M97 126 Q103 121 110 124 Q117 121 123 126 Q110 135 97 126Z" fill="#c2253a"/></g>
+          <g class="xtra rnose"><circle cx="111" cy="103" r="9" fill="#e0483c"/><circle cx="108" cy="100" r="2.5" fill="#fff" opacity=".6"/></g>
+          <g class="xtra therm"><g transform="rotate(-14 120 127)"><rect x="118" y="124" width="34" height="5.5" rx="2.7" fill="#f4f4f4" stroke="#6f7a80" stroke-width="1.5"/><circle cx="152" cy="126.7" r="3.4" fill="#e0483c"/></g></g>
+          <g class="xtra kip"><path d="M80 40 Q110 14 140 40 Q110 32 80 40Z" fill="#26357a" stroke="#141d47" stroke-width="2"/><path d="M90 34 Q110 24 130 34" stroke="#d9b44a" stroke-width="2" fill="none"/></g>
           <path class="mus" d="M82 117 Q94 104 110 111 Q126 104 138 117 Q126 121 110 116 Q94 121 82 117Z" fill="var(--hair)"/>
         </g>
       </svg>
@@ -1496,7 +1520,7 @@ function startVisit(){
  $('#gimel').dataset.v=0;$('#gimel').textContent='0';$('#stamp').hidden=true;$('#cmd').className='cmd';$('#doc').className='doc';$('#gatebar').classList.remove('up');room.className='room';
  if(S.night)room.classList.add('night');
  applyDoctor();if(d>=3)mission('day3');docLife();
- const go=()=>{musicPlay(clinicSong());if(DOC().legend)setTimeout(chiefEntrance,500);setMood('neutral');say(null,S.night?pickOne(NIGHT_GREET):GREET[d-1]);deal()};
+ const go=()=>{musicPlay(clinicSong());if(DOC().legend)setTimeout(chiefEntrance,500);setMood('neutral');say(null,S.night?pickOne(NIGHT_GREET):(DOC().greet&&d>1?pickOne(DOC().greet):GREET[d-1]));deal()};
  hud();
  if(RUN.mode==='tutorial')return go();
  $('#choices').innerHTML='';setPrompt('');$('#actions').hidden=true;
@@ -1507,12 +1531,16 @@ function deal(){
  const pool=LINES.map((_,i)=>i).filter(i=>!S.used.has(i)&&lineAvailable(LINES[i])),pick=[];
  for(const r of gShuffle([1,2,3])){const c=pool.filter(i=>LINES[i].r===r&&!pick.includes(i));if(c.length)pick.push(gPick(c))}
  gShuffle(pick);
- if(RUN.mode==='normal'&&Math.random()<.3){const own=LINES.map((_,i)=>i).filter(i=>LINES[i].c&&lineAvailable(LINES[i],true)&&!S.used.has(i));if(own.length)pick[Math.floor(Math.random()*pick.length)]=pickOne(own)}
+ if(RUN.mode==='normal'&&!TUT&&Math.random()<.05){const gs=LINES.map((_,i)=>i).filter(i=>LINES[i].gold&&!S.used.has(i));if(gs.length)pick[Math.floor(Math.random()*pick.length)]=pickOne(gs)}
+ if(RUN.mode==='normal'&&Math.random()<.3){const own=LINES.map((_,i)=>i).filter(i=>LINES[i].c&&lineAvailable(LINES[i],true)&&!S.used.has(i));const slot=pick.findIndex(i=>!LINES[i].gold);if(own.length&&slot>=0)pick[slot]=pickOne(own)}
+ const AL=albumSet();
  const box=$('#choices');box.innerHTML='<div class="patience"><div class="pbar"><i id="patBar"></i></div></div>';let kn=0;
  pick.forEach(i=>{kn++;const L=LINES[i],b=document.createElement('button');b.type='button';b.className='choice';
   const lo=L.r===3?2:1,hi=L.j?L.j.g:(L.r===1?1:2);
-  b.classList.add('rk'+L.r);b.setAttribute('aria-label',RISK[L.r][0]+': '+L.t.replace(/\*/g,''));
-  b.innerHTML=`<span class="kbd">${kn}</span><span class="ctext"><span>${fmt(L.t)}</span><span class="chip ${RISK[L.r][1]}">${RISK[L.r][0]}</span></span><span class="cdays" dir="ltr">+${lo===hi?lo:lo+'–'+hi}${L.j?'<b>!</b>':''}</span>`;
+  b.classList.add('rk'+L.r);if(L.gold)b.classList.add('gold');b.setAttribute('aria-label',(L.gold?'משפט זהב':RISK[L.r][0])+': '+L.t.replace(/\*/g,''));
+  const isNew=!AL.has(lineKey(L));
+  b.innerHTML=L.gold?`<span class="kbd">${kn}</span><span class="ctext"><span>${fmt(L.t)}</span><span class="chip goldchip">✨ משפט זהב · הכל או כלום</span></span><span class="cdays" dir="ltr">+7–10<b>!</b></span>`
+   :`<span class="kbd">${kn}</span><span class="ctext"><span>${fmt(L.t)}</span><span class="chip ${RISK[L.r][1]}">${RISK[L.r][0]}</span>${isNew?'<span class="newb">חדש</span>':''}</span><span class="cdays" dir="ltr">+${lo===hi?lo:lo+'–'+hi}${L.j?'<b>!</b>':''}</span>`;
   b.addEventListener('click',()=>choose(i,b));b.addEventListener('pointerenter',()=>$('#doc').classList.add('look-d'));b.addEventListener('pointerleave',()=>$('#doc').classList.remove('look-d'));box.appendChild(b)});
  if(TUT&&TUT.step===0&&RUN.day===1){TUT.step=1;stopPatience();setTimeout(()=>coach('#choices .choice','בחר מה להגיד לרופא. אדום מסוכן, אבל שווה יותר ימים. ירוק בטוח.',()=>{if(S.mode==='talk'&&!S.busy)startPatience()}),350)}
  else{startPatience();maybeFly()}
@@ -1530,7 +1558,9 @@ async function choose(i,btn){
  if(S.busy||S.over||S.mode!=='talk')return;closeCoach();stopPatience();if(!store.get('gm_played',false)){store.set('gm_played',true);track('choice1')}if(S.turn===2)track('choice3');S.busy=true;S.used.add(i);S.turn++;S.queue+=rnd(1,3);SFX.tick();
  document.querySelectorAll('.choice').forEach(b=>b.classList.add(b===btn?'picked':'dim'));
  const L=LINES[i];$('#stamp').hidden=true;setMood('think');say(L.t,'',{thinking:1});S.justBonus=false;hud();
+ {const ct=claimTopic(L.t);if(ct)(S.claims=S.claims||[]).push(ct)}albumAdd(L);
  await wait(1000);
+ if(L.gold)return goldResolve(L);
  S.lastP=null;let res=(TUTOR&&TUTOR.forced.length)?TUTOR.forced.shift():(TUT&&RUN.day===1&&S.turn===1)?'win':roll(L);if(res==='jack'&&!L.j)res='win';
  if(res==='win'||res==='jack'){
   let gain=res==='jack'?L.j.g+(DOC().mod.jack||0):(L.r===1?1:L.r===3?2:(GR()<.4?2:1));
@@ -1538,7 +1568,7 @@ async function choose(i,btn){
   if(S.fever)gain*=2;
   S.gimel+=gain+bonus;S.sus+=Math.round((res==='jack'?12:5+L.r*3)*(DOC().mod.sus||1));
   if(res==='jack')mission('jack');if(L.r===3)mission('crazy');if(S.streak>=3)mission('streak');if(moodMatch(L)){mission('mood');burst('בול!')}
-  setMood(res==='jack'?'shock':(L.wm||(S.hot?'sweaty':'happy')));say(L.t,(res==='jack'?L.j.t:L.w).replaceAll('{g}',days(gain)));setGimel(S.gimel);
+  setMood(res==='jack'?'shock':(L.wm||(S.hot?'sweaty':'happy')));say(L.t,docFlavor(L,(res==='jack'?L.j.t:L.w).replaceAll('{g}',days(gain)),'win'));setGimel(S.gimel);
   floatTxt('+'+gain+(bonus?' · רצף! +1':''));{const sc=STREAK_CALLS[S.streak];if(sc&&S.streak!==3)setTimeout(()=>burst(sc),450)}maybeFind();sol('cheer');unlock('first');if(S.streak>=6)unlock('streak');
   if(res==='jack'){unlock('jack');if(L.t.includes('בהריון'))unlock('preg')}
   buzz(res==='jack'?HAPT.jack:HAPT.ok);
@@ -1553,7 +1583,7 @@ async function choose(i,btn){
   S.streak=0;RUN.guards++;S.clean=false;sol('slump');
   let ds=Math.round((20+L.r*8+(RUN.day-1)*3+(DOC().mod.fail||0))*(MOOD().fail||1)*(DOC().mod.sus||1));if(S.scared)ds=Math.round(ds/2);
   if(has('kaban')&&!S.kabanUsed){S.kabanUsed=true;ds=0}
-  S.sus+=ds;setMood(S.hot?'sweaty':'angry');say(L.t,L.f+(ds===0?' (אישור הקב״ן הציל אותך.)':''));stamp('נדחה');SFX.fail();shake();
+  S.sus+=ds;setMood(S.hot?'sweaty':'angry');say(L.t,docFlavor(L,L.f,'fail')+(ds===0?' (אישור הקב״ן הציל אותך.)':''));stamp('נדחה');SFX.fail();shake();
   floatTxt(ds?'+'+ds+'% חשד':'חשד +0',true);if(L.ffx)runFx(L.ffx);buzz(HAPT.fail);
   if(S.lastP!=null&&S.lastP>=.4)setTimeout(()=>nearMiss('אוף! היה '+Math.round(S.lastP*100)+'% סיכוי'),500);
  }
@@ -1566,6 +1596,7 @@ async function afterBeat(ms,allowEvent){
  if(S.sus>=100){await wait(ms);return bust()}
  if(S.turn>=S.turns){await wait(ms+200);return endVisit('time')}
  if(allowEvent){
+  if(!S.chainDone&&S.claims&&S.claims.length&&S.turn>=2&&S.turn<S.turns&&GR()<.22){await wait(ms);return chainQ()}
   if(!S.cmdDone&&S.turn>=2&&GR()<.1+.07*RUN.day){await wait(ms);return commander()}
   if(GR()<.3+.02*RUN.day){await wait(ms);return randomEvent()}
  }
@@ -2030,6 +2061,7 @@ function jail(reason){
 
 /* ================= achievements ================= */
 const ACH={
+ gold:{n:'משפט זהב',d:'משפט זהב עבד לך',g:'ז'},
  pbg:{n:'שש בש ברשת',d:'ניצחת משחק שש בש אונליין',g:'ש'},
  bglegend:{n:'מנצח האגדה',d:'ניצחת את שלומי האגדי',g:'ל'},
  pvp:{n:'אלוף הזירה',d:'ניצחת חבר בקרב אונליין',g:'א'},
@@ -2319,10 +2351,10 @@ const lineTag=L=>Object.keys(TAGRX).find(k=>TAGRX[k].test(L.t))||'';
 const DOC=()=>DOCS[(S&&S.doc)||'shmueli'], MOOD=()=>DMOODS[(S&&S.moodK)||'party'];
 function moodMatch(L){const t=MOOD().tag;return !!t&&lineTag(L)===t}
 function succMod(L){const D=DOC().mod,M=MOOD();let m=(D.all||0)+(M.all||0)+upLevel('charm')*.03+(S&&S.night?.06:0);
- if(L.r===3)m+=(D.r3||0)+(M.r3||0);if(L.r===1)m+=(D.r1||0)+(M.r1||0);if(moodMatch(L))m+=.25;return m}
+ if(L.r===3)m+=(D.r3||0)+(M.r3||0);if(L.r===1)m+=(D.r1||0)+(M.r1||0);if(moodMatch(L))m+=.25;return m+docTagMod(L)}
 const patMul=()=>(DOC().mod.pat||1)*(MOOD().pat||1)*(charId()==='jobnik'?1.35:1)*(S&&S.night?1.25:1);
 function startSus(d){return Math.max(0,SUS0[d-1]-(has('candy')?10:0)-upLevel('connect')*5-(charId()==='jobnik'?10:0)+(charId()==='fighter'?8:0))}
-function lineAvailable(L,own){if(L.c==='night')return !!(S&&S.night);if(!own)return !L.c;return !L.c||L.c===charId()||(L.c==='vip'&&upLevel('vip')>0)}
+function lineAvailable(L,own){if(L.gold)return false;if(L.c==='night')return !!(S&&S.night);if(!own)return !L.c;return !L.c||L.c===charId()||(L.c==='vip'&&upLevel('vip')>0)}
 function pickVisit(d){let dk=d===1?'shmueli':gPick(Object.keys(DOCS).filter(k=>!DOCS[k].legend));if(d>=2&&GR()<.04)dk='chief';const mood=gPick(Object.keys(DMOODS));return{doc:dk,mood,night:d>=2&&GR()<.22}}
 function applySoldier(){const c=CHARS[charId()],s=$('#soldier');s.style.setProperty('--s-shirt',c.shirt);s.style.setProperty('--s-beret',c.beret);s.style.setProperty('--s-hair',c.hair);s.dataset.char=charId()}
 function applyDoctor(){const D=DOC();const d=$('#doc');D.cls.split(' ').filter(Boolean).forEach(c=>d.classList.add(c));
@@ -2347,6 +2379,384 @@ const MORE_LINES=[
 ];
 LINES.push(...MORE_LINES);
 LINES.push(...EXTRA_LINES);
+/* ================= content pack 2: 150 lines, golden lines, 40 events, 4 doctors, chains, album ================= */
+const NEW_LINES=[
+ /* back & underwear */
+ {t:'נתפס לי הגב כשהתכופפתי להרים את הכבוד העצמי שלי',r:1,w:'זה כבד, אני יודע. {g}.',f:'הכבוד העצמי שלך שוקל פחות משקית במבה.'},
+ {t:'הגב שלי עושה קליק כל פעם שאומרים ״מסדר״',r:2,w:'שמעתי את הקליק. מפחיד. {g}.',f:'אמרתי ״מסדר״. אין קליק. יש שמירה.'},
+ {t:'החלפתי תחתונים פעם אחרונה בטירונות. זה מדבק?',r:3,w:'אני לא מתקרב. {g}, ותשרוף אותם.',f:'זה לא מחלה. זו בחירה. וגם שמירה.',j:{g:4,t:'החובשת פינתה את המרפאה. {g}, ותחליף בדרך.',fx:'gas'},wm:'shock'},
+ {t:'יש לי פריצת דיסק. דיסק של עומר אדם.',r:2,w:'גם אני לא מוציא אותו מהראש. {g}.',f:'זה לא דיסק. זה טעם מוזיקלי רע.'},
+ {t:'התחתונים של הצבא שרטו לי משהו בנשמה',r:1,w:'תחתוני צה״ל, הנשק הסודי. {g}.',f:'תביא תחתונים מהבית כמו כולם.'},
+ {t:'*הולך עם יד על הגב כמו סבא בן 90*',r:1,w:'גם אני ככה בבוקר. {g}.',f:'ראיתי אותך רץ לחדר אוכל לפני דקה.'},
+ {t:'נתקע לי הגב בתנוחת ״הכן״. אני לא יכול לזוז',r:2,w:'אז אל תזוז. {g}, ושמישהו יסחוב אותך.',f:'מעולה. ככה תשמור יציב.',wm:'shock'},
+ {t:'הגב שלי עקום מהמיטה בחדר 4. כל החדר עקום',r:1,w:'מכיר את חדר 4. {g}.',f:'החדר עקום, אתה ישר. שמירה.'},
+ {t:'התחתונים שלי התכווצו בכביסה. ואני איתם',r:2,w:'נשמע כואב. {g}.',f:'תכבס בקר. ותשמור בחם.'},
+ {t:'החזקתי את הנגב בשמירה שש שעות. עכשיו הגב שלי נגב',r:2,w:'נשמע כמו כאב אמיתי. {g}.',f:'החזקת אותו? ראיתי אותו על הרצפה.'},
+ {t:'הגב שלי מדבר. הוא אומר ״גימלים״',r:3,w:'גם לי הוא אמר. {g}.',f:'הגב שלי אומר ״שמירה״.',j:{g:4,t:'הרופא הצמיד אוזן לגב. שמע ״גימלים״. {g}.'}},
+ {t:'יש לי שפשפת בגודל של מפת הארץ',r:2,w:'כולל רמת הגולן? {g}.',f:'רשמתי ״שפשפת קלה״. בלי גאוגרפיה.'},
+ {t:'התכופפתי להרים מחסנית ונשארתי למטה',r:1,w:'אתה עדיין קצת למטה. {g}.',f:'מצוין. תישאר ככה בשמירה, פחות רואים אותך.'},
+ {t:'המדים שלי צמודים מדי. הם חונקים לי את הגב',r:1,w:'אולי באמת. {g}.',f:'זה לא המדים. אלו הלחמניות של לילה.'},
+ {t:'*מראה לו את התחתונים ההפוכים* זה סימפטום?',r:3,w:'סימפטום של משהו רע. {g}.',f:'זה סימפטום של עצלות.',j:{g:5,t:'הרופא ראה דברים שאף רופא לא צריך לראות. {g}.',fx:'faint'},wm:'shock'},
+ {t:'נרדמתי על הקסדה. עכשיו הגב שלי בצורת קסדה',r:2,w:'אני רואה את הצורה. {g}.',f:'זה לא גב. זה כיפוף.'},
+ {t:'הפיזיותרפיסט אמר לי לשכב שבוע. הוא חבר שלי מהשכונה',r:1,w:'חבר מהשכונה זה גם רופא. {g}.',f:'החבר שלך מהשכונה הוא מאמן כושר בפייסבוק.'},
+ {t:'יש לי דלקת בעצב הסיאטי. ידעתי לאיית את זה',r:2,w:'הצלחת לאיית. מרשים. {g}.',f:'ידעת לאיית, אבל הצבעת על הברך.'},
+ {t:'אני לא יכול להרים את הנשק. הוא כבד לי מבחינה רגשית',r:2,w:'יש בזה משהו. {g}.',f:'תרים קודם את עצמך מהכיסא.'},
+ {t:'*נכנס זוחל על הרצפה*',r:3,w:'וואו. {g}, ותזחל החוצה.',f:'הרצפה נקייה עכשיו. תודה. שמירה.',j:{g:4,t:'כל התור התחיל לזחול. הרופא נכנע: {g}.'}},
+ /* mess hall */
+ {t:'אכלתי את הקציצות של שלישי. אני כבר לא אותו אדם',r:2,w:'אף אחד לא יוצא שלם מהקציצות. {g}.',f:'אני אוכל אותן כל שלישי. תראה אותי.',wm:'sick'},
+ {t:'הפתיתים בחדר אוכל זזו לבד בצלחת',r:2,w:'גם אצלי זזו. {g}.',f:'הם זזו כי שיקשקת את הצלחת.'},
+ {t:'אני אלרגי לשניצל של הצבא. לא לשניצל. רק של הצבא.',r:1,w:'אלרגיה מוכרת. {g}.',f:'ראיתי אותך לוקח ארבעה.'},
+ {t:'שתיתי את הקפה מהמכונה של הש״ג',r:3,w:'אלוהים. {g}, ומהר.',f:'אני שותה ממנה כל יום. זה מחזק.',j:{g:5,t:'אף אחד לא שרד את המכונה. {g}, ונס גלוי.',fx:'siren'},wm:'shock'},
+ {t:'מצאתי שערה בשקשוקה. היא הייתה ארוכה ממני',r:2,w:'ראיתי את השקשוקה הזאת. {g}.',f:'שערה זה חלבון. תאכל.',wm:'sick'},
+ {t:'הלחם בחדר אוכל כל כך יבש שנשברה לי שן',r:1,w:'הלחם הזה הוא נשק. {g}.',f:'תראה לי את השן. ...היא שלמה.'},
+ {t:'אכלתי את הלוף. בכוונה. רציתי לדעת.',r:3,w:'אומץ שלא ראיתי. {g}.',f:'מי שאוכל לוף בכוונה, מגיע לו.',j:{g:4,t:'הרופא הצדיע לך. {g}, גיבור.'},wm:'shock'},
+ {t:'הסלט של חדר אוכל עשה לי הרעלת מלפפון',r:1,w:'אין דבר כזה, אבל טוב. {g}.',f:'אין דבר כזה הרעלת מלפפון.'},
+ {t:'הטבח אמר לי ״על אחריותך״ לפני שנתן לי צלחת',r:2,w:'אם הטבח אמר... {g}.',f:'הטבח אומר את זה לכולם. זה הסלוגן שלו.'},
+ {t:'הקינוח של שישי היה ירוק. הוא היה אמור להיות צהוב',r:2,w:'ירוק זה סימן רע. {g}.',f:'זה ג׳לי ליים. אין לך מושג בקינוחים.'},
+ {t:'אכלתי 9 פיתות בשישי ועכשיו אני פיתה',r:1,w:'אתה באמת נראה פיתה. {g}.',f:'אתה נראה כמו מישהו שצריך לרוץ.'},
+ {t:'הסמל אמר שהאורז ״עוד בסדר״. הוא לא היה.',r:2,w:'״עוד בסדר״ זה משפט מסוכן. {g}.',f:'הסמל צדק. אתה פה, לא?',wm:'sick'},
+ {t:'*מראה לו צילום של הגולאש* זה מה שאכלתי',r:2,w:'אני צריך לשבת. {g}.',f:'נראה טעים, האמת.'},
+ {t:'שתיתי מהברז של המקלחות. היה טעם של נעליים',r:2,w:'יש לזה שם רפואי. {g}.',f:'זה טעם של צה״ל. תתרגל.'},
+ {t:'אני בצום. לא לשם שמיים. בגלל חדר אוכל',r:1,w:'מובן לגמרי. {g}.',f:'גם הצום הזה לא מזכה בכלום.'},
+ {t:'אני חושב שהבולגרית בחדר אוכל זה בעצם קיר',r:1,w:'גם אני חושב. {g}.',f:'תאכל את הקיר ותשתוק.'},
+ {t:'אחרי הפסטה של רביעי אני רואה צבעים',r:3,w:'צבעים זה כבר מקרה רפואי. {g}.',f:'זה נקרא ״השיער של החובשת״.',j:{g:4,t:'גם הרופא אכל מהפסטה. עכשיו הוא רואה צבעים. {g}.'}},
+ {t:'גנבתי ביצה קשה מהמטבח והיא נקמה בי',r:2,w:'הביצה ניצחה. {g}.',f:'גנבת ביצה? עכשיו זה עניין משמעתי.'},
+ {t:'*מגהק עשר שניות ברצף*',r:3,w:'זה היה... מרשים. {g}.',f:'שמירה על כל שנייה.',j:{g:4,t:'הגיהוק הפעיל את האזעקה. המרפאה התפנתה. {g}.',fx:'siren'}},
+ {t:'המנה הצמחונית בחדר אוכל היא כרוב. כל יום. אני כבר כרוב.',r:1,w:'אתה באמת ירקרק. {g}.',f:'כרוב זה בריא. תמשיך.'},
+ /* the girlfriend left */
+ {t:'החברה עזבה אותי. בוואטסאפ. עם סטיקר.',r:1,w:'סטיקר? אכזרי. {g}.',f:'גם אותי עזבו. ואני פה.'},
+ {t:'היא עזבה אותי בשביל ג׳ובניק מהקריה',r:2,w:'זה כואב פעמיים. {g}.',f:'הג׳ובניק מהקריה זה אח שלי. תתבייש.'},
+ {t:'החברה שלי עזבה ולקחה את הכלב. גם הכלב לא מתקשר',r:2,w:'אפילו הכלב. {g}.',f:'הכלב צודק.'},
+ {t:'אני רואה את הסטורי שלה כל עשר דקות. זה כבר מקצוע',r:1,w:'זה באמת כמו עבודה. {g}.',f:'זה לא מקצוע. זה עצוב. ושמירה.'},
+ {t:'היא כתבה ״צריכים לדבר״ ואז לא דיברה',r:2,w:'זה הכי גרוע. {g}.',f:'אולי היא פשוט לא רוצה לדבר איתך.'},
+ {t:'השם שלה חרוט לי על הקת. עכשיו אני לא מסוגל לירות',r:3,w:'הבנתי. {g}.',f:'תמחק עם טיפקס.',j:{g:4,t:'הרופא התרגש עד דמעות. {g}, ותמחק את השם.'}},
+ {t:'היא עזבה אותי ביום ההולדת שלה. שלה!',r:1,w:'איזה תזמון. {g}.',f:'היא עזבה ביום ההולדת שלה כי שכחת אותו.'},
+ {t:'שמעתי ״נדבר אחרי שתשתחרר״ ונשבר לי משהו בפנים',r:2,w:'אני מכיר את הסדק הזה. {g}.',f:'מה שנשבר זה הסבלנות שלי.'},
+ {t:'*מנגן לו שיר עצוב מהטלפון*',r:2,w:'...עומר אדם? טוב. {g}.',f:'תכבה את זה. זה מוריד לי את המורל.'},
+ {t:'היא התחילה לצאת עם הרס״ר שלי. הרס״ר!',r:3,w:'אוי ואבוי. {g}.',f:'הרס״ר בחור טוב. מגיע לו.',j:{g:5,t:'הרופא התקשר לרס״ר לנזוף בו. {g} לך.'}},
+ {t:'אני כותב לה מכתבים כל לילה. אני לא שולח',r:1,w:'רומנטי וגם עצוב. {g}.',f:'אז תכתוב בשמירה. תחסוך זמן.'},
+ {t:'היא עזבה כי אני ״תמיד בבסיס״. אז אני צריך להיות בבית',r:2,w:'יש בזה היגיון. {g}.',f:'יש בזה היגיון מעוות.'},
+ {t:'היא החזירה לי את הסווטשרט. מקופל. זה הכי אכזרי',r:2,w:'מקופל?! בלי רחמים. {g}.',f:'מקופל זה דווקא סימן של כבוד.'},
+ {t:'אני בוכה במקלחת כדי שלא יראו. נגמרו המים החמים.',r:2,w:'גם המים בוכים איתך. {g}.',f:'אז אתה זה שגומר את המים החמים!'},
+ {t:'אמרתי לה ״אני אוהב אותך״ והיא ענתה ״חח״',r:3,w:'״חח״ זה משהו שאי אפשר לחיות איתו. {g}.',f:'חח.',j:{g:4,t:'אפילו החובשת התפרקה. {g}.'}},
+ {t:'היא חסמה אותי בכל הרשתות. גם בלינקדאין.',r:1,w:'גם בלינקדאין? זה כבר אישי. {g}.',f:'מה עשית בלינקדאין בכלל?'},
+ {t:'הלב שלי שבור. רשמית. יש לי צילום.',r:2,w:'...זה אימוג׳י של לב שבור. טוב. {g}.',f:'זה אימוג׳י. זה לא צילום.'},
+ {t:'היא עזבה אותי, והמ״פ לא מוכן לתת לי ״יום עצב״',r:1,w:'אני אתן לך. {g}.',f:'אין יום עצב בצבא. יש יום ראשון.'},
+ {t:'*כותב לה מול הרופא* ״אני בגימלים בגללך״',r:3,w:'נו, עכשיו אני מחויב. {g}.',f:'היא ענתה ״יופי, תשמור״.',j:{g:4,t:'היא חזרה אליך! הרופא התרגש: {g}.'}},
+ /* "my mom is a nurse" and family */
+ {t:'אמא שלי אחות. היא אמרה שאני צריך גימלים',r:1,w:'אחיות תמיד צודקות. {g}.',f:'אמא שלך אחות במחלקת יולדות.'},
+ {t:'אמא שלי אחות, אבא שלי רופא, ואני חולה. כל המשפחה בעניין',r:2,w:'משפחה רפואית. כבוד. {g}.',f:'אבא שלך רופא שיניים.'},
+ {t:'אמא שלי כבר מחכה בחניה עם האוטו מונע',r:2,w:'לא אגרום לאמא לחכות. {g}.',f:'תגיד לאמא שתכבה את המנוע. הדלק יקר.'},
+ {t:'סבתא שלי אמרה שאני חיוור. היא ראתה בשיחת וידאו',r:1,w:'סבתות רואות הכל. {g}.',f:'הווידאו היה באיכות של שנות ה־90.'},
+ {t:'אמא שלי שלחה מכתב לרופא. *מוציא מעטפה עם מדבקות*',r:2,w:'המדבקות שכנעו אותי. {g}.',f:'המכתב כתוב בכתב היד שלך.'},
+ {t:'אחותי מתחתנת ואני אחראי על הכלה',r:2,w:'זה תפקיד חשוב. {g}.',f:'מה זה בכלל ״אחראי על הכלה״?'},
+ {t:'אבא שלי היה קר״פ. הוא אמר להגיד לך ״שלום מאילן״',r:3,w:'אילן?! הוא לימד אותי הכל. {g}.',f:'אני לא מכיר שום אילן.',j:{g:5,t:'אילן היה המפקד שלו. הרופא עמד דום: {g}.'}},
+ {t:'דודה שלי חלמה שאני חולה. היא אף פעם לא טועה',r:1,w:'חלומות של דודות זה רציני. {g}.',f:'תגיד לדודה שתחלום על שמירה.'},
+ {t:'אמא שלי בישלה במיוחד לשבת הזאת. היא כבר הקפיאה',r:2,w:'אוכל של אמא קודם. {g}.',f:'שתפשיר לשבת הבאה.'},
+ {t:'*מעביר לו את הטלפון* זו סבתא. היא בוכה.',r:3,w:'סבתא, די, די, נתתי לו. {g}.',f:'סבתא אמרה ״תן לו שמירה, הוא עצלן״.',j:{g:4,t:'סבתא הבטיחה להביא לרופא עוגה. {g}.'}},
+ {t:'אח שלי הקטן צריך אותי. הוא בן 15, אבל רגיש',r:1,w:'אחים זה חשוב. {g}.',f:'בן 15? הוא צריך רק וויי־פיי.'},
+ {t:'אמא שלי אחות. היא שמעה את התיאור ואמרה ״אוי ואבוי״',r:2,w:'אם אחות אמרה ״אוי ואבוי״... {g}.',f:'״אוי ואבוי״ זה לא אבחנה.'},
+ {t:'יש לנו ברית בשבת ואני הסנדק. של הכלב.',r:3,w:'אני לא רוצה לשאול. {g}.',f:'לכלבים אין ברית.',j:{g:4,t:'הרופא הוזמן לאירוע. {g}, והוא מביא מתנה.'}},
+ {t:'אבא שלי אמר שאם אני לא בבית בשישי, הוא מגיע לבסיס',r:2,w:'בוא לא נגיע לזה. {g}.',f:'שיבוא. נשים אותו איתך בשמירה.'},
+ {t:'אמא שלי מדדה לי חום באפליקציה. יצא 39',r:1,w:'אפליקציה של אמא. מדויק. {g}.',f:'אין אפליקציה שמודדת חום.'},
+ {t:'הדוד שלי חבר כנסת. לא רוצה להגיד איזה',r:3,w:'...לא רוצה בעיות. {g}.',f:'הדוד שלך עובד בסופר.',j:{g:4,t:'הרופא חיפש בגוגל ונבהל. {g}.'}},
+ {t:'סבא שלי היה בפלמ״ח. הוא אמר שבזמנו לא היו שמירות',r:1,w:'כבוד לסבא. {g}.',f:'בזמנו היו שמירות בלי מעיל.'},
+ {t:'אמא שלי מקשיבה עכשיו בטלפון. תגיד לה שלום',r:2,w:'שלום גברת! הוא חולה מאוד! {g}.',f:'שלום גברת. הבן שלך עושה הצגות.'},
+ /* tech excuses */
+ {t:'הטיקטוק שלי אמר שיש לי חוסר בוויטמין גימל',r:2,w:'הטיקטוק יודע. {g}.',f:'אין ויטמין גימל.'},
+ {t:'השעון החכם שלי אומר שהדופק שלי 180',r:2,w:'מה?! {g}, ותנשום.',f:'השעון שלך מודד את הדופק של מי שישב לידך.'},
+ {t:'שאלתי צ׳אטבוט. הוא אמר שאני צריך שבוע מנוחה',r:2,w:'גם הבינה המלאכותית בעדך. {g}.',f:'שאלתי אותו גם. הוא אמר ״שמירה״.'},
+ {t:'הוואטסאפ שלי נפל ואני בלחץ. זו טראומה דיגיטלית',r:1,w:'גם לי זה קרה. {g}.',f:'זו לא טראומה. זו קליטה גרועה.'},
+ {t:'הטלפון עשה עדכון תוכנה. אני חושב שגם הגוף',r:3,w:'הגרסה החדשה נראית חולה. {g}.',f:'תעשה ריסטארט ותחזור לעבודה.',j:{g:4,t:'הרופא הוריד את העדכון. עכשיו גם הוא צריך גימלים. {g}.'}},
+ {t:'אני מכור למשחק בטלפון. הוא נקרא מלך הגימלים',r:3,w:'שמעתי שהוא טוב. {g}.',f:'אני השיא בבסיס. תתאמן.',j:{g:5,t:'הרופא גם משחק! אתם באותה ליגה. {g}.'}},
+ {t:'הסוללה שלי על 1%. אני חייב הביתה למטען',r:1,w:'מצב חירום. {g}.',f:'יש מטען בש״ג.'},
+ {t:'גוגלתי את הסימפטומים. יש לי כנראה הכל',r:2,w:'גוגל לא משקר. {g}.',f:'לפי גוגל גם לי יש הכל. ואני פה.'},
+ {t:'הטלפון מדד שישנתי שעתיים בלילה. הוא מודאג',r:1,w:'גם אני מודאג. {g}.',f:'כי אתה בטלפון עד ארבע.'},
+ {t:'ראיתי סרטון ביוטיוב שאני צריך לנוח. באיכות 4K',r:1,w:'ב־4K זה משכנע. {g}.',f:'ראיתי סרטון ששמירה בריאה. גם 4K.'},
+ {t:'הפלייליסט שלי מלא שירים עצובים מאז אתמול',r:1,w:'האלגוריתם יודע. {g}.',f:'האלגוריתם יודע שאתה דרמטי.'},
+ {t:'בקבוצה של הצוות יש 3000 הודעות. אני לא ישן',r:2,w:'3000? אכזרי. {g}.',f:'תשתיק את הקבוצה ותבוא לשמירה.'},
+ {t:'האוזניות נתקעו לי באוזן. מאז אני שומע רק מוזיקה',r:3,w:'אני לא נוגע בזה. {g}.',f:'שלפתי. עכשיו אתה שומע ״שמירה״?',j:{g:4,t:'הרופא ניסה לשלוף והתחיל לשמוע מוזיקה. {g}.'}},
+ {t:'השעון שלי כתב ״אתה במצב סטרס״ והתחיל לרטוט',r:1,w:'גם השעון שלך עייף. {g}.',f:'השעון רוטט כי קיבלת הודעה מהמ״פ.'},
+ {t:'קיבלתי וירוס. לא במחשב. אבל גם במחשב.',r:2,w:'וירוס כפול. {g}.',f:'תתקין אנטי־וירוס ותחזור לעבודה.'},
+ {t:'עשיתי מבחן אישיות באינסטגרם. יצא ״זקוק לחופש״',r:2,w:'מבחן מדעי. {g}.',f:'לי יצא ״רופא שמחלק שמירות״.'},
+ {t:'פילטר חולה נתקע לי על הפנים ולא יורד',r:3,w:'אתה באמת נראה רע. {g}.',f:'אין פילטר. ככה אתה נראה.',j:{g:4,t:'הרופא ניסה את הפילטר. נתקע גם לו. {g}.'}},
+ {t:'צ׳אטבוט כתב לי את המשפט הזה. אני לא מבין אותו',r:2,w:'גם אני לא. אבל {g}.',f:'כתבתי לו שאני רופא. הוא אמר לתת לך שמירה.'},
+ {t:'אני בשידור חי עכשיו. 400 צופים רואים אותך',r:3,w:'שלום לכולם! {g}, ותרגיעו.',f:'שלום לכולם, הוא בשמירה!',j:{g:5,t:'הצ׳אט כתב ״תן לו״ אלף פעם. הרופא נשבר: {g}.'}},
+ {t:'הטלפון שלי נפל לשירותים. אני בפוסט־טראומה',r:1,w:'אני מבין. {g}.',f:'אתה בסדר. הטלפון בפוסט־טראומה.'},
+ /* faith (Dr. Yehuda likes these) */
+ {t:'בעזרת השם אני חולה. כלומר, בעזרת השם אבריא',r:1,w:'אמן. {g}.',f:'בעזרת השם תשמור.'},
+ {t:'יש לי שבת חתן. של חבר. של השכן של חבר',r:2,w:'מצווה. {g}.',f:'השכן מתחתן כל שבת?'},
+ {t:'אמרתי תהילים כל הלילה בשמירה. יש לי צרידות קדושה',r:2,w:'צרידות של צדיק. {g}.',f:'שמעו אותך מהש״ג. זה היה שיר של עומר אדם.'},
+ {t:'הרב אמר לי ״תשמור על הבריאות״. אז אני שומר',r:1,w:'דברי חכמים. {g}.',f:'הרב התכוון לשמירה. עם נשק.'},
+ {t:'ב״ה יש לי חום. תודה לאל, לא גבוה',r:1,w:'ברוך השם. {g}.',f:'ברוך השם, אין חום בכלל.'},
+ {t:'אני צריך להשלים מניין בבית. בלעדיי הם תשעה',r:2,w:'מניין זה קדוש. {g}.',f:'יש פה תשעה בתור. תתפללו פה.'},
+ {t:'נדרתי נדר: אם אקבל גימלים, אתרום מלח לחדר אוכל',r:3,w:'נדר זה נדר. {g}.',f:'חדר אוכל לא צריך מלח. הוא צריך נס.',j:{g:4,t:'הרופא לא רוצה להיות זה ששבר נדר. {g}.'}},
+ {t:'*מניח לו יד על הראש ומברך*',r:3,w:'...אמן. {g}.',f:'תוריד את היד. עכשיו.',j:{g:4,t:'הרופא הרגיש משהו. {g}, ושלום עליך.'}},
+ {t:'אני צריך נס. ואתה נראה לי שליח',r:1,w:'אז הנה הנס. {g}.',f:'הנס הוא שלא קיבלת שמירה כפולה.'},
+ {t:'התפללתי שתיתן לי גימלים. תהיה התשובה לתפילה',r:2,w:'מי אני שאסרב. {g}.',f:'לפעמים התשובה היא ״לא״.'},
+ {t:'אני בתענית. בגלל זה אני חלש. גם בגלל חדר אוכל',r:1,w:'תענית בצבא. כבוד. {g}.',f:'אין היום תענית. בדקתי בלוח.'},
+ {t:'אמן על כל מה שתגיד. רק תגיד ״גימלים״',r:2,w:'גימלים. {g}.',f:'שמירה.'},
+ /* formal (Dr. Olga likes these) */
+ {t:'כבוד הרופא, אני מבקש בנימוס מנוחה של מספר ימים',r:1,w:'בקשה מנומסת. {g}.',f:'בנימוס, אני מסרב.'},
+ {t:'בהתאם לפקודות מטכ״ל, מגיעה לי מנוחה אחרי 30 שמירות',r:2,w:'סעיף מוכר. {g}.',f:'אין סעיף כזה. בדקתי.'},
+ {t:'אני מצטט את הנוהל: ״חייל חולה ינוח״',r:1,w:'נוהל זה נוהל. {g}.',f:'הנוהל אומר ״חייל חולה״. אתה לא.'},
+ {t:'הגשתי טופס בקשה בשלושה עותקים',r:2,w:'שלושה עותקים! {g}.',f:'צריך ארבעה.'},
+ {t:'אני מבקש לציין שהטמפרטורה שלי חריגה בשתי עשיריות',r:1,w:'שתי עשיריות זה שתי עשיריות. {g}.',f:'אני מבקש לציין שזה כלום.'},
+ {t:'אני מבקש להעביר את בקשתי לבירור בדרג הממונה',r:3,w:'בלי דרגים, בבקשה. {g}.',f:'הדרג הממונה זה אני.',j:{g:4,t:'הרופא נבהל מהבירוקרטיה. {g}.'}},
+ {t:'קראתי את המדריך הרפואי. עמוד 214, סעיף ג׳',r:2,w:'...אתה צודק. {g}.',f:'במדריך שלנו יש 200 עמודים.'},
+ {t:'בתוקף סמכותי כחייל, אני מצהיר על עצמי כחולה',r:3,w:'הצהרה רשמית. {g}.',f:'אין לך שום סמכות.',j:{g:4,t:'ההצהרה נחתמה בטעות. {g}.'}},
+ /* soldier life */
+ {t:'הבוהן שלי פגשה רגל של מיטה בשלוש בלילה',r:1,w:'הרגל של המיטה תמיד מנצחת. {g}.',f:'זה קורה לכולם. בלי גימלים.'},
+ {t:'יש לי נקע בקרסול מהריקוד במסיבה של הפלוגה',r:1,w:'ראיתי את הריקוד. {g}.',f:'ראיתי את הריקוד. אתה רוקד כמו פציעה.'},
+ {t:'הנעליים הצבאיות אכלו לי את הבוהן',r:2,w:'הן רעבות. {g}.',f:'הבוהן שלך שלמה. תספור.'},
+ {t:'יש לי מיגרנה מהשריקה של הרס״ר',r:1,w:'השריקה הזאת אסורה באמנת ז׳נבה. {g}.',f:'הרס״ר שורק כי אתה מאחר.'},
+ {t:'הקב״ן אמר לי שאני ״מקרה מעניין״',r:2,w:'אם הקב״ן אמר... {g}.',f:'הקב״ן אומר את זה גם על הכלב של הבסיס.'},
+ {t:'יש לי סחרחורת כשאני מסתכל על לוח השמירות',r:1,w:'גם לי. {g}.',f:'תסתכל על הלוח. אתה ראשון.'},
+ {t:'עשיתי 200 שכיבות סמיכה בדרך והגוף שלי התפרק',r:2,w:'200? מרשים. {g}.',f:'ספרתי. עשית שבע.'},
+ {t:'נכנס לי זבוב לאוזן והוא עדיין מסתובב שם',r:2,w:'אני שומע אותו. {g}.',f:'זה המזגן.'},
+ {t:'יש לי פחד ממקומות סגורים. ובסיס סגור זה מקום סגור',r:2,w:'יש היגיון. {g}.',f:'אז נשים אותך בשמירה בחוץ.'},
+ {t:'אני חושב שאני אלרגי לצבע חאקי',r:2,w:'הצבע הזה באמת לא מחמיא. {g}.',f:'אז תהיה אלרגי בשמירה.'},
+ {t:'*נכנס עם כוס תה ומדמם מהאף*',r:3,w:'מה קרה?! {g}!',f:'זה רוטב עגבניות. אני מריח מפה.',j:{g:4,t:'החובשת צרחה. הרופא חתם על {g} בלי להסתכל.',fx:'siren'}},
+ {t:'מאז המטווח יש לי צפצוף באוזן',r:2,w:'זה נקרא טנטון. {g}.',f:'הצפצוף זה הטלפון שלך.'},
+ {t:'החייל במיטה למעלה נופל עליי כל לילה',r:1,w:'זה מסוכן. {g}.',f:'תחליפו מיטות. בעיה נפתרה.'},
+ {t:'בניווט דרכתי על לבנה. זה הכיוון היחיד שהלכתי בו נכון',r:2,w:'לפחות פעם אחת. {g}.',f:'גם אז הלכת לא נכון.'},
+ {t:'יש לי פטור מנעליים. *מראה כפכפים*',r:3,w:'...הכפכפים משכנעים. {g}.',f:'זה לא פטור. אלה כפכפים.',j:{g:4,t:'הכפכפים היו של המג״ד. {g}, ותחזיר אותם.'}},
+ {t:'הנשק שלי נתקע ואני נתקעתי איתו',r:2,w:'סולידריות. {g}.',f:'תנקה את הנשק. וגם את עצמך.'},
+ {t:'אני רואה את המ״כ שלי בחלומות. זה סיוט מתמשך',r:2,w:'סיוט צבאי. {g}.',f:'הוא גם רואה אותך. וזה סיוט גם בשבילו.'},
+ {t:'נגמר לי הדאודורנט וכל החדר ביקש שאלך הביתה',r:3,w:'אני מבין אותם. מאוד. {g}.',f:'אני אביא לך דאודורנט. ושמירה.',j:{g:4,t:'הרופא פתח חלון ונתן {g}. בלי שאלות.',fx:'gas'}},
+ {t:'אני סהרורי מלידה. בבסיס זה מסוכן',r:2,w:'מסוכן מאוד. {g}.',f:'הלכת בשינה ישר לחדר אוכל. כל יום.'},
+ {t:'הכלב של הבסיס נשך אותי. בעדינות. אבל זה נגע ללב',r:1,w:'גם הכלב רואה שאתה צריך חופש. {g}.',f:'הכלב נשך אותך כי גנבת לו נקניקייה.'},
+ {t:'כל פעם שאני שומע ״לבצע״ אני מתעלף',r:3,w:'שלא תשמע את המילה הזאת. {g}.',f:'לבצע.',j:{g:4,t:'מישהו אמר ״לבצע״ ברמקול. התעלפת באמת. {g}.',fx:'faint'}},
+ {t:'השמש בשטח שרפה לי רק חצי פנים',r:1,w:'אתה באמת דו־צבעי. {g}.',f:'עכשיו תשרוף את החצי השני. בשמירת צהריים.'},
+ {t:'אני חושב שאני הופך לערפד. אני ער רק בשמירות לילה',r:3,w:'...רק שלא תנשוך אותי. {g}.',f:'ערפדים לא צריכים גימלים.',j:{g:4,t:'הרופא סגר את החלון ונתן {g}. ליתר ביטחון.'}},
+ {t:'הוציאו אותי מהמקלחת באמצע בגלל ״כוננות״',r:1,w:'אכזרי. {g}.',f:'כוננות זו כוננות. גם עם סבון.'},
+ {t:'הכומתה קטנה עליי. או שהראש שלי גדל מחשיבה',r:2,w:'ראש שגדל זה מסוכן. {g}.',f:'זו הכומתה של מישהו אחר.'},
+ {t:'הגוף שלי לא מוכן לשבצ״ק לפני 06:00',r:1,w:'גם הגוף שלי לא. {g}.',f:'אף גוף לא מוכן. ככה זה.'},
+ {t:'חלמתי שאני בגימלים. אני חושב שזה היה חזון',r:2,w:'החזון מתגשם. {g}.',f:'זה היה חלום. עכשיו תתעורר.'},
+ {t:'החייל במיטה לידי נוחר כמו טנק. לא ישנתי שבוע',r:1,w:'מרכבה סימן 4? {g}.',f:'תביא אטמי אוזניים. ושמירה.'},
+ {t:'אני עייף. לא פיזית. ברמת תעודת הזהות.',r:2,w:'עייפות של תעודת זהות. נדיר. {g}.',f:'גם תעודת הזהות שלך בשמירה.'},
+ {t:'*נכנס עם הקביים של סבא שלו, משנת 73*',r:3,w:'הקביים האלה ראו מלחמות. {g}.',f:'הן גבוהות ממך בחצי מטר.',j:{g:5,t:'הקביים היו של גיבור מלחמה. הרופא הצדיע: {g}.'}},
+ {t:'אני צריך יום אחד. רק יום אחד. מבטיח.',r:1,w:'יום אחד. {g}.',f:'״רק יום אחד״ זה בדיוק מה שאמרת אתמול.'},
+ {t:'דוקטור, יש לך עיניים יפות',r:3,w:'...תודה. {g}. אל תספר לאף אחד.',f:'זה לא יעזור. אבל תודה.',j:{g:4,t:'הרופא הסמיק ושכח מה רצה להגיד. {g}.'}},
+ {t:'יאללה אחי, סבבה, תן משהו קטן ונזרום',r:2,w:'סבבה. זורמים. {g}.',f:'״נזרום״ זה לא מונח רפואי.'},
+ {t:'וואלה אחי אני גמור, תכלס',r:1,w:'תכלס, אתה נראה גמור. {g}.',f:'תכלס, אתה נראה מצוין.'}
+];
+/* golden lines: very rare, huge jackpot or straight to jail */
+const GOLD_LINES=[
+ {gold:1,r:3,t:'דוקטור, אני מהביקורת של משרד הבריאות. רק בודקים אם אתה נותן גימלים',w:'...כמובן שאני נותן! הנה, {g}. תכתוב שאני נחמד.',f:'הביקורת של משרד הבריאות לא מגיעה בכפכפים.'},
+ {gold:1,r:3,t:'*שולף מכתב חתום מהרמטכ״ל*',w:'הרמטכ״ל?! {g}. ותמסור דרישת שלום.',f:'החתימה של הרמטכ״ל לא נראית כמו ציור של חתול.'},
+ {gold:1,r:3,t:'אני הנכד של הרופא הראשי. סבא שולח נשיקות.',w:'סבא שלך?! {g}, ותגיד לו שאני עובד קשה.',f:'הרופא הראשי בן 41. אין לו נכדים.'},
+ {gold:1,r:3,t:'*מתחיל לשיר את ״התקווה״ בדמעות*',w:'כל המרפאה קמה לדום. {g}.',f:'עצרת את כל התור באמצע הבית השני.'},
+ {gold:1,r:3,t:'דוקטור, זכית בלוטו! רק תחתום פה וזה שלך',w:'זכיתי?! *חותם על הכל* {g}!',f:'קראתי את הטופס. זה טופס הודאה בעבירה.'},
+ {gold:1,r:3,t:'אני בא מהעתיד. בעוד שבוע יהיה מחסור בגימלים',w:'אז ניקח עכשיו. {g}.',f:'אם אתה מהעתיד, אתה יודע מה יקרה לך עכשיו.'},
+ {gold:1,r:3,t:'*מניח על השולחן שלוש במבות, שוקו וטיק־טק*',w:'זה... יותר מדי. ומושלם. {g}.',f:'זה כבר לא שוחד. זה תיק פלילי.'},
+ {gold:1,r:3,t:'הטלפון שלך מצלצל. זו אמא שלך. היא בצד שלי.',w:'אמא, בסדר, נתתי לו! {g}!',f:'אמא שלי אומרת שאתה ממציא. היא מכירה את אמא שלך.'}
+];
+LINES.push(...NEW_LINES,...GOLD_LINES);
+
+/* ---- doctor quirks ---- */
+const SLANG_RX=/אחי|יאללה|סבבה|וואלה|תכלס|אחלה|גבר|נשמה|חבל״ז|נזרום|בומר/;
+const FORMAL_RX=/כבוד|בהתאם|נוהל|טופס|מבקש|מצטט|מדריך|סעיף|בנימוס|בתוקף|מצהיר|לציין/;
+const HOLY_RX=/השם|ב״ה|בעזרת|תפילה|התפללתי|הרב|שבת|נס[\s.!]|אמן|תהילים|מניין|נדר|תענית|מברך/;
+Object.assign(DOCS,{
+ olga:{n:'ד״ר אולגה',role:'רופאה מרוסיה',d:'לא מבינה סלנג. דבר יפה ורשמי.',cls:'d-olga',mod:{slang:-.2,formal:.16},
+  greet:['שלום. אני לא מבינה ״אחי״. נא לדבר יפה.','נו. מה כואב? רק בעברית של חדשות.','אני רופאה 30 שנה. במוסקבה לא היו גימלים.']},
+ rav:{n:'ד״ר יהודה',role:'רופא מאמין',d:'אמונה, תפילה ושבת עובדות עליו. השאר פחות.',cls:'d-rav',mod:{holy:.26,all:-.04},
+  greet:['שלום עליכם. בעזרת השם, מה כואב?','ב״ה, עוד חייל. מה הסיפור?','תגיד ״אמן״ ונתחיל.']},
+ ido:{n:'ד״ר עידו',role:'סטודנט בלחץ',d:'מאשר כמעט הכל, אבל נלחץ וחושד מהר.',cls:'d-ido',mod:{all:.13,sus:1.35,jack:-1,hp:.6},
+  greet:['אה! שלום! אני... הרופא. כן. מה כואב?','זה היום השני שלי. בבקשה תהיה נחמד.','אני לא בטוח שמותר לי לתת גימלים. אבל ננסה!']},
+ moti:{n:'ד״ר מוטי',role:'רופא חולה בעצמו',d:'חולה ומבין אותך. דברים מגעילים עובדים. אין לו סבלנות.',cls:'d-moti',mod:{gross:.2,pat:.75,all:.04},
+  greet:['*משתעל* נו... *משתעל* מה יש לך?','גם אני חולה. בוא נסיים מהר.','אל תתקרב. כלומר, תתקרב. אני כבר חולה.']}
+});
+function docTagMod(L){const D=DOC().mod;let m=0;
+ if(D.slang&&SLANG_RX.test(L.t))m+=D.slang;
+ if(D.formal&&FORMAL_RX.test(L.t))m+=D.formal;
+ if(D.holy&&HOLY_RX.test(L.t))m+=D.holy;
+ if(D.gross&&TAGRX.gross.test(L.t))m+=D.gross;
+ return m}
+function docFlavor(L,txt,kind){const k=S&&S.doc;
+ if(k==='olga'){if(kind==='fail'&&SLANG_RX.test(L.t))return `מה זה ״${L.t.match(SLANG_RX)[0]}״? אני לא מבינה סלנג. `+txt;if(kind==='win'&&FORMAL_RX.test(L.t))return txt+' עברית יפה. כל הכבוד.'}
+ if(k==='rav')return kind==='win'?(HOLY_RX.test(L.t)?'אמן ואמן! ':'')+txt:txt+' ותגיד פרק תהילים.';
+ if(k==='ido')return(kind==='win'?pickOne(['אה... בטוח? כן? טוב. ','אוקיי! אוקיי. ','*בודק בגוגל* ...כן. ']):pickOne(['אני... לא יכול. סליחה! ','המדריך אומר שלא. ']))+txt;
+ if(k==='moti')return(kind==='win'&&TAGRX.gross.test(L.t)?'גם לי יש את זה! *משתעל* ':'*משתעל* ')+txt;
+ return txt}
+
+/* ---- conversation chains: the doctor checks what you said before ---- */
+const CLAIMS={
+ back:{rx:/גב|דיסק|סיאטי|שפשפת/,q:'רגע. קודם אמרת שכואב לך הגב. איפה בדיוק?',ok:['בגב התחתון. בצד שמאל.','בין השכמות. בעיקר כשהרס״ר צועק.'],no:['בבטן. כלומר... בגב של הבטן.','איזה גב? אה, הגב! כן. הגב.']},
+ stomach:{rx:/בטן|משלשל|שלשול|הקאתי|בחילה|קציצות|הרעלת|גולאש|פסטה|שקשוקה|אורז|לוף|פתיתים/,q:'קודם סיפרת על הבטן. מה בדיוק אכלת?',ok:['את מה שהגישו בחדר אוכל. אל תשאל.','משהו ירוק. הוא זז.'],no:['לא אכלתי כלום כבר שבוע. גם לא ארוחת בוקר היום.','שניצל, פיצה, שווארמה... הבטן שלי מצוינת!']},
+ head:{rx:/ראש|מיגרנה|סחרחורת|כפול|צפצוף|טנטון/,q:'אמרת שהראש שלך כואב. מאיזה צד?',ok:['מצד ימין, ליד הכומתה.','בכל הראש. בעיקר במסדרים.'],no:['ראש? אמרתי רגל. כלומר ראש!','אין לי ראש. כלומר יש. כואב.']},
+ heart:{rx:/עזבה|החברה|חברה שלי|לב|סטורי|חסמה/,q:'סיפרת על החברה. איך קוראים לה?',ok:['...דנה. כן. דנה.','אני לא מסוגל להגיד את השם.'],no:['מיכל? דנה? רגע, יש לי שתיים.','איזו חברה? אה! ההיא. כן, עזבה.']},
+ skin:{rx:/פריחה|אלרגי|עקיצה|כוויה|נכוויתי|שרפה/,q:'אמרת שיש לך פריחה. איפה בדיוק?',ok:['על היד. אתה רוצה לראות?','במקום שלא מראים.'],no:['פריחה? לא, התכוונתי לגב.','שכחתי איפה. היא זזה.']},
+ foot:{rx:/רגל|ברך|קרסול|נקע|בוהן|נעליים|כפכפים|זוחל|צולע/,q:'קודם אמרת שנפגעת ברגל. איזו רגל?',ok:['השמאלית. *צולע בדיוק עליה*','זאת שנפגעה בריקוד. הימנית.'],no:['שתיהן. ולפעמים גם היד.','*מתחיל לקפץ על הרגל ה״פצועה״*']},
+ fever:{rx:/חום|משתעל|שיעול|קדחת|39|41/,q:'אמרת שיש לך חום. כמה מדדת?',ok:['38.7. במדחום של החובשת.','גבוה. המדחום כמעט התפוצץ.'],no:['36.5. כלומר 39! 39!','לא מדדתי. הרגשתי.']}
+};
+const claimTopic=t=>Object.keys(CLAIMS).find(k=>CLAIMS[k].rx.test(t))||null;
+async function chainQ(){const topic=gPick(S.claims),C=CLAIMS[topic];S.chainDone=true;S.mode='event';S.busy=true;hud();SFX.event();setMood('neutral');
+ say(null,C.q,{who:'הרופא'});setPrompt('תענה בלי לסתור את עצמך!');
+ $('#choices').innerHTML=`<div class="console event chain"><div class="c-head">הרופא בודק אותך <span>שאלת המשך</span></div><div class="opt2" id="evo"></div></div>`;
+ const box=$('#evo'),opts=gShuffle([{t:gPick(C.ok),ok:true},...C.no.map(t=>({t,ok:false}))]);
+ opts.forEach(o=>{const b=document.createElement('button');b.type='button';b.className='retort';b.innerHTML=`<span>${o.t}</span>`;
+  b.addEventListener('click',()=>{box.querySelectorAll('button').forEach(x=>x.disabled=true);
+   if(o.ok){const lucky=GR()<.35;setMood('happy');stamp('עקבי','ok');res(lucky?'טוב. זה מתיישב עם מה שאמרת. מגיע לך עוד יום.':'טוב. זה מתיישב עם מה שאמרת.',lucky?{g:1,sus:-10}:{sus:-12},'הרופא')}
+   else{setMood('angry');stamp('סתירה!');shake();buzz(HAPT.fail);res(pickOne(['סתרת את עצמך! אני רושם.','רגע, קודם אמרת משהו אחר. מעניין...','אחי, תחליט על סיפור אחד.']),{sus:18},'הרופא')}});
+  box.appendChild(b)})}
+
+/* ---- golden lines ---- */
+async function goldResolve(L){
+ if(GR()<.5){const gain=rnd(7,10);S.gimel+=gain;S.sus+=10;S.streak++;setMood('shock');say(L.t,L.w.replaceAll('{g}',days(gain)));setGimel(S.gimel);
+  stamp('משפט זהב!','ok');SFX.jack();burst('✨ משפט זהב ✨');spawn('conf',reduced?8:40,'★');shake();runFx('siren');floatTxt('+'+gain);unlock('gold');buzz(HAPT.jack);hud();return afterBeat(2200,true)}
+ setMood('angry');say(L.t,L.f);stamp('נתפסת!');SFX.siren();shake();buzz(HAPT.fail);hud();await wait(2000);jail('הונאה בדרגת זהב')}
+
+/* ---- line album ---- */
+const lineKey=L=>strHash(L.t);
+const albumSet=()=>new Set(store.get('gm_album',[]));
+function albumAdd(L){const a=store.get('gm_album',[]),k=lineKey(L);if(a.includes(k))return false;a.push(k);store.set('gm_album',a);
+ const paid=store.get('gm_album_paid',0),lvl=Math.floor(a.length/25);
+ if(lvl>paid){store.set('gm_album_paid',lvl);addCoins(50);setTimeout(()=>toastMsg('📖','אלבום: '+lvl*25+' משפטים!','+50 '+COIN),900)}
+ return true}
+function showAlbum(){const ov=$('#overlay');ov.hidden=false;const A=albumSet(),all=LINES,got=all.filter(L=>A.has(lineKey(L))),gold=all.filter(L=>L.gold);
+ const pct=Math.round(got.length/all.length*100),next=25-got.length%25;
+ const row=L=>`<li class="al r${L.gold?'g':L.r}"><span></span></li>`;
+ ov.innerHTML=`<div class="sheet album"><div class="tag">כל משפט שאמרת נכנס לפה</div><h2>אלבום המשפטים</h2>
+  <div class="alstat"><b>${got.length}</b><span>/ ${all.length}</span></div><div class="albar"><i style="width:${pct}%"></i></div>
+  <p class="tip">עוד ${next} משפטים לפרס של 50 ${COIN}. משפטים זהובים נדירים מאוד.</p>
+  <div class="algold">${gold.map(L=>A.has(lineKey(L))?'<span class="on">★</span>':'<span>?</span>').join('')}</div>
+  <ul class="allist" id="alList">${got.slice().sort((a,b)=>(b.gold?9:b.r)-(a.gold?9:a.r)).map(row).join('')}</ul>
+  <button class="big" id="alBack" type="button">חזרה</button></div>`;
+ const lis=ov.querySelectorAll('#alList li span');got.slice().sort((a,b)=>(b.gold?9:b.r)-(a.gold?9:a.r)).forEach((L,i)=>{lis[i].textContent=L.t.replace(/\*/g,'')});
+ if(!got.length)$('#alList').innerHTML='<li class="al">עוד לא אמרת כלום. לך לרופא!</li>';
+ $('#alBack').addEventListener('click',showProgress)}
+
+/* ---- 40 more random events ---- */
+EVENTS.push(
+ {id:'mezach',who:'חוקר מצ״ח',text:'ערב טוב. אנחנו חוקרים מגפה של גימלים מזויפים בבסיס. רק כמה שאלות.',opts:[
+  {t:'״אני פה בתור עד. ראיתי הכל.״',c:['r3','50/50 · חשד −20 או +30'],go:()=>coin(.5,()=>res('החוקר רשם את העדות שלך. הרופא מסתכל עליך בכבוד.',{sus:-20},'חוקר מצ״ח'),()=>res('״עד? אתה הנאשם השלישי ברשימה.״',{sus:30},'חוקר מצ״ח'))},
+  {t:'להשתעל ישר עליו',c:['r2','60% · +1 או חשד +15'],go:()=>coin(.6,()=>res('החוקר ברח מהמרפאה. הרופא, מבוהל: +1.',{g:1},'הרופא'),()=>res('החוקר שם מסכה. ורשם את השם שלך.',{sus:15},'חוקר מצ״ח'))},
+  {t:'לשתוק עד שיגיע עורך דין',c:['r1','מאבד משפט'],go:()=>res('עורך הדין הצבאי הגיע אחרי שעה. אמר ״שלום״ והלך.',{turn:1})}]},
+ {id:'mom2',who:'אמא שלך',text:'*אמא שלך נכנסת עם קופסת שניצלים* איפה הרופא שלא נותן לבן שלי גימלים?!',opts:[
+  {t:'״אמא, לא עכשיו!״',c:['r1','חשד +5'],go:()=>res('אמא נעלבה, השאירה את השניצלים לרופא והלכה.',{sus:5},'הרופא')},
+  {t:'לתת לאמא לטפל בזה',c:['r3','55% · +2 או חשד +25'],go:()=>coin(.55,()=>res('אמא שלך דיברה. הרופא שתק. +2, ושניצל.',{g:2},'הרופא'),()=>res('אמא שלך והרופא בני דודים. הוא סיפר לה הכל.',{sus:25},'אמא שלך'))},
+  {t:'להציע לרופא שניצל',c:['r2','חשד −12'],go:()=>res('״...עם חרדל? טוב.״ הרופא רגוע יותר.',{sus:-12},'הרופא')}]},
+ {id:'chem',who:'רמקול',text:'תרגיל כימי! כולם לשים מסכות! זה לא תרגיל! כלומר כן תרגיל!',opts:[
+  {t:'לשים את המסכה הפוך',c:['r2','50/50 · +1 או חשד +15'],go:()=>coin(.5,()=>res('הרופא חשב שאתה בהלם. +1 ״חרדת תרגילים״.',{g:1},'הרופא'),()=>res('״אתה נראה כמו חדקן. תתקן.״',{sus:15},'הרופא'))},
+  {t:'לעזור לרופא עם המסכה שלו',c:['r1','חשד −10'],go:()=>res('הרופא הסתבך עם הרצועות. עזרת לו. הוא זוכר.',{sus:-10},'הרופא')}]},
+ {id:'mpstuck',who:'קול מהשירותים',text:'הלו?! זה המ״פ! ננעלתי בשירותים! מישהו שומע?!',opts:[
+  {t:'להציל את המ״פ',c:['r1','חשד −15'],go:()=>res('המ״פ יצא, הסמיק, ואמר לרופא ״תדאג לבחור הזה״.',{sus:-15},'המ״פ')},
+  {t:'להעמיד פנים שלא שמעת',c:['r2','70% · +1 או שמירה'],go:()=>coin(.7,()=>res('המ״פ תקוע. אין מי שיחתום על שמירות. הרופא, בשקט: +1.',{g:1},'הרופא'),()=>res('המ״פ זיהה את הקול שלך מבעד לדלת.',{sus:10,guard:1},'המ״פ'))},
+  {t:'לצלם סטורי',c:['r3','40% · +2 או חשד +30'],go:()=>coin(.4,()=>res('הסטורי עשה 20 אלף צפיות. כל הבסיס צוחק. +2.',{g:2}),()=>res('המ״פ יצא בדיוק כשצילמת.',{sus:30},'המ״פ'))}]},
+ {id:'cat',who:'חתול הבסיס',text:'*חתול ג׳ינג׳י נכנס למרפאה וקופץ על השולחן של הרופא*',opts:[
+  {t:'להגיד שזה החתול שלך ושגם הוא חולה',c:['r2','50/50 · +1 או חשד +12'],go:()=>coin(.5,()=>res('הרופא בדק את החתול. אבחנה: מתגעגע. גם לך: +1.',{g:1},'הרופא'),()=>res('״זה החתול שלי.״',{sus:12},'הרופא'))},
+  {t:'ללטף את החתול',c:['r1','חשד −8'],go:()=>res('החתול גרגר. הרופא נמס.',{sus:-8},'הרופא')}]},
+ {id:'blackout',who:'',text:'*החשמל נופל. חושך מוחלט במרפאה*',opts:[
+  {t:'לחפש בחושך את החותמת',c:['r3','45% · +2 או חשד +25'],go:()=>coin(.45,()=>res('מצאת משהו וחתמת. כשהאור חזר: זה היה טופס גימלים. +2.',{g:2}),()=>res('מה שתפסת זו היד של הרופא.',{sus:25},'הרופא'))},
+  {t:'להרגיע את כולם עם פנס',c:['r1','חשד −10'],go:()=>res('הרופא מעריך מנהיגות.',{sus:-10},'הרופא')}]},
+ {id:'rival',who:'דוד מהפלוגה',text:'אחי, אני נכנס לפניך. יש לי ״מקרה דחוף״. *מחזיק שקית במבה*',opts:[
+  {t:'להלשין עליו לרופא',c:['r2','60% · חשד −10 או שמירה'],go:()=>coin(.6,()=>res('דוד יצא עם שמירה. הרופא מעריך כנות.',{sus:-10},'הרופא'),()=>res('דוד חזר עם הסמל. עכשיו שניכם בשמירה.',{guard:1,sus:5},'דוד'))},
+  {t:'לקנות ממנו את התירוץ ב־20 ₪',c:['r3','50/50 · +2 או חשד +20'],go:()=>coin(.5,()=>res('התירוץ שלו עבד גם לך! +2.',{g:2}),()=>res('הרופא שמע את התירוץ הזה לפני דקה. מדוד.',{sus:20},'הרופא'))},
+  {t:'לתת לו לעבור',c:['r1','מאבד משפט'],go:()=>res('דוד יצא עם שלושה ימים. הוא קרץ לך.',{turn:1})}]},
+ {id:'gen',who:'אלוף הפיקוד',text:'*אלוף נכנס לביקור פתע במרפאה* מה שלום החיילים פה?',opts:[
+  {t:'״המפקד, יש לי תלונה על חדר האוכל״',c:['r2','50/50 · חשד −20 או +20'],go:()=>coin(.5,()=>res('האלוף טעם מהקציצות. הוא בצד שלך עכשיו.',{sus:-20},'האלוף'),()=>res('האלוף אוהב את הקציצות. האלוף מכיר את הטבח.',{sus:20},'האלוף'))},
+  {t:'להצדיע כל כך חזק שאתה מתעלף',c:['r3','40% · +3 או חשד +20'],go:()=>coin(.4,()=>res('״תנו לחייל הזה מנוחה!״ פקודה של אלוף: +3.',{g:3},'האלוף'),()=>res('״קום. ראיתי אותך מציץ.״',{sus:20},'האלוף'))}]},
+ {id:'thermo2',who:'החובשת',text:'*החובשת שמה לך מדחום ויוצאת לרגע*',opts:[
+  {t:'לשים את המדחום על המנורה',c:['r3','50/50 · +2 או חשד +25'],go:()=>coin(.5,()=>res('המדחום מראה 39.4. החובשת בלחץ. +2.',{g:2},'החובשת'),()=>res('המדחום מראה 58. ״אתה אמור להיות מת.״',{sus:25},'החובשת'))},
+  {t:'להשאיר כמו שצריך',c:['r1','חשד −6'],go:()=>res('36.8. ״לפחות אתה כן.״',{sus:-6},'החובשת')}]},
+ {id:'qfight',who:'התור',text:'שני חיילים בתור רבים מי היה קודם. כולם מסתכלים עליך שתכריע.',opts:[
+  {t:'להכריע כמו שופט',c:['r1','חשד −8'],go:()=>res('הכרעה הוגנת. הרופא שמע מבפנים.',{sus:-8})},
+  {t:'לנצל את הבלגן ולהתקדם בתור',c:['r2','עוד משפט'],go:()=>res('נכנסת פעמיים ברצף. הרופא לא שם לב.',{turn:-1})}]},
+ {id:'rain',who:'הרס״ר',text:'יורד מבול. מי שבמרפאה עכשיו פטור מהמסדר בחוץ.',opts:[
+  {t:'להישאר כמה שיותר',c:['r1','עוד משפט'],go:()=>res('הרס״ר נרטב. אתה לא. יש לך עוד זמן.',{turn:-1})},
+  {t:'לצאת להביא לרס״ר מטרייה',c:['r2','חשד −15'],go:()=>res('הרס״ר התרגש. ביקש מהרופא ״לטפל בך טוב״.',{sus:-15},'הרס״ר')}]},
+ {id:'tiktokdoc',who:'הרופא',text:'רגע, אני מצלם טיקטוק על ״תירוצים של חיילים״. תגיד משהו.',opts:[
+  {t:'לתת הופעה של החיים',c:['r3','50/50 · +2 או חשד +20'],go:()=>coin(.5,()=>res('הסרטון ויראלי. הרופא מאושר. +2.',{g:2},'הרופא'),()=>res('שלושה לייקים. אחד מאמא שלך.',{sus:20},'הרופא'))},
+  {t:'לסרב: ״אני חולה מדי בשביל צילומים״',c:['r2','חשד −5'],go:()=>res('״גם זה תירוץ טוב. אני גונב אותו.״',{sus:-5},'הרופא')}]},
+ {id:'ambu',who:'נהג אמבולנס',text:'יש לי מקום אחד באמבולנס לבית חולים. מישהו?',opts:[
+  {t:'לקפוץ פנימה',c:['r3','35% · +3 או שמירה'],go:()=>coin(.35,()=>res('בבית החולים נתנו לך שלושה ימים. ופודינג. +3.',{g:3}),()=>res('האמבולנס נסע לש״ג. הנהג הוא החבר של הרס״ר.',{sus:30,guard:1}))},
+  {t:'לוותר לחייל הבא',c:['r1','חשד −10'],go:()=>res('הרופא ראה. נדיב. רשם.',{sus:-10})}]},
+ {id:'xray',who:'הרופא',text:'בוא נעשה לך צילום. *מכשיר רנטגן מ־1985*',opts:[
+  {t:'להחביא מטבע בכיס החזה',c:['r3','50/50 · +2 או חשד +20'],go:()=>coin(.5,()=>res('״יש לך משהו בחזה!״ הרופא בהלם. +2.',{g:2},'הרופא'),()=>res('״למה יש לך שקל בכיס החולצה?״',{sus:20},'הרופא'))},
+  {t:'לעמוד יפה',c:['r1','כלום'],go:()=>res('הצילום יצא שחור. המכשיר מת. ממשיכים.',{})}]},
+ {id:'teamchat',who:'קבוצת הצוות',text:'*30 הודעות בוואטסאפ* ״אחי תביא גם לי גימלים, אני ממש חולה (לא)״',opts:[
+  {t:'להראות לרופא בטעות',c:['r2','חשד +15'],go:()=>res('הרופא קרא הכל. כולל ״(לא)״.',{sus:15},'הרופא')},
+  {t:'להשתיק את הקבוצה',c:['r1','חשד −5'],go:()=>res('שקט. הרופא אוהב שקט.',{sus:-5})}]},
+ {id:'boots',who:'הרס״ר',text:'*הרס״ר עובר בתור ובודק נעליים*',opts:[
+  {t:'להסתתר מאחורי חייל גבוה',c:['r2','60% · חשד −5 או שמירה'],go:()=>coin(.6,()=>res('החייל הגבוה ספג את זה במקומך.',{sus:-5}),()=>res('החייל הגבוה זז. הנעליים שלך מאובקות.',{guard:1,sus:5},'הרס״ר'))},
+  {t:'לצחצח מהר עם השרוול',c:['r1','חשד +3'],go:()=>res('הרס״ר הנהן. הרופא, מבפנים: ״איכס״.',{sus:3},'הרופא')}]},
+ {id:'fortune',who:'חייל מהתור',text:'אני קורא בקפה. רוצה לדעת אם תקבל גימלים?',opts:[
+  {t:'כן!',c:['r2','50/50 · +1 או חשד +10'],go:()=>coin(.5,()=>res('״אני רואה... חופש.״ הרופא שמע, צחק ונתן: +1.',{g:1},'הרופא'),()=>res('״אני רואה... שמירה. הרבה.״ הרופא מסכים.',{sus:10},'הרופא'))},
+  {t:'לא, אני מפחד',c:['r1','כלום'],go:()=>res('הוא הסתכל בכוס ונבהל. לא סיפר.',{})}]},
+ {id:'crush',who:'החובשת',text:'*החובשת מחייכת אליך* אתה בא לפה הרבה, הא?',opts:[
+  {t:'לפלרטט',c:['r3','50/50 · +2 או חשד +20'],go:()=>coin(.5,()=>res('היא כתבה לך ״מנוחה מומלצת״ בתיק. +2.',{g:2},'החובשת'),()=>res('הרופא הוא בעלה.',{sus:20},'הרופא'))},
+  {t:'להסמיק ולשתוק',c:['r1','חשד −5'],go:()=>res('״חמוד.״',{sus:-5},'החובשת')}]},
+ {id:'drone',who:'',text:'*רחפן נכנס מהחלון ומסתובב מעל הרופא*',opts:[
+  {t:'לתפוס אותו',c:['r2','50/50 · חשד −15 או +10'],go:()=>coin(.5,()=>res('תפסת! הרופא רואה בך גיבור.',{sus:-15},'הרופא'),()=>res('הפלת את מדף התרופות.',{sus:10},'הרופא'))},
+  {t:'לצעוק ״חדירה!״',c:['r3','40% · +2 או חשד +20'],go:()=>coin(.4,()=>res('כוננות! המרפאה התפנתה. בדרך חטפת אישור: +2.',{g:2}),()=>res('זה הרחפן של המ״פ. הוא צילם אותך.',{sus:20},'המ״פ'))}]},
+ {id:'pizza',who:'שליח',text:'הזמנתם פיצה? כתוב ״למרפאה, מהחייל שבתור״.',opts:[
+  {t:'״זה בשבילך, דוקטור״',c:['r2','חשד −15'],go:()=>res('הרופא אכל משולש וחצי. העולם נראה יפה יותר.',{sus:-15},'הרופא')},
+  {t:'לאכול לבד בתור',c:['r1','כלום'],go:()=>res('כל התור מסתכל עליך. שווה.',{})}]},
+ {id:'mixup',who:'החובשת',text:'התיק שלך התחלף עם תיק של חייל אחר. שלו מלא באישורים.',opts:[
+  {t:'לשתוק ולקחת את התיק שלו',c:['r3','45% · +3 או חשד +30'],go:()=>coin(.45,()=>res('הרופא חתם בלי לבדוק. +3.',{g:3},'הרופא'),()=>res('״למה כתוב פה שאתה בחודש שמיני?״',{sus:30},'הרופא'))},
+  {t:'להחזיר',c:['r1','חשד −12'],go:()=>res('יושר. הרופא רשם ״אמין״.',{sus:-12},'הרופא')}]},
+ {id:'vet',who:'חייל לפני שחרור',text:'אחי, אני משתחרר מחר. רוצה את הסוד שלי לגימלים?',opts:[
+  {t:'כן!',c:['r2','50/50 · +1 או חשד +10'],go:()=>coin(.5,()=>res('הסוד: ״לשתוק ולהיראות עייף״. עובד: +1.',{g:1}),()=>res('הסוד היה ״להגיד לרופא שהוא חתיך״. הוא לא.',{sus:10},'הרופא'))},
+  {t:'לא, אני מקורי',c:['r1','חשד −5'],go:()=>res('הרופא שמע. מעריך.',{sus:-5})}]},
+ {id:'dog',who:'הכלב של המג״ד',text:'*הכלב של המג״ד נכנס עם פתק בפה*',opts:[
+  {t:'לקרוא את הפתק',c:['r2','50/50 · +2 או שמירה'],go:()=>coin(.5,()=>res('״לשחרר את מי שמחזיק את הכלב.״ ...+2.',{g:2},'הרופא'),()=>res('״מי שקורא את הפתק: שמירה.״ המג״ד מצחיק.',{guard:1}))},
+  {t:'לתת לכלב חטיף',c:['r1','חשד −6'],go:()=>res('הכלב מחבב אותך. המג״ד יידע.',{sus:-6})}]},
+ {id:'quiz',who:'הרופא',text:'בוא נבדוק אם אתה באמת חולה. כמה זה 7 כפול 8?',opts:[
+  {t:'״56״',c:['r1','חשד +8'],go:()=>res('״בריא לגמרי. המוח עובד.״',{sus:8},'הרופא')},
+  {t:'״...כחול?״',c:['r3','50/50 · +2 או חשד +20'],go:()=>coin(.5,()=>res('הרופא נבהל. +2 ובדיקת ראש.',{g:2},'הרופא'),()=>res('״ראיתי אותך פותר סודוקו בתור.״',{sus:20},'הרופא'))},
+  {t:'״תלוי במצב הרוח״',c:['r2','חשד −5'],go:()=>res('הרופא צחק. סימן טוב.',{sus:-5},'הרופא')}]},
+ {id:'invite',who:'הרופא',text:'אני מתחתן בשבוע הבא. אין לי די־ג׳יי. אתה יודע לתקלט?',opts:[
+  {t:'״אני די־ג׳יי מקצועי״',c:['r3','50/50 · +3 או חשד +20'],go:()=>coin(.5,()=>res('״אז אתה צריך לנוח לפני!״ +3.',{g:3},'הרופא'),()=>res('״תנגן משהו.״ ניגנת את ״ג׳ינגל בלז״.',{sus:20},'הרופא'))},
+  {t:'״מזל טוב!״',c:['r1','חשד −8'],go:()=>res('הרופא שמח. סימן טוב.',{sus:-8},'הרופא')}]},
+ {id:'ac2',who:'',text:'*המזגן במרפאה התקלקל. 38 מעלות. הרופא מזיע*',enter:()=>setMood('sweaty'),opts:[
+  {t:'לנפנף לרופא עם תיק',c:['r1','חשד −12'],go:()=>res('״אתה מלאך.״',{sus:-12},'הרופא')},
+  {t:'״גם לי חם. אני חושב שזה חום גוף״',c:['r2','50/50 · +1 או חשד +10'],go:()=>coin(.5,()=>res('לרופא חם מדי בשביל להתווכח. +1.',{g:1},'הרופא'),()=>res('״לכולנו חם. זה אוגוסט.״',{sus:10},'הרופא'))}]},
+ {id:'call',who:'הטלפון שלך',text:'*מצלצל בקול רם: ״אחי יצאת? יש מסיבה בעשר!״*',opts:[
+  {t:'״זה... רופא אחר. קרדיולוג.״',c:['r3','40% · +1 או חשד +25'],go:()=>coin(.4,()=>res('הרופא לא שמע טוב. +1.',{g:1},'הרופא'),()=>res('״קרדיולוג במסיבה בעשר?״',{sus:25},'הרופא'))},
+  {t:'לנתק ולהתנצל',c:['r1','חשד +8'],go:()=>res('הרופא שמע ״מסיבה״. רשם.',{sus:8},'הרופא')}]},
+ {id:'spider',who:'החובשת',text:'יש עכביש ענק על הקיר! מי מוריד אותו?!',opts:[
+  {t:'להוריד בידיים',c:['r1','חשד −15'],go:()=>res('גיבור המרפאה. הרופא, מטפס על הכיסא: ״תודה״.',{sus:-15},'הרופא')},
+  {t:'״אני אלרגי לעכבישים!״ *מתנפח*',c:['r3','50/50 · +2 או חשד +15'],go:()=>coin(.5,()=>res('הנפיחות נראתה אמיתית. +2.',{g:2},'החובשת'),()=>res('ראו אותך מנפח לחיים.',{sus:15},'החובשת'))}]},
+ {id:'cook',who:'הטבח',text:'*הטבח נכנס עם סיר* מישהו פה אכל מהגולאש של אתמול?',opts:[
+  {t:'״אני! ועכשיו אני גוסס!״',c:['r2','55% · +2 או חשד +15'],go:()=>coin(.55,()=>res('הטבח התפרק. ״סליחה! קח שבוע!״ הרופא: +2.',{g:2},'הטבח'),()=>res('״לא היה אתמול גולאש. זה היה מבחן.״',{sus:15},'הטבח'))},
+  {t:'להתחבא',c:['r1','כלום'],go:()=>res('הטבח יצא עם הסיר. הריח נשאר.',{})}]},
+ {id:'gift',who:'הרופא',text:'היום יום הולדת לבת שלי. מה קונים לילדה בת 8?',opts:[
+  {t:'״כלב.״',c:['r2','50/50 · חשד −15 או +10'],go:()=>coin(.5,()=>res('״רעיון מעולה!״ הרופא בעננים.',{sus:-15},'הרופא'),()=>res('״אשתי אלרגית. עכשיו היא תכעס.״',{sus:10},'הרופא'))},
+  {t:'״גימלים. לי.״',c:['r3','35% · +2 או חשד +20'],go:()=>coin(.35,()=>res('הרופא צחק כל כך שנתן: +2.',{g:2},'הרופא'),()=>res('״הבת שלי מנומסת ממך.״',{sus:20},'הרופא'))}]},
+ {id:'gunlost',who:'רמקול',text:'הודעה: נמצא נשק ליד חדר האוכל. הבעלים מתבקש להגיע.',opts:[
+  {t:'לבדוק אם זה שלך',c:['r2','חשד +10'],go:()=>res('זה שלך. הרופא שמע הכל.',{sus:10})},
+  {t:'״זה בדיוק מה שאני מתאר! בלבול!״',c:['r3','45% · +2 או שמירה'],go:()=>coin(.45,()=>res('הרופא התרשם מ״הבלבול״. +2.',{g:2},'הרופא'),()=>res('קיבלת את הנשק בחזרה. ושמירה.',{guard:1,sus:5}))}]},
+ {id:'copier',who:'',text:'*הרופא שוכח טופס גימלים חתום במכונת הצילום*',opts:[
+  {t:'לצלם עותק',c:['r3','45% · +2 או חשד +30'],go:()=>coin(.45,()=>res('העותק יצא מושלם. +2.',{g:2}),()=>res('המכונה נתקעה עם הטופס בפנים. ואתה לידה.',{sus:30},'הרופא'))},
+  {t:'להחזיר לרופא',c:['r1','חשד −12'],go:()=>res('״...תודה. אתה בסדר.״',{sus:-12},'הרופא')}]},
+ {id:'shelter',who:'רמקול',text:'תרגיל! כולם לממ״ד!',opts:[
+  {t:'לרוץ לממ״ד עם הרופא',c:['r1','חשד −10'],go:()=>res('עשר דקות בממ״ד עם הרופא. דיברתם על כדורגל. אתם חברים עכשיו.',{sus:-10},'הרופא')},
+  {t:'לרוץ הביתה',c:['r3','30% · +3 או שמירה'],go:()=>coin(.3,()=>res('הגעת עד הש״ג. הש״ג ישן. +3?! טוב.',{g:3}),()=>res('הרס״ר עמד בש״ג.',{guard:1,sus:10},'הרס״ר'))}]},
+ {id:'twin',who:'החובשת',text:'יש פה חייל שנראה בדיוק כמוך. הוא אומר שאתה התאום הרע שלו.',opts:[
+  {t:'״הוא הרע!״',c:['r2','50/50 · +1 או חשד +15'],go:()=>coin(.5,()=>res('הרופא האמין לך. התאום קיבל שמירה. +1 לך.',{g:1},'הרופא'),()=>res('זו מראה.',{sus:15},'החובשת'))},
+  {t:'לחבק אותו',c:['r1','חשד −5'],go:()=>res('רגע מרגש. זו מראה, אבל רגע מרגש.',{sus:-5})}]},
+ {id:'lotto',who:'סמל המטבח',text:'הגרלה! מי שמנחש כמה קציצות יש בסיר, מקבל יום חופש!',opts:[
+  {t:'״347״',c:['r3','30% · +2 או כלום'],go:()=>coin(.3,()=>res('בדיוק 347! אף אחד לא מבין איך. +2.',{g:2}),()=>res('היו 12. אבל כל אחת בגודל של ראש.',{}))},
+  {t:'לא להשתתף',c:['r1','כלום'],go:()=>res('בחירה חכמה. הזוכה קיבל ״יום חופש מהמטבח״. במטבח.',{})}]},
+ {id:'nap',who:'',text:'*הרופא נרדם באמצע הבדיקה. נוחר.*',enter:()=>setMood('bored'),opts:[
+  {t:'לחתום לעצמך בשקט',c:['r3','45% · +3 או חשד +35'],go:()=>coin(.45,()=>res('חתמת. הוא לא התעורר. +3.',{g:3}),()=>res('הוא פתח עין אחת. ״באמת?״',{sus:35},'הרופא'))},
+  {t:'לכסות אותו בשמיכה',c:['r1','חשד −15'],go:()=>res('כשהתעורר, הוא ראה את השמיכה. התרגש.',{sus:-15},'הרופא')}]},
+ {id:'radio',who:'גלי צה״ל',text:'*ברדיו של המרפאה: ״ועכשיו, ברכות לחיילים! מי על הקו?״*',opts:[
+  {t:'להתקשר ולהקדיש שיר לרופא',c:['r2','50/50 · חשד −20 או +10'],go:()=>coin(.5,()=>res('״לרופא הכי טוב בצה״ל!״ הרופא דמע.',{sus:-20},'הרופא'),()=>res('ביטאת את השם שלו לא נכון. בשידור חי.',{sus:10},'הרופא'))},
+  {t:'לשיר יחד עם הרדיו',c:['r1','כלום'],go:()=>res('זייפת. אבל עם הלב.',{})}]},
+ {id:'tash',who:'קצינת ת״ש',text:'אני מחפשת חייל עם ״נסיבות מיוחדות״. זה אתה?',opts:[
+  {t:'״כן! הנסיבות הכי מיוחדות!״',c:['r3','40% · +3 או חשד +25'],go:()=>coin(.4,()=>res('״סבתא שלך באמת גרה בבית אבות לאופנוענים?״ +3.',{g:3},'קצינת ת״ש'),()=>res('״לא. אתה ׳נסיבות רגילות׳.״',{sus:25},'קצינת ת״ש'))},
+  {t:'להפנות אותה לחייל אחר',c:['r1','חשד −5'],go:()=>res('נדיב. הרופא ראה.',{sus:-5})}]},
+ {id:'armwrestle',who:'הסמל',text:'הסמל מציע: ״תנצח אותי בהורדת ידיים ואני מחתים לך גימל.״',opts:[
+  {t:'להסכים',c:['r3','40% · +2 או שמירה'],go:()=>coin(.4,()=>res('ניצחת! הסמל בהלם. +2.',{g:2},'הסמל'),()=>res('הסמל שבר לך את הגאווה. ושמירה.',{guard:1}))},
+  {t:'״יש לי כאב ביד. בגלל זה אני פה״',c:['r2','חשד −8'],go:()=>res('הגיוני. הרופא מהנהן.',{sus:-8},'הרופא')}]},
+ {id:'popcorn',who:'',text:'*גלאי העשן מצפצף. מישהו שרף פופקורן במטבחון*',opts:[
+  {t:'לצעוק ״שריפה! כולם הביתה!״',c:['r3','35% · +3 או חשד +30'],go:()=>coin(.35,()=>res('הבסיס התפנה. מצאת את עצמך בתחנה המרכזית. +3.',{g:3}),()=>res('כולם יצאו, ראו פופקורן וחזרו. ואתה מסומן.',{sus:30}))},
+  {t:'לפתוח חלון',c:['r1','חשד −8'],go:()=>res('הרופא אוהב יוזמה.',{sus:-8},'הרופא')}]}
+);
+
 
 /* ---- daily missions ---- */
 const MISSIONS={
@@ -3473,9 +3883,10 @@ function shareGame(){track('share_game');const txt=SHARE_TXT+'\n'+GAME_URL;
 
 /* ---- progress sheet: missions, rank, achievements ---- */
 function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=store.get('gm_career',0);
- ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="ghostbtn" id="prBg" type="button">🎲 שש בש עם שלומי (אימון)</button><button class="ghostbtn" id="prTut" type="button">לעשות טירונות שוב</button><button class="big" id="prBack" type="button">חזרה</button></div>`;
+ ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="ghostbtn albtn" id="prAl" type="button">📖 אלבום המשפטים · ${albumSet().size}/${LINES.length}</button><button class="ghostbtn" id="prBg" type="button">🎲 שש בש עם שלומי (אימון)</button><button class="ghostbtn" id="prTut" type="button">לעשות טירונות שוב</button><button class="big" id="prBack" type="button">חזרה</button></div>`;
  $('#prTut').addEventListener('click',()=>showTutorialIntro());
  $('#prBg').addEventListener('click',showBgPractice);
+ $('#prAl').addEventListener('click',showAlbum);
  $('#prBack').addEventListener('click',showStart)}
 
 /* ---- title screen ---- */
@@ -3544,7 +3955,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='4.9';
+const VERSION='5.0';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
