@@ -697,6 +697,67 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
 .learn div{display:grid;gap:2px;background:#fff;border:2px solid var(--paper-2);border-radius:5px;padding:8px 10px}
 .learn b{font-size:15px}.learn span{font-size:13px;color:var(--ink-soft);line-height:1.4}
 
+.doc .eyes{transform-box:view-box;transform-origin:110px 90px;transition:transform .18s}
+.doc.look-l .eyes{transform:translateX(-4px)}.doc.look-r .eyes{transform:translateX(4px)}.doc.look-d .eyes{transform:translateY(3px)}
+.doc.squint .eyes{transform:scaleY(.45)}
+.doc .brows{transform-box:view-box;transform-origin:110px 66px;transition:transform .25s}
+.doc.mid-sus .brows{transform:translateY(-4px) rotate(-4deg)}
+.doc.hi-sus .brows{transform:translateY(3px) scaleY(1.15)}
+.doc .sweat2{display:none}.doc.hi-sus .sweat2{display:inline}
+.doc .drop{animation:drip 1.4s ease-in infinite}.doc .d2{animation-delay:.5s}.doc .d3{animation-delay:.95s}
+@keyframes drip{0%{transform:translateY(0);opacity:1}100%{transform:translateY(20px);opacity:0}}
+.doc.nod .head{animation:nodA .65s ease}
+@keyframes nodA{40%{transform:translateY(6px) rotate(2deg)}}
+.cine{position:fixed;inset:0;z-index:70;pointer-events:auto;overflow:hidden}
+.cine .door{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(90deg,#6d7a52,#58653f);box-shadow:inset 0 0 0 10px #4a5536;animation:doorOpen .9s .55s cubic-bezier(.6,0,.3,1) forwards}
+.cine .dl{left:0;border-right:3px solid #2e3620}.cine .dr{right:0;animation-name:doorOpenR}
+.cine .door i{position:absolute;top:16%;left:22%;right:22%;height:24%;background:linear-gradient(#bfd4e6,#8fb0c9);border:6px solid #4a5536;border-radius:4px}
+.cine .dl i::after{content:"";position:absolute;right:-30%;top:180%;width:16px;height:46px;border-radius:8px;background:#c9b27a;box-shadow:0 2px 0 #6b5a2e}
+.cine .dl b{position:absolute;top:46%;left:50%;transform:translateX(-50%) rotate(-3deg);background:#f2e9d0;color:#c3352a;font-family:var(--f-display);font-size:34px;padding:2px 14px 4px;border:3px solid #c3352a;white-space:nowrap}
+@keyframes doorOpen{to{transform:translateX(-102%)}}@keyframes doorOpenR{to{transform:translateX(102%)}}
+.cine-cap{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 18%);display:grid;gap:6px;justify-items:center;text-align:center;z-index:2;animation:capIn .5s both,capOut .4s 1.4s forwards}
+.cine-cap b{font-family:var(--f-display);font-size:48px;line-height:1;color:var(--pow);-webkit-text-stroke:2px #1d1a0c;paint-order:stroke fill}
+.cine-cap span{font-size:15px;font-weight:800;color:#fff;background:rgba(0,0,0,.6);padding:4px 12px;border-radius:999px}
+@keyframes capIn{from{transform:translateY(-14px);opacity:0}}@keyframes capOut{to{opacity:0}}
+.cine.out{opacity:0;transition:opacity .4s}
+.room.zoomin{animation:roomZoom 1.8s cubic-bezier(.2,.7,.2,1)}
+@keyframes roomZoom{0%{transform:scale(1.35);filter:blur(3px) brightness(.6)}60%{filter:none}100%{transform:none}}
+.room.zoomin .doc .head{animation:lookUp 1.4s .7s ease-out both}
+@keyframes lookUp{0%{transform:translateY(12px) rotate(5deg)}100%{transform:none}}
+.nightfx{display:none;position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 42% 52% at 50% 62%,transparent 0 35%,rgba(4,8,28,.84) 78%),linear-gradient(rgba(20,40,110,.28),rgba(20,40,110,.28))}
+.room.night .nightfx{display:block}
+.room.night .lamp{opacity:0}
+.room.night .window{background:linear-gradient(#0b1530,#1e2b55 66%,#1c2a1a 66%)}
+.room.night .window .sun{background:#f4f1d0;box-shadow:0 0 10px #f4f1d0;width:12px;height:12px}
+.room.night .bubble{z-index:4}
+.ts-stage{position:absolute;left:-16px;right:-16px;bottom:-4px;height:58px;z-index:0;pointer-events:none;overflow:hidden;opacity:.95}
+.ts-hero>*:not(.ts-stage):not(.ts-stamp){position:relative;z-index:1}
+.ts-stamp{z-index:2}
+.ts-hero{padding-bottom:50px}
+.ts-stage .sneak{position:absolute;bottom:-4px;right:-70px;width:50px;animation:sneak 11s linear infinite}
+.ts-stage .sneak svg{width:100%;height:auto;display:block;animation:tiptoe .5s ease-in-out infinite alternate}
+@keyframes tiptoe{to{transform:translateY(-4px) rotate(3deg)}}
+@keyframes sneak{0%{right:-70px}45%{right:46%}52%{right:46%;transform:translateY(-16px)}54%{right:46%;transform:none}70%{right:-90px}100%{right:-90px}}
+.ts-stage .peek{position:absolute;bottom:-60px;left:18%;width:46px;animation:peek 11s ease-in-out infinite}
+.ts-stage .peek svg{width:100%;height:auto;display:block}
+.ts-stage .peek b{position:absolute;top:-6px;right:-14px;font-family:var(--f-display);font-size:30px;color:var(--pow);opacity:0;animation:bang 11s infinite}
+@keyframes peek{0%,38%{bottom:-60px}44%,62%{bottom:0}68%,100%{bottom:-60px}}
+@keyframes bang{0%,46%{opacity:0}48%,60%{opacity:1}62%{opacity:0}}
+.ts-stage .pillfly{position:absolute;bottom:22px;left:24%;width:22px;height:10px;border-radius:6px;background:linear-gradient(90deg,#fff 50%,#dfe8f4 50%);opacity:0;animation:pillfly 11s linear infinite}
+@keyframes pillfly{0%,48%{opacity:0;transform:none}49%{opacity:1}53%{opacity:1;transform:translateX(130px) translateY(-6px) rotate(380deg)}54%,100%{opacity:0}}
+.profpill{cursor:pointer;font:inherit;font-size:13px;font-weight:800;max-width:34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.profile .prof-top{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center}
+.profile .pimg{width:96px}
+.prof-id{display:grid;gap:4px;justify-items:start}
+.prof-id input{font:inherit;font-family:var(--f-display);font-size:34px;line-height:1;border:0;border-bottom:2px dashed var(--ink-soft);background:transparent;color:var(--ink);width:100%;padding:0 0 2px}
+.prof-rank{font-size:15px;color:var(--stamp)}
+.linkbtn{background:none;border:0;padding:0;color:var(--go);font-weight:800;font-size:13px;text-decoration:underline}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 14px}
+.statgrid div{display:grid;justify-items:center;background:#fff;border:2px solid var(--paper-2);border-radius:5px;padding:8px 4px}
+.statgrid b{font-family:var(--f-display);font-size:34px;line-height:1;color:var(--go)}
+.statgrid span{font-size:11px;font-weight:700;color:var(--ink-soft);text-align:center}
+@media (prefers-reduced-motion: reduce){.ts-stage{display:none}.room.zoomin,.room.zoomin .doc .head{animation:none}}
+
 @media (prefers-reduced-motion: reduce){
   #app.shake,.doc .head,.cmd .head,.meter.hot,.room::after,.punch,.soldier,.doc [data-k="eo"],.window .flag::after{animation:none}
   .choice,.sheet,.bubble.fresh,.console{animation:none}
@@ -729,7 +790,7 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
     <div class="lamp cl" aria-hidden="true"></div>
     <div class="chart cl" aria-hidden="true"><div>ע</div><div>ל ב</div><div>ש ד ק</div><div>מ נ ר צ</div><div>פ ת ג ה ט</div></div>
     <div class="wclock cl" aria-hidden="true"><i class="h" id="hH" style="transform:rotate(210deg)"></i><i class="m" id="hM"></i></div>
-    <div class="sign cl" aria-hidden="true"><b>שעות קבלה</b>07:00–<span id="closeSign">07:12</span><br>לא כולל אוכל</div>
+    <div class="sign cl" aria-hidden="true"><b>שעות קבלה</b><span id="openSign">07:00</span>–<span id="closeSign">07:12</span><br>לא כולל אוכל</div>
     <div class="window cl" aria-hidden="true"><span class="sun"></span><span class="flag"></span></div>
     <div class="booth" aria-hidden="true"></div>
     <div class="gatebar" id="gatebar" aria-hidden="true"></div>
@@ -753,13 +814,13 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
           <g class="mirror"><circle cx="110" cy="44" r="15" fill="#dfe5e8" stroke="#6f7a80" stroke-width="3"/>
           <circle cx="110" cy="44" r="5" fill="#2b2f33"/>
           <ellipse cx="104" cy="39" rx="4" ry="2.5" fill="#fff" opacity=".85"/></g>
-          <g stroke="var(--hair)" stroke-width="5" stroke-linecap="round" fill="none">
+          <g class="brows" stroke="var(--hair)" stroke-width="5" stroke-linecap="round" fill="none">
             <path class="v" data-k="bn" d="M75 70 Q88 64 100 69 M120 69 Q132 64 145 70"/>
             <path class="v" data-k="ba" d="M76 63 L100 74 M120 74 L144 63"/>
             <path class="v" data-k="br" d="M75 62 Q88 52 100 59 M120 59 Q132 52 145 62"/>
             <path class="v" data-k="bs" d="M76 73 L100 72 M120 61 Q133 51 145 59"/>
           </g>
-          <g fill="#22251a" stroke="#22251a" stroke-linecap="round">
+          <g class="eyes" fill="#22251a" stroke="#22251a" stroke-linecap="round">
             <g class="v" data-k="eo"><circle cx="88" cy="90" r="4.5"/><circle cx="132" cy="90" r="4.5"/></g>
             <g class="v" data-k="ew"><circle cx="88" cy="90" r="9" fill="#fff" stroke-width="1"/><circle cx="132" cy="90" r="9" fill="#fff" stroke-width="1"/><circle cx="88" cy="90" r="3.5"/><circle cx="132" cy="90" r="3.5"/></g>
             <g class="v" data-k="esq" stroke-width="3.5" fill="none"><path d="M81 91 L95 89 M125 89 L139 91"/></g>
@@ -788,6 +849,7 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
             <path class="v" data-k="mb" d="M100 126 Q112 123 122 127"/>
             <path class="v" data-k="mw" d="M95 127 q4 -5 7.5 0 q4 5 7.5 0 q4 -5 7.5 0 q4 5 7.5 0"/>
           </g>
+          <g class="sweat2"><path class="drop" d="M154 58 Q160 68 154 72 Q148 68 154 58Z" fill="#7fc4ef"/><path class="drop d2" d="M66 64 Q71 72 66 75 Q61 72 66 64Z" fill="#7fc4ef"/><path class="drop d3" d="M140 40 Q145 48 140 51 Q135 48 140 40Z" fill="#7fc4ef"/></g>
           <path class="mus" d="M82 117 Q94 104 110 111 Q126 104 138 117 Q126 121 110 116 Q94 121 82 117Z" fill="var(--hair)"/>
         </g>
       </svg>
@@ -861,6 +923,7 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
     </div>
     <div id="cue" class="cue" hidden aria-hidden="true"></div>
     <div id="dweap" class="dweap" hidden aria-hidden="true"></div>
+    <div class="nightfx" aria-hidden="true"></div>
     <div id="feverBadge" class="fbadge" hidden></div>
     <div id="stamp" class="stamp" hidden></div>
     <div id="floater" class="floater"></div>
@@ -1078,7 +1141,7 @@ function careerRank(c){let i=0;for(let k=0;k<CAREER.length;k++)if(c>=CAREER[k][1
 function setGimel(n){const el=$('#gimel');const from=+el.dataset.v||0;el.dataset.v=n;const t0=performance.now();
  (function step(t){const k=Math.min(1,(t-t0)/600);el.textContent=Math.round(from+(n-from)*k);if(k<1)requestAnimationFrame(step)})(t0);
  cls($('#gimelWrap'),'pop')}
-const hhmm=m=>'07:'+String(m).padStart(2,'0');
+const hhmm=m=>((S&&S.night)?'02:':'07:')+String(m).padStart(2,'0');
 function hud(){
  const d=RUN.day,t=TARGET[d-1];
  $('#dayTag').textContent=S.mode==='gate'?'יום חמישי · מחסום הרס״ר בש״ג':`יום ${DL[d-1]} · ${d}/5`;
@@ -1088,7 +1151,7 @@ function hud(){
  $('#total').textContent=RUN.total;
  [...$('#streak').children].forEach((el,i)=>el.classList.toggle('on',i<S.streak%3||(S.streak>0&&S.streak%3===0&&S.justBonus)));
  const left=S.turns-S.turn,ck=$('#clock');ck.textContent=`${hhmm(S.turn*2)} · עוד ${left} משפטים`;ck.classList.toggle('late',left<=1);
- $('#closeSign').textContent=hhmm(S.turns*2);
+ $('#closeSign').textContent=hhmm(S.turns*2);$('#openSign').textContent=hhmm(0);docSus();
  const s=Math.max(0,Math.min(100,S.sus));$('#susTxt').textContent=s+'%';const bar=$('#susBar');bar.style.width=s+'%';
  bar.style.background=s<40?'var(--go)':s<70?'var(--warn)':'var(--stamp)';$('#meter').classList.toggle('hot',s>=70);
  $('#queue').textContent=S.doc?`${DOC().n} · ${MOOD().n}`:'';
@@ -1116,11 +1179,16 @@ function startRun(o){o=o||{};
 function startVisit(){
  const d=RUN.day;
  const V=RUN.next||pickVisit(d);RUN.next=null;
- S={doc:V.doc,moodK:V.mood,skill:false,gimel:0,sus:startSus(d),turn:0,turns:6+(has('watch')?1:0)+(charId()==='driver'?1:0),streak:0,justBonus:false,used:new Set(),
+ S={doc:V.doc,moodK:V.mood,night:!!V.night,skill:false,gimel:0,sus:startSus(d),turn:0,turns:6+(has('watch')?1:0)+(charId()==='driver'?1:0),streak:0,justBonus:false,used:new Set(),
     busy:false,over:false,fought:false,cmdDone:false,mode:'talk',hot:false,scared:false,kabanUsed:false,rerolled:false,evUsed:new Set(),queue:rnd(18,30)+d*4,clean:true};
  $('#gimel').dataset.v=0;$('#gimel').textContent='0';$('#stamp').hidden=true;$('#cmd').className='cmd';$('#doc').className='doc';$('#gatebar').classList.remove('up');room.className='room';
- applyDoctor();if(d>=3)mission('day3');musicPlay(clinicSong());if(DOC().legend)setTimeout(chiefEntrance,500);
- setMood('neutral');say(null,GREET[d-1]);hud();deal();
+ if(S.night)room.classList.add('night');
+ applyDoctor();if(d>=3)mission('day3');docLife();
+ const go=()=>{musicPlay(clinicSong());if(DOC().legend)setTimeout(chiefEntrance,500);setMood('neutral');say(null,S.night?pickOne(NIGHT_GREET):GREET[d-1]);deal()};
+ hud();
+ if(RUN.mode==='tutorial')return go();
+ $('#choices').innerHTML='';setPrompt('');$('#actions').hidden=true;
+ cinema('יום '+DL[d-1]+' · '+hhmm(0)+(S.night?' · ביקור לילה':''),DOC().legend?'???':DOC().n+' · '+DOC().role+' · מצב רוח: '+MOOD().n,()=>{if(S&&!S.over){go();hud()}});
 }
 function deal(){
  setPrompt('מה אתה אומר לו?');
@@ -1133,7 +1201,7 @@ function deal(){
   const lo=L.r===3?2:1,hi=L.j?L.j.g:(L.r===1?1:2);
   b.classList.add('rk'+L.r);b.setAttribute('aria-label',RISK[L.r][0]+': '+L.t.replace(/\*/g,''));
   b.innerHTML=`<span class="kbd">${kn}</span><span class="ctext"><span>${fmt(L.t)}</span><span class="chip ${RISK[L.r][1]}">${RISK[L.r][0]}</span></span><span class="cdays" dir="ltr">+${lo===hi?lo:lo+'–'+hi}${L.j?'<b>!</b>':''}</span>`;
-  b.addEventListener('click',()=>choose(i,b));box.appendChild(b)});
+  b.addEventListener('click',()=>choose(i,b));b.addEventListener('pointerenter',()=>$('#doc').classList.add('look-d'));b.addEventListener('pointerleave',()=>$('#doc').classList.remove('look-d'));box.appendChild(b)});
  if(TUT&&TUT.step===0&&RUN.day===1){TUT.step=1;stopPatience();setTimeout(()=>coach('#choices .choice','בחר מה להגיד לרופא. אדום מסוכן, אבל שווה יותר ימים. ירוק בטוח.',()=>{if(S.mode==='talk'&&!S.busy)startPatience()}),350)}
  else{startPatience();maybeFly()}
 }
@@ -1495,7 +1563,7 @@ function strike(now,rage){const F=S.F,op=$('#fOp'),me=$('#fMe');hideCue();op.cla
 }
 function endFightUI(){const F=S.F;F.done=true;document.body.classList.remove('fighting');cancelAnimationFrame(F.raf);hideCue();
  $('#fMe').classList.remove('blocking')}
-async function fightWin(){const F=S.F;if(F.done)return;endFightUI();crowdCheer();tEv('ko');
+async function fightWin(){const F=S.F;if(F.done)return;endFightUI();crowdCheer();tEv('ko');if(!TUTOR)store.set('gm_kos',store.get('gm_kos',0)+1);
  const op=$('#fOp'),me=$('#fMe');moveFor(op,'m-ko');op.classList.add('dazed');moveFor(me,'m-win');poseFor(me,'block','block');
  overlayFx('flash',600);buzz([40,40,90]);stamp('נוקאאוט','ok');SFX.jack();burst('נוקאאוט!');spawn('conf',reduced?6:30,'ג׳');sol('cheer');unlock('ko');
  if(F.cfg.onWin){await wait(1900);teardownRing();$('#choices').innerHTML='';return F.cfg.onWin()}
@@ -1760,9 +1828,9 @@ function typeOut(el,text){
 }
 function introSheet(withPerk){
  const d=RUN.day,ov=$('#overlay');ov.hidden=false;let chosen=null;
- RUN.next=pickVisit(d);const ND=DOCS[RUN.next.doc],NM=DMOODS[RUN.next.mood];
+ RUN.next=pickVisit(d);const ND=DOCS[RUN.next.doc],NM=DMOODS[RUN.next.mood],NN=RUN.next.night;
  ov.innerHTML=`<div class="sheet intro">
-  <div class="time">06:58 · תור למרפאה</div>
+  <div class="time">${NN?'01:58 · ביקור לילה':'06:58 · תור למרפאה'}</div>
   <h1>יום ${DL[d-1]}</h1>
   <p class="story" id="story"></p>
   <dl class="rows">
@@ -1771,6 +1839,7 @@ function introSheet(withPerk){
    <div><dt>מצב רוח</dt><dd>${NM.n}</dd></div>
    <div><dt>חשד התחלתי</dt><dd>${startSus(d)}%</dd></div>
   </dl>
+  ${NN?'<p class="tip">ביקור לילה: הרופא חצי ישן. קצת יותר קל לעבוד עליו, ויש משפטים שעובדים רק בלילה.</p>':''}
   <p class="tip">${ND.legend?'משהו מוזר באוויר היום. הרס״ר נראה לחוץ.':ND.d} ${NM.d}.</p>
   <div id="pp"></div>
   <button class="big" id="enter" type="button">נכנס לחדר</button>
@@ -1829,6 +1898,7 @@ function endRunCore(type,sentence){
  const earned=g*5+daysDone*6+(type==='victory'?60:0);addCoins(earned);saveLocal(g);
  if(RUN.mode==='daily')setDailyBest(g);
  RUN.pendingRun=g;if(getBase()||!ONLINE)flushRun();
+ if(RUN.mode==='duel'&&RUN.duel&&RUN.total>RUN.duel.host_score)store.set('gm_duelwins',store.get('gm_duelwins',0)+1);
  if(RUN.mode==='duel'&&RUN.duel&&ONLINE)sbRpc('finish_duel',{p_code:RUN.duel.code,p_name:cleanName(store.get('gm_name',''))||'חייל',p_hero:charId(),p_score:g,p_bout:!!RUN.boutWon}).catch(()=>{});
  const modeTag=RUN.mode==='daily'?'אתגר יומי · ':RUN.mode==='duel'?'דו־קרב · ':'';
  const ov=$('#overlay');ov.hidden=false;
@@ -1938,12 +2008,12 @@ const TAGRX={food:/שניצל|במבה|שוקו|לוף|אכלתי|שקשוקה|�
 const lineTag=L=>Object.keys(TAGRX).find(k=>TAGRX[k].test(L.t))||'';
 const DOC=()=>DOCS[(S&&S.doc)||'shmueli'], MOOD=()=>DMOODS[(S&&S.moodK)||'party'];
 function moodMatch(L){const t=MOOD().tag;return !!t&&lineTag(L)===t}
-function succMod(L){const D=DOC().mod,M=MOOD();let m=(D.all||0)+(M.all||0)+upLevel('charm')*.03;
+function succMod(L){const D=DOC().mod,M=MOOD();let m=(D.all||0)+(M.all||0)+upLevel('charm')*.03+(S&&S.night?.06:0);
  if(L.r===3)m+=(D.r3||0)+(M.r3||0);if(L.r===1)m+=(D.r1||0)+(M.r1||0);if(moodMatch(L))m+=.25;return m}
-const patMul=()=>(DOC().mod.pat||1)*(MOOD().pat||1)*(charId()==='jobnik'?1.35:1);
+const patMul=()=>(DOC().mod.pat||1)*(MOOD().pat||1)*(charId()==='jobnik'?1.35:1)*(S&&S.night?1.25:1);
 function startSus(d){return Math.max(0,SUS0[d-1]-(has('candy')?10:0)-upLevel('connect')*5-(charId()==='jobnik'?10:0)+(charId()==='fighter'?8:0))}
-function lineAvailable(L,own){if(!own)return !L.c;return !L.c||L.c===charId()||(L.c==='vip'&&upLevel('vip')>0)}
-function pickVisit(d){let dk=d===1?'shmueli':gPick(Object.keys(DOCS).filter(k=>!DOCS[k].legend));if(d>=2&&GR()<.04)dk='chief';return{doc:dk,mood:gPick(Object.keys(DMOODS))}}
+function lineAvailable(L,own){if(L.c==='night')return !!(S&&S.night);if(!own)return !L.c;return !L.c||L.c===charId()||(L.c==='vip'&&upLevel('vip')>0)}
+function pickVisit(d){let dk=d===1?'shmueli':gPick(Object.keys(DOCS).filter(k=>!DOCS[k].legend));if(d>=2&&GR()<.04)dk='chief';const mood=gPick(Object.keys(DMOODS));return{doc:dk,mood,night:d>=2&&GR()<.22}}
 function applySoldier(){const c=CHARS[charId()],s=$('#soldier');s.style.setProperty('--s-shirt',c.shirt);s.style.setProperty('--s-beret',c.beret);s.style.setProperty('--s-hair',c.hair);s.dataset.char=charId()}
 function applyDoctor(){const D=DOC();const d=$('#doc');D.cls.split(' ').filter(Boolean).forEach(c=>d.classList.add(c));
  const pl=document.querySelector('.plate');if(pl)pl.textContent=D.n+' · '+D.role}
@@ -2413,6 +2483,96 @@ function maybeFind(){if(TUTOR||Math.random()>.06)return;const F=pickOne(FINDS);
  setTimeout(()=>{if(!S||S.over)return;if(F.g){S.gimel+=F.g;setGimel(S.gimel)}if(F.sus)S.sus=Math.max(0,S.sus+F.sus);if(F.coins)addCoins(F.coins);
   hud();SFX.jack();spawn('conf',reduced?4:16,'★');toastMsg('★',F.t,F.s)},700)}
 
+/* ================= doctor life: small face animations ================= */
+let DOCLIFE=0;
+function docLife(){clearTimeout(DOCLIFE);const d=$('#doc');if(!d)return;
+ const tick=()=>{if(!S||!d.isConnected)return;docSus();
+  if(S.mode==='talk'&&!reduced){const r=Math.random();
+   if(r<.35){const c=Math.random()<.5?'look-l':'look-r';d.classList.add(c);setTimeout(()=>d.classList.remove(c),700)}
+   else if(r<.5){d.classList.add('nod');setTimeout(()=>d.classList.remove('nod'),650)}
+   else if(r<.65&&S.sus>=35){d.classList.add('squint');setTimeout(()=>d.classList.remove('squint'),900)}}
+  DOCLIFE=setTimeout(tick,1300+Math.random()*1700)};tick()}
+function docSus(){const d=$('#doc');if(!d||!S)return;d.classList.toggle('mid-sus',S.sus>=35&&S.sus<65);d.classList.toggle('hi-sus',S.sus>=65)}
+
+/* ================= cinematic entrance to each visit ================= */
+function cinema(title,sub,onDone){if(reduced){onDone&&onDone();return}
+ const c=document.createElement('div');c.className='cine';c.setAttribute('aria-hidden','true');
+ c.innerHTML='<div class="door dl"><i></i><b></b></div><div class="door dr"><i></i></div><div class="cine-cap"><b></b><span></span></div>';
+ c.querySelector('.dl b').textContent='מרפאה';c.querySelector('.cine-cap b').textContent=title;c.querySelector('.cine-cap span').textContent=sub;
+ document.body.appendChild(c);room.classList.remove('zoomin');void room.offsetWidth;room.classList.add('zoomin');setTimeout(()=>SFX.door(),550);
+ let gone=false;const end=()=>{if(gone)return;gone=true;c.classList.add('out');setTimeout(()=>c.remove(),450);setTimeout(()=>room.classList.remove('zoomin'),1500);onDone&&onDone()};
+ c.addEventListener('click',end);setTimeout(end,2200)}
+
+/* ================= night visits ================= */
+const NIGHT_GREET=['מה אתה עושה פה בשתיים בלילה?!','אני ישן. אתה חולה. מהר.','...מי זה? זה שוב אתה?','אם זה לא דחוף, אני רוצח אותך.'];
+const NIGHT_LINES=[
+ {c:'night',t:'שמעתי רעשים מהמטבח. אני חושב שזה השניצל.',r:2,w:'גם אני שמעתי. {g}, ותנעל את הדלת.',f:'זה המש״ק. הוא אוכל בלילה.'},
+ {c:'night',t:'נרדמתי בשמירה וחלמתי שאני חולה',r:1,w:'חלומות זה סימן. {g}.',f:'נרדמת בשמירה?! עכשיו אתה בבעיה.'},
+ {c:'night',t:'*נכנס בפיג׳מה עם דובי*',r:3,w:'...זה נוגע ללב. {g}.',f:'הדובי נראה יותר חייל ממך.',j:{g:5,t:'הרופא חיבק את הדובי ונרדם. החובשת חתמה: {g}.'}},
+ {c:'night',t:'המ״מ נוחר בתדר של צפירה. אני לא ישן כבר שבוע.',r:2,w:'שמעתי אותו מפה. {g}.',f:'תשים אוזניות.'},
+ {c:'night',t:'דוקטור, אתה ער? רק בודק.',r:1,w:'עכשיו כן. {g}, ותן לישון.',f:'עכשיו ער. ועצבני.'},
+ {c:'night',t:'ראיתי את הרופא הראשי מסתובב במסדרון. הוא אמר שתיתן לי.',r:3,w:'...באמת? {g}, שלא יכעס.',f:'הרופא הראשי ישן בבית כמו בן אדם.',j:{g:5,t:'הרופא נבהל שהבוס פה. {g}, רק לך.'}}
+];
+
+/* ================= live title stage ================= */
+const MINI_DOC='<svg viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="50" cy="56" rx="30" ry="33" fill="#eab68d"/><path d="M22 50 Q20 22 50 20 Q80 22 78 50 Q66 36 50 38 Q34 36 22 50Z" fill="#3b2a1b"/><circle cx="50" cy="26" r="9" fill="#dfe5e8" stroke="#6f7a80" stroke-width="2.5"/><g fill="none" stroke="#2b2f33" stroke-width="3"><circle cx="39" cy="56" r="9"/><circle cx="61" cy="56" r="9"/><path d="M48 55 h4"/></g><circle cx="39" cy="56" r="3" fill="#22251a"/><circle cx="61" cy="56" r="3" fill="#22251a"/><path d="M34 76 Q42 70 50 74 Q58 70 66 76 Q58 79 50 76 Q42 79 34 76Z" fill="#3b2a1b"/><path d="M28 44 L44 48 M56 48 L72 44" stroke="#3b2a1b" stroke-width="4" stroke-linecap="round"/></svg>';
+function titleStage(){return `<div class="ts-stage" aria-hidden="true"><div class="sneak">${portrait(charId())}</div><div class="peek">${MINI_DOC}<b>!</b></div><i class="pillfly"></i></div>`}
+
+/* ================= player profile ================= */
+function profileStats(){const got=store.get('gm_ach',[]).length,career=store.get('gm_career',0),si=streakInfo();
+ return{name:cleanName(store.get('gm_name',''))||'חייל אלמוני',base:getBase(),char:charId(),rank:CAREER[careerRank(career)][0],career,
+  best:store.get('gm_best3',0),runs:store.get('gm_runs',0),kos:store.get('gm_kos',0),acamol:store.get('gm_acamol',0),jail:store.get('gm_jail',0),
+  streak:si.n,ach:got,achAll:Object.keys(ACH).length,duelWins:store.get('gm_duelwins',0)}}
+function showProfile(){const P=profileStats(),ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet profile">
+  <div class="prof-top"><div class="pimg">${portrait(P.char)}</div><div class="prof-id">
+   <input id="pfName" maxlength="14" placeholder="השם שלך" autocomplete="nickname" aria-label="השם שלך">
+   <b class="prof-rank">${P.rank}</b><button type="button" class="linkbtn" id="pfBase"></button></div></div>
+  ${careerBlock(P.career)}
+  <div class="statgrid">
+   <div><b>${P.best}</b><span>שיא ימים בריצה</span></div><div><b>${P.runs}</b><span>ריצות</span></div><div><b>${P.career}</b><span>ימים בקריירה</span></div>
+   <div><b>${P.kos}</b><span>נוקאאוטים</span></div><div><b>${P.streak}</b><span>ימים ברצף</span></div><div><b>${P.ach}/${P.achAll}</b><span>עיטורים</span></div>
+   <div><b>${P.acamol}</b><span>אקמולים</span></div><div><b>${P.jail}</b><span>פעמים בכלא</span></div><div><b>${P.duelWins}</b><span>דו־קרבות שניצחת</span></div>
+  </div>
+  <button class="big green" id="pfCard" type="button">כרטיס פרופיל לשיתוף</button><button class="ghostbtn" id="pfBack" type="button">חזרה</button></div>`;
+ const inp=$('#pfName');inp.value=store.get('gm_name','');inp.addEventListener('change',()=>{store.set('gm_name',cleanName(inp.value))});
+ const bb=$('#pfBase');bb.textContent=P.base?'בסיס '+P.base+' · שנה':'בחר בסיס';bb.hidden=!ONLINE;bb.addEventListener('click',showBasePicker);
+ $('#pfCard').addEventListener('click',()=>{store.set('gm_name',cleanName(inp.value));showImg('כרטיס פרופיל',makeProfileCard(profileStats()),'זה הפרופיל שלי במלך הגימלים. יש לך סיכוי? '+GAME_URL,showProfile)});
+ $('#pfBack').addEventListener('click',()=>{store.set('gm_name',cleanName(inp.value));showStart()})}
+async function svgImg(svg,w){const s=svg.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" ').replace(/var\(--skin-d\)/g,'#c98e64').replace(/var\(--skin\)/g,'#eab68d');
+ const img=new Image();img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);try{await img.decode()}catch(e){}return img}
+async function makeProfileCard(P){const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext&&c.getContext('2d');if(!x)return null;
+ try{await Promise.all([document.fonts.load('700 100px Karantina'),document.fonts.load('700 40px Rubik')])}catch(e){}
+ x.fillStyle='#232a16';x.fillRect(0,0,W,H);
+ [['#2e3820',180,220,260,130],['#3a4529',820,300,220,180],['#1a200f',520,1150,320,120],['#2e3820',900,1100,180,240]].forEach(([f,cx,cy,rx,ry])=>{x.fillStyle=f;x.beginPath();x.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);x.fill()});
+ x.save();x.translate(W/2,H/2+20);x.rotate(-.02);x.fillStyle='#f2e9d0';x.shadowColor='rgba(0,0,0,.5)';x.shadowBlur=40;x.fillRect(-430,-560,860,1120);x.restore();
+ x.fillStyle='#c3352a';for(let i=0;i<20;i++)x.fillRect(110+i*44,128,28,12);
+ x.direction='rtl';x.textAlign='center';x.fillStyle='#5f5c43';x.font='700 38px Rubik, Arial';x.fillText('מלך הגימלים · תעודת חייל',W/2,210);
+ x.save();x.beginPath();x.arc(W/2,410,170,0,Math.PI*2);x.fillStyle='#d3dcc3';x.fill();x.lineWidth=12;x.strokeStyle='#22251a';x.stroke();x.clip();
+ const im=await svgImg(portrait(P.char),340);try{x.drawImage(im,W/2-170,262,340,361)}catch(e){}x.restore();
+ x.fillStyle='#22251a';x.font='700 120px Karantina, Rubik, Arial';x.fillText(P.name,W/2,700);
+ x.font='700 44px Rubik, Arial';x.fillStyle='#c3352a';x.fillText(P.rank+(P.base?' · בסיס '+P.base:''),W/2,770);
+ const cells=[[P.best,'שיא ימים'],[P.runs,'ריצות'],[P.career,'ימים בקריירה'],[P.kos,'נוקאאוטים'],[P.ach+'/'+P.achAll,'עיטורים'],[P.streak,'ימים ברצף']];
+ cells.forEach(([v,l],i)=>{const col=i%3,row=i/3|0,cx=W/2+(1-col)*270,cy=900+row*170;
+  x.fillStyle='#fff';x.fillRect(cx-120,cy-70,240,140);x.strokeStyle='#ddcfa6';x.lineWidth=4;x.strokeRect(cx-120,cy-70,240,140);
+  x.fillStyle='#3c7a2b';x.font='700 84px Karantina, Rubik, Arial';x.fillText(String(v),cx,cy+18);x.fillStyle='#5f5c43';x.font='500 28px Rubik, Arial';x.fillText(l,cx,cy+54)});
+ x.fillStyle='#cdb57a';x.font='700 34px Rubik, Arial';x.fillText('יש לך סיכוי? · king-of-the-gimelets.vercel.app',W/2,1318);
+ return new Promise(r=>c.toBlob(b=>r(b),'image/png'))}
+async function showImg(title,blobP,txt,back){const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet"><h2></h2><div class="cardimg" id="cardImg"><p class="best">מכין...</p></div>
+  <div class="cardbtns"><button class="big" id="cardShare" type="button" hidden>שיתוף</button><button class="big green" id="cardSave" type="button" hidden>שמירה</button></div>
+  <p class="best">לחיצה ארוכה על התמונה כדי לשמור.</p><button class="ghostbtn" id="cardBack" type="button">חזרה</button></div>`;
+ ov.querySelector('h2').textContent=title;$('#cardBack').addEventListener('click',back);
+ const blob=await blobP;if(!blob){$('#cardImg').innerHTML='<p class="best">לא הצלחתי ליצור תמונה.</p>';return}
+ const url=URL.createObjectURL(blob),img=new Image();img.alt=title;img.src=url;$('#cardImg').innerHTML='';$('#cardImg').appendChild(img);
+ const file=new File([blob],'gimelim.png',{type:'image/png'});
+ try{if(navigator.canShare&&navigator.canShare({files:[file]})){const b=$('#cardShare');b.hidden=false;b.addEventListener('click',()=>navigator.share({files:[file],text:txt}).catch(()=>{}))}}catch(e){}
+ const sb=$('#cardSave');
+ if(window.claude&&typeof window.claude.use==='function'){window.claude.use('downloads').then(dl=>{if(!dl)return;sb.hidden=false;sb.addEventListener('click',()=>dl.save({filename:'gimelim.png',data:blob}).catch(()=>{}))})}
+ else if(location.protocol!=='file:'){sb.hidden=false;sb.addEventListener('click',()=>{const a=document.createElement('a');a.href=url;a.download='gimelim.png';document.body.appendChild(a);a.click();a.remove()})}}
+
+LINES.push(...NIGHT_LINES);
+
 /* ---- funnel tracking ---- */
 function track(step){if(IN_CLAUDE)return;sbRpc('track',{p_id:deviceId(),p_step:step}).catch(()=>{})}
 /* ---- first-run guide ---- */
@@ -2457,7 +2617,7 @@ function showStart(){
  const rain=Array.from({length:14},(_,i)=>`<i style="left:${(i*7.3+3)%100}%;animation-delay:${(i*.9)%7}s;animation-duration:${7+(i%5)}s">ג׳</i>`).join('');
  ov.innerHTML=`<div class="ts">
   <div class="ts-rain" aria-hidden="true">${rain}</div>
-  <div class="ts-top"><span class="tpill coinpill">${getCoins()} ${COIN}</span>${ONLINE?`<button type="button" class="tpill basepill" id="toBase">${getBase()?'בסיס '+getBase().replace(/[<>&"]/g,''):'בחר בסיס'}</button>`:`<span class="tpill">${CAREER[careerRank(career)][0]}${best?' · שיא '+best:''}</span>`}</div>
+  <div class="ts-top"><span class="tpill coinpill">${getCoins()} ${COIN}</span><button type="button" class="tpill profpill" id="toProf">${(cleanName(store.get('gm_name',''))||'הפרופיל שלי').replace(/[<>&"]/g,'')}</button>${ONLINE?`<button type="button" class="tpill basepill" id="toBase">${getBase()?'בסיס '+getBase().replace(/[<>&"]/g,''):'בחר בסיס'}</button>`:`<span class="tpill">${CAREER[careerRank(career)][0]}${best?' · שיא '+best:''}</span>`}</div>
   <div class="season" id="season" hidden></div>
   ${(()=>{const si=streakInfo();return si.n?`<div class="streakbar${si.atRisk&&!si.playedToday?' risk':''}"><span class="flame"></span><b>${si.n} ${si.n===1?'יום':'ימים'} ברצף</b><span>${si.playedToday?'נתראה מחר':'תשחק היום כדי לא לשבור'}</span></div>`:''})()}
   <div class="ts-hero">
@@ -2465,6 +2625,7 @@ function showStart(){
    <h1 class="ts-title"><span class="ts-small">מלך</span><span class="ts-big">הגימלים</span></h1>
    <div class="ts-stamp" aria-hidden="true">אושר</div>
    <p class="ts-sub">שבוע אחד. רופא אחד. הרבה תירוצים.</p>
+   ${titleStage()}
    <div class="ts-live" id="tsLive" hidden><i></i><span></span></div>
   </div>
   <div class="ts-pick">
@@ -2505,13 +2666,14 @@ function showStart(){
  $('#toLB').addEventListener('click',()=>{SFX.tick();showLB()});
  $('#toPr').addEventListener('click',()=>{SFX.tick();showProgress()});
  $('#toShare').addEventListener('click',()=>{SFX.tick();shareGame()});
+ $('#toProf').addEventListener('click',()=>{SFX.tick();showProfile()});
  const tb=$('#toBase');if(tb)tb.addEventListener('click',()=>{SFX.tick();showBasePicker()});
  fillSeason();musicPlay('menu');
  fillLive();
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='4.1';
+const VERSION='4.2';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
