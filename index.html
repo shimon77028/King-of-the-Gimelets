@@ -873,6 +873,63 @@ body.fighting .room{height:auto}
 .pad{grid-template-columns:repeat(3,minmax(0,1fr))}.pk{min-width:0}
 .console,.boxc{min-width:0;max-width:100%}
 @media (max-width:360px){.pk{font-size:21px}.pk small{font-size:10px}.actbtn{font-size:17px}.bar{grid-template-columns:62px 1fr 28px}.c-head{font-size:22px}}
+/* ===== desktop layout ===== */
+.keyhint{display:none}
+@media (min-width:900px) and (min-height:560px){
+ #app{max-width:1220px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(380px,1fr);grid-template-rows:auto minmax(0,1fr) auto;
+  grid-template-areas:"room hud" "room choices" "room actions";gap:14px 20px;padding-block:20px;max-height:920px;margin-block:auto}
+ body{display:flex;align-items:center;min-height:100%}
+ #app{width:100%}
+ .hud{grid-area:hud}
+ #app>.room{grid-area:room;height:100%;min-height:0;border-radius:8px}
+ #choices{grid-area:choices;align-content:start;overflow:auto;gap:10px;padding:2px}
+ .actions{grid-area:actions;gap:8px;display:flex;flex-wrap:wrap}
+ .actions .actbtn{flex:1 1 0;min-width:0}
+ .keyhint{flex-basis:100%;order:9}
+ .keyhint{display:block;grid-column:1/-1;margin:0;text-align:center;font-size:12px;color:var(--khaki);opacity:.8}
+ .hud{padding:8px 16px 12px}
+ .num{font-size:56px}.num.small{font-size:40px}.num .tgt{font-size:26px}.lbl{font-size:12.5px}.row2{font-size:13px}.tag{font-size:12px}
+ .meter{height:14px}.sus-lbl{font-size:14px}
+ .choice{font-size:19px;padding:14px 16px;gap:12px}
+ .ctext .chip{font-size:11.5px;padding:1px 8px}
+ .cdays{font-size:36px}
+ .kbd{display:inline-grid}
+ .actbtn{font-size:26px;padding:8px 10px 10px}
+ .doc-wrap{height:62%;max-height:none;bottom:66px}
+ .desk{height:72px}.plate{top:20px;font-size:14px;padding:4px 14px}.box{width:80px;height:50px;font-size:13px;bottom:18px}.papers{width:80px;bottom:24px}
+ .soldier{width:min(230px,30%)}
+ .cmd{height:58%;max-height:none;bottom:66px}
+ .bubble{font-size:19px;max-width:44%;padding:12px 16px 13px;top:18px;inset-inline-end:20px}
+ .chart{transform:rotate(2deg) scale(1.15);top:22px}
+ .window{width:120px;height:92px;top:24px}
+ .wclock{width:58px;height:58px;top:30px;inset-inline-start:110px}
+ .sign{display:block;top:180px}
+ .stamp{font-size:76px}
+ .floater{font-size:72px}
+ .burst{font-size:84px}
+ .fbadge{font-size:34px;top:70px}
+ .fwrap{height:90%;bottom:4%}
+ .abanner{display:block;font-size:34px}
+ .cue{font-size:130px}
+ .console{padding:14px 16px;gap:10px}
+ .c-head{font-size:34px}
+ .bar{grid-template-columns:96px 1fr 40px;font-size:14px}.track{height:15px}
+ .fstatus{font-size:32px}
+ .pk{min-height:68px;font-size:34px}.pk small{font-size:12px}
+ .retort{font-size:18px;padding:12px 14px}
+ .sheet{max-width:600px;padding:24px 26px 22px}
+ .sheet h2{font-size:58px}.sheet p{font-size:16px}
+ .big{font-size:40px}
+ .ts>*{max-width:640px}
+ .ts-big{font-size:150px}.ts-small{font-size:66px}.ts-sub{font-size:18px}
+ .cta{font-size:52px}
+ .pcard{grid-template-columns:130px 1fr}.pinfo b{font-size:44px}.pinfo span{font-size:15px}
+ .tmb b{font-size:30px}.dailybtn b{font-size:34px}.sharebtn b{font-size:30px}
+ .cine-cap b{font-size:72px}.cine-cap span{font-size:18px}
+ .coach{font-size:17px}
+}
+@media (min-width:1400px) and (min-height:820px){#app{max-width:1360px}}
+.cmd:not(.in){inset-inline-start:-75%}
 </style>
 
 </head>
@@ -1044,6 +1101,7 @@ body.fighting .room{height:auto}
   <div class="prompt" id="prompt">מה אתה אומר לו?</div>
   <section class="choices" id="choices"></section>
   <div class="actions" id="actions">
+    <p class="keyhint" aria-hidden="true">מקלדת: 1–3 משפט · F מכות · X יציאה · M צליל</p>
     <button id="fightBtn" class="actbtn fightbtn" type="button">🥊 למכות!</button>
     <button id="rerollBtn" class="actbtn reroll" type="button" hidden>במבה: החלף</button>
     <button id="skillBtn" class="actbtn reroll" type="button" hidden>שקשוקה</button>
@@ -2765,7 +2823,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='4.3';
+const VERSION='4.4';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
@@ -2793,7 +2851,12 @@ document.addEventListener('keydown',e=>{if(!S)return;
  const ov=$('#overlay');
  if(!ov.hidden){if(e.key==='Enter'){const b=ov.querySelector('.big:not(:disabled)');if(b){e.preventDefault();b.click()}}return}
  const n=parseInt(e.key,10);
- if(n>=1&&n<=4){const btns=[...document.querySelectorAll('#choices .choice:not(.dim), #choices .retort:not(:disabled)')];if(btns[n-1]){e.preventDefault();btns[n-1].click()}}
+ if(n>=1&&n<=4){const btns=[...document.querySelectorAll('#choices .choice:not(.dim):not(.tut-lock), #choices .retort:not(:disabled)')];if(btns[n-1]){e.preventDefault();btns[n-1].click()}return}
+ if(S.mode==='talk'&&!S.busy&&!e.repeat){
+  if(e.code==='KeyF'){const b=$('#fightBtn');if(b&&!b.disabled){e.preventDefault();b.click()}}
+  else if(e.code==='KeyX'){const b=$('#cashout');if(b&&!b.disabled){e.preventDefault();b.click()}}
+  else if(e.code==='KeyR'){const b=$('#rerollBtn');if(b&&!b.hidden&&!b.disabled){e.preventDefault();b.click()}}
+  else if(e.code==='KeyM'){$('#mute').click()}}
 });
 document.addEventListener('keyup',e=>{if(S&&S.mode==='fight'&&e.code==='ArrowDown')fightKey('ArrowDown',false)});
 const mb=$('#mute');const syncMute=()=>{mb.textContent='צליל: '+(muted?'כבוי':'פועל')};syncMute();
