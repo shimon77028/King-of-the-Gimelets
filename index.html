@@ -684,6 +684,19 @@ body.fever .choice{box-shadow:0 0 0 3px #ffd43b,0 8px 16px rgba(0,0,0,.4)}
 .tabs.five .tab{font-size:12px;padding:6px 2px}
 @media (prefers-reduced-motion: reduce){body.fever .room,body.fever #app,.fbadge,.coin3d{animation:none!important}}
 
+.coach.act{background:#fff;border-color:var(--go)}
+.coach.act small{background:var(--go);color:#fff;animation:blink 1s infinite}
+.coach .cwho{font-style:normal;font-family:var(--f-display);font-size:22px;line-height:1;color:var(--stamp)}
+.coach{max-height:60vh;overflow:auto}
+.choice.tut-lock{opacity:.25;pointer-events:none;filter:grayscale(1)}
+.tutintro .instr{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center;margin:10px 0}
+.tutintro .instr svg{width:96px;height:auto;background:radial-gradient(circle at 50% 60%,#dfe8d2,#c3cfb2);border-radius:50%;border:3px solid var(--ink)}
+.tutintro .instr p{margin:0;font-size:15px;font-weight:700;line-height:1.45}
+.tutintro .instr b{display:block;font-size:12px;color:var(--ink-soft);margin-top:4px}
+.learn{display:grid;gap:8px;margin:12px 0}
+.learn div{display:grid;gap:2px;background:#fff;border:2px solid var(--paper-2);border-radius:5px;padding:8px 10px}
+.learn b{font-size:15px}.learn span{font-size:13px;color:var(--ink-soft);line-height:1.4}
+
 @media (prefers-reduced-motion: reduce){
   #app.shake,.doc .head,.cmd .head,.meter.hot,.room::after,.punch,.soldier,.doc [data-k="eo"],.window .flag::after{animation:none}
   .choice,.sheet,.bubble.fresh,.console{animation:none}
@@ -1090,7 +1103,9 @@ function hud(){
 }
 
 /* ================= run & visit ================= */
-function startRun(o){o=o||{};ping(true);touchStreak();track('start');
+function startRun(o){o=o||{};
+ if((o.mode||'normal')==='normal'&&!store.get('gm_tutdone',false)&&!store.get('gm_played',false))return showTutorialIntro();
+ ping(true);touchStreak();track('start');
  const mode=o.mode||'normal',seed=o.seed!=null?o.seed:(mode==='daily'?dailySeed():Math.floor(Math.random()*2147483647));
  GRNG=mulberry32(seed);
  RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId(),mode,seed,duel:o.duel||null,boutDone:false,boutWon:false};
@@ -1136,7 +1151,7 @@ async function choose(i,btn){
  document.querySelectorAll('.choice').forEach(b=>b.classList.add(b===btn?'picked':'dim'));
  const L=LINES[i];$('#stamp').hidden=true;setMood('think');say(L.t,'',{thinking:1});S.justBonus=false;hud();
  await wait(1000);
- const res=(TUT&&RUN.day===1&&S.turn===1)?'win':roll(L);
+ let res=(TUTOR&&TUTOR.forced.length)?TUTOR.forced.shift():(TUT&&RUN.day===1&&S.turn===1)?'win':roll(L);if(res==='jack'&&!L.j)res='win';
  if(res==='win'||res==='jack'){
   let gain=res==='jack'?L.j.g+(DOC().mod.jack||0):(L.r===1?1:L.r===3?2:(GR()<.4?2:1));
   S.streak++;let bonus=0;if(S.streak%3===0){bonus=1;S.justBonus=true}
@@ -1144,7 +1159,7 @@ async function choose(i,btn){
   S.gimel+=gain+bonus;S.sus+=Math.round((res==='jack'?12:5+L.r*3)*(DOC().mod.sus||1));
   if(res==='jack')mission('jack');if(L.r===3)mission('crazy');if(S.streak>=3)mission('streak');if(moodMatch(L)){mission('mood');burst('בול!')}
   setMood(res==='jack'?'shock':(L.wm||(S.hot?'sweaty':'happy')));say(L.t,(res==='jack'?L.j.t:L.w).replaceAll('{g}',days(gain)));setGimel(S.gimel);
-  floatTxt('+'+gain+(bonus?' · רצף! +1':''));sol('cheer');unlock('first');if(S.streak>=6)unlock('streak');
+  floatTxt('+'+gain+(bonus?' · רצף! +1':''));{const sc=STREAK_CALLS[S.streak];if(sc&&S.streak!==3)setTimeout(()=>burst(sc),450)}maybeFind();sol('cheer');unlock('first');if(S.streak>=6)unlock('streak');
   if(res==='jack'){unlock('jack');if(L.t.includes('בהריון'))unlock('preg')}
   if(res==='jack'){stamp('ג׳קפוט!','ok');SFX.jack();spawn('conf',reduced?6:28,'ג׳');shake();if(L.j.fx)runFx(L.j.fx)}
   else{stamp(bonus?'רצף!':'אושר','ok');bonus?SFX.jack():SFX.win();spawn('conf',reduced?3:(bonus?18:8),'ג׳');if(L.wfx)runFx(L.wfx)}
@@ -1162,6 +1177,7 @@ async function choose(i,btn){
  hud();await afterBeat(1500,true);
 }
 async function afterBeat(ms,allowEvent){
+ if(TUTOR)allowEvent=false;
  if(TUT&&RUN.day===1&&TUT.step===1&&!S.over){TUT.step=2;await wait(ms);await new Promise(r=>coach('#meter','זה החשד של הרופא. כל משפט מעלה אותו. ב־100% אתה סוגר שבת.',r));ms=0}
  else if(TUT&&RUN.day===1&&TUT.step===2&&S.gimel>=TARGET[0]&&!S.over){TUT.step=3;await wait(ms);await new Promise(r=>coach('#cashout','הגעת ליעד של היום! אפשר לצאת עכשיו, או להמשיך לסחוט עוד.',r));ms=0}
  if(S.sus>=100){await wait(ms);return bust()}
@@ -1172,13 +1188,13 @@ async function afterBeat(ms,allowEvent){
  }
  await wait(600);toTalk();
 }
-function toTalk(){S.busy=false;S.mode='talk';hud();deal()}
+function toTalk(){S.busy=false;S.mode='talk';hud();deal();tEv('resolved')}
 async function bust(){
  S.over=true;S.mode='end';hud();setMood('angry');say(null,'זהו. אני מתקשר לרס״ר. אתה סוגר שבת.');runFx('siren');shake();stamp('סוגר שבת');sol('slump');unlock('shabbat');
  $('#choices').innerHTML='';setPrompt('');S.gimel=0;setGimel(0);await wait(1900);endRun('shabbat');
 }
 async function endVisit(kind){
- exitFever();
+ tEv('cash');exitFever();
  closeCoach();if(RUN.day===1)track('day1_end');
  S.over=true;S.mode='end';$('#choices').innerHTML='';setPrompt('');room.classList.remove('ring','heat');hud();
  const ok=S.gimel>=TARGET[RUN.day-1];
@@ -1188,6 +1204,7 @@ async function endVisit(kind){
  let bonus=0;if(ok&&has('shal'))bonus=1;
  if(ok&&S.clean){unlock('perfect');mission('clean')}
  RUN.total+=S.gimel+bonus;mission('g10',RUN.total,'max');hud();
+ if(RUN.mode==='tutorial')return tutorialDone();
  if(!ok)return endRun('routine');
  if(RUN.day>=5)return gateIntro();
  daySheet(bonus);
@@ -1352,6 +1369,7 @@ function startFight(cfg){
  const opp=cfg.opp||docOpponent(),now=performance.now(),meMax=100+upLevel('boots')*15+(charId()==='fighter'?30:0);
  S.F={cfg,opp,me:meMax,meMax,doc:opp.max,max:opp.max,st:100,start:now,dur:35000,last:now,phase:'idle',until:now+1400,dir:'L',wStart:0,move:'',feint:false,chain:0,
       cdJab:0,cdPow:0,blocking:false,heal:false,combo:0,dodge:null,raf:0,done:false,pausedAt:0,pow:0};
+ if(TUTOR){const F=S.F;F.tut='hold';F.dur=600000;F.doc=F.max=90;F.opp.speed=1.8;F.opp.dmg=.45;setTimeout(()=>tEv('fight'),50)}
  exitFever();setupRing(opp);musicPlay('ring');document.body.classList.add('fighting');SFX.bell();buzz(40);burst(opp.decisive?'הגימל המכריע!':'קרב!');
  try{room.scrollIntoView({block:'start',behavior:reduced?'auto':'smooth'})}catch(e){}
  say(cfg.force?null:'*מזמין את '+opp.name+' לקרב*',opp.decisive?pickOne(SOL_TAUNTS):'אתה רציני? טוב. אני מוריד את החלוק.',{who:opp.who});
@@ -1403,8 +1421,8 @@ function fightKey(k,down){const F=S.F;if(!F||F.done||S.mode!=='fight'||F.pausedA
  if(k==='ArrowLeft'||k==='ArrowRight'){F.dodge={dir:k==='ArrowLeft'?'L':'R',at:now};moveFor(me,k==='ArrowLeft'?'m-back':'m-duck',380);SFX.whoosh();return}
  if(F.blocking)return;
  if(k==='ArrowUp'){if(F.heal)return;F.heal=true;F.me=Math.min(F.meMax,F.me+30);F.st=100;floatTxt('+30 חיים');SFX.acamol();spawn('pill',reduced?3:8);$('#healK').disabled=true;updateBars();return}
- if(k==='Space'){if(now<F.cdJab)return;F.cdJab=now+210;attack(rnd(4,7)+(has('gloves')?2:0),'jab');return}
- if(k==='Enter'){if(now<F.cdPow)return;F.cdPow=now+820;attack(rnd(15,21)+(has('gloves')?4:0),'power')}
+ if(k==='Space'){if(now<F.cdJab)return;F.cdJab=now+210;attack(rnd(4,7)+(has('gloves')?2:0),'jab');if(F.tut==='hold'){F.tJab=(F.tJab||0)+1;if(F.tJab>=3)tEv('jab3')}return}
+ if(k==='Enter'){if(now<F.cdPow)return;F.cdPow=now+820;attack(rnd(15,21)+(has('gloves')?4:0),'power');if(F.tut)tEv('power')}
 }
 function attack(base,kind){const F=S.F,now=performance.now(),cost=kind==='power'?28:11,me=$('#fMe'),op=$('#fOp');
  if(F.st<cost){status('אין לך אוויר! תנשום','danger');SFX.tick();moveFor(me,'m-duck',200);return}
@@ -1418,7 +1436,7 @@ function attack(base,kind){const F=S.F,now=performance.now(),cost=kind==='power'
  else if(F.phase==='windup'&&kind==='power'&&Math.random()<.35){F.phase='stun';F.until=now+900;hideCue();poseFor(op,'guard','guard');op.classList.add('dazed');note='קטעת אותו!';status('קטעת אותו! תכה!','open')}
  else if(F.phase==='windup'&&kind==='jab'&&Math.random()<.5){d=Math.max(1,Math.round(d/2))}
  const dbl=F.phase==='exposed'||F.phase==='stun';if(dbl){d*=2;note=note||'כפול!'}
- setTimeout(()=>{if(F.done)return;F.doc-=d;const p=headPoint('#fOp');
+ setTimeout(()=>{if(F.done)return;F.doc-=d;if(TUTOR&&F.tut!=='free'&&F.doc<1)F.doc=1;const p=headPoint('#fOp');
   if(blocked){SFX.block();sparksAt(p,4,'#cfd6da');dmgAt(p,String(d))}
   else{F.combo++;moveFor(op,'m-hit',260);kind==='power'||dbl?SFX.punch():SFX.jab();cls(room,'impact');sparksAt(p,kind==='power'||dbl?12:5);
    dmgAt(p,(dbl?'!':'')+d,kind==='power'||dbl);
@@ -1436,6 +1454,9 @@ function fightLoop(now){const F=S.F;if(!F||F.done)return;
  const left=Math.max(0,F.dur-(now-F.start)),te=$('#fTime');if(te){te.textContent=Math.ceil(left/1000);te.style.color=left<8000?'#ff6b5b':''}
  if(left<=0)return fightTimeout();
  const rage=F.doc<F.max*.35,op=$('#fOp');
+ if(F.tut==='hold'||F.tut==='after'){F.raf=requestAnimationFrame(fightLoop);return}
+ if(F.tut==='dodge'&&F.phase!=='windup'){op.classList.remove('dazed');F.phase='windup';F.dir='L';F.wStart=now;F.until=now+2800;F.feint=false;F.move='ישר לפנים';
+  showCue(F.dir);poseFor(op,'guard','cock');op.classList.add('windup');status('ישר לפנים!','danger');SFX.warn();F.tut='dodging';tEv('windup');F.raf=requestAnimationFrame(fightLoop);return}
  if(now>=F.until){
   if(F.phase==='windup')strike(now,rage);
   else{
@@ -1459,13 +1480,13 @@ function strike(now,rage){const F=S.F,op=$('#fOp'),me=$('#fMe');hideCue();op.cla
   F.dodge=null;F.phase='idle';F.until=now+rnd(260,520);return}
  poseFor(op,F.dir==='L'?'guard':'upper',F.dir==='L'?'punch':'guard',300);moveFor(op,'m-lunge',300);
  if(dodged&&F.dodge.dir===F.dir){F.phase='exposed';F.until=now+1150;burst('התחמקת!');SFX.whoosh();op.classList.add('dazed');
-  status('הוא פתוח! תכה עכשיו!','open');F.dodge=null;if(rage&&Math.random()<.4)F.chain=1;return}
+  status('הוא פתוח! תכה עכשיו!','open');F.dodge=null;if(rage&&Math.random()<.4)F.chain=1;if(F.tut==='dodging'){F.tut='after';tEv('dodged','ok')}return}
  let dmg=Math.round((16+RUN.day*3+(rage?5:0))*(F.opp.dmg||1)),note='';
  if(dodged)note=' · לצד הלא נכון';
  const p=headPoint('#fMe');
  if(F.blocking){dmg=Math.round(dmg*.3);note=' · נחסם';SFX.block();sparksAt(p,5,'#cfd6da')}
  else{SFX.slap();overlayFx('hurt',450);shake();moveFor(me,'m-hit',300);sparksAt(p,6,'#ff7a5c')}
- F.me-=dmg;F.combo=0;F.dodge=null;buzz(F.blocking?25:70);dmgAt(p,'−'+dmg,false,true);
+ F.me-=dmg;if(TUTOR&&F.me<1)F.me=1;if(F.tut==='dodging'){F.tut='after';setTimeout(()=>tEv('dodged','hit'),300)}F.combo=0;F.dodge=null;buzz(F.blocking?25:70);dmgAt(p,'−'+dmg,false,true);
  status(F.move+note,'danger');updateBars();
  if(F.me<=0)return fightLose();
  F.phase='idle';
@@ -1474,7 +1495,7 @@ function strike(now,rage){const F=S.F,op=$('#fOp'),me=$('#fMe');hideCue();op.cla
 }
 function endFightUI(){const F=S.F;F.done=true;document.body.classList.remove('fighting');cancelAnimationFrame(F.raf);hideCue();
  $('#fMe').classList.remove('blocking')}
-async function fightWin(){const F=S.F;if(F.done)return;endFightUI();crowdCheer();
+async function fightWin(){const F=S.F;if(F.done)return;endFightUI();crowdCheer();tEv('ko');
  const op=$('#fOp'),me=$('#fMe');moveFor(op,'m-ko');op.classList.add('dazed');moveFor(me,'m-win');poseFor(me,'block','block');
  overlayFx('flash',600);buzz([40,40,90]);stamp('נוקאאוט','ok');SFX.jack();burst('נוקאאוט!');spawn('conf',reduced?6:30,'ג׳');sol('cheer');unlock('ko');
  if(F.cfg.onWin){await wait(1900);teardownRing();$('#choices').innerHTML='';return F.cfg.onWin()}
@@ -1502,7 +1523,7 @@ async function fightLose(){const F=S.F;endFightUI();
 
 /* ================= patience + fly ================= */
 const PT={raf:0,tok:0};
-function startPatience(){stopPatience();const tok=++PT.tok,T=(Math.max(13000,22000-RUN.day*1800)+upLevel('notebook')*3000)*patMul(),t0=performance.now();
+function startPatience(){stopPatience();if(TUTOR){const pb=$('#patBar');if(pb)pb.style.width='100%';return}const tok=++PT.tok,T=(Math.max(13000,22000-RUN.day*1800)+upLevel('notebook')*3000)*patMul(),t0=performance.now();
  (function tk(now){if(tok!==PT.tok)return;const k=1-(now-t0)/T,bar=$('#patBar');
   if(bar){bar.style.width=Math.max(0,k*100)+'%';bar.style.background=k<.3?'var(--stamp)':k<.6?'var(--warn)':'var(--go-2)'}
   if(k<=0)return patienceOut();PT.raf=requestAnimationFrame(tk)})(t0)}
@@ -1513,7 +1534,7 @@ async function patienceOut(){
  setMood('angry');say(null,pickOne(['נו?! אין לי כל היום.','הלו? אתה ישן?','הבא בתור! ...סתם. אבל עוד שנייה.','אני סופר עד שלוש. אחת...']),{who:'הרופא'});
  stamp('נו?!');SFX.fail();sol('slump');floatTxt('+8% חשד · משפט הלך',true);hud();await afterBeat(1300,false);
 }
-function maybeFly(){
+function maybeFly(){if(TUTOR)return;
  if(Math.random()>.3||document.querySelector('.fly'))return;
  const f=document.createElement('button');f.type='button';f.className='fly';f.setAttribute('aria-label','זבוב');
  f.innerHTML='<svg viewBox="0 0 30 24"><ellipse class="w" cx="8" cy="8" rx="7" ry="4" fill="rgba(200,220,255,.8)"/><ellipse class="w" cx="22" cy="8" rx="7" ry="4" fill="rgba(200,220,255,.8)"/><ellipse cx="15" cy="15" rx="6" ry="7" fill="#1b1b1b"/><circle cx="15" cy="7" r="4" fill="#1b1b1b"/><circle cx="13" cy="6" r="1.4" fill="#d33"/><circle cx="17" cy="6" r="1.4" fill="#d33"/></svg>';
@@ -1635,7 +1656,8 @@ const ACH={
  gate:{n:'עברת את הרס״ר',d:'מחסום מושלם בש״ג',g:'ס'},
  rich:{n:'מיליונר גימלים',d:'25 ימים בריצה אחת',g:'י'},
  chief:{n:'פגשת את האגדה',d:'נכנסת לרופא הראשי',g:'★'},
- bet:{n:'מהמר',d:'ניצחת את הרס״ר בהימור',g:'₪'}
+ bet:{n:'מהמר',d:'ניצחת את הרס״ר בהימור',g:'₪'},
+ tut:{n:'בוגר טירונות',d:'סיימת את הטירונות',g:'1'}
 };
 function unlock(id){const got=store.get('gm_ach',[]);if(got.includes(id))return;got.push(id);store.set('gm_ach',got);
  const A=ACH[id],t=document.createElement('div');t.className='toast';t.setAttribute('dir','rtl');
@@ -1926,6 +1948,24 @@ function applySoldier(){const c=CHARS[charId()],s=$('#soldier');s.style.setPrope
 function applyDoctor(){const D=DOC();const d=$('#doc');D.cls.split(' ').filter(Boolean).forEach(c=>d.classList.add(c));
  const pl=document.querySelector('.plate');if(pl)pl.textContent=D.n+' · '+D.role}
 
+const MORE_LINES=[
+ {t:'יש לי פחד גבהים. מהמיטה העליונה.',r:1,w:'גובה זה גובה. {g}.',f:'המיטה העליונה בגובה 1.20.'},
+ {t:'נשבר לי הלב. וגם הזרת.',r:1,w:'שניהם כואבים. {g}.',f:'הזרת בסדר. הלב יחלים בשמירה.'},
+ {t:'*נכנס על קביים של חבר*',r:3,w:'קביים זה רציני. {g}.',f:'הקביים בגובה של ילד בן 8.',j:{g:4,t:'הקביים התפרקו עליך. עכשיו זה אמיתי. {g}.'}},
+ {t:'הסמל אמר שאני נראה חולה',r:1,w:'הסמל רואה הכל. {g}.',f:'הסמל אמר שאתה נראה עצלן.'},
+ {t:'אכלתי את השקשוקה של שישי. ביום חמישי.',r:2,w:'שקשוקה מהעתיד?! {g}.',f:'זה לא הגיוני ואני לא מתווכח.',wm:'shock'},
+ {t:'אני חושב שאני אלרגי לשמש. ולבוקר.',r:2,w:'אלרגיה לבוקר. מוכר לי. {g}.',f:'אז תשמור בלילה.'},
+ {t:'יש לי נקע בנשמה',r:2,w:'נשמע כמו שיר מזרחי. {g}.',f:'הנשמה בריאה. רשמתי ״דרמטי״.'},
+ {t:'*מזיע ורועד בצורה משכנעת*',r:3,w:'נראה רע מאוד. {g}.',f:'המזגן על 30. כולנו מזיעים.',j:{g:4,t:'הזעת על הטופס והוא נמחק. הרופא כתב חדש: {g}.'}},
+ {t:'דוקטור, אני רואה אורות. ושומע מלאכים.',r:3,w:'זה הפנס שלי והחובשת. אבל טוב. {g}.',f:'זה המזגן. והחובשת שרה.',j:{g:5,t:'הרופא נבהל שזה סוף העולם. {g} לכולם.'}},
+ {t:'יש לי דלקת באגודל. מהטיקטוק.',r:1,w:'גלילה כפייתית. מכיר. {g}.',f:'תגלול עם היד השנייה.'},
+ {t:'אני חושב שבלעתי את המספר האישי שלי',r:3,w:'זה מסביר את הבלבול. {g}.',f:'הוא כתוב לך על הדיסקית.',j:{g:4,t:'הרופא לא מצא אותך במערכת. {g}, עד שתימצא.'}},
+ {t:'הרגל הימנית שלי לא מדברת עם השמאלית',r:2,w:'סכסוך רגליים. {g}.',f:'שיפתרו את זה בשמירה.'},
+ {t:'יש לי טראומה מהשקם. נגמרה הבמבה.',r:1,w:'טראומה אמיתית. {g}.',f:'הגיע משלוח. תתגבר.'},
+ {t:'*עושה פרצוף של חתול עצוב*',r:2,w:'...אני לא יכול לסרב לזה. {g}.',f:'עשיתי את הפרצוף הזה לרופא שלי. גם לי לא עבד.'},
+ {t:'המפקד אמר לי ללכת לרופא. לא אמר למה.',r:1,w:'מפקד אמר, רופא מבצע. {g}.',f:'המפקד אמר לי לשלוח אותך חזרה.'}
+];
+LINES.push(...MORE_LINES);
 LINES.push(...EXTRA_LINES);
 
 /* ---- daily missions ---- */
@@ -2231,7 +2271,7 @@ const clinicSong=()=>DOC().legend?'chief':'clinic';
 
 /* ================= frenzy mode ================= */
 function enterFever(){if(S.fever||S.over)return;S.fever=true;S.feverEnd=performance.now()+20000;document.body.classList.add('fever');
- burst('טירוף!');SFX.jack();buzz([30,30,30,30]);musicPlay('fever');setMood('sweaty');say(null,'מה קורה פה?! למה הכל רועד?!',{who:'הרופא'});feverTick()}
+ burst('טירוף!');SFX.jack();buzz([30,30,30,30]);musicPlay('fever');setTimeout(()=>tEv('fever'),400);setMood('sweaty');say(null,'מה קורה פה?! למה הכל רועד?!',{who:'הרופא'});feverTick()}
 function feverTick(){if(!S.fever)return;const left=Math.max(0,S.feverEnd-performance.now()),el=$('#feverBadge');
  if(el){el.hidden=false;el.textContent='טירוף · כל משפט ×2 · '+Math.ceil(left/1000)}
  if(left<=0||S.over||S.mode==='end')return exitFever();S.feverT=setTimeout(feverTick,250)}
@@ -2292,14 +2332,96 @@ async function fillSeason(){const el=$('#season');if(!el||!ONLINE)return;
   if(x.king_name){el.querySelector('.sk').textContent='מלך השבוע שעבר: '+x.king_name;el.querySelector('.sks').textContent=(x.king_base?' · '+x.king_base:'')+' · '+x.king_score}
   if(x.top_base)el.querySelector('.stb').textContent=x.top_base;el.hidden=false}catch(e){}}
 
+/* ================= basic training: guided first round ================= */
+let TUTOR=null;
+function tWait(name){return new Promise(r=>{TUTOR.w[name]=r})}
+function tEv(name,data){if(!TUTOR||!TUTOR.w[name])return;const r=TUTOR.w[name];delete TUTOR.w[name];r(data)}
+const tSay=(sel,text)=>new Promise(r=>coach(sel,text,r,{who:'המ״כ'}));
+async function tDo(sel,text,ev){const p=tWait(ev);coach(sel,text,null,{who:'המ״כ',action:true});const r=await p;closeCoach();return r}
+function lockRisk(r){document.querySelectorAll('#choices .choice').forEach(b=>b.classList.toggle('tut-lock',!!r&&!b.classList.contains('rk'+r)))}
+function showTutorialIntro(){const ov=$('#overlay');ov.hidden=false;track('tut_intro');
+ ov.innerHTML=`<div class="sheet tutintro"><div class="tag">יום ראשון בצבא · 06:55</div><h2>טירונות גימלים</h2>
+  <div class="instr">${portrait('fighter')}<p>״שמע טירון. יש לי שתי דקות ללמד אותך איך מוציאים גימלים מהקר״פ בלי לסגור שבת. תקשיב טוב, אני לא חוזר על עצמי.״<b>המ״כ שלך</b></p></div>
+  <ul class="rules"><li><b>1</b><span>איך בוחרים מה להגיד לרופא</span></li><li><b>2</b><span>חשד, יעד, ג׳קפוט ומצב טירוף</span></li><li><b>3</b><span>איך מנצחים את הרופא במכות</span></li></ul>
+  <button class="big" id="tuGo" type="button">יאללה, תלמד אותי</button><button class="ghostbtn" id="tuSkip" type="button">דלג, אני כבר יודע</button></div>`;
+ $('#tuGo').addEventListener('click',()=>{ac();startTutorial()});
+ $('#tuSkip').addEventListener('click',()=>{track('tut_skip');store.set('gm_tutdone',true);startRun()})}
+async function startTutorial(){
+ track('tut_start');closeCoach();
+ GRNG=mulberry32(4242);
+ RUN={day:1,total:0,perks:new Set(),momUsed:false,guards:0,fights:0,char:charId(),mode:'tutorial',seed:4242,duel:null,boutDone:false,boutWon:false,next:{doc:'shmueli',mood:'hungry'}};
+ TUTOR={w:{},forced:['win','jack','win','fail','win','win','win','win','win','win']};
+ applySoldier();$('#overlay').hidden=true;SFX.door();startVisit();S.turns=14;hud();
+ try{
+ await wait(800);
+ await tSay('#gimelWrap','ככה זה עובד: בכל ביקור אצל הרופא יש לך יעד של ימי גימלים. היום היעד הוא 2. לא הגעת ליעד? חוזר לשגרה: מסדרים, שמירות ומטבח.');
+ await tSay('#meter','זה החשד של הרופא. כל משפט מעלה אותו קצת, וכישלון מעלה הרבה. אם הוא מגיע ל־100%, אתה סוגר שבת ומאבד את כל מה שהוצאת בביקור.');
+ await tSay('#clock','כל משפט לוקח שתי דקות, והמרפאה נסגרת ב־07:12. בדרך כלל יש לך 6 משפטים בביקור. (באימון אני נותן לך יותר.)');
+ await tSay('#queue','פה כתוב מי הרופא ובאיזה מצב רוח הוא. היום הוא רעב, אז משפטים על אוכל יעבדו עליו הרבה יותר טוב. כל ביקור זה רופא ומצב רוח אחר, אז תמיד תציץ פה.');
+ lockRisk(1);
+ await tDo('#choices .choice.rk1','נתחיל בקטן. פס ירוק = סיכון נמוך: סיכוי טוב, אבל שווה מעט. המספר בצד (+1) זה כמה ימים תקבל. לחץ על המשפט הירוק.','resolved');
+ await tSay('#gimelWrap','אושר! יום אחד בכיס. ותסתכל על החשד: הוא עלה קצת. ככה זה עם כל משפט, גם כשמצליחים.');
+ lockRisk(3);
+ await tDo('#choices .choice.rk3','עכשיו בוא נשתגע. פס אדום = סיכון מטורף: יכול להיכשל בגדול, אבל שווה יותר. סימן ! אומר שיש סיכוי לג׳קפוט. לחץ על האדום.','resolved');
+ await tSay('#gimelWrap','ג׳קפוט!!! עברת את היעד של היום. אבל למה לעצור? עוד הצלחה אחת ברצף, ותראה משהו מיוחד.');
+ lockRisk(0);
+ const pf=tWait('fever');
+ await tDo('#choices','בחר מה שבא לך. כל צבע.','resolved');
+ await pf;
+ await tSay('#feverBadge','מצב טירוף! שלוש הצלחות ברצף = 20 שניות שבהן כל משפט שווה כפול. בריצה אמיתית תזדרז, כי השעון רץ.');
+ await tDo('#choices','תבחר עוד אחד. בוא נראה מה קורה.','resolved');
+ await tSay('#meter','אאוץ׳. נדחה. כישלון מקפיץ את החשד ושובר את הרצף. כשהפס מתקרב לאדום, תעבור לירוק, או פשוט תצא עם מה שיש.');
+ await tDo('#fightBtn','ועכשיו החלק הכי כיף: פעם בביקור אפשר להזמין את הרופא למכות. ניצחון = 3 ימים. הפסד = בית דין צבאי. אל תדאג, זה רק אימון. לחץ.','fight');
+ await wait(1400);
+ await tDo('.pad .pk.hit','זה הג׳אב: רווח במקלדת, או הכפתור הזה. מהיר וחלש. כל מכה מוציאה קצת אוויר (הפס הכתום). תן לו שלוש.','jab3');
+ S.F.tut='dodge';await tWait('windup');
+ const res=await tDo('.pad .pk[data-k="ArrowLeft"]','זהירות! החץ הגדול אומר שהוא עומד להכות. תתחמק לכיוון החץ: ← זה אחורה, → זה להתכופף. התחמקות בזמן פותחת אותו למכה כפולה!','dodged');
+ if(res==='ok')await tSay('#hpDoc','יפה! הוא פתוח עכשיו. בקרב אמיתי זה הרגע להכות, כל מכה שווה כפול.');
+ else await tSay('#hpMe','חטפת. לא נורא, ככה לומדים. בקרב אמיתי תסתכל על החץ ותזוז מהר, החלון קצר.');
+ await tDo('.pad .pk.kick','זה האפרקאט: Enter. מכה חזקה שגם שוברת לו את השמירה, אבל לוקחת הרבה אוויר. תן אחד.','power');
+ await tSay('.pad .pk[data-k="ArrowDown"]','עוד שני דברים: ↓ בהחזקה = שמירה, היא חוסמת את רוב הנזק. ↑ = אקמול: מחזיר 30 חיים, פעם אחת בקרב. עכשיו תגמור אותו!');
+ S.F.tut='free';
+ await tWait('ko');
+ await wait(2600);
+ await tDo('#cashout','ניצחת את הרופא! כשאתה מרוצה מכמות הימים, לוחצים כאן כדי לקחת אותם ולצאת. בריצה אמיתית זה ממשיך ליום הבא, עם יעד גבוה יותר.','cash');
+ }catch(e){}
+}
+function tutorialDone(){TUTOR=null;closeCoach();lockRisk(0);store.set('gm_played',true);store.set('gm_tutdone',true);addCoins(100);unlock('tut');track('tut_done');musicPlay('menu');
+ const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet tutdone"><div class="end-stamp ok">עבר</div><div class="tag">טירונות גימלים</div><h2>סיימת טירונות!</h2>
+  <p>המ״כ גאה בך. קיבלת <b>100 ${COIN}</b> לקנטינה ועיטור ראשון.</p>
+  <div class="learn">
+   <div><b>ריצה אמיתית</b><span>5 ימים. היעד עולה כל יום (2, 3, 4, 5, 6), ובסוף הרס״ר מחכה בש״ג.</span></div>
+   <div><b>אירועים</b><span>המ״פ מתפרץ, הפסקות חשמל, זבובים, והרופא הראשי שמופיע לפעמים. תהיה מוכן.</span></div>
+   <div><b>קנטינה</b><span>מכל ריצה מקבלים ${COIN}. קונים בהם דמויות עם יכולות ושדרוגים.</span></div>
+   <div><b>אתגר יומי ודו־קרב</b><span>ריצה זהה לכולם, ושליחת אתגר לחבר שנגמר בקרב על הגימל המכריע.</span></div>
+   <div><b>ליגת בסיסים</b><span>כל יום שאתה מוציא נספר לבסיס שלך בעונה השבועית.</span></div>
+  </div>
+  <button class="big" id="tdGo" type="button">יאללה, ריצה אמיתית</button><button class="ghostbtn" id="tdMenu" type="button">לתפריט</button></div>`;
+ $('#tdGo').addEventListener('click',()=>startRun());$('#tdMenu').addEventListener('click',showStart)}
+
+/* ================= extra fun: streak calls and rare finds ================= */
+const STREAK_CALLS={2:'יפה!',4:'אש!',5:'בלתי ניתן לעצירה!',7:'אגדה!',9:'הרופא בוכה!'};
+const FINDS=[
+ {t:'מצאת אישור רפואי חתום!',s:'+1 יום',g:1},
+ {t:'מצאת שוקו בשקית מתחת לכיסא',s:'הרופא נרגע · חשד −15',sus:-15},
+ {t:'מצאת 20 ₪ בכיס של החלוק',s:'+20 ₪ לקנטינה',coins:20},
+ {t:'החובשת קרצה לך',s:'חשד −10',sus:-10},
+ {t:'מצאת את הכומתה שגנבו לך',s:'+1 יום על המורל',g:1}
+];
+function maybeFind(){if(TUTOR||Math.random()>.06)return;const F=pickOne(FINDS);
+ setTimeout(()=>{if(!S||S.over)return;if(F.g){S.gimel+=F.g;setGimel(S.gimel)}if(F.sus)S.sus=Math.max(0,S.sus+F.sus);if(F.coins)addCoins(F.coins);
+  hud();SFX.jack();spawn('conf',reduced?4:16,'★');toastMsg('★',F.t,F.s)},700)}
+
 /* ---- funnel tracking ---- */
 function track(step){if(IN_CLAUDE)return;sbRpc('track',{p_id:deviceId(),p_step:step}).catch(()=>{})}
 /* ---- first-run guide ---- */
 const isNewbie=()=>!store.get('gm_played',false);
 let TUT=null;
-function coach(sel,text,onDone){const t=$(sel);closeCoach();if(!t){onDone&&onDone();return}
- const c=document.createElement('button');c.type='button';c.className='coach';c.setAttribute('dir','rtl');
- c.innerHTML='<span></span><small>הבנתי ✓</small>';c.querySelector('span').textContent=text;document.body.appendChild(c);
+function coach(sel,text,onDone,o){o=o||{};const t=$(sel);closeCoach();if(!t){onDone&&onDone();return}
+ try{const rr=t.getBoundingClientRect();if(rr.top<60||rr.bottom>innerHeight-60)t.scrollIntoView({block:'center'})}catch(e){}
+ const c=document.createElement('button');c.type='button';c.className='coach'+(o.action?' act':'');c.setAttribute('dir','rtl');
+ c.innerHTML=(o.who?'<i class="cwho"></i>':'')+'<span></span><small>'+(o.action?'עכשיו אתה':'הבנתי ✓')+'</small>';c.querySelector('span').textContent=text;if(o.who)c.querySelector('.cwho').textContent=o.who+':';document.body.appendChild(c);
  const r=t.getBoundingClientRect(),cw=Math.min(300,innerWidth-32);c.style.width=cw+'px';
  const above=r.top>170;c.style.left=Math.max(16,Math.min(innerWidth-cw-16,r.left+r.width/2-cw/2))+'px';
  const ch=c.offsetHeight;c.style.top=(above?r.top-ch-14:r.bottom+14)+'px';c.classList.add(above?'up':'down');
@@ -2323,7 +2445,8 @@ function shareGame(){track('share_game');const txt=SHARE_TXT+'\n'+GAME_URL;
 
 /* ---- progress sheet: missions, rank, achievements ---- */
 function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=store.get('gm_career',0);
- ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="big" id="prBack" type="button">חזרה</button></div>`;
+ ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="ghostbtn" id="prTut" type="button">לעשות טירונות שוב</button><button class="big" id="prBack" type="button">חזרה</button></div>`;
+ $('#prTut').addEventListener('click',()=>showTutorialIntro());
  $('#prBack').addEventListener('click',showStart)}
 
 /* ---- title screen ---- */
@@ -2388,7 +2511,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='4.0';
+const VERSION='4.1';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
