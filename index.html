@@ -542,7 +542,7 @@ body.fighting .soldier .glv{opacity:1}
 .pdots i{width:9px;height:9px;border-radius:50%;background:rgba(242,233,208,.25)}
 .pdots i.own{background:rgba(242,233,208,.55)}
 .pdots i.on{background:var(--khaki);transform:scale(1.3)}
-.cta{font-size:40px;padding:6px 12px 10px;animation:tsFade .5s 1.2s both,ctaPulse 1.6s 2s ease-in-out infinite}
+.cta{font-size:40px;padding:6px 12px 10px;animation:tsFade .4s .15s both,ctaPulse 1.6s .8s ease-in-out infinite}
 @keyframes ctaPulse{50%{box-shadow:0 4px 0 #8c2219,0 0 0 8px rgba(195,53,42,.25)}}
 .ts-menu{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tmb{display:grid;gap:2px;justify-items:center;background:rgba(0,0,0,.35);border:1.5px solid rgba(205,181,122,.45);color:var(--paper);border-radius:6px;padding:8px 4px}
@@ -620,6 +620,44 @@ body.fighting .room{height:350px}
 .dailybtn b{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--pow)}
 .dailybtn span{font-size:12px;font-weight:700;opacity:.85}
 .dailybtn:active{transform:translateY(2px)}
+.revbtn{display:grid;gap:1px;width:100%;border:2px solid #0f3d2e;border-radius:12px;background:linear-gradient(135deg,#0f5a43,#0b3b2c);color:#eafff5;padding:7px 10px;box-shadow:0 4px 0 #06261c;position:relative;overflow:hidden}
+.revbtn b{font-family:var(--f-display);font-size:24px;line-height:1}.revbtn span{font-size:11.5px;font-weight:700;opacity:.9}.revbtn::after{content:"חדש";position:absolute;top:6px;inset-inline-start:8px;background:#ffd43b;color:#1b1d14;font-size:10px;font-weight:900;border-radius:99px;padding:1px 7px}
+.revbtn:active{transform:translateY(2px);box-shadow:0 2px 0 #06261c}
+.ts.splash{justify-content:center;gap:14px;cursor:pointer}.splash .ts-hero{padding-bottom:40px}
+.spl-duo{display:flex;align-items:center;justify-content:center;gap:12px;animation:tsFade .5s .2s both}.spl-duo svg{width:84px;height:84px}.spl-duo span{font-family:var(--f-display);font-size:28px;color:var(--stamp)}.spl-doc{font-size:60px;line-height:1;animation:docBob 1.6s ease-in-out infinite}
+@keyframes docBob{50%{transform:translateY(-6px) rotate(-6deg)}}
+.splcta{font-size:46px;width:min(360px,100%)}.spl-note{margin:0;font-size:13px;font-weight:800;opacity:.8;text-align:center}
+.nextup{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 2px}
+.nu{display:grid;gap:1px;text-align:center;border:2px solid var(--ink);border-radius:10px;padding:7px 6px;color:var(--ink);background:#fff;animation:nuIn .45s .3s both}
+.nu b{font-size:16px}.nu span{font-size:11px;font-weight:700;opacity:.8}.nu-duel{background:#e3f6df;border-color:#2e7d32}.nu-daily{background:#fff1c7;border-color:#b07d00}.nu-rev{background:#d8f2ea;border-color:#0f5a43}
+@keyframes nuIn{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+.revintro .revhow{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0;direction:ltr}.revhow div{display:grid;gap:2px;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:8px 4px;text-align:center}.revhow b{font-size:15px}.revhow span{font-size:11px;font-weight:700;color:var(--ink-soft)}
+.revhow div:first-child{background:#ffe1dc}.revhow div:last-child{background:#dff5e1}
+.rev{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));
+  background:radial-gradient(ellipse at 50% 0%,#1d6b52,#0a2a20 70%);color:#eafff5;overflow:hidden}
+.rvhead{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}.rvlives{display:flex;gap:3px;font-size:20px}.rvlives i{font-style:normal;opacity:.2;filter:grayscale(1);transition:.3s}.rvlives i.on{opacity:1;filter:none}
+.rvscore{display:grid;justify-items:center}.rvscore b{font-family:var(--f-display);font-size:40px;line-height:1;color:#ffd43b}.rvscore span{font-size:11px;font-weight:900;color:#ffd43b;min-height:13px}
+.rvt{justify-self:end;font-family:var(--f-display);font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.rvbar{height:8px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden}.rvbar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#5fe06a,#c7f56a);transition:width .1s linear}.rvbar i.red{background:linear-gradient(90deg,#ff5a4a,#ff9a5a)}
+.rvstage{flex:1;display:grid;place-items:center;min-height:0;perspective:800px}
+.rvcard{position:relative;width:min(400px,100%);max-height:100%;display:grid;gap:12px;align-content:start;background:#fbf7ec;color:#1b1d14;border-radius:20px;padding:18px 16px;box-shadow:0 18px 40px rgba(0,0,0,.45);touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;animation:rvIn .35s cubic-bezier(.2,.9,.3,1.2) both;transition:transform .2s}
+.rvcard.boss{background:linear-gradient(160deg,#fff7d6,#f3e2a8)}
+@keyframes rvIn{from{opacity:0;transform:translateY(40px) scale(.9) rotate(-3deg)}to{opacity:1;transform:none}}
+.rvwho{display:flex;gap:10px;align-items:center}.rvimg{width:78px;height:78px;border-radius:50%;overflow:hidden;background:#d9e8d3;flex:none;border:3px solid #1b1d14}.rvimg svg{width:100%;height:100%}
+.rvwho b{display:block;font-size:20px}.rvwho span{font-size:12px;font-weight:700;color:#5b6150}.rvnum{margin-inline-start:auto;align-self:start;font-weight:900;color:#9a917a}
+.rvsay{font-size:21px;font-weight:800;line-height:1.35;background:#fff;border:2px solid #1b1d14;border-radius:14px;padding:10px 12px;position:relative}
+.rvclues{display:flex;flex-wrap:wrap;gap:6px}.rvclues span{font-size:14.5px;font-weight:800;background:#e9eee4;border-radius:99px;padding:5px 10px}
+.rvclues .hid{background:#1b1d14;color:#ffd43b}.rvclues .hid.open{background:#ffd43b;color:#1b1d14;animation:nuIn .3s both}
+.rvstamp{position:absolute;top:18px;font-family:var(--f-display);font-size:42px;line-height:1;padding:2px 12px;border:5px solid;border-radius:8px;opacity:0;pointer-events:none;z-index:2;transform:rotate(-14deg)}
+.rvstamp.yes{left:14px;color:#2e7d32;border-color:#2e7d32;transform:rotate(-14deg)}.rvstamp.no{right:14px;color:#c0392b;border-color:#c0392b;transform:rotate(14deg)}
+.rvbtns{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;direction:ltr}
+.rvbtns button{border:0;border-radius:14px;font-weight:900;font-size:20px;padding:14px 8px;box-shadow:0 5px 0 rgba(0,0,0,.35)}.rvbtns button:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.rvno{background:#e04a3a;color:#fff}.rvyes{background:#2fa84f;color:#fff}.rvchk{background:#ffd43b;color:#1b1d14;font-size:15px!important;padding:14px 12px!important}.rvchk:disabled{opacity:.4}
+.rvtruth{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:5;display:grid;gap:4px;text-align:center;width:min(320px,86%);padding:14px;border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.5);animation:truthIn .3s cubic-bezier(.2,.9,.3,1.4) both}
+.rvtruth.ok{background:#2fa84f;color:#fff}.rvtruth.no{background:#c0392b;color:#fff}.rvtruth b{font-family:var(--f-display);font-size:40px;line-height:1}.rvtruth b i{font-style:normal;color:#ffd43b}.rvtruth span{font-weight:800;font-size:15px}
+@keyframes truthIn{from{opacity:0;transform:translate(-50%,-30%) scale(.7)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.revstats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}.revstats div{display:grid;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:6px}.revstats b{font-family:var(--f-display);font-size:30px;line-height:1}.revstats span{font-size:11px;font-weight:800}
+@media (max-height:700px){.revbtn b{font-size:20px}.revbtn span{font-size:10.5px}.rvsay{font-size:16px}.rvimg{width:52px;height:52px}.rvbtns button{padding:11px 8px}}
 .choice.gold{background:linear-gradient(135deg,#fff3c4,#ffd76a 55%,#f5b81f);border-color:#8a6400!important;box-shadow:0 0 0 2px #ffe58a,0 0 22px rgba(255,200,40,.75);animation:goldGlow 1.4s ease-in-out infinite alternate}
 @keyframes goldGlow{from{box-shadow:0 0 0 2px #ffe58a,0 0 10px rgba(255,200,40,.5)}to{box-shadow:0 0 0 2px #fff2b8,0 0 26px rgba(255,200,40,.95)}}
 .chip.goldchip{background:#5a3d00;color:#ffe58a}
@@ -633,6 +671,9 @@ body.fighting .room{height:350px}
 .allist li.r1{border-color:#3e9d4a}.allist li.r2{border-color:#e0a21b}.allist li.r3{border-color:#d0392b}.allist li.rg{border-color:#f5b81f;background:#fff6d6}
 .ts-duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
 .ts-duo .dailybtn b{font-size:24px}.ts-duo .dailybtn span{font-size:11px}
+.ts-duo.three{grid-template-columns:repeat(3,1fr);gap:6px}.ts-duo.three .dailybtn{padding-inline:4px;min-width:0}.ts-duo.three .dailybtn{overflow:hidden}.ts-duo.three .dailybtn b{font-size:clamp(14px,4.9vw,20px);white-space:nowrap}.rvbtns button{font-size:clamp(15px,5vw,20px)!important;white-space:nowrap}.ts-duo.three .dailybtn span{font-size:10.5px}
+.revbtn2{background:linear-gradient(135deg,#0f5a43,#0b3b2c)!important;border-color:#5fe0b0!important;box-shadow:0 4px 0 #06261c!important;position:relative}.revbtn2 b{color:#b9ffe3}.revbtn2 span{color:#eafff5}
+.revbtn2::after{content:"חדש";position:absolute;top:-7px;inset-inline-start:-4px;background:#ffd43b;color:#1b1d14;font-size:9.5px;font-weight:900;border-radius:99px;padding:1px 6px;transform:rotate(-8deg)}
 .pvpbtn{background:linear-gradient(135deg,#5a1b14,#2c0d0a);border-color:#ff6b5b;box-shadow:0 4px 0 #1a0605}.pvpbtn b{color:#ffb4a8}
 .sheet.pvp{text-align:center}.sheet.pvp .dname,.sheet.pvp .pvjoin{margin:8px auto;max-width:300px}
 .pvjoin{display:flex;gap:6px}.pvjoin input{flex:1;min-width:0;text-transform:uppercase;letter-spacing:.15em;text-align:center;font-weight:800}
@@ -1502,7 +1543,7 @@ function hud(){
 }
 
 /* ================= run & visit ================= */
-function startRun(o){o=o||{};
+function startRun(o){o=o||{};if((o.mode||'normal')!=='tutorial')store.set('gm_runs',store.get('gm_runs',0)+1);
  if((o.mode||'normal')==='normal'&&!store.get('gm_tutdone',false)&&!store.get('gm_played',false))return showTutorialIntro();
  ping(true);touchStreak();track('start');
  const mode=o.mode||'normal',seed=o.seed!=null?o.seed:(mode==='daily'?dailySeed():Math.floor(Math.random()*2147483647));
@@ -1549,6 +1590,7 @@ function roll(L){const d=RUN.day-1,p={...ODDS[L.r]};if(!L.j){p.w+=p.j;p.j=0}
  if(has('acting')&&L.j){const x=Math.min(p.w,.07);p.w-=x;p.j+=x}
  if(has('thermo')&&L.r<3)p.w+=.12;
  p.w=Math.max(.05,p.w+succMod(L));
+ p.w+=(d===0?.12:d===1?.06:0)+(store.get('gm_runs',0)<3?.05:0);
  const tough=Math.min(p.w,.035*d);p.w-=tough;p.a+=tough;
  let shift=(S.sus/100)*(.3+.06*d)+(S.hot?.1:0)-(S.scared?.12:0);shift=Math.max(-.2,Math.min(p.w,shift));p.w-=shift;
  const sum=p.w+p.j+p.a;if(sum>.96){const k=.96/sum;p.w*=k;p.j*=k;p.a*=k}
@@ -1581,7 +1623,7 @@ async function choose(i,btn){
   store.set('gm_acamol',store.get('gm_acamol',0)+1);S.clean=false;sol('slump');if(store.get('gm_acamol',0)>=20)unlock('acamol');
  }else{
   S.streak=0;RUN.guards++;S.clean=false;sol('slump');
-  let ds=Math.round((20+L.r*8+(RUN.day-1)*3+(DOC().mod.fail||0))*(MOOD().fail||1)*(DOC().mod.sus||1));if(S.scared)ds=Math.round(ds/2);
+  let ds=Math.round((20+L.r*8+(RUN.day-1)*3+(DOC().mod.fail||0))*(MOOD().fail||1)*(DOC().mod.sus||1));if(S.scared)ds=Math.round(ds/2);if(RUN.day===1)ds=Math.round(ds*.75);
   if(has('kaban')&&!S.kabanUsed){S.kabanUsed=true;ds=0}
   S.sus+=ds;setMood(S.hot?'sweaty':'angry');say(L.t,docFlavor(L,L.f,'fail')+(ds===0?' (אישור הקב״ן הציל אותך.)':''));stamp('נדחה');SFX.fail();shake();
   floatTxt(ds?'+'+ds+'% חשד':'חשד +0',true);if(L.ffx)runFx(L.ffx);buzz(HAPT.fail);
@@ -2061,6 +2103,7 @@ function jail(reason){
 
 /* ================= achievements ================= */
 const ACH={
+ rev:{n:'הרופא המתנקם',d:'2600 נקודות במשמרת',g:'ר'},
  gold:{n:'משפט זהב',d:'משפט זהב עבד לך',g:'ז'},
  pbg:{n:'שש בש ברשת',d:'ניצחת משחק שש בש אונליין',g:'ש'},
  bglegend:{n:'מנצח האגדה',d:'ניצחת את שלומי האגדי',g:'ל'},
@@ -2265,8 +2308,8 @@ function renderSummary(X){const {type,sentence,g,E,best,career,daysDone,earned,p
   <p class="sumline">${daysDone}/5 ימים · שיא ${best} · +${earned} ${COIN}${promoted?' · קידום ל'+CAREER[careerRank(career)][0]+'!':''}</p>
   ${crateReady()?'<button class="big gold" id="crateBtn" type="button">🎁 פתח ארגז ציוד!</button>':`<p class="cratel">ארגז ציוד: ${crateDots()} · עוד ${CRATE_EVERY-crateProg()} ${CRATE_EVERY-crateProg()===1?'ריצה':'ריצות'}</p>`}
   <button class="big" id="again" type="button">ריצה חדשה</button>
+  <div class="nextup">${ONLINE&&RUN.mode!=='duel'?`<button type="button" class="nu nu-duel" id="duelOpen"><b>⚔️ אתגר חבר</b><span>שישבור את ה־${g} שלך</span></button>`:''}${ONLINE&&RUN.mode!=='daily'&&dailyBest()<0?`<button type="button" class="nu nu-daily" id="nuDaily"><b>🗓️ אתגר יומי</b><span>עוד לא שיחקת היום · +50 ${COIN}</span></button>`:`<button type="button" class="nu nu-rev" id="nuRev"><b>🩺 הרופא המתנקם</b><span>תתפוס את השקרנים</span></button>`}</div>
   <div class="sumgrid">
-   ${ONLINE&&RUN.mode!=='duel'?'<button class="sbtn green" id="duelOpen" type="button">אתגר חבר</button>':''}
    <button class="sbtn" id="cardBtn" type="button">כרטיס תוצאה</button>
    ${g>0||RUN.mode==='daily'?'<button class="sbtn" id="lbOpen" type="button">שלח לטבלה</button>':''}
    <button class="sbtn" id="toMenu" type="button">תפריט</button>
@@ -2279,6 +2322,7 @@ function renderSummary(X){const {type,sentence,g,E,best,career,daysDone,earned,p
  const cb=$('#crateBtn');if(cb)cb.addEventListener('click',()=>{clearInterval(AUTO);openCrate(back)});
  if(!crateReady()&&!X.counted){X.counted=true;autoNext($('#again'),goAgain)}
  $('#toMenu').addEventListener('click',()=>{flushRun();showStart()});
+ {const nd=$('#nuDaily');if(nd)nd.addEventListener('click',()=>{clearInterval(AUTO);flushRun();track('nu_daily');startRun({mode:'daily'})});const nr=$('#nuRev');if(nr)nr.addEventListener('click',()=>{clearInterval(AUTO);flushRun();track('nu_rev');showRevIntro()});const dO=$('#duelOpen');if(dO)dO.addEventListener('click',()=>{clearInterval(AUTO);track('nu_duel')},true)}
  $('#cardBtn').addEventListener('click',()=>showCard({g,ok:!!E.ok,title:E.h,stamp:E.s,rank:CAREER[careerRank(career)][0],char:CHARS[charId()].n,days:daysDone,best},back));
  const dO=$('#duelOpen');if(dO)dO.addEventListener('click',()=>{ov.innerHTML=`<div class="sheet">${duelBlock(g)}<button class="ghostbtn" id="subBack" type="button">חזרה</button></div>`;wireDuel(g);$('#subBack').addEventListener('click',back)});
  const lO=$('#lbOpen');if(lO)lO.addEventListener('click',()=>{ov.innerHTML=`<div class="sheet"><h2>טבלת השיאים</h2>${lbSubmitBlock(g)}<button class="ghostbtn" id="subBack" type="button">חזרה</button></div>`;wireLBSubmit(g);$('#subBack').addEventListener('click',back)});
@@ -3851,6 +3895,101 @@ function pvpResult(res,why,game,mars,pts){if(PV)PV.state='over';pts=pts||1;
   if(PV.peerRematch&&PV.host)pvpHostStart()});
  $('#pvOut').addEventListener('click',()=>{pvpLeave();showStart()})}
 
+/* ================= mode: the avenging doctor (you are the doctor, catch the liars) ================= */
+const REV_T=75000;
+const REV_NAMES=['אבי','יוסי','דניאל','עומר','איתי','רועי','ליאור','עידן','אלון','נתנאל','מאור','גל','אוריה','שחר','בן','יונתן','אריאל','עמית','תומר','אסף'];
+const REV_UNITS=['גולני','שריון','ג׳ובניק מהקריה','תותחנים','מודיעין','טבח','נהג','חיל הים','צנחנים','קשר'];
+const REV_TRUE=['🌡️ מצח רותח','🤧 עיניים אדומות ונוזלות','🩹 תחבושת עם כתם אמיתי','😮‍💨 נושם כבד','🧾 הפניה מבית חולים','🥶 רועד מקור באוגוסט','🤢 ירוק בפנים','🦵 צולע כל הדרך מהשער','🧻 מחזיק גליל נייר טואלט'];
+const REV_FAKE=['📱 משחק פתוח בטלפון','🎒 תיק ארוז הביתה','🕶️ משקפי שמש על הראש','🧴 מריח מקרם הגנה','🎟️ כרטיס להופעה בכיס','💪 בדיוק חזר מחדר כושר','🍕 מריח מפיצה טרייה','📅 שואל אם זה כולל שישי','🩳 בגד ים מציץ מהמכנסיים','😁 לא מפסיק לחייך'];
+const REV_NEUTRAL=['😐 מסתכל לרצפה','⌚ שעון חכם על היד','🧢 כובע הפוך','☕ מחזיק כוס קפה','🎧 אוזניה אחת באוזן','📿 צמיד מהודו'];
+const REV_RIGHT_FAKE=['תפסת! הוא תכנן לטוס לאילת.','צדקת. בתיק שלו היה בגד ים.','בול. הוא כבר הזמין שווארמה הביתה.','רמאי מקצועי. נעצר.','הוא ניסה להתחמק מהשמירה. לא אצלך.'];
+const REV_RIGHT_SICK=['צדקת, הוא באמת חולה. הוא שולח תודה.','הוא היה רותח. הצלת אותו.','גימלים מוצדקים. החובשת גאה בך.','הוא נרדם עוד בדרך החוצה. מגיע לו.'];
+const REV_WRONG_FAKE=['אוי. הוא בטיקטוק מהחוף עכשיו.','הוא הוציא ממך גימלים וסיפר לכל הפלוגה.','המ״פ ראה אותו בקניון.','הוא צחק כל הדרך לש״ג.'];
+const REV_WRONG_SICK=['הוא התעלף בשמירה. המ״פ זועם.','הוא באמת היה חולה... והדביק את כל הש״ג.','טעות. הוא חזר עם אמבולנס.'];
+const REV_RANKS=[[0,'קר״פ מתלמד'],[600,'רופא תורן'],[1500,'רופא ותיק'],[2600,'הרופא המתנקם'],[4000,'צייד הגימלים האגדי']];
+const revRank=s=>REV_RANKS.filter(r=>s>=r[0]).pop()[1];
+let REV=null;
+function showRevIntro(){const ov=$('#overlay');ov.hidden=false;const best=store.get('gm_revbest',0);
+ ov.innerHTML=`<div class="sheet revintro"><div class="tag">מצב חדש · הפעם אתה בצד השני</div><h2>הרופא המתנקם</h2>
+  <div class="revhow"><div><b>👈 שמירה</b><span>הוא משקר</span></div><div><b>🔍 בדיקה</b><span>רמז נוסף, חצי ניקוד</span></div><div><b>גימלים 👉</b><span>הוא באמת חולה</span></div></div>
+  <p class="tip">75 שניות. חיילים נכנסים בלי הפסקה. תסתכל על הרמזים ותחליט מהר. 3 טעויות ונגמרה המשמרת. רצף פגיעות מכפיל את הניקוד.</p>
+  ${best?`<p class="best">השיא שלך: ${best} · ${revRank(best)}</p>`:''}
+  <button class="big" id="rvGo" type="button">🩺 מתחילים משמרת</button><button class="ghostbtn" id="rvBack" type="button">חזרה</button></div>`;
+ $('#rvGo').addEventListener('click',()=>{ac();revStart()});$('#rvBack').addEventListener('click',showStart)}
+function revSoldier(){const t=REV?(performance.now()-REV.t0)/REV_T:0,boss=REV&&REV.n>=4&&Math.random()<.06;
+ const sick=boss?false:Math.random()<.47,keys=Object.keys(CHARS);
+ const pool=LINES.filter(L=>!L.gold&&!L.c&&(sick?(Math.random()<.7?L.r===1:true):(Math.random()<.7?L.r>=2:true)));
+ const L=pickOne(pool.length?pool:LINES.filter(x=>!x.gold&&!x.c));
+ const trick=.3+t*.3;
+ const main=sick?pickOne(REV_TRUE):pickOne(REV_FAKE);
+ const second=Math.random()<trick?(sick?pickOne(REV_FAKE):pickOne(REV_TRUE)):pickOne(REV_NEUTRAL);
+ const check=sick?pickOne(['מדחום: 38.'+rnd(4,9)+'. רותח.','דופק 118. באמת לא טוב לו.','גרון אדום כמו עגבנייה.','בדיקת דם: משהו לא תקין.']):
+  pickOne(['מדחום: 36.6. בריא כמו שור.','מדחום: 41.9... הוא שפשף אותו על הרדיאטור.','דופק: רגוע כמו בחופש.','בכיס שלו: כרטיס טיסה לאילת.','ההודעה האחרונה שלו: ״אחי זה עובד, תבוא גם״']);
+ return{sick,boss,name:boss?'״חייל חדש״':pickOne(REV_NAMES),unit:boss?'בכלל לא נראה חייל':pickOne(REV_UNITS),char:pickOne(keys),line:boss?'*עם שפם מודבק* שלום דוקטור, אני מאוד חולה. מאוד.':L.t,
+  clues:boss?['🥸 שפם מודבק','⭐ דרגות של מ״פ מתחת לחולצה']:gShuffle([main,second]),check,checked:false}}
+function revStart(){track('rev_start');REV={score:0,lives:3,combo:0,n:0,right:0,wrong:0,caught:0,saved:0,t0:performance.now(),end:performance.now()+REV_T,cur:null,busy:false,iv:0};
+ musicPlay('fever');const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="rev"><div class="rvhead"><div class="rvlives" id="rvL"></div><div class="rvscore"><b id="rvS">0</b><span id="rvC"></span></div><div class="rvt" id="rvT">75</div></div>
+  <div class="rvbar"><i id="rvBar"></i></div>
+  <div class="rvstage" id="rvStage"></div>
+  <div class="rvbtns"><button type="button" class="rvno" id="rvNo">👈 שמירה</button><button type="button" class="rvchk" id="rvChk">🔍 בדיקה</button><button type="button" class="rvyes" id="rvYes">גימלים 👉</button></div>
+  <div class="rvtruth" id="rvTruth" hidden></div></div>`;
+ $('#rvNo').addEventListener('click',()=>revVerdict(false));$('#rvYes').addEventListener('click',()=>revVerdict(true));$('#rvChk').addEventListener('click',revCheck);
+ revLives();revNext();REV.iv=setInterval(revTick,100)}
+function revLives(){const e=$('#rvL');if(e)e.innerHTML=Array.from({length:3},(_,i)=>`<i class="${i<REV.lives?'on':''}">🩺</i>`).join('')}
+function revTick(){if(!REV)return;const left=Math.max(0,REV.end-performance.now()),b=$('#rvBar'),t=$('#rvT');
+ if(!b){clearInterval(REV.iv);REV=null;return}
+ b.style.width=left/REV_T*100+'%';b.classList.toggle('red',left<10000);t.textContent=Math.ceil(left/1000);
+ const s=Math.ceil(left/1000);if(left<10000&&s!==REV.lastS){REV.lastS=s;tone(1200,.04,{type:'square',v:.03})}
+ if(left<=0&&!REV.busy)revEnd()}
+function revNext(){if(!REV)return;REV.cur=revSoldier();REV.n++;const C=REV.cur,st=$('#rvStage');
+ st.innerHTML=`<div class="rvcard${C.boss?' boss':''}" id="rvCard"><div class="rvstamp yes">גימלים</div><div class="rvstamp no">שמירה</div>
+  <div class="rvwho"><div class="rvimg">${portrait(C.char)}</div><div><b class="rvname"></b><span class="rvunit"></span></div><span class="rvnum">#${REV.n}</span></div>
+  <div class="rvsay">${fmt(C.line)}</div>
+  <div class="rvclues">${C.clues.map(x=>`<span>${x}</span>`).join('')}<span class="hid" id="rvHid">🔍 ?</span></div></div>`;
+ st.querySelector('.rvname').textContent=C.name;st.querySelector('.rvunit').textContent=C.unit;
+ $('#rvChk').disabled=false;SFX.door();revBindCard($('#rvCard'))}
+function revBindCard(card){let sx=null,dx=0,id=null;
+ card.addEventListener('pointerdown',e=>{if(REV.busy)return;sx=e.clientX;dx=0;id=e.pointerId;try{card.setPointerCapture(id)}catch(err){}card.style.transition='none'});
+ card.addEventListener('pointermove',e=>{if(sx===null||e.pointerId!==id)return;dx=e.clientX-sx;card.style.transform=`translateX(${dx}px) rotate(${dx/18}deg)`;
+  card.querySelector('.rvstamp.yes').style.opacity=Math.max(0,Math.min(1,dx/90));card.querySelector('.rvstamp.no').style.opacity=Math.max(0,Math.min(1,-dx/90))});
+ const up=()=>{if(sx===null)return;sx=null;card.style.transition='';
+  if(Math.abs(dx)>80)return revVerdict(dx>0);card.style.transform='';card.querySelectorAll('.rvstamp').forEach(s=>s.style.opacity=0)};
+ card.addEventListener('pointerup',up);card.addEventListener('pointercancel',up)}
+function revCheck(){if(!REV||REV.busy||REV.cur.checked)return;REV.cur.checked=true;REV.end-=3000;const h=$('#rvHid');h.textContent=REV.cur.check;h.classList.add('open');$('#rvChk').disabled=true;SFX.type();floatTxt('−3 שנ׳')}
+async function revVerdict(gave){if(!REV||REV.busy)return;REV.busy=true;const C=REV.cur,ok=gave===C.sick,card=$('#rvCard');
+ card.style.transition='transform .35s ease-in, opacity .35s';card.style.transform=`translateX(${gave?420:-420}px) rotate(${gave?24:-24}deg)`;card.style.opacity='0';
+ card.querySelector(gave?'.rvstamp.yes':'.rvstamp.no').style.opacity=1;SFX.stamp();
+ const tr=$('#rvTruth');let msg;
+ if(ok){REV.combo++;REV.right++;if(C.sick)REV.saved++;else REV.caught++;
+  const mult=Math.min(1+Math.floor(REV.combo/3),5),pts=Math.round((C.boss?300:100)*mult*(C.checked?.5:1));REV.score+=pts;
+  msg=(C.boss?'זה היה המ״פ בתחפושת! תפסת אותו.':pickOne(C.sick?REV_RIGHT_SICK:REV_RIGHT_FAKE));
+  tr.className='rvtruth ok';tr.innerHTML=`<b>+${pts}${mult>1?` <i>×${mult}</i>`:''}</b><span></span>`;SFX.win();buzz(20);
+  if(REV.combo%5===0){REV.end+=3000;burst('רצף '+REV.combo+'! +3 שניות');SFX.jack()}}
+ else{REV.combo=0;REV.wrong++;REV.lives-=C.boss?2:1;REV.lives=Math.max(0,REV.lives);
+  msg=C.boss?'זה היה המ״פ בתחפושת. הוא רשם את השם שלך.':pickOne(C.sick?REV_WRONG_SICK:REV_WRONG_FAKE);
+  tr.className='rvtruth no';tr.innerHTML='<b>טעות</b><span></span>';SFX.fail();shake();buzz(HAPT.fail);revLives()}
+ tr.querySelector('span').textContent=msg;tr.hidden=false;
+ $('#rvS').textContent=REV.score;$('#rvC').textContent=REV.combo>=3?'רצף '+REV.combo+' · ×'+Math.min(1+Math.floor(REV.combo/3),5):'';
+ await wait(ok?750:1150);if(!REV)return;tr.hidden=true;REV.busy=false;
+ if(REV.lives<=0||REV.end<=performance.now())return revEnd();revNext()}
+function revEnd(){if(!REV||REV.done)return;REV.done=true;clearInterval(REV.iv);const R=REV;
+ const best=Math.max(store.get('gm_revbest',0),R.score),isBest=R.score>0&&R.score>=best&&R.score>store.get('gm_revbest',0);store.set('gm_revbest',best);
+ const coins=Math.round(R.score/25);addCoins(coins);track('rev_done');if(R.score>=2600)unlock('rev');
+ const acc=R.right+R.wrong?Math.round(R.right/(R.right+R.wrong)*100):0;
+ const ov=$('#overlay');ov.hidden=false;musicPlay('menu');if(isBest){SFX.jack();spawn('conf',reduced?6:30,'★')}
+ ov.innerHTML=`<div class="sheet revend"><div class="end-stamp ok">${R.lives<=0?'פוטרת':'סוף משמרת'}</div><div class="tag">הרופא המתנקם</div>
+  <h2>${revRank(R.score)}</h2><div class="bigscore"><b>${R.score}</b><span>נקודות${isBest?' · שיא חדש!':''}</span></div>
+  <div class="revstats"><div><b>${R.caught}</b><span>רמאים נתפסו</span></div><div><b>${R.saved}</b><span>חולים אמיתיים</span></div><div><b>${acc}%</b><span>דיוק</span></div></div>
+  <p class="sumline">שיא ${best} · +${coins} ${COIN}</p>
+  <button class="big" id="rvAgain" type="button">עוד משמרת</button><button class="ghostbtn" id="rvMenu" type="button">תפריט</button></div>`;
+ REV=null;$('#rvAgain').addEventListener('click',()=>revStart());$('#rvMenu').addEventListener('click',showStart)}
+function revKey(e){if(!REV||!$('#rvCard'))return false;
+ if(e.code==='ArrowRight'){e.preventDefault();revVerdict(true);return true}
+ if(e.code==='ArrowLeft'){e.preventDefault();revVerdict(false);return true}
+ if(e.code==='ArrowDown'||e.code==='Space'){e.preventDefault();revCheck();return true}return false}
+document.addEventListener('keydown',e=>{if(REV&&revKey(e))e.stopImmediatePropagation()},true);
+
 /* ---- funnel tracking ---- */
 function track(step){if(IN_CLAUDE)return;sbRpc('track',{p_id:deviceId(),p_step:step}).catch(()=>{})}
 /* ---- first-run guide ---- */
@@ -3891,7 +4030,22 @@ function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=stor
 
 /* ---- title screen ---- */
 let pickIdx=-1;
+let splashSeen=false;
+function showSplash(){splashSeen=true;const ov=$('#overlay');ov.hidden=false;
+ const rain=Array.from({length:14},(_,i)=>`<i style="left:${(i*7.3+3)%100}%;animation-delay:${(i*.9)%7}s;animation-duration:${7+(i%5)}s">ג׳</i>`).join('');
+ ov.innerHTML=`<div class="ts splash" id="spl"><div class="ts-rain" aria-hidden="true">${rain}</div>
+  <div class="ts-hero"><div class="ts-kicker">מרפאת גדוד · תור 06:58</div><h1 class="ts-title"><span class="ts-small">מלך</span><span class="ts-big">הגימלים</span></h1><div class="ts-stamp" aria-hidden="true">אושר</div>
+   <p class="ts-sub">תשכנע את הרופא לתת לך ימי גימלים. בלי לחטוף שמירה.</p></div>
+  <div class="spl-duo">${portrait('tiron')}<span>נגד</span><div class="spl-doc">🩺</div></div>
+  <button class="big cta splcta" id="splGo" type="button">▶ שחק עכשיו</button>
+  <p class="spl-note">30 שניות ואתה בפנים · בלי הרשמה</p>
+  <button type="button" class="ghostbtn" id="splMenu">לתפריט המלא</button></div>`;
+ const go=()=>{ac();SFX.tick();track('title_cta');track('splash_go');startTutorial()};
+ $('#splGo').addEventListener('click',e=>{e.stopPropagation();go()});
+ $('#spl').addEventListener('click',e=>{if(e.target.closest('#splMenu'))return;go()});
+ $('#splMenu').addEventListener('click',e=>{e.stopPropagation();SFX.tick();showStart()});musicPlay('menu')}
 function showStart(){
+ if(!splashSeen&&isNewbie()&&!store.get('gm_tutdone',false))return showSplash();
  const ov=$('#overlay');ov.hidden=false;const keys=Object.keys(CHARS);pickIdx=keys.indexOf(charId());
  const best=store.get('gm_best3',0),career=store.get('gm_career',0),D=daily();
  const rain=Array.from({length:14},(_,i)=>`<i style="left:${(i*7.3+3)%100}%;animation-delay:${(i*.9)%7}s;animation-duration:${7+(i%5)}s">ג׳</i>`).join('');
@@ -3915,7 +4069,8 @@ function showStart(){
   </div>
   <div class="pdots" id="pDots">${keys.map((k,i)=>`<i class="${owned().includes(k)?'own':''}"></i>`).join('')}</div>
   <button class="big cta" id="go" type="button">${isNewbie()?'שחק עכשיו':'ריצה חדשה'}</button>
-  ${ONLINE?`<div class="ts-duo"><button class="dailybtn" id="goDaily" type="button"><b>אתגר יומי</b><span>${dailyBest()>=0?'השיא שלך היום: '+dailyBest():'אותה ריצה לכולם · +50 '+COIN}</span></button><button class="dailybtn pvpbtn" id="goPvp" type="button"><b>🆚 מול חבר</b><span>אגרוף או שש בש, חי</span></button></div>`:''}
+  ${ONLINE?`<div class="ts-duo three"><button class="dailybtn" id="goDaily" type="button"><b>אתגר יומי</b><span>${dailyBest()>=0?'שיא היום: '+dailyBest():'+50 '+COIN}</span></button><button class="dailybtn pvpbtn" id="goPvp" type="button"><b>🆚 מול חבר</b><span>אגרוף או שש בש</span></button><button class="dailybtn revbtn2" id="goRev" type="button"><b>🩺 המתנקם</b><span>אתה הרופא</span></button></div>`
+   :`<button class="revbtn" id="goRev" type="button"><b>🩺 הרופא המתנקם</b><span>מצב חדש: אתה הרופא. תתפוס את השקרנים</span></button>`}
   <div class="ts-menu">
    <button type="button" class="tmb" id="toShop"><b>קנטינה</b><span>שדרוגים ודמויות</span></button>
    <button type="button" class="tmb" id="toLB"><b>שיאים</b><span>כל השחקנים</span></button>
@@ -3941,6 +4096,7 @@ function showStart(){
  render();
  $('#go').addEventListener('click',()=>{ac();SFX.tick();track('title_cta');startRun()});
  const gp=$('#goPvp');if(gp)gp.addEventListener('click',()=>{ac();SFX.tick();showPvpLobby()});
+ $('#goRev').addEventListener('click',()=>{ac();SFX.tick();showRevIntro()});
  const gd=$('#goDaily');if(gd)gd.addEventListener('click',()=>{ac();SFX.tick();startRun({mode:'daily'})});
  checkMyDuels();
  $('#toShop').addEventListener('click',()=>{SFX.tick();showShop()});
@@ -3955,7 +4111,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='5.0';
+const VERSION='5.1';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
