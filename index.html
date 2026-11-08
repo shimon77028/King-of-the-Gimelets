@@ -953,16 +953,30 @@ body.fighting .room{height:auto}
 .bg-p .ck{grid-row:1/3;width:22px;height:22px}
 .bg-p b{font-size:15px}.bg-p small{font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
 .bg-p.him{justify-self:end;direction:ltr;text-align:left}
-.board{display:grid;grid-template-columns:1fr 24px 1fr;grid-template-rows:1fr 1fr;gap:0;aspect-ratio:1.45;max-height:42vh;width:100%;margin:0 auto;
-  background:#7a5230;border:8px solid #4a3019;border-radius:6px;box-shadow:inset 0 0 18px rgba(0,0,0,.5),0 6px 14px rgba(0,0,0,.35)}
-.half{display:grid;grid-template-columns:repeat(6,1fr);background:#d8bf8f;min-width:0}
-.barcol{background:#4a3019;display:grid}
+.board{position:relative;display:grid;grid-template-columns:1fr 24px 1fr;grid-template-rows:1fr 1fr;gap:0;aspect-ratio:1.45;max-height:42vh;width:100%;margin:0 auto;touch-action:none;user-select:none;-webkit-user-select:none;
+  background:var(--bfr);border:9px solid transparent;border-image:var(--bframe) 1;border-radius:6px;box-shadow:inset 0 0 22px rgba(0,0,0,.55),0 10px 22px rgba(0,0,0,.45),0 0 0 2px var(--bedge)}
+.half{display:grid;grid-template-columns:repeat(6,1fr);background:var(--bfelt);min-width:0;box-shadow:inset 0 0 14px rgba(0,0,0,.35)}
+.barcol{background:var(--bbar);display:grid;box-shadow:inset 0 0 8px rgba(0,0,0,.6)}
+body{--bfr:#6b4426;--bframe:repeating-linear-gradient(90deg,#5a361b 0 3px,#6e4526 3px 7px,#4f2f17 7px 9px);--bedge:#2b1a0c;--bfelt:radial-gradient(ellipse at 50% 40%,#e3cc9c,#cfb281);--bbar:linear-gradient(90deg,#3d2611,#5a3a1c,#3d2611);
+  --pa:linear-gradient(#9b3526,#6e1f14);--pb:linear-gradient(#37552f,#22381e);
+  --ckm:radial-gradient(circle at 34% 28%,#fff 0 18%,#f1e6cb 40%,#cbb88c 100%);--ckmb:#8a7a52;--ckmt:#22251a;
+  --ckh:radial-gradient(circle at 34% 28%,#7a7a7a 0 12%,#2a2a2a 45%,#0a0a0a 100%);--ckhb:#000;--ckht:#fff}
+body[data-bgskin="saba"]{--bfr:#3b2414;--bframe:repeating-linear-gradient(90deg,#2e1b0e 0 4px,#4a2d18 4px 9px,#25150a 9px 11px);--bfelt:radial-gradient(ellipse at 50% 40%,#f3e7cc,#dcc9a0);
+  --pa:linear-gradient(#5b3a22,#3a2414);--pb:linear-gradient(#efe2c2,#cdb98d);--ckm:radial-gradient(circle at 34% 28%,#fffdf6 0 18%,#efe3c4 45%,#c9b07a 100%);--ckh:radial-gradient(circle at 34% 28%,#9b5f35 0 12%,#5a3118 45%,#2e170a 100%);--ckhb:#1d0e05}
+body[data-bgskin="night"]{--bfr:#0b1226;--bframe:linear-gradient(90deg,#1f3b8a,#5a2a9c,#1f3b8a);--bedge:#3cf;--bfelt:radial-gradient(ellipse at 50% 40%,#16224a,#0a1130);--bbar:linear-gradient(90deg,#060b1c,#14204a,#060b1c);
+  --pa:linear-gradient(#ff3df2,#7a1a8a);--pb:linear-gradient(#25e3ff,#0b5f8a);--ckm:radial-gradient(circle at 34% 28%,#fff 0 15%,#bff7ff 40%,#2fd2ff 100%);--ckmb:#9ff;--ckmt:#062033;
+  --ckh:radial-gradient(circle at 34% 28%,#ffb3f6 0 12%,#e23ad0 45%,#5a0a55 100%);--ckhb:#f9f;--ckht:#fff}
+body[data-bgskin="night"] .ck.me,body[data-bgskin="night"] .ck.him{box-shadow:0 0 10px currentColor}
+body[data-bgskin="gold"]{--bfr:#1a1206;--bframe:linear-gradient(135deg,#7a5a12,#ffe08a,#b8860b,#fff2b8,#8a6410);--bedge:#ffd34d;--bfelt:radial-gradient(ellipse at 50% 40%,#1f5a3a,#0e3322);--bbar:linear-gradient(90deg,#8a6410,#ffe08a,#8a6410);
+  --pa:linear-gradient(#f7d46b,#b8860b);--pb:linear-gradient(#7d1d1d,#4a0e0e);--ckm:radial-gradient(circle at 34% 28%,#fff 0 18%,#f6f1e6 45%,#d6cbb2 100%);--ckmb:#b8860b;
+  --ckh:radial-gradient(circle at 34% 28%,#ffe9a8 0 12%,#d4a017 45%,#7a5a12 100%);--ckhb:#5a420a;--ckht:#2a1e04}
 .barbtn{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px 0}
 .barbtn.can{box-shadow:inset 0 0 0 3px var(--pow);cursor:pointer}
 .barbtn.sel{background:rgba(255,212,59,.35)}
 .pt{position:relative;border:0;padding:2px 0;background:none;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;cursor:default}
-.pt::before{content:"";position:absolute;left:4%;right:4%;top:0;bottom:8%;clip-path:polygon(0 0,100% 0,50% 100%);background:#8c2f22;z-index:0}
-.pt.odd::before{background:#2f4a2a}
+.pt::before{content:"";position:absolute;left:4%;right:4%;top:0;bottom:8%;clip-path:polygon(0 0,100% 0,50% 100%);background:var(--pa);z-index:0}
+.pt.odd::before{background:var(--pb)}
+.pt.hov{background:rgba(95,224,106,.35)}#bgOff.hov{transform:scale(1.1)}
 .pt.bot{flex-direction:column-reverse}
 .pt.bot::before{top:8%;bottom:0;clip-path:polygon(50% 0,100% 100%,0 100%)}
 .pt .ck{position:relative;z-index:1}
@@ -970,8 +984,9 @@ body.fighting .room{height:auto}
 .pt.sel{background:rgba(255,212,59,.35)}
 .pt.tgt{cursor:pointer}.pt.tgt::after{content:"";position:absolute;left:30%;right:30%;aspect-ratio:1;border-radius:50%;background:rgba(95,224,106,.85);box-shadow:0 0 12px #5fe06a;z-index:2;top:40%;animation:fpulse .5s ease-in-out infinite alternate}
 .ck{display:grid;place-items:center;width:min(86%,30px);aspect-ratio:1;border-radius:50%;font-size:11px;font-weight:900;flex:none}
-.ck.me{background:radial-gradient(circle at 35% 30%,#fff,#e8dcc0);border:2px solid #8a7a52;color:#22251a}
-.ck.him{background:radial-gradient(circle at 35% 30%,#555,#151515);border:2px solid #000;color:#fff}
+.ck.me{background:var(--ckm);border:2px solid var(--ckmb);color:var(--ckmt);box-shadow:inset 0 -2px 3px rgba(0,0,0,.25),inset 0 0 0 3px rgba(255,255,255,.18),0 2px 3px rgba(0,0,0,.45)}
+.ck.him{background:var(--ckh);border:2px solid var(--ckhb);color:var(--ckht);box-shadow:inset 0 -2px 3px rgba(0,0,0,.4),inset 0 0 0 3px rgba(255,255,255,.08),0 2px 3px rgba(0,0,0,.5)}
+.flyck{border-radius:50%;box-shadow:0 10px 16px rgba(0,0,0,.45)!important}.flyck.drag{transition:none;opacity:.95}
 .bg-bottom{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;margin-top:8px}
 .offbtn{border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:5px;padding:8px 10px;font-weight:800}
 .offbtn.tgt{background:#5fe06a;border-color:#2c7a33;animation:fpulse .5s ease-in-out infinite alternate}
@@ -979,6 +994,43 @@ body.fighting .room{height:auto}
 .dice{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;min-height:40px}
 .dice.shake .die{animation:dieRoll .45s ease}
 @keyframes dieRoll{30%{transform:rotate(-25deg) scale(1.15)}60%{transform:rotate(18deg)}}
+.dice{perspective:400px}
+.die.tumble{animation:tumble .62s cubic-bezier(.2,.8,.3,1.2) both}
+@keyframes tumble{0%{transform:translate(-70px,-50px) rotateX(540deg) rotateY(300deg) scale(.5);opacity:.3}55%{transform:translate(6px,6px) rotateX(-20deg) rotateY(15deg) scale(1.12);opacity:1}75%{transform:translate(0,-8px) rotate(-6deg)}100%{transform:none}}
+.die{background:linear-gradient(145deg,#fff,#e9e4d6);box-shadow:0 3px 0 rgba(0,0,0,.25),inset 0 -2px 3px rgba(0,0,0,.12)}
+.bgtimer{position:relative;height:16px;border-radius:99px;background:rgba(0,0,0,.12);overflow:hidden;margin:0 0 6px}
+.bgtimer i{position:absolute;inset:0 auto 0 0;width:100%;background:linear-gradient(90deg,#3e9d4a,#7bd88a);transition:width .25s linear}
+.bgtimer i.him{background:linear-gradient(90deg,#7b7f86,#a9aeb5)}.bgtimer i.red{background:linear-gradient(90deg,#c0392b,#ff6b5b)}
+.bgtimer b{position:relative;display:block;text-align:center;font-size:10.5px;line-height:16px;font-weight:800;color:#1b1d14;font-variant-numeric:tabular-nums}
+.bgtools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.tl{border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:99px;padding:5px 12px;font-weight:800;font-size:13px}
+.tl.dbl{background:#ffd43b;border-color:#8a6a00}.tl.on{background:var(--ink);color:#fff}.tl:active{transform:translateY(1px)}
+.bgroll.ok{background:#2e7d32;color:#fff;font-size:22px}
+.cube{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:26px;height:26px;display:grid;place-items:center;background:#fff8e1;color:#3a2a08;font-weight:900;font-size:11px;border:2px solid #3a2a08;border-radius:5px;box-shadow:0 2px 4px rgba(0,0,0,.5)}
+.cube.mine{top:auto;bottom:4px;transform:translateX(-50%);background:#c8f7c5}.cube.his{top:4px;transform:translateX(-50%);background:#ffd0c9}
+.bgdbl{position:absolute;inset:auto 10px 10px;z-index:20;display:grid;gap:6px;text-align:center;background:#1b1d14;color:#fff;border-radius:10px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:sheetIn .35s both}
+.bgdbl b{font-family:var(--f-display);font-size:28px;color:#ffd43b;line-height:1}.bgdbl span{font-size:13px;opacity:.85}
+.bgdbl div{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bgdbl .big{margin:0;font-size:22px;padding:6px}
+.bgsheet{position:relative}
+.bgmatch{font-family:var(--f-body,inherit);font-size:11px;font-weight:800;color:var(--ink-soft)}
+.chatpop{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:95;display:grid;grid-template-columns:1fr 1fr;gap:6px;width:min(340px,calc(100vw - 32px));background:#1b1d14;padding:10px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:sheetIn .25s both}
+.chatpop button{border:0;border-radius:8px;background:#fff;color:#1b1d14;font-weight:800;font-size:13px;padding:8px 6px}
+.pvchat{position:fixed;left:50%;transform:translateX(-50%);z-index:96;display:grid;gap:1px;max-width:min(300px,calc(100vw - 32px));padding:8px 14px;border-radius:14px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.4);animation:chatIn 2.8s both;pointer-events:none;text-align:center}
+.pvchat small{font-size:10px;opacity:.7}.pvchat span{font-size:16px}
+.pvchat.his{top:calc(70px + env(safe-area-inset-top,0px));background:#fff;color:#1b1d14}.pvchat.mine{bottom:calc(90px + env(safe-area-inset-bottom,0px));background:#ffd43b;color:#1b1d14}
+@keyframes chatIn{0%{opacity:0;transform:translate(-50%,10px) scale(.8)}8%{opacity:1;transform:translate(-50%,0) scale(1.05)}12%{transform:translate(-50%,0) scale(1)}85%{opacity:1}100%{opacity:0}}
+.chatbtn{border:0;background:rgba(255,255,255,.15);border-radius:99px;padding:2px 8px;font-size:15px;margin-inline-end:6px}
+.sheet.pvp .chatbtn{background:#fff;border:2px solid var(--ink);font-size:14px;padding:5px 14px;margin:6px auto 0;display:block}
+.pvlbl{font-size:12px;font-weight:800;color:var(--ink-soft);margin:10px 0 0!important}
+.pvgames.rnd{margin-top:4px}.pvgames.rnd .tl{padding:8px 6px;font-size:14px}
+.pvrank{display:grid;gap:1px;justify-items:center;width:100%;margin:8px 0 0;border:2px dashed var(--ink);background:transparent;border-radius:8px;padding:6px;color:var(--ink)}
+.pvrank b{font-size:15px}.pvrank span{font-size:12px;color:var(--ink-soft);font-weight:700}
+.pvmatch{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:8px 0}.pvmatch span{font-weight:800;font-size:13px}
+.mscore{display:flex;gap:8px;justify-content:center;align-items:center;margin:8px 0 0}.mscore b{font-family:var(--f-display);font-size:44px;line-height:1}.mscore span{font-weight:800}.mscore i{font-style:normal;font-size:30px}
+.bgtop li{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid rgba(0,0,0,.15)}.bgtop em{font-style:normal;font-weight:800;font-variant-numeric:tabular-nums}.bgtop span{font-size:12px;color:var(--ink-soft)}
+.lvls{display:grid;gap:8px;margin:10px 0}.lvl{display:grid;gap:2px;text-align:start;border:2px solid var(--ink);border-radius:10px;padding:10px 14px;background:#fff;color:var(--ink)}.lvl:active{transform:translateY(2px)}
+.lvl b{font-family:var(--f-display);font-size:26px;line-height:1}.lvl span{font-size:13px;font-weight:700}.lvl em{font-style:normal;font-size:12px;color:var(--ink-soft);font-weight:700}
+.lv-easy{background:#e8f6e3}.lv-normal{background:#fff6d6}.lv-legend{background:#1b1d14;color:#ffd43b}.lv-legend em,.lv-legend span{color:#f1e6cb}
 .die{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;width:38px;height:38px;padding:5px;background:#fff;border:2px solid #22251a;border-radius:7px;box-shadow:0 3px 0 rgba(0,0,0,.25)}
 .die i{border-radius:50%}.die i.on{background:#22251a}
 .die.used{opacity:.3}
@@ -1978,6 +2030,8 @@ function jail(reason){
 
 /* ================= achievements ================= */
 const ACH={
+ pbg:{n:'שש בש ברשת',d:'ניצחת משחק שש בש אונליין',g:'ש'},
+ bglegend:{n:'מנצח האגדה',d:'ניצחת את שלומי האגדי',g:'ל'},
  pvp:{n:'אלוף הזירה',d:'ניצחת חבר בקרב אונליין',g:'א'},
  first:{n:'הגימל הראשון',d:'קיבלת יום גימלים',g:'ג'},
  jack:{n:'ג׳קפוט',d:'ג׳קפוט ראשון',g:'ק'},
@@ -2324,7 +2378,10 @@ let SHOPTAB='chars';
 function showShop(tab){if(tab)SHOPTAB=tab;const ov=$('#overlay');ov.hidden=false;const own=owned(),cur=charId(),c=getCoins(),T=SHOPTAB;
  ov.innerHTML=`<div class="sheet shop">
   <div class="shop-top"><h2>קנטינה</h2><span class="coins">${c} ${COIN}</span></div>
-  <div class="tabs"><button type="button" class="tab${T==='chars'?' on':''}" data-st="chars">דמויות</button><button type="button" class="tab${T==='ups'?' on':''}" data-st="ups">שדרוגים</button></div>
+  <div class="tabs"><button type="button" class="tab${T==='chars'?' on':''}" data-st="chars">דמויות</button><button type="button" class="tab${T==='ups'?' on':''}" data-st="ups">שדרוגים</button><button type="button" class="tab${T==='boards'?' on':''}" data-st="boards">לוחות שש בש</button></div>
+  <div class="cards" ${T==='boards'?'':'hidden'}>${Object.entries(BG_SKINS).map(([k,B])=>{const has=bgSkinsOwned().includes(k),sel=bgSkin()===k;
+   return `<div class="card${sel?' sel':''}"><span class="sw" style="background:${B.sw};border-color:#1b1d14"></span><div class="ci"><b>${B.n}</b><span>${B.d}</span></div>
+   ${has?`<button type="button" class="buy" data-bsk="${k}" ${sel?'disabled':''}>${sel?'על השולחן':'בחר'}</button>`:`<button type="button" class="buy" data-bbuy="${k}" ${c<B.price?'disabled':''}>${B.price} ${COIN}</button>`}</div>`}).join('')}</div>
   <div class="cards" ${T==='chars'?'':'hidden'}>${Object.entries(CHARS).map(([k,C])=>{const has=own.includes(k);
    return `<div class="card${cur===k?' sel':''}"><span class="sw" style="background:${C.shirt};border-color:${C.beret}"></span><div class="ci"><b>${C.n}</b><span>${C.d}</span></div>
    ${has?`<button type="button" class="buy" data-pick="${k}" ${cur===k?'disabled':''}>${cur===k?'נבחר':'בחר'}</button>`:`<button type="button" class="buy" data-char="${k}" ${c<C.price?'disabled':''}>${C.price} ${COIN}</button>`}</div>`}).join('')}</div>
@@ -2339,6 +2396,9 @@ function showShop(tab){if(tab)SHOPTAB=tab;const ov=$('#overlay');ov.hidden=false
  ov.querySelectorAll('[data-up]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.up,U=UPGRADES[k],lv=upLevel(k);if(lv>=U.max||getCoins()<U.price[lv])return;
   addCoins(-U.price[lv]);const up=store.get('gm_up',{});up[k]=lv+1;store.set('gm_up',up);SFX.win();showShop()}));
  ov.querySelectorAll('[data-st]').forEach(b=>b.addEventListener('click',()=>{SFX.tick();showShop(b.dataset.st)}));
+ ov.querySelectorAll('[data-bsk]').forEach(b=>b.addEventListener('click',()=>{store.set('gm_bgskin',b.dataset.bsk);SFX.tick();showShop()}));
+ ov.querySelectorAll('[data-bbuy]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.bbuy,B=BG_SKINS[k];if(getCoins()<B.price)return;
+  addCoins(-B.price);store.set('gm_bgskins',[...bgSkinsOwned(),k]);store.set('gm_bgskin',k);SFX.jack();toastMsg('🎲','לוח חדש: '+B.n,B.d);showShop()}));
  $('#shopBack').addEventListener('click',showStart);
 }
 
@@ -2860,16 +2920,20 @@ function bgPips(s){let p=s.barP*25,o=s.barO*25;for(let i=0;i<24;i++){if(s.b[i]>0
 function bgScoreO(s){const {p,o}=bgPips(s);let sc=(p-o)+s.offO*3+s.barP*8;
  for(let i=0;i<24;i++){if(s.b[i]<=-2)sc+=2;if(s.b[i]===-1){let threat=0;for(let j=i+1;j<=Math.min(23,i+12);j++)if(s.b[j]>0)threat++;if(s.barP&&i>=12)threat++;if(threat)sc-=5+threat}}
  return sc}
-function bgBestO(s,dice){let best=null;
- const rec=(st,ds,path)=>{let any=false;
-  for(let k=0;k<ds.length;k++){if(k>0&&ds[k]===ds[k-1])continue;const ms=bgMovesO(st,ds[k]);
-   for(const m of ms){any=true;const r=bgApplyO(st,m);rec(r.s,ds.slice(0,k).concat(ds.slice(k+1)),path.concat([{m,d:ds[k]}]))}}
-  if(!any){const sc=bgScoreO(st)+path.length*20;if(!best||sc>best.sc)best={sc,path}}};
- rec(s,dice.slice().sort((a,b)=>b-a),[]);return best?best.path:[]}
 const BGNAME=d=>d[0]===6&&d[1]===6?'דושש!':d[0]===5&&d[1]===5?'דו בש!':(d[0]===6&&d[1]===5)||(d[0]===5&&d[1]===6)?'שש בש!':'';
 
 let BG=null;
-/* full rules: must use as many dice as possible; if only one can be played, the larger one */
+const BG_TURN_MS=40000;
+const escH=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ---- board skins (canteen) ---- */
+const BG_SKINS={
+ jail:{n:'לוח הכלא',d:'עץ שרוט וצבעים דהויים. חינם.',price:0,sw:'linear-gradient(135deg,#d8bf8f 50%,#8c2f22 50%)'},
+ saba:{n:'הלוח של סבא',d:'אגוז ושנהב. מריח מקפה שחור.',price:250,sw:'linear-gradient(135deg,#f3e7cc 50%,#5b3a22 50%)'},
+ night:{n:'משמרת לילה',d:'כחול כהה ואבני ניאון.',price:400,sw:'linear-gradient(135deg,#16224a 50%,#ff3df2 50%)'},
+ gold:{n:'לוח זהב',d:'לרס״ר שיש לו הכל.',price:600,sw:'linear-gradient(135deg,#1f5a3a 50%,#f7d46b 50%)'}};
+const bgSkinsOwned=()=>{const o=store.get('gm_bgskins',['jail']);return o.includes('jail')?o:['jail',...o]};
+const bgSkin=()=>{const k=store.get('gm_bgskin','jail');return BG_SKINS[k]&&bgSkinsOwned().includes(k)?k:'jail'};
+/* ---- rules: must use as many dice as possible; if only one can be played, the larger one ---- */
 function bgMaxLen(s,left){if(!left.length)return 0;let best=0;const seen=new Set();
  for(const d of left){if(seen.has(d))continue;seen.add(d);const rest=left.slice();rest.splice(rest.indexOf(d),1);
   for(const m of bgMovesP(s,d)){const l=1+bgMaxLen(bgApplyP(s,m).s,rest);if(l>best)best=l;if(best===left.length)return best}}
@@ -2883,92 +2947,237 @@ function bgLegal(s,left){const c=[];let best=0;const seen=new Set();
 function bgRelegal(){BG.legal=BG.turn==='you'?bgLegal(BG.s,BG.left):[]}
 const bgMirror=st=>{const b=Array(24);for(let i=0;i<24;i++)b[i]=-st.b[23-i]||0;return{b,barP:st.barO,barO:st.barP,offP:st.offO,offO:st.offP}};
 const bgMirrorMove=m=>({from:m.from==='bar'?'bar':23-m.from,to:m.to==='off'?'off':23-m.to});
-function bgStart(o){const full=!!o.full;BG={s:bgNew(full),n:full?15:BG_N,full,turn:'roll',dice:[],left:[],legal:[],sel:null,msg:'',o,busy:false,last:[],oname:o.oname||'שלומי',seq:0,lastEnd:null,quitArm:false};
+/* ---- Shlomi's brain: all distinct end positions, then pick by level ---- */
+function bgFinalsO(s,dice){const out=new Map(),seen=new Set();let maxL=0;
+ const key=st=>st.b.join(',')+'|'+st.barP+','+st.barO+','+st.offO;
+ const rec=(st,ds,path)=>{const sk=key(st)+'#'+ds.join('');if(seen.has(sk))return;seen.add(sk);let any=false;
+  for(let k=0;k<ds.length;k++){if(k>0&&ds[k]===ds[k-1])continue;for(const m of bgMovesO(st,ds[k])){any=true;const r=bgApplyO(st,m);rec(r.s,ds.slice(0,k).concat(ds.slice(k+1)),path.concat([{m,d:ds[k]}]))}}
+  if(!any){const L=path.length;if(L<maxL)return;if(L>maxL){maxL=L;out.clear()}const fk=key(st);if(!out.has(fk))out.set(fk,{s:st,path})}};
+ rec(s,dice.slice().sort((a,b)=>b-a),[]);let res=[...out.values()];
+ if(maxL===1&&dice.length===2&&dice[0]!==dice[1]){const hi=Math.max(...dice);if(res.some(r=>r.path[0].d===hi))res=res.filter(r=>r.path[0].d===hi)}
+ return maxL?res:[]}
+function bgShots(s,i){const ds=new Set();for(let j=i+1;j<24;j++)if(s.b[j]>0)ds.add(j-i);if(s.barP)ds.add(24-i);if(!ds.size)return 0;let n=0;
+ for(let a=1;a<=6;a++)for(let c=1;c<=6;c++){let h=ds.has(a)||ds.has(c)||ds.has(a+c);if(!h&&a===c)h=ds.has(3*a)||ds.has(4*a);if(h)n++}return n}
+function bgScoreL(s){const {p,o}=bgPips(s);let sc=(p-o)+s.offO*4+s.barP*12,run=0,best=0;
+ for(let i=0;i<24;i++){const v=s.b[i];
+  if(v<=-2){sc+=i>=18?3:i<=5?2.5:1.5;run++;best=Math.max(best,run)}else run=0;
+  if(v===-1)sc-=bgShots(s,i)/36*(i+9);
+  if(v<-4)sc-=(-v-4)*1.5}
+ if(best>=3)sc+=best*best;return sc}
+function bgBestO(s,dice,level){const F=bgFinalsO(s,dice);if(!F.length)return[];
+ if(level==='easy'&&Math.random()<.65)return pickOne(F).path;
+ const sc=level==='legend'?bgScoreL:bgScoreO;let best=F[0],bs=-1e9;for(const f of F){const v=sc(f.s);if(v>bs){bs=v;best=f}}return best.path}
+function bgCubeOk(who){return BG.cubeOn&&BG.cube<64&&(BG.cubeOwner===null||BG.cubeOwner===who)}
+function bgAiTakes(){const lv=BG.o.level||'normal';if(lv==='easy')return true;const {p,o}=bgPips(BG.s);return o<=p*(lv==='legend'?1.22:1.3)+4}
+function bgAiOffers(){const lv=BG.o.level||'normal';if(lv==='easy'||!bgCubeOk('opp'))return false;const {p,o}=bgPips(BG.s);return o>20&&o<p*(lv==='legend'?.84:.78)}
+/* ---- sound + motion ---- */
+function bgTok(){tone(170,.05,{type:'triangle',v:.09});tone(1250,.02,{type:'square',v:.02,at:.005})}
+function bgRattle(){for(let i=0;i<6;i++)tone(260+Math.random()*600,.035,{type:'square',v:.045,at:i*.055})}
+function bgTopCk(sel){const el=document.querySelector(sel);if(!el)return null;const cks=el.querySelectorAll('.ck');return cks.length?cks[cks.length-1]:el}
+function bgSelFor(side,i){if(i==='bar')return side==='me'?'.bgsheet .barbtn.me':'.bgsheet .barbtn.him';if(i==='off')return side==='me'?'#bgOff':'.bgsheet .bg-p.him .ck';return `.bgsheet .pt[data-i="${i}"]`}
+function bgRectOf(side,i){const e=bgTopCk(bgSelFor(side,i));return e?e.getBoundingClientRect():null}
+function flyCk(side,a,b,hide,ms,delay){const w=Math.max(16,Math.min(a.width||24,a.height||24)),f=document.createElement('div');f.className='ck flyck '+side;
+ f.style.cssText=`position:fixed;left:${a.left+(a.width-w)/2}px;top:${a.top+(a.height-w)/2}px;width:${w}px;height:${w}px;z-index:80;pointer-events:none;margin:0`;
+ document.body.appendChild(f);if(hide)hide.style.visibility='hidden';
+ const dx=b.left+b.width/2-(a.left+a.width/2),dy=b.top+b.height/2-(a.top+a.height/2);
+ const an=f.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${dx*.5}px,${dy*.5-36}px) scale(1.3)`,offset:.5},{transform:`translate(${dx}px,${dy}px) scale(1)`}],{duration:ms,delay:delay||0,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'});
+ const done=()=>{f.remove();if(hide)hide.style.visibility='';bgTok()};an.onfinish=done;an.oncancel=done}
+function bgFly(side,fromR,to,hitR){if(reduced||!fromR)return;
+ const dest=bgTopCk(bgSelFor(side,to));if(!dest)return;
+ flyCk(side,fromR,dest.getBoundingClientRect(),to==='off'?null:dest,300);
+ if(hitR){const vs=side==='me'?'him':'me',bar=bgTopCk(bgSelFor(vs,'bar'));if(bar)flyCk(vs,hitR,bar.getBoundingClientRect(),bar.classList.contains('ck')?bar:null,420,140)}}
+function bgDiceFx(){const ds=[...document.querySelectorAll('.bgsheet .dice .die')];if(!ds.length)return;
+ ds.forEach((d,k)=>{d.classList.remove('tumble');void d.offsetWidth;d.style.animationDelay=k*70+'ms';d.classList.add('tumble')});
+ if(reduced)return;const fin=ds.map(d=>d.innerHTML);let n=0;
+ const iv=setInterval(()=>{n++;ds.forEach(d=>{if(d.isConnected){const v=1+Math.floor(Math.random()*6);d.innerHTML=Array.from({length:9},(_,i)=>`<i class="${DIE_PIPS[v].includes(i)?'on':''}"></i>`).join('')}});
+  if(n>=6){clearInterval(iv);ds.forEach((d,k)=>{if(d.isConnected)d.innerHTML=fin[k]})}},65)}
+/* ---- game ---- */
+function bgStart(o){const full=!!o.full;
+ BG={s:bgNew(full),n:full?15:BG_N,full,turn:'roll',dice:[],left:[],legal:[],sel:null,msg:'',o,last:[],oname:o.oname||'שלומי',seq:0,lastEnd:null,quitArm:false,
+  cube:1,cubeOwner:null,cubeOn:o.online?!o.noCube:!!o.practice,hist:[],tEnd:0,tTot:1,tSide:null,lastTap:{i:null,t:0},auto:false,chatOpen:false};
+ const me=BG;BG.tiv=setInterval(()=>{if(BG!==me){clearInterval(me.tiv);return}bgTick()},250);
  if(!o.online)musicPlay('chief');
- if(o.online&&o.open){const[me,him]=o.open;
-  if(me>him){BG.turn='you';BG.dice=[me,him];BG.left=[me,him];bgRelegal();renderBG();bgMsg(`פתיחה: ${me} מול ${him}. אתה מתחיל עם ${me}·${him}.`)}
-  else{BG.turn='opp';BG.dice=[him,me];renderBG();bgMsg(`פתיחה: ${him} מול ${me}. ${BG.oname} מתחיל.`)}
+ if(o.online&&o.open){const[a,b]=o.open;
+  if(a>b){BG.turn='you';BG.dice=[a,b];BG.left=[a,b];bgRelegal();bgSetTimer('me',BG_TURN_MS);renderBG();bgDiceFx();bgMsg(`פתיחה: ${a} מול ${b}. אתה מתחיל עם ${a}·${b}.`)}
+  else{BG.turn='opp';BG.dice=[b,a];bgSetTimer('opp',BG_TURN_MS);renderBG();bgDiceFx();bgMsg(`פתיחה: ${b} מול ${a}. ${BG.oname} מתחיל.`)}
   return}
- renderBG();bgMsg(o.practice?'אימון מול שלומי. מי שמוציא ראשון את כל האבנים מנצח.':'שלומי מתא 3 טורף את הקוביות. ״שש בש? ניצחת, אתה חופשי. הפסדת, עוד שבוע איתי.״')}
-function bgMsg(t,who){BG.msg=(who?who+': ':'')+t;const el=$('#bgMsg');if(el)el.textContent=BG.msg}
+ renderBG();
+ const lvT={easy:'שלומי עוד חצי ישן. מושלם לאימון.',normal:'שלומי ער ורעב. מי שמוציא ראשון את כל האבנים מנצח.',legend:'שלומי האגדי. 14 שנה בתא 3, לא הפסיד לאף סוהר.'};
+ bgMsg(o.practice?lvT[o.level||'normal']:'שלומי מתא 3 טורף את הקוביות. ״שש בש? ניצחת, אתה חופשי. הפסדת, עוד שבוע איתי.״')}
+function bgMsg(t,who){if(!BG)return;BG.msg=(who?who+': ':'')+t;const el=$('#bgMsg');if(el)el.textContent=BG.msg}
+function bgSetTimer(side,ms){BG.tSide=side;BG.tTot=ms;BG.tEnd=Date.now()+ms}
+function bgTick(){if(!BG||!BG.o.online||!BG.tEnd||BG.turn==='over')return;const left=BG.tEnd-Date.now(),el=document.querySelector('.bgtimer i'),tx=document.querySelector('.bgtimer b');
+ if(el){el.style.width=Math.max(0,left/BG.tTot*100)+'%';el.classList.toggle('red',left<10000);el.classList.toggle('him',BG.tSide!=='me')}
+ if(tx)tx.textContent=(BG.tSide==='me'?'הזמן שלך ':'הזמן של '+BG.oname+' ')+Math.max(0,Math.ceil(left/1000));
+ if(BG.tSide==='me'&&left<=0){BG.tEnd=0;bgTimeout()}}
+async function bgTimeout(){if(!BG)return;buzz(60);
+ if(BG.turn==='dbl')return bgDblAnswer(true);
+ bgMsg('נגמר הזמן! המשחק זז בשבילך.');BG.auto=true;
+ if(BG.turn==='roll')return bgRoll(true);
+ if(BG.turn==='you')return bgAutoPlay();
+ if(BG.turn==='confirm')return bgTurnDone()}
+async function bgAutoPlay(){while(BG&&BG.turn==='you'&&BG.legal.length){const ms=BG.legal;
+  bgDoMove(ms.find(x=>x.to==='off')||ms.find(x=>x.to!=='off'&&BG.s.b[x.to]===-1)||ms[0]);await wait(380)}
+ if(BG&&BG.turn==='confirm')bgTurnDone()}
 const DIE_PIPS={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
-function dieHTML(v,used,rolling){return `<span class="die${used?' used':''}${rolling?' roll':''}">${Array.from({length:9},(_,i)=>`<i class="${DIE_PIPS[v].includes(i)?'on':''}"></i>`).join('')}</span>`}
+function dieHTML(v,used){return `<span class="die${used?' used':''}">${Array.from({length:9},(_,i)=>`<i class="${DIE_PIPS[v].includes(i)?'on':''}"></i>`).join('')}</span>`}
 function bgTargets(){if(!BG||BG.turn!=='you'||BG.sel===null)return{};const T={};
  for(const m of BG.legal)if(m.from===BG.sel&&(T[m.to]===undefined||m.d<T[m.to]))T[m.to]=m.d;return T}
 function bgCanMove(){return BG.legal.length>0}
-function renderBG(){const ov=$('#overlay');ov.hidden=false;const s=BG.s,T=bgTargets(),on=!!BG.o.online;
- const movable=new Set();if(BG.turn==='you')for(const m of BG.legal)movable.add(String(m.from));
+function renderBG(){const ov=$('#overlay');ov.hidden=false;const s=BG.s,T=bgTargets(),on=!!BG.o.online,t=BG.turn;
+ document.body.dataset.bgskin=bgSkin();
+ const movable=new Set();if(t==='you')for(const m of BG.legal)movable.add(String(m.from));
  const pt=(i,top)=>{const v=s.b[i],n=Math.abs(v),own=v>0,shown=Math.min(n,5);
   const cls=['pt',top?'top':'bot',i%2?'odd':'even',T[i]!==undefined?'tgt':'',BG.sel===i?'sel':'',movable.has(String(i))?'can':'',(BG.last||[]).includes(i)?'last':''].join(' ');
   return `<button type="button" class="${cls}" data-i="${i}" aria-label="נקודה ${i+1}">${Array.from({length:shown},(_,k)=>`<span class="ck ${own?'me':'him'}">${k===shown-1&&n>5?n:''}</span>`).join('')}</button>`};
  const row=(ids,top)=>ids.map(i=>pt(i,top)).join('');
  const barCk=(n,me)=>Array.from({length:Math.min(n,4)},(_,k)=>`<span class="ck ${me?'me':'him'}">${k===3&&n>4?n:''}</span>`).join('');
- const lc=BG.left.slice(),diceH=BG.dice.map(v=>{if(BG.turn!=='you')return dieHTML(v,false);const k=lc.indexOf(v);if(k>=0){lc.splice(k,1);return dieHTML(v,false)}return dieHTML(v,true)}).join('');
+ const lc=BG.left.slice(),diceH=BG.dice.map(v=>{if(t!=='you'&&t!=='confirm')return dieHTML(v,false);const k=lc.indexOf(v);if(k>=0){lc.splice(k,1);return dieHTML(v,false)}return dieHTML(v,true)}).join('');
  const pp=bgPips(s),pip=x=>BG.full?`<br>${x} פיפס`:'';
- const turnTag=on?(BG.turn==='opp'?'<span class="bgturn him">תור היריב</span>':BG.turn==='over'?'':'<span class="bgturn me">התור שלך</span>'):'';
- let sh=ov.querySelector('.bgsheet');if(!sh){ov.innerHTML='<div class="sheet bgsheet"></div>';sh=ov.querySelector('.bgsheet')}
+ const mine=t==='roll'||t==='you'||t==='confirm'||t==='dbl';
+ const turnTag=on?(t==='over'?'':mine?'<span class="bgturn me">התור שלך</span>':'<span class="bgturn him">תור היריב</span>'):'';
+ const cubeH=BG.cubeOn?`<span class="cube${BG.cubeOwner==='me'?' mine':BG.cubeOwner==='opp'?' his':''}" title="קובייה מכפילה">×${BG.cube}</span>`:'';
+ const act=t==='confirm'?'<button type="button" class="big bgroll ok" id="bgDone">סיים ✓</button>':`<button type="button" class="big bgroll" id="bgRoll" ${t==='roll'?'':'disabled'}>הטל</button>`;
+ const tools=[(t==='you'||t==='confirm')&&BG.hist.length&&!BG.auto?'<button type="button" class="tl" id="bgUndo">↶ בטל</button>':'',
+  t==='roll'&&bgCubeOk('me')?`<button type="button" class="tl dbl" id="bgDbl">הכפל ל־×${BG.cube*2}</button>`:'',
+  on&&t!=='over'?'<button type="button" class="tl" id="bgChat" aria-label="צ׳אט">💬</button>':'',
+  BG.o.practice?'<button type="button" class="tl" id="bgQuit">יציאה</button>':'',
+  on&&t!=='over'?`<button type="button" class="tl" id="bgQuit">${BG.quitArm?'בטוח? עוד לחיצה':'פרישה'}</button>`:''].join('');
+ const dblH=t==='dbl'?`<div class="bgdbl"><b>${escH(BG.oname)} מכפיל ל־×${BG.cube*2}!</b><span>מקבל? אם תוותר, תפסיד ${BG.cube} ${BG.cube>1?'נקודות':'נקודה'}.</span><div><button type="button" class="big green" id="bgTake">מקבל</button><button type="button" class="big" id="bgDrop">מוותר</button></div></div>`:'';
+ const matchH=BG.o.match&&BG.o.match.to>1?`<span class="bgmatch">אתה ${BG.o.match.me} : ${BG.o.match.him} · עד ${BG.o.match.to}${BG.o.noCube&&on?' · בלי הכפלות':''}</span>`:'';
+ let sh=ov.querySelector('.bgsheet');if(!sh){ov.innerHTML='<div class="sheet bgsheet"></div>';sh=ov.querySelector('.bgsheet');bgBindBoard(sh)}
  sh.classList.toggle('full',BG.full);
- sh.innerHTML=`<div class="bg-head"><div class="bg-p him"><span class="ck him"></span><b class="bgname"></b><small>יצאו ${s.offO}/${BG.n}${pip(pp.o)}</small></div><div class="bg-title">${on?'שש בש אונליין':BG.o.practice?'שש בש':'שש בש בכלא'}${turnTag}</div><div class="bg-p me"><span class="ck me"></span><b>אתה</b><small>יצאו ${s.offP}/${BG.n}${pip(pp.p)}</small></div></div>
+ sh.innerHTML=`<div class="bg-head"><div class="bg-p him"><span class="ck him"></span><b class="bgname">${escH(BG.oname)}</b><small>יצאו ${s.offO}/${BG.n}${pip(pp.o)}</small></div><div class="bg-title">${on?'שש בש אונליין':BG.o.practice?'שש בש':'שש בש בכלא'}${turnTag}${matchH}</div><div class="bg-p me"><span class="ck me"></span><b>אתה</b><small>יצאו ${s.offP}/${BG.n}${pip(pp.p)}</small></div></div>
+  ${on?'<div class="bgtimer"><i></i><b></b></div>':''}
   <div class="board" dir="ltr">
    <div class="half">${row([12,13,14,15,16,17],true)}</div><div class="barcol"><button type="button" class="barbtn him" disabled>${barCk(s.barO,false)}</button></div><div class="half">${row([18,19,20,21,22,23],true)}</div>
    <div class="half">${row([11,10,9,8,7,6],false)}</div><div class="barcol"><button type="button" class="barbtn me${BG.sel==='bar'?' sel':''}${movable.has('bar')?' can':''}" data-i="bar">${barCk(s.barP,true)}</button></div><div class="half">${row([5,4,3,2,1,0],false)}</div>
+   ${cubeH}
   </div>
   <div class="bg-bottom"><button type="button" class="offbtn${T.off!==undefined?' tgt':''}" id="bgOff" ${T.off!==undefined?'':'disabled'}>הוצא</button>
-   <div class="dice">${diceH}${BG.turn==='you'?`<span class="left">נשאר: ${BG.left.join(' · ')||'—'}</span>`:''}</div>
-   <button type="button" class="big bgroll" id="bgRoll" ${BG.turn==='roll'?'':'disabled'}>הטל</button></div>
-  <p class="bgmsg" id="bgMsg"></p>
-  ${BG.o.practice?'<button type="button" class="ghostbtn" id="bgQuit">יציאה</button>':''}${on&&BG.turn!=='over'?`<button type="button" class="ghostbtn" id="bgQuit">${BG.quitArm?'בטוח? לחץ שוב לפרוש':'פרישה'}</button>`:''}`;
- sh.querySelector('.bgname').textContent=BG.oname;$('#bgMsg').textContent=BG.msg;
- ov.querySelectorAll('.pt,.barbtn.me').forEach(el=>el.addEventListener('click',()=>bgTap(el.dataset.i==='bar'?'bar':+el.dataset.i)));
- $('#bgOff').addEventListener('click',()=>bgTap('off'));
- $('#bgRoll').addEventListener('click',bgRoll);
- const q=$('#bgQuit');if(q)q.addEventListener('click',()=>{
-  if(on){if(!BG.quitArm){BG.quitArm=true;renderBG();setTimeout(()=>{if(BG&&BG.quitArm){BG.quitArm=false;renderBG()}},3000);return}pvpSend({t:'bresign'});bgEnd(false,'פרשת מהמשחק.');return}
+   <div class="dice">${diceH}${t==='you'?`<span class="left">נשאר: ${BG.left.join(' · ')||'—'}</span>`:''}</div>${act}</div>
+  ${tools&&t!=='dbl'?`<div class="bgtools">${tools}</div>`:''}
+  <p class="bgmsg" id="bgMsg"></p>${dblH}`;
+ $('#bgMsg').textContent=BG.msg;bgTick();
+ const on_=(id,f)=>{const e=document.getElementById(id);if(e)e.addEventListener('click',f)};
+ on_('bgRoll',()=>bgRoll());on_('bgDone',bgTurnDone);on_('bgUndo',bgUndo);on_('bgDbl',bgOffer);
+ on_('bgTake',()=>bgDblAnswer(true));on_('bgDrop',()=>bgDblAnswer(false));on_('bgChat',e=>chatMenu());
+ on_('bgQuit',()=>{
+  if(on){if(!BG.quitArm){BG.quitArm=true;renderBG();setTimeout(()=>{if(BG&&BG.quitArm){BG.quitArm=false;renderBG()}},3000);return}pvpSend({t:'bresign'});bgEnd(false,'פרשת מהמשחק.',BG.cube);return}
   BG=null;showProgress()});
 }
-function rollDice(){return[1+Math.floor(Math.random()*6),1+Math.floor(Math.random()*6)]}
-async function bgRoll(){if(!BG||BG.turn!=='roll')return;BG.last=[];const d=rollDice();BG.dice=d;BG.left=d[0]===d[1]?[d[0],d[0],d[0],d[0]]:[d[0],d[1]];BG.turn='you';BG.sel=null;bgRelegal();
- if(BG.o.online)pvpSend({t:'broll',d});
- for(let i=0;i<5;i++)tone(300+Math.random()*500,.04,{type:'square',v:.05,at:i*.06});
- const nm=BGNAME(d);renderBG();cls($('.dice'),'shake');bgMsg(nm?nm+' בחר אבן להזיז.':'בחר אבן להזיז. הנקודות הזוהרות הן לאן אפשר.');
- if(!bgCanMove()){bgMsg('אין לך מהלך חוקי. התור עובר.');await wait(1300);bgTurnDone()}}
-function bgTurnDone(){if(!BG||BG.turn==='over')return;
- if(!BG.o.online)return bgOpp();
- BG.seq++;BG.lastEnd={t:'bend',seq:BG.seq,st:bgClone(BG.s)};pvpSend(BG.lastEnd);
- BG.turn='opp';BG.left=[];BG.legal=[];BG.sel=null;renderBG();bgMsg('תור של '+BG.oname+'...')}
+/* tap, double-tap and drag on the board (bound once per sheet) */
+function bgBindBoard(sh){let D=null;
+ sh.addEventListener('pointerdown',e=>{const el=e.target.closest('.pt,.barbtn.me');if(!el||!BG||BG.turn!=='you')return;const i=el.dataset.i==='bar'?'bar':+el.dataset.i;
+  D={i,x:e.clientX,y:e.clientY,id:e.pointerId,ghost:null,can:BG.legal.some(m=>m.from===i)};try{sh.setPointerCapture(e.pointerId)}catch(err){}});
+ sh.addEventListener('pointermove',e=>{if(!D||e.pointerId!==D.id||!D.can||!BG)return;const dx=e.clientX-D.x,dy=e.clientY-D.y;
+  if(!D.ghost){if(dx*dx+dy*dy<120)return;if(BG.sel!==D.i){BG.sel=D.i;renderBG()}const src=bgTopCk(bgSelFor('me',D.i));if(!src)return;const r=src.getBoundingClientRect(),w=Math.max(18,Math.min(r.width,r.height));
+   const g=document.createElement('div');g.className='ck me flyck drag';g.style.cssText=`position:fixed;left:0;top:0;width:${w}px;height:${w}px;z-index:90;pointer-events:none;margin:0`;document.body.appendChild(g);D.ghost=g;D.w=w;if(src.classList.contains('ck'))src.style.visibility='hidden';D.src=src}
+  D.ghost.style.transform=`translate(${e.clientX-D.w/2}px,${e.clientY-D.w*0.9}px) scale(1.3)`;
+  const over=document.elementFromPoint(e.clientX,e.clientY);sh.querySelectorAll('.hov').forEach(x=>x.classList.remove('hov'));const tg=over&&over.closest('.pt.tgt,#bgOff.tgt');if(tg)tg.classList.add('hov')});
+ sh.addEventListener('pointerup',e=>{if(!D||e.pointerId!==D.id)return;const d=D;D=null;if(!BG)return;
+  if(d.ghost){const gr=d.ghost.getBoundingClientRect();d.ghost.remove();const over=document.elementFromPoint(e.clientX,e.clientY),tg=over&&over.closest('.pt,#bgOff');
+   const to=tg?(tg.id==='bgOff'?'off':+tg.dataset.i):null,T=bgTargets();
+   if(to!==null&&T[to]!==undefined)return bgDoMove(BG.legal.find(x=>x.from===d.i&&x.to===to&&x.d===T[to]),{rect:gr});
+   if(d.src)d.src.style.visibility='';sh.querySelectorAll('.hov').forEach(x=>x.classList.remove('hov'));bgMsg('משחררים רק על נקודה זוהרת.');return}
+  bgTapAt(d.i)});
+ sh.addEventListener('pointercancel',()=>{if(D&&D.ghost){D.ghost.remove();if(D.src)D.src.style.visibility=''}D=null});
+ sh.addEventListener('click',e=>{const off=e.target.closest('#bgOff');if(off&&!off.disabled)bgTap('off')})}
+function bgTapAt(i){const now=performance.now(),L=BG.lastTap;BG.lastTap={i,t:now};
+ if(L.i===i&&now-L.t<380&&BG.turn==='you'){const ms=BG.legal.filter(m=>m.from===i);
+  if(ms.length){const pick=ms.find(m=>m.to==='off')||ms.find(m=>m.to!=='off'&&BG.s.b[m.to]===-1)||ms.slice().sort((a,b)=>b.d-a.d)[0];return bgDoMove(pick)}}
+ bgTap(i)}
 function bgTap(i){if(!BG||BG.turn!=='you')return;const T=bgTargets();
- if(BG.sel!==null&&T[i]!==undefined){const d=T[i],mv={from:BG.sel,to:i},r=bgApplyP(BG.s,mv);BG.last=[i];BG.s=r.s;BG.left.splice(BG.left.indexOf(d),1);BG.sel=null;SFX.tick();
-  if(BG.o.online)pvpSend({t:'bmv',from:mv.from,to:mv.to});
-  if(r.hit){SFX.punch();buzz(30);bgMsg(BG.o.online?'הורדת אותו לבר!':pickOne(BG_TALK.gotHit),BG.o.online?'':'שלומי')}else bgMsg('');
-  if(BG.s.offP>=BG.n){if(BG.o.online){BG.seq++;BG.lastEnd={t:'bend',seq:BG.seq,st:bgClone(BG.s)};pvpSend(BG.lastEnd)}return bgEnd(true)}
-  bgRelegal();renderBG();if(!BG.left.length||!bgCanMove()){if(BG.left.length)bgMsg('אין יותר מהלכים חוקיים.');setTimeout(bgTurnDone,700)}return}
+ if(BG.sel!==null&&T[i]!==undefined)return bgDoMove(BG.legal.find(x=>x.from===BG.sel&&x.to===i&&x.d===T[i]));
  if(i==='off')return;
  const has=i==='bar'?BG.s.barP>0:BG.s.b[i]>0;
  if(BG.s.barP>0&&i!=='bar'){bgMsg('יש לך אבן על הבר. קודם מכניסים אותה.');return}
  if(has&&BG.legal.some(m=>m.from===i)){BG.sel=BG.sel===i?null:i;SFX.tick();renderBG()}
  else if(has)bgMsg(BG.left.some(d=>bgMovesP(BG.s,d).some(m=>m.from===i))?'לפי החוקים חייבים לנצל את כל הקוביות. תזיז אבן אחרת.':'האבן הזאת לא יכולה לזוז עם הקוביות האלה.')}
+function bgDoMove(m,via){if(!m||!BG)return;const fromR=via&&via.rect||bgRectOf('me',m.from),hitR=m.to!=='off'?bgRectOf('x',m.to):null;
+ BG.hist.push({s:bgClone(BG.s),left:BG.left.slice(),last:BG.last.slice()});BG.lastTap={i:null,t:0};
+ const r=bgApplyP(BG.s,{from:m.from,to:m.to});BG.s=r.s;BG.left.splice(BG.left.indexOf(m.d),1);BG.sel=null;BG.last=m.to==='off'?[]:[m.to];
+ if(BG.o.online)pvpSend({t:'bmv',from:m.from,to:m.to});
+ if(r.hit){SFX.punch();buzz(30);if(BG.o.online)bgMsg('הורדת אותו לבר!');else bgMsg(pickOne(BG_TALK.gotHit),'שלומי')}else bgMsg('');
+ if(BG.s.offP>=BG.n){renderBG();bgFly('me',fromR,m.to,null);if(BG.o.online){BG.seq++;BG.lastEnd={t:'bend',seq:BG.seq,st:bgClone(BG.s)};pvpSend(BG.lastEnd)}return bgEnd(true)}
+ bgRelegal();
+ if(!BG.left.length||!BG.legal.length){BG.turn='confirm';BG.legal=[];if(BG.left.length)bgMsg('אין יותר מהלכים חוקיים.');else if(!r.hit)bgMsg('סיימת? אפשר לבטל, או שהתור יעבור לבד.');
+  clearTimeout(BG.cT);BG.cT=setTimeout(()=>{if(BG&&BG.turn==='confirm')bgTurnDone()},BG.auto?250:2400)}
+ renderBG();bgFly('me',fromR,m.to,r.hit?hitR:null)}
+function bgUndo(){if(!BG||!(BG.turn==='you'||BG.turn==='confirm')||!BG.hist.length)return;clearTimeout(BG.cT);const h=BG.hist.pop();
+ BG.s=h.s;BG.left=h.left;BG.last=h.last;BG.turn='you';BG.sel=null;bgRelegal();SFX.whoosh();renderBG();bgMsg('בוטל. תזיז שוב.');
+ if(BG.o.online)pvpSend({t:'bsync',st:bgClone(BG.s)})}
+function rollDice(){return[1+Math.floor(Math.random()*6),1+Math.floor(Math.random()*6)]}
+async function bgRoll(auto){if(!BG||BG.turn!=='roll')return;BG.last=[];BG.hist=[];const d=rollDice();BG.dice=d;BG.left=d[0]===d[1]?[d[0],d[0],d[0],d[0]]:[d[0],d[1]];BG.turn='you';BG.sel=null;bgRelegal();
+ if(BG.o.online)pvpSend({t:'broll',d});
+ bgRattle();const nm=BGNAME(d);renderBG();bgDiceFx();bgMsg(nm?nm+' בחר אבן, או גרור אותה.':'בחר אבן או גרור אותה. לחיצה כפולה מזיזה לבד.');
+ if(!bgCanMove()){bgMsg('אין לך מהלך חוקי. התור עובר.');BG.turn='confirm';BG.hist=[];renderBG();await wait(1500);if(BG&&BG.turn==='confirm')bgTurnDone();return}
+ if(auto)bgAutoPlay()}
+function bgTurnDone(){if(!BG||BG.turn==='over')return;clearTimeout(BG.cT);BG.hist=[];BG.auto=false;
+ if(!BG.o.online)return bgOpp();
+ BG.seq++;BG.lastEnd={t:'bend',seq:BG.seq,st:bgClone(BG.s)};pvpSend(BG.lastEnd);
+ BG.turn='opp';BG.left=[];BG.legal=[];BG.sel=null;bgSetTimer('opp',BG_TURN_MS);renderBG();bgMsg('תור של '+BG.oname+'...')}
+async function bgOffer(){if(!BG||BG.turn!=='roll'||!bgCubeOk('me'))return;SFX.gavel();buzz(40);BG.turn='dblwait';renderBG();bgMsg(`הצעת להכפיל ל־×${BG.cube*2}. מחכה לתשובה...`);
+ if(BG.o.online){pvpSend({t:'bdbl'});bgSetTimer('opp',25000);return}
+ await wait(1200);if(!BG||BG.turn!=='dblwait')return;
+ if(bgAiTakes()){BG.cube*=2;BG.cubeOwner='opp';BG.turn='roll';renderBG();bgMsg(pickOne(['״מקבל. תביא.״','״אתה חושב שאני מפחד? מקבל.״','״כפול? בשמחה. הסוהר, תביא קפה.״']),'שלומי')}
+ else bgEnd(true,'שלומי ויתר על ההכפלה.',BG.cube)}
+function bgDblAnswer(take){if(!BG||BG.turn!=='dbl')return;
+ if(BG.o.online){if(take){pvpSend({t:'bdbla'});BG.cube*=2;BG.cubeOwner='me';BG.turn='opp';bgSetTimer('opp',BG_TURN_MS);renderBG();bgMsg('קיבלת. הקובייה עכשיו ×'+BG.cube+' והיא אצלך.')}
+  else{pvpSend({t:'bdbld'});bgEnd(false,'ויתרת על ההכפלה.',BG.cube)}return}
+ const res=BG.dblRes;BG.dblRes=null;
+ if(take){BG.cube*=2;BG.cubeOwner='me';BG.turn='opp';renderBG();res&&res(true)}
+ else{res&&res(false);bgEnd(false,'ויתרת. שלומי לוקח את הקופה.',BG.cube)}}
 /* network side of the online game: moves arrive in the sender's orientation and are mirrored */
+function bgOppMove(mv){const fromR=bgRectOf('him',mv.from),hitR=mv.to!=='off'?bgRectOf('x',mv.to):null;const r=bgApplyO(BG.s,mv);BG.s=r.s;if(mv.to!=='off')BG.last.push(mv.to);renderBG();bgFly('him',fromR,mv.to,r.hit?hitR:null);return r}
 function bgNet(m){if(!BG||!BG.o.online||BG.turn==='over')return;
- if(m.t==='broll'&&BG.turn==='opp'){BG.dice=m.d;BG.last=[];renderBG();cls($('.dice'),'shake');for(let i=0;i<4;i++)tone(300+Math.random()*500,.04,{type:'square',v:.04,at:i*.06});
-  const nm=BGNAME(m.d);bgMsg((nm?nm+' ':'')+BG.oname+' משחק...');return}
- if(m.t==='bmv'&&BG.turn==='opp'){const mv=bgMirrorMove(m);try{const r=bgApplyO(BG.s,mv);BG.s=r.s;if(mv.to!=='off')BG.last.push(mv.to);SFX.tick();
-   if(r.hit){SFX.slap();buzz(60);bgMsg('אאוץ׳! '+BG.oname+' הוריד לך אבן לבר.')}renderBG()}catch(e){}return}
+ if(m.t==='broll'&&BG.turn==='opp'){BG.dice=m.d;BG.last=[];renderBG();bgDiceFx();bgRattle();const nm=BGNAME(m.d);bgMsg((nm?nm+' ':'')+BG.oname+' משחק...');return}
+ if(m.t==='bmv'&&BG.turn==='opp'){try{const r=bgOppMove(bgMirrorMove(m));if(r.hit){SFX.slap();buzz(60);bgMsg('אאוץ׳! '+BG.oname+' הוריד לך אבן לבר.')}}catch(e){}return}
+ if(m.t==='bsync'&&BG.turn==='opp'){BG.s=bgMirror(m.st);BG.last=[];renderBG();bgMsg(BG.oname+' ביטל מהלך.');return}
  if(m.t==='bend'){if(m.seq<=BG.seq)return;BG.seq=m.seq;BG.s=bgMirror(m.st);
   if(BG.s.offO>=BG.n)return bgEnd(false);
-  BG.turn='roll';BG.dice=[];BG.sel=null;renderBG();bgMsg('התור שלך. הטל!');tone(880,.12,{type:'triangle',v:.06});buzz(25);return}
- if(m.t==='bresign')return bgEnd(true,BG.oname+' פרש.')}
-async function bgOpp(){if(!BG)return;BG.turn='opp';BG.sel=null;BG.legal=[];const d=rollDice();BG.dice=d;BG.left=[];renderBG();cls($('.dice'),'shake');
+  BG.turn='roll';BG.dice=[];BG.sel=null;bgSetTimer('me',BG_TURN_MS);renderBG();bgMsg('התור שלך. הטל!');tone(880,.12,{type:'triangle',v:.06});buzz(25);return}
+ if(m.t==='bdbl'&&BG.turn==='opp'){BG.turn='dbl';bgSetTimer('me',20000);renderBG();SFX.warn();buzz([40,40,40]);bgMsg(BG.oname+' דופק על השולחן ומכפיל!');return}
+ if(m.t==='bdbla'&&BG.turn==='dblwait'){BG.cube*=2;BG.cubeOwner='opp';BG.turn='roll';bgSetTimer('me',BG_TURN_MS);renderBG();bgMsg(BG.oname+' קיבל. הקובייה על ×'+BG.cube+'. הטל!');return}
+ if(m.t==='bdbld'&&BG.turn==='dblwait')return bgEnd(true,BG.oname+' ויתר על ההכפלה.',BG.cube);
+ if(m.t==='bresign')return bgEnd(true,BG.oname+' פרש.',BG.cube)}
+async function bgOpp(){if(!BG)return;BG.turn='opp';BG.sel=null;BG.legal=[];BG.left=[];BG.dice=[];renderBG();
+ if(bgAiOffers()){SFX.gavel();buzz([40,40,40]);BG.turn='dbl';renderBG();bgMsg(pickOne(['״מכפיל. תתחיל לבכות.״','״כפול או ביתה?״','״אני מרגיש את זה. מכפיל.״']),'שלומי');
+  const take=await new Promise(r=>{BG.dblRes=r});if(!BG||!take)return;bgMsg('קיבלת. הקובייה ×'+BG.cube+' אצלך.');await wait(700);if(!BG)return}
+ BG.turn='opp';const d=rollDice();BG.dice=d;renderBG();bgDiceFx();bgRattle();
  const nm=BGNAME(d);bgMsg(nm?(d[0]===6&&d[1]===6?pickOne(BG_TALK.dsh):d[0]+d[1]===11?pickOne(BG_TALK.sb):nm):'שלומי מגלגל...','שלומי');
- await wait(900);const path=bgBestO(BG.s,d[0]===d[1]?[d[0],d[0],d[0],d[0]]:d);
- BG.last=[];for(const st of path){if(!BG)return;const r=bgApplyO(BG.s,st.m);BG.s=r.s;if(st.m.to!=='off')BG.last.push(st.m.to);SFX.tick();if(r.hit){SFX.slap();bgMsg(pickOne(BG_TALK.hit),'שלומי')}renderBG();
+ await wait(900);if(!BG)return;const path=bgBestO(BG.s,d[0]===d[1]?[d[0],d[0],d[0],d[0]]:d,BG.o.level||'normal');
+ BG.last=[];for(const st of path){if(!BG)return;const r=bgOppMove(st.m);if(r.hit){SFX.slap();bgMsg(pickOne(BG_TALK.hit),'שלומי')}
   if(BG.s.offO>=BG.n)return bgEnd(false);await wait(520)}
- BG.turn='roll';BG.dice=[];renderBG();if(!path.length)bgMsg('שלומי תקוע. התור שלך.')}
-async function bgEnd(won,why){if(!BG||BG.turn==='over')return;const o=BG.o;BG.turn='over';BG.legal=[];renderBG();
- const mars=won?BG.s.offO===0:BG.s.offP===0;
- if(o.online){if(won){SFX.jack();spawn('conf',reduced?6:30,'ג׳')}else SFX.fail();bgMsg(why||(won?(mars?'מרס! ניצחון כפול.':'ניצחת!'):(mars?'ספגת מרס...':'הפסדת.')))}
+ if(!BG)return;BG.turn='roll';BG.dice=[];renderBG();if(!path.length)bgMsg('שלומי תקוע. התור שלך.')}
+async function bgEnd(won,why,pts){if(!BG||BG.turn==='over')return;const o=BG.o;clearTimeout(BG.cT);BG.turn='over';BG.legal=[];BG.tEnd=0;
+ const mars=pts?false:(won?BG.s.offO===0:BG.s.offP===0),P=pts||BG.cube*(mars?2:1);renderBG();
+ if(o.online||o.practice){if(won){SFX.jack();spawn('conf',reduced?6:30,'ג׳')}else SFX.fail();
+  const base=why||(won?(mars?'מרס! ניצחון כפול.':'ניצחת!'):(mars?'ספגת מרס...':'הפסדת.'));bgMsg(base+(P>1?` (${P} נק׳)`:''),o.practice&&!why?'':'');
+  if(o.practice&&won){unlock('bg');store.set('gm_bgwins',store.get('gm_bgwins',0)+1)}}
  else if(won){SFX.jack();spawn('conf',reduced?6:30,'ג׳');bgMsg(pickOne(BG_TALK.lose),'שלומי');unlock('bg');store.set('gm_bgwins',store.get('gm_bgwins',0)+1)}
  else{SFX.fail();bgMsg(pickOne(BG_TALK.win),'שלומי')}
- await wait(1800);BG=null;o.onEnd&&o.onEnd(won,{mars,why})}
+ await wait(1900);BG=null;o.onEnd&&o.onEnd(won,{mars,why,pts:P})}
+/* ---- practice vs Shlomi with levels ---- */
+const BG_LEVELS={easy:{n:'קל',d:'שלומי חצי ישן',c:10},normal:{n:'רגיל',d:'שלומי ער',c:25},legend:{n:'שלומי האגדי',d:'14 שנה בתא 3',c:60}};
+function showBgPractice(){const ov=$('#overlay');ov.hidden=false;const w=store.get('gm_bglv',{});
+ ov.innerHTML=`<div class="sheet pvp"><div class="tag">אימון · משחק מלא, 15 אבנים, עם קובייה מכפילה</div><h2>מול שלומי</h2>
+  <div class="lvls">${Object.entries(BG_LEVELS).map(([k,L])=>`<button type="button" class="lvl lv-${k}" data-lv="${k}"><b>${L.n}</b><span>${L.d}</span><em>ניצחון: ${L.c}×נק׳ ${COIN}${w[k]?' · ניצחת '+w[k]:''}</em></button>`).join('')}</div>
+  <button class="ghostbtn" id="lvBack" type="button">חזרה</button></div>`;
+ ov.querySelectorAll('[data-lv]').forEach(b=>b.addEventListener('click',()=>{ac();const lv=b.dataset.lv;track('bg_lv_'+lv);
+  bgStart({practice:true,full:true,level:lv,onEnd:(won,x)=>{if(won){const c=BG_LEVELS[lv].c*x.pts;addCoins(c);const W=store.get('gm_bglv',{});W[lv]=(W[lv]||0)+1;store.set('gm_bglv',W);if(lv==='legend')unlock('bglegend');toastMsg('🎲','ניצחת את שלומי ('+BG_LEVELS[lv].n+')','+'+c+' '+COIN)}showBgPractice()}})}));
+ $('#lvBack').addEventListener('click',showProgress)}
+/* ---- quick chat (online, both games) ---- */
+const PCHAT={bg:['דושש? מזל של טירון','תתחיל לבכות','אני עוד חוזר','יאללה תזיז כבר','מהלך של רס״ר','זה כל מה שיש לך?'],
+ box:['בוא בוא','זה הכל?','סבתא שלי מרביצה חזק יותר','אוקיי, זה כאב','🫡','עוד סיבוב?']};
+let chatLast=0;
+function chatMenu(){const old=document.querySelector('.chatpop');if(old){old.remove();return}if(!PV)return;const L=PCHAT[PV.game==='bg'?'bg':'box'];
+ const p=document.createElement('div');p.className='chatpop';p.innerHTML=L.map((t,k)=>`<button type="button" data-k="${k}">${t}</button>`).join('');document.body.appendChild(p);
+ p.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;p.remove();const now=Date.now();if(now-chatLast<1500)return;chatLast=now;
+  pvpSend({t:'chat',k:+b.dataset.k,g:PV.game});chatShow('אתה',L[+b.dataset.k],true)});
+ setTimeout(()=>{const close=e=>{if(!p.contains(e.target)&&!e.target.closest('#bgChat,.chatbtn')){p.remove();document.removeEventListener('pointerdown',close)}};document.addEventListener('pointerdown',close)},0)}
+function chatShow(who,txt,mine){const b=document.createElement('div');b.className='pvchat '+(mine?'mine':'his');const w=document.createElement('small');w.textContent=who;const t=document.createElement('span');t.textContent=txt;b.append(w,t);
+ document.querySelectorAll('.pvchat.'+(mine?'mine':'his')).forEach(x=>x.remove());document.body.appendChild(b);if(!mine){tone(1046,.08,{type:'triangle',v:.05});buzz(15)}setTimeout(()=>b.remove(),2800)}
 
 /* ================= flow & feel ================= */
 const HAPT={ok:15,jack:[20,30,70],fail:[60,40,60],acamol:25,cash:[15,40,15]};
@@ -3029,22 +3238,67 @@ async function pvpTransport(code){
  T.send=m=>ch.send({type:'broadcast',event:'m',payload:m});T.leave=()=>{try{sb.removeChannel(ch)}catch(e){}};return T}
 const pvpCode=()=>Array.from({length:6},()=>'abcdefghjkmnpqrstuvwxyz23456789'[Math.floor(Math.random()*31)]).join('');
 function pvpSend(m){if(PV&&PV.T){m.from=PV.me.id;try{PV.T.send(m)}catch(e){}}}
-function pvpLeave(){if(!PV)return;try{pvpSend({t:'bye'})}catch(e){}clearInterval(PV.hb);try{PV.T&&PV.T.leave()}catch(e){}if(S&&S.F&&S.F.pvp&&!S.F.done){S.F.done=true;cancelAnimationFrame(S.F.raf);document.body.classList.remove('fighting');teardownRing()}document.body.classList.remove('pvpon');PV=null}
+function pvpLeave(){document.querySelectorAll('.chatpop,.pvchat').forEach(x=>x.remove());if(!PV)return;try{pvpSend({t:'bye'})}catch(e){}clearInterval(PV.hb);try{PV.T&&PV.T.leave()}catch(e){}if(S&&S.F&&S.F.pvp&&!S.F.done){S.F.done=true;cancelAnimationFrame(S.F.raf);document.body.classList.remove('fighting');teardownRing()}document.body.classList.remove('pvpon');PV=null}
 const PV_TAB=Math.random().toString(36).slice(2,7);
 function pvpMe(){return{id:deviceId()+'-'+PV_TAB,name:cleanName(store.get('gm_name',''))||'חייל',char:charId()}}
 function pvpNameRow(){return store.get('gm_name','')?'':'<input id="pvName" class="dname" maxlength="14" placeholder="השם שלך" autocomplete="nickname">'}
 function pvpTakeName(){const i=$('#pvName');if(i){const n=cleanName(i.value);if(!n){i.focus();return false}store.set('gm_name',n)}return true}
-function showPvpLobby(){pvpLeave();const ov=$('#overlay');ov.hidden=false;
- ov.innerHTML=`<div class="sheet pvp"><div class="tag">מול חבר · בזמן אמת</div><h2>במה מתחרים?</h2>
-  <p class="tip">אגרוף: דקה, מי שנשאר עומד. שש בש: משחק מלא, 15 אבנים, חוקים רגילים. בוחרים, שולחים קישור לחבר, ומתחילים.</p>
+let PMATCH=3;
+const BG_RANKS=[[0,'טירון'],[3,'טוראי'],[8,'רב״ט'],[15,'סמל'],[25,'רס״ר'],[40,'אגדת הכלא']];
+const bgRank=w=>BG_RANKS.filter(r=>w>=r[0]).pop()[1];
+function showPvpLobby(){pvpLeave();seekStop();const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet pvp"><div class="tag">מול בני אדם · בזמן אמת</div><h2>במה מתחרים?</h2>
   ${pvpNameRow()}
+  <p class="pvlbl">להזמין חבר בקישור</p>
   <div class="pvgames"><button class="big" id="pvCreate" type="button">🥊 אגרוף</button><button class="big green" id="pvCreateBg" type="button">🎲 שש בש</button></div>
+  <p class="pvlbl">או יריב אקראי שמחכה עכשיו</p>
+  <div class="pvgames rnd"><button class="tl" id="pvSeekBox" type="button">🥊 חפש יריב</button><button class="tl" id="pvSeekBg" type="button">🎲 חפש יריב</button></div>
   <div class="lbform pvjoin"><input id="pvCode" maxlength="6" placeholder="יש לך קוד?" autocomplete="off" dir="ltr"><button type="button" class="buy" id="pvJoin">הצטרף</button></div>
-  <p class="best" id="pvMsg"></p><button class="ghostbtn" id="pvBack" type="button">חזרה</button></div>`;
+  <button type="button" class="pvrank" id="pvRank"><b>🏆 טבלת שש בש</b><span id="pvMy">הדרגה שלך: ${bgRank(store.get('gm_pbgwins',0))}</span></button>
+  <button class="ghostbtn" id="pvBack" type="button">חזרה</button></div>`;
  $('#pvBack').addEventListener('click',showStart);
  $('#pvCreate').addEventListener('click',()=>{if(!pvpTakeName())return;pvpHost('box')});
  $('#pvCreateBg').addEventListener('click',()=>{if(!pvpTakeName())return;pvpHost('bg')});
- $('#pvJoin').addEventListener('click',()=>{if(!pvpTakeName())return;const c=($('#pvCode').value||'').toLowerCase().replace(/[^a-z0-9]/g,'');if(c.length<5){$('#pvCode').focus();return}pvpJoin(c)})}
+ $('#pvSeekBox').addEventListener('click',()=>{if(!pvpTakeName())return;seekStart('box')});
+ $('#pvSeekBg').addEventListener('click',()=>{if(!pvpTakeName())return;seekStart('bg')});
+ $('#pvRank').addEventListener('click',showBgTop);
+ $('#pvJoin').addEventListener('click',()=>{if(!pvpTakeName())return;const c=($('#pvCode').value||'').toLowerCase().replace(/[^a-z0-9]/g,'');if(c.length<5){$('#pvCode').focus();return}pvpJoin(c)});
+ sbRpc('my_pbg',{p_id:deviceId()}).then(r=>{const e=$('#pvMy');if(e&&r&&r.games)e.textContent=`הדרגה שלך: ${bgRank(r.wins)} · ${r.wins} ניצחונות · מקום ${r.place}`}).catch(()=>{})}
+async function showBgTop(){const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet pvp"><div class="tag">כל הבסיסים</div><h2>אלופי השש בש</h2><ol class="lb bgtop" id="bgTop"><li class="lbmsg">טוען...</li></ol>
+  <p class="tip">${BG_RANKS.map(r=>r[1]+' '+r[0]).join(' · ')} ניצחונות</p><button class="big" id="tpBack" type="button">חזרה</button></div>`;
+ $('#tpBack').addEventListener('click',showPvpLobby);
+ try{const rows=await sbRpc('top_pbg',{p_limit:10});const ol=$('#bgTop');if(!ol)return;ol.innerHTML='';
+  if(!rows||!rows.length){ol.innerHTML='<li class="lbmsg">עוד אין אלופים. תהיה הראשון.</li>';return}
+  rows.forEach((r,i)=>{const li=document.createElement('li');const n=document.createElement('b'),k=document.createElement('span'),w=document.createElement('em');
+   n.textContent=(i===0?'👑 ':'')+r.name;k.textContent=bgRank(r.wins);w.textContent=r.wins+'/'+r.games;li.append(n,k,w);ol.appendChild(li)})}
+ catch(e){const ol=$('#bgTop');if(ol)ol.innerHTML='<li class="lbmsg">אין חיבור לטבלה כרגע.</li>'}}
+/* ---- random opponent: everyone searching shouts on a lobby channel, pairs are computed the same way on every phone ---- */
+let SEEK=null;
+function seekStop(){if(!SEEK)return;clearInterval(SEEK.iv);try{SEEK.T&&SEEK.T.leave()}catch(e){}SEEK=null}
+const strHash=t=>{let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(36)};
+async function seekStart(game){seekStop();pvpLeave();const ov=$('#overlay');ov.hidden=false;track(game==='bg'?'seek_bg':'seek_box');
+ ov.innerHTML=`<div class="sheet pvp"><div class="tag">${game==='bg'?'🎲 שש בש':'🥊 אגרוף'} · יריב אקראי</div><h2>מחפש יריב</h2>
+  <div class="pvwait"><span class="dotload"><i></i><i></i><i></i></span><span id="skSt">מתחבר...</span></div><p class="tip" id="skTip"></p>
+  <button class="ghostbtn" id="skBack" type="button">ביטול</button></div>`;
+ $('#skBack').addEventListener('click',()=>{seekStop();showPvpLobby()});
+ const me=pvpMe(),S0={game,me,joined:Date.now(),seen:new Map(),T:null,iv:0};SEEK=S0;
+ try{S0.T=await pvpTransport('lobby-'+game)}catch(e){if(SEEK===S0)$('#skSt').textContent='לא הצלחתי להתחבר. בדוק אינטרנט.';return}
+ if(SEEK!==S0){try{S0.T.leave()}catch(e){}return}
+ S0.T.on(m=>{if(SEEK!==S0||!m||m.t!=='seek'||m.id===me.id)return;S0.seen.set(m.id,{id:m.id,joined:m.joined,at:Date.now()})});
+ const beat=()=>{if(SEEK!==S0)return;try{S0.T.send({t:'seek',id:me.id,joined:S0.joined})}catch(e){}
+  const now=Date.now();for(const[k,v]of S0.seen)if(now-v.at>4500)S0.seen.delete(k);
+  const n=S0.seen.size,st=$('#skSt');if(st)st.textContent=n?`${n} ${n===1?'שחקן נוסף מחפש':'שחקנים נוספים מחפשים'}...`:'עוד אין אף אחד בחיפוש...';
+  const tip=$('#skTip');if(tip&&now-S0.joined>25000&&!n)tip.textContent='שקט כרגע. אפשר להמשיך לחכות, או לחזור ולהזמין חבר בקישור.';
+  if(now-S0.joined<2600||!n)return;
+  const list=[{id:me.id,joined:S0.joined},...S0.seen.values()].sort((a,b)=>a.joined-b.joined||(a.id<b.id?-1:1));
+  const idx=list.findIndex(x=>x.id===me.id),mate=idx%2?list[idx-1]:list[idx+1];if(!mate)return;
+  const ids=[me.id,mate.id].sort(),code='r'+strHash(ids.join('|')).slice(0,6);
+  clearInterval(S0.iv);try{S0.T.leave()}catch(e){}SEEK=null;seekFound(game,code,me.id===ids[0])};
+ S0.iv=setInterval(beat,1100);beat()}
+async function seekFound(game,code,host){const st=$('#skSt');if(st)st.textContent='נמצא יריב! מתחבר...';SFX.bell();buzz([30,40,30]);
+ try{await pvpConnect(code,host,game);PV.random=true}catch(e){if(st)st.textContent='החיבור נכשל. מחפש שוב...';setTimeout(()=>seekStart(game),1200);return}
+ const myPV=PV;setTimeout(()=>{if(PV===myPV&&PV.state==='lobby'&&!PV.peer){pvpLeave();seekStart(game)}},9000)}
 async function pvpConnect(code,host,game){PV={code,host,game:game||'box',me:pvpMe(),peer:null,T:null,state:'lobby',last:Date.now()};
  try{PV.T=await pvpTransport(code)}catch(e){PV=null;throw e}
  PV.T.on(pvpOnMsg);PV.hb=setInterval(()=>{if(!PV)return;pvpSend({t:'hi',name:PV.me.name,char:PV.me.char,host:PV.host,state:PV.state,game:PV.game,bgseq:BG&&BG.o.online?BG.seq:-1});
@@ -3057,8 +3311,10 @@ async function pvpHost(game){const code=pvpCode(),ov=$('#overlay'),isBg=game==='
   <div class="pvwait"><span class="dotload"><i></i><i></i><i></i></span><span id="pvStatus">מתחבר לשרת...</span></div>
   <p class="copytext" id="pvUrl" dir="ltr"></p>
   <div class="cardbtns"><button class="big green" id="pvShare" type="button">שלח לחבר</button><button class="big" id="pvCopy" type="button">העתק</button></div>
-  <p class="tip">החבר פותח את הקישור, והקרב מתחיל לבד. אפשר גם להקליד את הקוד <b dir="ltr">${code.toUpperCase()}</b>.</p>
+  ${isBg?`<div class="pvmatch"><span>משחקים עד</span>${[1,3,5].map(n=>`<button type="button" class="tl${PMATCH===n?' on':''}" data-mt="${n}">${n===1?'משחק אחד':n+' נק׳'}</button>`).join('')}</div>`:''}
+  <p class="tip">החבר פותח את הקישור, ו${isBg?'המשחק':'הקרב'} מתחיל לבד. אפשר גם להקליד את הקוד <b dir="ltr">${code.toUpperCase()}</b>.</p>
   <button class="ghostbtn" id="pvBack" type="button">ביטול</button></div>`;
+ ov.querySelectorAll('[data-mt]').forEach(b=>b.addEventListener('click',()=>{PMATCH=+b.dataset.mt;ov.querySelectorAll('[data-mt]').forEach(x=>x.classList.toggle('on',x===b));SFX.tick()}));
  $('#pvUrl').textContent=url;const txt=isBg?`🎲 ${pvpMe().name} מזמין אותך לשש בש אונליין במלך הגימלים. יש לך סיכוי?\n${url}`:`🥊 ${pvpMe().name} מזמין אותך לקרב אגרוף חי במלך הגימלים. יש לך סיכוי?\n${url}`;
  $('#pvShare').addEventListener('click',()=>{if(navigator.share)navigator.share({title:'קרב אונליין',text:txt}).catch(()=>{});else{try{navigator.clipboard.writeText(txt)}catch(e){}$('#pvShare').textContent='הועתק'}});
  $('#pvCopy').addEventListener('click',e=>{try{navigator.clipboard.writeText(txt).then(()=>{e.target.textContent='הועתק'},()=>selectText($('#pvUrl')))}catch(err){selectText($('#pvUrl'))}});
@@ -3086,8 +3342,9 @@ function pvpOnMsg(m){if(!PV||!m||m.from===PV.me.id)return;
    if(PV.host&&PV.state==='lobby'){PV.state='count';setTimeout(pvpHostStart,600)}}
   else if(BG&&BG.o.online&&BG.lastEnd&&m.bgseq>=0&&m.bgseq<BG.seq)pvpSend(BG.lastEnd);
   else if(PV.state==='over'&&m.state==='lobby'){} return}
- if(m.t==='start'){if(PV.state==='lobby'||PV.state==='over'){PV.state='count';PV.game=m.game||'box';pvpCountdown(m.open?[m.open[1],m.open[0]]:null)}return}
- if(m.t==='broll'||m.t==='bmv'||m.t==='bend'||m.t==='bresign'){bgNet(m);return}
+ if(m.t==='start'){if(PV.state==='lobby'||PV.state==='over'){PV.state='count';PV.game=m.game||'box';pvpCountdown({open:m.open?[m.open[1],m.open[0]]:null,match:m.match?{to:m.match.to,me:m.match.g,him:m.match.h,craw:m.match.craw}:null})}return}
+ if(m.t&&m.t[0]==='b'&&m.t!=='bye'){bgNet(m);return}
+ if(m.t==='chat'){const L=PCHAT[m.g==='bg'?'bg':'box'];if(L&&L[m.k])chatShow(PV.peer?PV.peer.name:'יריב',L[m.k],false);return}
  if(m.t==='bye'){if(PV.state==='fight')pvpEnd('win','החבר ברח מהזירה. ניצחון טכני.');else if(PV.state==='bg'&&BG&&BG.o.online)bgEnd(true,'החבר עזב את השולחן. ניצחון טכני.');else if(PV.state!=='over'){const st=$('#pvStatus');if(st)st.textContent='החבר יצא.'}PV.peer=null;return}
  if(m.t==='rematch'){PV.peerRematch=true;if(PV.meRematch&&PV.host)pvpHostStart();const r=$('#pvRe');if(r&&!PV.meRematch)r.textContent='החבר רוצה עוד סיבוב! לחץ';return}
  const F=S&&S.F;if(!F||!F.pvp||F.done)return;
@@ -3114,12 +3371,20 @@ function pvpTakeHit(d,kind){const F=S.F,me=$('#fMe'),p=headPoint('#fMe');let dmg
 
 /* ---- fight ---- */
 function pvpHostStart(){if(!PV)return;PV.state='count';const m={t:'start',game:PV.game};
- if(PV.game==='bg'){let a,b;do{a=1+Math.floor(Math.random()*6);b=1+Math.floor(Math.random()*6)}while(a===b);m.open=[a,b]}
- pvpSend(m);pvpCountdown(m.open||null)}
-function pvpCountdown(open){const ov=$('#overlay');ov.hidden=false;const P=PV.peer||{name:'יריב',char:'tiron'};
- ov.innerHTML=`<div class="sheet pvp"><div class="vs"><div class="vsc">${portrait(PV.me.char)}<b>אתה</b></div><div class="vsx">נגד</div><div class="vsc">${portrait(P.char)}<b id="pvPeer"></b></div></div><div class="countbig" id="cnt">3</div></div>`;
+ if(PV.game==='bg'){let a,b;do{a=1+Math.floor(Math.random()*6);b=1+Math.floor(Math.random()*6)}while(a===b);m.open=[a,b];
+  const M=PV.match;if(!M||M.done)PV.match={to:PV.random?1:PMATCH,me:0,him:0,crawUsed:false};
+  const X=PV.match,craw=X.to>1&&!X.crawUsed&&(X.me===X.to-1||X.him===X.to-1);if(craw)X.crawUsed=true;
+  m.match={to:X.to,h:X.me,g:X.him,craw}}
+ pvpSend(m);pvpCountdown({open:m.open,match:m.match?{to:m.match.to,me:m.match.h,him:m.match.g,craw:m.match.craw}:null})}
+function pvpCountdown(info){info=info||{};const ov=$('#overlay');ov.hidden=false;const P=PV.peer||{name:'יריב',char:'tiron'};
+ const mt=info.match&&info.match.to>1?`<p class="tip">משחק עד ${info.match.to} · אתה ${info.match.me} : ${info.match.him}${info.match.craw?' · משחק קרופורד, בלי הכפלות':''}</p>`:'';
+ ov.innerHTML=`<div class="sheet pvp"><div class="vs"><div class="vsc">${portrait(PV.me.char)}<b>אתה</b></div><div class="vsx">נגד</div><div class="vsc">${portrait(P.char)}<b id="pvPeer"></b></div></div>${mt}<div class="countbig" id="cnt">3</div></div>`;
  $('#pvPeer').textContent=P.name;SFX.bell();let n=3;
- const iv=setInterval(()=>{n--;const c=$('#cnt');if(!c){clearInterval(iv);return}if(n>0){c.textContent=n;tone(660,.12,{type:'triangle',v:.07})}else{clearInterval(iv);c.textContent=PV&&PV.game==='bg'?'משחקים!':'קרב!';tone(990,.3,{type:'triangle',v:.08});setTimeout(()=>PV&&PV.game==='bg'?pbgStart(open):pvpFight(),450)}},800)}
+ const iv=setInterval(()=>{n--;const c=$('#cnt');if(!c){clearInterval(iv);return}if(n>0){c.textContent=n;tone(660,.12,{type:'triangle',v:.07})}else{clearInterval(iv);c.textContent=PV&&PV.game==='bg'?'משחקים!':'קרב!';tone(990,.3,{type:'triangle',v:.08});setTimeout(()=>PV&&PV.game==='bg'?pbgStart(info):pvpFight(),450)}},800)}
+function pbgStart(info){if(!PV)return;PV.state='bg';PV.meRematch=PV.peerRematch=false;track('pbg_play');const P=PV.peer||{name:'יריב'};
+ if(info.match){const X=PV.match||{};PV.match={to:info.match.to,me:info.match.me,him:info.match.him,crawUsed:PV.host?X.crawUsed:false}}
+ bgStart({online:true,full:true,open:info.open,oname:P.name,noCube:!!(info.match&&info.match.craw),match:PV.match,
+  onEnd:(won,x)=>pvpResult(won?'win':'lose',x.why||(x.mars?(won?'מרס!':'ספגת מרס.'):(won?'הוצאת את כל האבנים.':'הוא הוציא קודם.')),'bg',x.mars,x.pts)})}
 function pvpFight(){if(!PV)return;PV.state='fight';PV.meRematch=PV.peerRematch=false;track('pvp_fight');
  const P=PV.peer||{name:'יריב',char:'tiron'};
  const opp={name:P.name,banner:'קרב אונליין',look:fighterLook('sol',P.char),max:PVP_HP,who:P.name,decisive:false,moves:[],taunts:[],pain:[]};opp.look.gloves='#2d63a8';
@@ -3127,7 +3392,8 @@ function pvpFight(){if(!PV)return;PV.state='fight';PV.meRematch=PV.peerRematch=f
  const now=performance.now();
  S.F={pvp:true,cfg:{},opp,me:PVP_HP,meMax:PVP_HP,doc:PVP_HP,max:PVP_HP,st:100,start:now,dur:PVP_TIME,last:now,phase:'idle',cdJab:0,cdPow:0,blocking:false,heal:false,combo:0,dodge:null,raf:0,done:false,pausedAt:0,bonusUntil:0,incoming:null};
  $('#overlay').hidden=true;document.body.classList.add('pvpon');setupRing(opp);musicPlay('ring');document.body.classList.add('fighting');SFX.bell();burst('קרב!');
- renderFight();status('תתחמק מהחצים. תכה כשהוא פתוח.');const ft=$('#fTime');if(ft)ft.textContent='60';S.F.raf=requestAnimationFrame(pvpLoop)}
+ renderFight();status('תתחמק מהחצים. תכה כשהוא פתוח.');const ft=$('#fTime');if(ft)ft.textContent='60';
+ const hd=document.querySelector('#choices .c-head');if(hd){const cb=document.createElement('button');cb.type='button';cb.className='chatbtn';cb.textContent='💬';cb.setAttribute('aria-label','צ׳אט');cb.addEventListener('pointerdown',e=>{e.stopPropagation()});cb.addEventListener('click',chatMenu);hd.prepend(cb)}S.F.raf=requestAnimationFrame(pvpLoop)}
 function pvpKey(k,down){const F=S.F;if(!F||F.done)return;const now=performance.now(),me=$('#fMe');
  if(k==='ArrowDown'){F.blocking=down;me.classList.toggle('blocking',down);poseFor(me,down?'block':'guard',down?'block':'guard');pvpSend({t:'pose',p:'block',on:down});
   const b=document.querySelector('.pk[data-k="ArrowDown"]');if(b)b.classList.toggle('on',down);return}
@@ -3149,22 +3415,28 @@ function pvpLoop(now){const F=S.F;if(!F||F.done||!F.pvp)return;const dt=Math.min
   else pvpTakeHit(I.d,'power')}
  if(left<=0){const a=F.me/F.meMax,b=F.doc/F.max;return pvpEnd(a>b?'win':a<b?'lose':'draw','נגמר הזמן')}
  F.raf=requestAnimationFrame(pvpLoop)}
-function pbgStart(open){if(!PV)return;PV.state='bg';PV.meRematch=PV.peerRematch=false;track('pbg_play');const P=PV.peer||{name:'יריב'};
- bgStart({online:true,full:true,open,oname:P.name,onEnd:(won,x)=>pvpResult(won?'win':'lose',x.why||(x.mars?(won?'מרס!':'ספגת מרס.'):(won?'הוצאת את כל האבנים.':'הוא הוציא קודם.')),'bg',x.mars)})}
 async function pvpEnd(res,why){const F=S.F;if(!F||F.done)return;F.done=true;cancelAnimationFrame(F.raf);hideCue();document.body.classList.remove('fighting');if(PV)PV.state='over';
  const op=$('#fOp'),me=$('#fMe');
  if(res==='win'){moveFor(op,'m-ko');op.classList.add('dazed');moveFor(me,'m-win');stamp('ניצחת','ok');SFX.jack();crowdCheer();spawn('conf',reduced?6:30,'ג׳');addCoins(40);unlock('pvp');store.set('gm_pvpwins',store.get('gm_pvpwins',0)+1)}
  else if(res==='lose'){moveFor(me,'m-ko');me.classList.add('dazed');moveFor(op,'m-win');stamp('הפסדת');SFX.fail();addCoins(10)}
  else{stamp('תיקו','ok');addCoins(20)}
  track('pvp_done');await wait(1900);teardownRing();document.body.classList.remove('pvpon');S.mode='end';pvpResult(res,why,'box')}
-function pvpResult(res,why,game,mars){if(PV)PV.state='over';
- if(game==='bg'){const c=res==='win'?(mars?80:40):10;addCoins(c);if(res==='win'){unlock('pvp');store.set('gm_pbgwins',store.get('gm_pbgwins',0)+1)}track('pbg_done')}
- const coins=game==='bg'?(res==='win'?(mars?80:40):10):(res==='win'?40:res==='lose'?10:20);
+function pvpResult(res,why,game,mars,pts){if(PV)PV.state='over';pts=pts||1;
+ let coins=game==='bg'?(res==='win'?15*pts:5):(res==='win'?40:res==='lose'?10:20),X=null,matchOver=true,matchWon=res==='win';
+ if(game==='bg'&&PV&&PV.match){X=PV.match;if(res==='win')X.me+=pts;else X.him+=pts;matchOver=X.me>=X.to||X.him>=X.to;X.done=matchOver;matchWon=X.me>=X.to;
+  if(matchOver&&matchWon)coins+=50}
+ if(game==='bg'){addCoins(coins);track('pbg_done');if(res==='win')unlock('pbg')
+  if(matchOver){if(matchWon)store.set('gm_pbgwins',store.get('gm_pbgwins',0)+1);sbRpc('pbg_report',{p_id:deviceId(),p_name:pvpMe().name,p_win:matchWon,p_mars:!!mars}).catch(()=>{})}}
  const ov=$('#overlay');ov.hidden=false;const P=PV&&PV.peer?PV.peer.name:'היריב';
+ const big=X&&X.to>1?(matchOver?(matchWon?'לקחת את הסדרה!':'הוא לקח את הסדרה'):(res==='win'?'לקחת משחק':'הוא לקח משחק')):(res==='win'?'ניצחת!':res==='lose'?'הפסדת':'תיקו');
+ const score=X&&X.to>1?`<div class="mscore"><span>אתה</span><b>${X.me}</b><i>:</i><b>${X.him}</b><span class="pn"></span></div><p class="tip">משחק עד ${X.to}${pts>1?` · המשחק הזה היה שווה ${pts} נק׳`:''}</p>`:'';
  ov.innerHTML=`<div class="sheet pvp"><div class="end-stamp ${res==='lose'?'no':'ok'}">${res==='win'?'ניצחון':res==='lose'?'הפסד':'תיקו'}</div><div class="tag">${game==='bg'?'שש בש אונליין':'קרב אונליין'}</div>
-  <h2>${res==='win'?'ניצחת!':res==='lose'?'הפסדת':'תיקו'}</h2><p>${why} נגד <b id="pvP"></b>. +${coins} ${COIN}</p>
-  <button class="big" id="pvRe" type="button">עוד סיבוב</button><button class="ghostbtn" id="pvOut" type="button">לתפריט</button></div>`;
- $('#pvP').textContent=P;
+  <h2>${big}</h2><p>${escH(why)} נגד <b id="pvP"></b>. +${coins} ${COIN}</p>${score}
+  <button class="big" id="pvRe" type="button">${X&&X.to>1&&!matchOver?'למשחק הבא ▶':'עוד סיבוב'}</button>
+  ${PV&&PV.peer?'<button class="tl chatbtn" id="pvChat" type="button">💬 לעקוץ</button>':''}
+  <button class="ghostbtn" id="pvOut" type="button">לתפריט</button></div>`;
+ $('#pvP').textContent=P;const pn=ov.querySelector('.mscore .pn');if(pn)pn.textContent=P;
+ const ch=$('#pvChat');if(ch)ch.addEventListener('click',chatMenu);
  $('#pvRe').addEventListener('click',()=>{if(!PV||!PV.peer){$('#pvRe').textContent='החבר כבר לא פה';return}PV.meRematch=true;pvpSend({t:'rematch'});$('#pvRe').textContent='מחכה לחבר...';
   if(PV.peerRematch&&PV.host)pvpHostStart()});
  $('#pvOut').addEventListener('click',()=>{pvpLeave();showStart()})}
@@ -3203,7 +3475,7 @@ function shareGame(){track('share_game');const txt=SHARE_TXT+'\n'+GAME_URL;
 function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=store.get('gm_career',0);
  ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="ghostbtn" id="prBg" type="button">🎲 שש בש עם שלומי (אימון)</button><button class="ghostbtn" id="prTut" type="button">לעשות טירונות שוב</button><button class="big" id="prBack" type="button">חזרה</button></div>`;
  $('#prTut').addEventListener('click',()=>showTutorialIntro());
- $('#prBg').addEventListener('click',()=>bgStart({practice:true,onEnd:won=>{if(won)addCoins(20);showProgress()}}));
+ $('#prBg').addEventListener('click',showBgPractice);
  $('#prBack').addEventListener('click',showStart)}
 
 /* ---- title screen ---- */
@@ -3272,7 +3544,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='4.8';
+const VERSION='4.9';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
