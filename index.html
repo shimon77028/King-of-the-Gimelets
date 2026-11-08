@@ -972,6 +972,36 @@ body.fighting .room{height:auto}
 .bgroll:disabled{opacity:.35}
 .bgmsg{min-height:2.6em;text-align:center;font-weight:800;font-size:14px!important;margin:8px 0 0!important}
 @media (min-width:900px) and (min-height:560px){.bgsheet{max-width:720px}.board{max-height:56vh}.ck{width:min(86%,40px)}.die{width:48px;height:48px}}
+/* ===== flow & feel ===== */
+.overlay:not([hidden]){animation:ovIn .22s ease}
+@keyframes ovIn{from{opacity:0}}
+.arena:not([hidden]){animation:ovIn .3s ease}
+.nearmiss{position:absolute;left:50%;bottom:22%;transform:translateX(-50%);z-index:6;white-space:nowrap;pointer-events:none;
+  background:#1d1a0c;color:var(--pow);font-weight:900;font-size:15px;padding:5px 14px;border-radius:999px;border:2px solid var(--pow);box-shadow:0 6px 16px rgba(0,0,0,.4);animation:nmIn 2.2s ease forwards}
+@keyframes nmIn{0%{opacity:0;transform:translate(-50%,10px) scale(.8)}12%{opacity:1;transform:translate(-50%,0) scale(1.05)}20%{transform:translate(-50%,0) scale(1)}85%{opacity:1}100%{opacity:0}}
+.flyday{position:fixed;z-index:90;pointer-events:none;font-family:var(--f-display);font-weight:700;font-size:40px;color:var(--go);-webkit-text-stroke:2px #fff;paint-order:stroke fill;
+  transform:translate(-50%,-50%);animation:flyD .8s cubic-bezier(.5,-0.2,.5,1) forwards}
+@keyframes flyD{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.6);opacity:.3}}
+#total.pop{animation:pop .45s ease}
+.big.gold{background:linear-gradient(180deg,#ffe27a,#d29a16);color:#3a2604;box-shadow:0 4px 0 #8a5a08,0 0 20px rgba(255,212,59,.6);animation:ctaPulse 1.2s ease-in-out infinite}
+.cratel{text-align:center;font-size:12px!important;font-weight:800;color:var(--ink-soft);margin:2px 0 6px!important;letter-spacing:.02em}
+.big.counting{background:linear-gradient(90deg,#8c2219 calc(var(--p,0)*100%),var(--stamp) 0)}
+.crateready{cursor:pointer;color:#3a2604!important;background:linear-gradient(180deg,#ffe27a,#d29a16)!important;border-color:#8a5a08!important;animation:fpulse .5s ease-in-out infinite alternate;font:inherit;font-size:13px;font-weight:800}
+.cratesheet{text-align:center;display:grid;justify-items:center;gap:6px}
+.crate{position:relative;width:200px;height:150px;border:0;background:none;margin:10px 0 4px;cursor:pointer}
+.crate .bodyc{position:absolute;left:0;right:0;bottom:0;height:110px;background:repeating-linear-gradient(90deg,#6b7b46 0 38px,#5c6a3c 38px 40px);border:5px solid #3d4826;border-radius:6px;
+  display:grid;place-content:center;color:#e9e1c8;box-shadow:inset 0 -10px 0 rgba(0,0,0,.15),0 8px 18px rgba(0,0,0,.35)}
+.crate .bodyc b{font-family:var(--f-display);font-size:42px;line-height:1}.crate .bodyc i{font-style:normal;font-size:11px;font-weight:800;opacity:.8}
+.crate .lid{position:absolute;left:-8px;right:-8px;top:12px;height:34px;background:#4f5d33;border:5px solid #3d4826;border-radius:6px;transform-origin:10% 100%;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.crate.hit{animation:crateHit .25s ease}
+@keyframes crateHit{30%{transform:rotate(-4deg) scale(1.04)}70%{transform:rotate(3deg)}}
+.crate.open .lid{transform:translate(-40px,-60px) rotate(-55deg)}
+.crate.open .bodyc{box-shadow:inset 0 30px 40px rgba(255,212,59,.6),0 0 40px rgba(255,212,59,.7)}
+.prize{display:grid;justify-items:center;gap:4px;animation:sheetIn .5s cubic-bezier(.3,1.6,.5,1)}
+.prize .medal{width:64px;height:64px;font-size:34px}
+.prize b{font-family:var(--f-display);font-size:38px;line-height:1}.prize small{font-size:13px;color:var(--ink-soft)}
+.prize.rare b{color:var(--stamp)}.prize.rare .medal{box-shadow:0 0 0 6px rgba(255,212,59,.4),0 0 30px #ffd43b}
+@media (prefers-reduced-motion: reduce){.overlay:not([hidden]),.nearmiss,.flyday,.big.gold,.crateready{animation:none}}
 </style>
 
 </head>
@@ -1424,14 +1454,14 @@ function roll(L){const d=RUN.day-1,p={...ODDS[L.r]};if(!L.j){p.w+=p.j;p.j=0}
  const tough=Math.min(p.w,.035*d);p.w-=tough;p.a+=tough;
  let shift=(S.sus/100)*(.3+.06*d)+(S.hot?.1:0)-(S.scared?.12:0);shift=Math.max(-.2,Math.min(p.w,shift));p.w-=shift;
  const sum=p.w+p.j+p.a;if(sum>.96){const k=.96/sum;p.w*=k;p.j*=k;p.a*=k}
- const x=GR();if(x<p.j)return'jack';if(x<p.j+p.w)return'win';if(x<p.j+p.w+p.a)return'acamol';return'fail'}
+ S.lastP=Math.max(0,Math.min(1,p.w+p.j));const x=GR();if(x<p.j)return'jack';if(x<p.j+p.w)return'win';if(x<p.j+p.w+p.a)return'acamol';return'fail'}
 
 async function choose(i,btn){
  if(S.busy||S.over||S.mode!=='talk')return;closeCoach();stopPatience();if(!store.get('gm_played',false)){store.set('gm_played',true);track('choice1')}if(S.turn===2)track('choice3');S.busy=true;S.used.add(i);S.turn++;S.queue+=rnd(1,3);SFX.tick();
  document.querySelectorAll('.choice').forEach(b=>b.classList.add(b===btn?'picked':'dim'));
  const L=LINES[i];$('#stamp').hidden=true;setMood('think');say(L.t,'',{thinking:1});S.justBonus=false;hud();
  await wait(1000);
- let res=(TUTOR&&TUTOR.forced.length)?TUTOR.forced.shift():(TUT&&RUN.day===1&&S.turn===1)?'win':roll(L);if(res==='jack'&&!L.j)res='win';
+ S.lastP=null;let res=(TUTOR&&TUTOR.forced.length)?TUTOR.forced.shift():(TUT&&RUN.day===1&&S.turn===1)?'win':roll(L);if(res==='jack'&&!L.j)res='win';
  if(res==='win'||res==='jack'){
   let gain=res==='jack'?L.j.g+(DOC().mod.jack||0):(L.r===1?1:L.r===3?2:(GR()<.4?2:1));
   S.streak++;let bonus=0;if(S.streak%3===0){bonus=1;S.justBonus=true}
@@ -1441,18 +1471,21 @@ async function choose(i,btn){
   setMood(res==='jack'?'shock':(L.wm||(S.hot?'sweaty':'happy')));say(L.t,(res==='jack'?L.j.t:L.w).replaceAll('{g}',days(gain)));setGimel(S.gimel);
   floatTxt('+'+gain+(bonus?' · רצף! +1':''));{const sc=STREAK_CALLS[S.streak];if(sc&&S.streak!==3)setTimeout(()=>burst(sc),450)}maybeFind();sol('cheer');unlock('first');if(S.streak>=6)unlock('streak');
   if(res==='jack'){unlock('jack');if(L.t.includes('בהריון'))unlock('preg')}
+  buzz(res==='jack'?HAPT.jack:HAPT.ok);
   if(res==='jack'){stamp('ג׳קפוט!','ok');SFX.jack();spawn('conf',reduced?6:28,'ג׳');shake();if(L.j.fx)runFx(L.j.fx)}
-  else{stamp(bonus?'רצף!':'אושר','ok');bonus?SFX.jack():SFX.win();spawn('conf',reduced?3:(bonus?18:8),'ג׳');if(L.wfx)runFx(L.wfx)}
+  else{stamp(bonus?'רצף!':'אושר','ok');bonus?SFX.jack():winChime(S.streak);spawn('conf',reduced?3:(bonus?18:8),'ג׳');if(L.wfx)runFx(L.wfx)}
   if(S.streak===3&&!S.fever)setTimeout(enterFever,900);
  }else if(res==='acamol'){
   S.streak=0;S.sus+=6;setMood('bored');say(L.t,pickOne(ACAMOL));stamp('אקמול','pill');SFX.acamol();spawn('pill',reduced?6:24);floatTxt('0 ימים',true);
+  buzz(HAPT.acamol);if(S.lastP!=null)setTimeout(()=>nearMiss('היה '+Math.round(S.lastP*100)+'% סיכוי. כמעט!'),500);
   store.set('gm_acamol',store.get('gm_acamol',0)+1);S.clean=false;sol('slump');if(store.get('gm_acamol',0)>=20)unlock('acamol');
  }else{
   S.streak=0;RUN.guards++;S.clean=false;sol('slump');
   let ds=Math.round((20+L.r*8+(RUN.day-1)*3+(DOC().mod.fail||0))*(MOOD().fail||1)*(DOC().mod.sus||1));if(S.scared)ds=Math.round(ds/2);
   if(has('kaban')&&!S.kabanUsed){S.kabanUsed=true;ds=0}
   S.sus+=ds;setMood(S.hot?'sweaty':'angry');say(L.t,L.f+(ds===0?' (אישור הקב״ן הציל אותך.)':''));stamp('נדחה');SFX.fail();shake();
-  floatTxt(ds?'+'+ds+'% חשד':'חשד +0',true);if(L.ffx)runFx(L.ffx);
+  floatTxt(ds?'+'+ds+'% חשד':'חשד +0',true);if(L.ffx)runFx(L.ffx);buzz(HAPT.fail);
+  if(S.lastP!=null&&S.lastP>=.4)setTimeout(()=>nearMiss('אוף! היה '+Math.round(S.lastP*100)+'% סיכוי'),500);
  }
  hud();await afterBeat(1500,true);
 }
@@ -1483,7 +1516,7 @@ async function endVisit(kind){
  await wait(1600);
  let bonus=0;if(ok&&has('shal'))bonus=1;
  if(ok&&S.clean){unlock('perfect');mission('clean')}
- RUN.total+=S.gimel+bonus;mission('g10',RUN.total,'max');hud();
+ RUN.total+=S.gimel+bonus;flyDays(S.gimel+bonus);if(ok)buzz(HAPT.cash);RUN.missing=ok?0:TARGET[RUN.day-1]-S.gimel;mission('g10',RUN.total,'max');hud();
  if(RUN.mode==='tutorial')return tutorialDone();
  if(!ok)return endRun('routine');
  if(RUN.day>=5)return gateIntro();
@@ -2089,7 +2122,7 @@ const ENDS={
  victory:{h:'שבוע שלם בבית',s:'אושר',ok:1,p:()=>'שרדת חמישה ביקורים ועברת את הרס״ר בש״ג. ביחידה כבר שוכחים איך אתה נראה.'},
  gate:{h:'נתפסת בש״ג',s:'שבת',p:()=>`שתי טעויות מול הרס״ר. ${G?G.lost:0} ימים נשרפו בדרך להסעה, ואתה סוגר שבת.`},
  retire:{h:'פרשת בזמן',s:'אושר',ok:1,p:()=>'ידעת מתי לעצור. נדיר אצל חיילים.'},
- routine:{h:'חזרת לשגרה',s:'שגרה',p:()=>`לא עמדת ביעד של יום ${DAYS[RUN.day-1]}. מחר בבוקר: מסדר, שמירה ומטבח.`},
+ routine:{h:'חזרת לשגרה',s:'שגרה',p:()=>(RUN.missing&&RUN.missing<=2?`כמעט! חסר לך רק ${RUN.missing===1?'יום אחד':'יומיים'} ליעד של יום ${DAYS[RUN.day-1]}.`:`לא עמדת ביעד של יום ${DAYS[RUN.day-1]}.`)+' מחר בבוקר: מסדר, שמירה ומטבח.'},
  shabbat:{h:'סוגר שבת',s:'שבת',p:()=>'החשד הגיע ל־100%. הימים של הביקור הזה נשרפו, ואתה בבסיס בשבת.'},
  jail:{h:'כלא 6',s:'כלוא',p:s=>`נגזרו עליך ${s} ימי מחבוש. הגימלים שצברת מחכים לך בחוץ.`}
 };
@@ -2108,7 +2141,7 @@ function endRunCore(type,sentence){
  const promoted=careerRank(career)>careerRank(before);
  if(type==='jail')store.set('gm_jail',store.get('gm_jail',0)+1);
  const daysDone=(type==='victory'||type==='gate')?5:RUN.day-1+(type==='retire'?1:0);
- const earned=g*5+daysDone*6+(type==='victory'?60:0);addCoins(earned);saveLocal(g);
+ const earned=g*5+daysDone*6+(type==='victory'?60:0);addCoins(earned);saveLocal(g);crateTick();
  if(RUN.mode==='daily')setDailyBest(g);
  RUN.pendingRun=g;if(getBase()||!ONLINE)flushRun();
  if(RUN.mode==='duel'&&RUN.duel&&RUN.total>RUN.duel.host_score)store.set('gm_duelwins',store.get('gm_duelwins',0)+1);
@@ -2125,6 +2158,7 @@ function renderSummary(X){const {type,sentence,g,E,best,career,daysDone,earned,p
   ${duelResultBlock()}
   <div class="bigscore"><b>${g}</b><span>ימי גימלים</span></div>
   <p class="sumline">${daysDone}/5 ימים · שיא ${best} · +${earned} ${COIN}${promoted?' · קידום ל'+CAREER[careerRank(career)][0]+'!':''}</p>
+  ${crateReady()?'<button class="big gold" id="crateBtn" type="button">🎁 פתח ארגז ציוד!</button>':`<p class="cratel">ארגז ציוד: ${crateDots()} · עוד ${CRATE_EVERY-crateProg()} ${CRATE_EVERY-crateProg()===1?'ריצה':'ריצות'}</p>`}
   <button class="big" id="again" type="button">ריצה חדשה</button>
   <div class="sumgrid">
    ${ONLINE&&RUN.mode!=='duel'?'<button class="sbtn green" id="duelOpen" type="button">אתגר חבר</button>':''}
@@ -2135,7 +2169,10 @@ function renderSummary(X){const {type,sentence,g,E,best,career,daysDone,earned,p
   ${baseInline()}
  </div>`;
  const drh=$('#drHost');if(drh)drh.textContent=RUN.duel.host_name;
- $('#again').addEventListener('click',()=>{flushRun();startRun(RUN.mode==='daily'?{mode:'daily'}:{})});
+ const goAgain=()=>{clearInterval(AUTO);flushRun();startRun(RUN.mode==='daily'?{mode:'daily'}:{})};
+ $('#again').addEventListener('click',goAgain);
+ const cb=$('#crateBtn');if(cb)cb.addEventListener('click',()=>{clearInterval(AUTO);openCrate(back)});
+ if(!crateReady()&&!X.counted){X.counted=true;autoNext($('#again'),goAgain)}
  $('#toMenu').addEventListener('click',()=>{flushRun();showStart()});
  $('#cardBtn').addEventListener('click',()=>showCard({g,ok:!!E.ok,title:E.h,stamp:E.s,rank:CAREER[careerRank(career)][0],char:CHARS[charId()].n,days:daysDone,best},back));
  const dO=$('#duelOpen');if(dO)dO.addEventListener('click',()=>{ov.innerHTML=`<div class="sheet">${duelBlock(g)}<button class="ghostbtn" id="subBack" type="button">חזרה</button></div>`;wireDuel(g);$('#subBack').addEventListener('click',back)});
@@ -2872,6 +2909,47 @@ async function bgEnd(won){const o=BG.o;BG.turn='over';renderBG();
  else{SFX.fail();bgMsg(pickOne(BG_TALK.win),'שלומי')}
  await wait(1800);BG=null;o.onEnd&&o.onEnd(won)}
 
+/* ================= flow & feel ================= */
+const HAPT={ok:15,jack:[20,30,70],fail:[60,40,60],acamol:25,cash:[15,40,15]};
+function winChime(streak){const k=1+Math.min(streak,8)*.07;[523,659,784,1046].forEach((f,i)=>tone(f*k,.13,{at:i*.065,v:.05}))}
+function nearMiss(txt){const el=document.createElement('div');el.className='nearmiss';el.textContent=txt;room.appendChild(el);setTimeout(()=>el.remove(),2300)}
+function flyDays(n){if(n<=0||reduced)return;const a=$('#gimelWrap'),b=$('#total');if(!a||!b)return;const ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
+ const f=document.createElement('div');f.className='flyday';f.textContent='+'+n;f.style.left=(ra.left+ra.width/2)+'px';f.style.top=(ra.top+ra.height/2)+'px';
+ f.style.setProperty('--dx',(rb.left+rb.width/2-ra.left-ra.width/2)+'px');f.style.setProperty('--dy',(rb.top+rb.height/2-ra.top-ra.height/2)+'px');document.body.appendChild(f);
+ setTimeout(()=>{f.remove();cls(b,'pop');tone(1318,.12,{type:'triangle',v:.06})},820)}
+
+/* ---- gear crate every 3 runs ---- */
+const CRATE_EVERY=3;
+const crateProg=()=>store.get('gm_crate',0),crateReady=()=>crateProg()>=CRATE_EVERY;
+function crateTick(){if(RUN.mode==='tutorial')return;store.set('gm_crate',Math.min(CRATE_EVERY,crateProg()+1))}
+function crateDots(){const n=crateProg();return Array.from({length:CRATE_EVERY},(_,i)=>i<n?'●':'○').join('')}
+function crateRoll(){const r=Math.random(),notOwned=Object.keys(CHARS).filter(k=>!owned().includes(k)),ups=Object.keys(UPGRADES).filter(k=>k!=='vip'&&upLevel(k)<UPGRADES[k].max);
+ if(r<.1&&notOwned.length){const k=pickOne(notOwned);store.set('gm_owned',[...owned(),k]);return{rare:true,t:'דמות חדשה: '+CHARS[k].n,s:CHARS[k].d,g:'★'}}
+ if(r<.16&&upLevel('vip')<1){const up=store.get('gm_up',{});up.vip=1;store.set('gm_up',up);return{rare:true,t:'חבילת משפטי VIP!',s:'8 משפטים חדשים נפתחו',g:'★'}}
+ if(r<.42&&ups.length){const k=pickOne(ups),up=store.get('gm_up',{});up[k]=(up[k]||0)+1;store.set('gm_up',up);return{t:'שדרוג חינם: '+UPGRADES[k].n,s:UPGRADES[k].d+' · רמה '+up[k],g:'↑'}}
+ const c=pickOne([40,60,80,100,150]);addCoins(c);return{t:'+'+c+' '+COIN,s:'שקלים לקנטינה',g:COIN}}
+function openCrate(back){if(!crateReady())return back();store.set('gm_crate',0);track('crate');const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet cratesheet"><div class="tag">ארגז ציוד</div><h2>תדפוק על הארגז</h2><p class="tip" id="crTip">שלוש דפיקות והוא נפתח.</p>
+  <button type="button" class="crate" id="crate" aria-label="פתח את הארגז"><span class="lid"></span><span class="bodyc"><b>צה״ל</b><i>ציוד · לא למכירה</i></span></button>
+  <div class="prize" id="prize" hidden><span class="medal"></span><b></b><small></small></div>
+  <button class="big" id="crBack" type="button" hidden>המשך</button></div>`;
+ let taps=0;const cr=$('#crate');
+ cr.addEventListener('click',()=>{if(cr.classList.contains('open'))return;taps++;SFX.punch();buzz(20);cls(cr,'hit');
+  if(taps<3){$('#crTip').textContent=taps===1?'עוד שתיים...':'עוד אחת!';return}
+  cr.classList.add('open');$('#crTip').hidden=true;const P=crateRoll();SFX.jack();buzz(P.rare?[30,40,30,40,90]:[20,30,60]);spawn('conf',reduced?6:(P.rare?40:22),P.rare?'★':'ג׳');
+  const pz=$('#prize');pz.hidden=false;pz.classList.toggle('rare',!!P.rare);pz.querySelector('.medal').textContent=P.g;pz.querySelector('b').textContent=P.t;pz.querySelector('small').textContent=P.s;
+  $('#crBack').hidden=false});
+ $('#crBack').addEventListener('click',back)}
+
+/* ---- "one more" countdown on the summary ---- */
+let AUTO=0;
+function autoNext(btn,go){clearInterval(AUTO);if(!btn||RUN.mode==='tutorial'||RUN.mode==='duel')return;let n=6;const base=btn.textContent;
+ btn.classList.add('counting');const upd=()=>{btn.textContent=base+' · '+n;btn.style.setProperty('--p',((6-n)/6).toFixed(2))};upd();
+ const stop=()=>{clearInterval(AUTO);if(btn.isConnected){btn.textContent=base;btn.classList.remove('counting')}document.removeEventListener('pointerdown',stopEv,true);document.removeEventListener('keydown',stopEv,true)};
+ const stopEv=e=>{if(e.target===btn)return;stop()};
+ document.addEventListener('pointerdown',stopEv,true);document.addEventListener('keydown',stopEv,true);
+ AUTO=setInterval(()=>{if(!btn.isConnected)return stop();n--;if(n<=0){stop();go()}else upd()},1000)}
+
 /* ---- funnel tracking ---- */
 function track(step){if(IN_CLAUDE)return;sbRpc('track',{p_id:deviceId(),p_step:step}).catch(()=>{})}
 /* ---- first-run guide ---- */
@@ -2917,7 +2995,7 @@ function showStart(){
  const rain=Array.from({length:14},(_,i)=>`<i style="left:${(i*7.3+3)%100}%;animation-delay:${(i*.9)%7}s;animation-duration:${7+(i%5)}s">ג׳</i>`).join('');
  ov.innerHTML=`<div class="ts">
   <div class="ts-rain" aria-hidden="true">${rain}</div>
-  <div class="ts-top"><span class="tpill coinpill">${getCoins()} ${COIN}</span><button type="button" class="tpill profpill" id="toProf">${(cleanName(store.get('gm_name',''))||'הפרופיל שלי').replace(/[<>&"]/g,'')}</button>${ONLINE?`<button type="button" class="tpill basepill" id="toBase">${getBase()?'בסיס '+getBase().replace(/[<>&"]/g,''):'בחר בסיס'}</button>`:`<span class="tpill">${CAREER[careerRank(career)][0]}${best?' · שיא '+best:''}</span>`}</div>
+  <div class="ts-top">${crateReady()?`<button type="button" class="tpill coinpill crateready" id="toCrate">🎁 ארגז מוכן</button>`:`<span class="tpill coinpill">${getCoins()} ${COIN} · ${crateDots()}</span>`}<button type="button" class="tpill profpill" id="toProf">${(cleanName(store.get('gm_name',''))||'הפרופיל שלי').replace(/[<>&"]/g,'')}</button>${ONLINE?`<button type="button" class="tpill basepill" id="toBase">${getBase()?'בסיס '+getBase().replace(/[<>&"]/g,''):'בחר בסיס'}</button>`:`<span class="tpill">${CAREER[careerRank(career)][0]}${best?' · שיא '+best:''}</span>`}</div>
   <div class="season" id="season" hidden></div>
   ${(()=>{const si=streakInfo();return si.n?`<div class="streakbar${si.atRisk&&!si.playedToday?' risk':''}"><span class="flame"></span><b>${si.n} ${si.n===1?'יום':'ימים'} ברצף</b><span>${si.playedToday?'נתראה מחר':'תשחק היום כדי לא לשבור'}</span></div>`:''})()}
   <div class="ts-hero">
@@ -2967,13 +3045,14 @@ function showStart(){
  $('#toPr').addEventListener('click',()=>{SFX.tick();showProgress()});
  $('#toShare').addEventListener('click',()=>{SFX.tick();shareGame()});
  $('#toProf').addEventListener('click',()=>{SFX.tick();showProfile()});
+ const tc=$('#toCrate');if(tc)tc.addEventListener('click',()=>openCrate(showStart));
  const tb=$('#toBase');if(tb)tb.addEventListener('click',()=>{SFX.tick();showBasePicker()});
  fillSeason();musicPlay('menu');
  fillLive();
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='4.5';
+const VERSION='4.6';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
