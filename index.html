@@ -4273,10 +4273,10 @@ function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me]
  const board=Array.from({length:5},(_,i)=>i<G.board.length?pkCard(G.board[i],i>=newFrom?'deal d'+(i-newFrom):''):'<span class="pc slot"></span>').join('');
  const hint=M.cards[0]>=0?(G.board.length?'יש לך: '+pkName(pkEval(M.cards.concat(G.board))):(M.cards[0]%13===M.cards[1]%13?'פוקט פייר '+PK_R[M.cards[0]%13]+'!':PK_R[Math.max(M.cards[0]%13,M.cards[1]%13)]+'-'+PK_R[Math.min(M.cards[0]%13,M.cards[1]%13)])):'';
  const mn=Math.min(M.bet+M.chips,G.cur+G.minR),half=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,Math.round(pot/2))),full=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,pot)),all=M.bet+M.chips;
- const raises=[[mn,'מין רייז'],[half,'½ פוט'],[full,'פוט']].filter((x,i,a)=>x[0]<all&&x[0]>G.cur&&a.findIndex(y=>y[0]===x[0])===i);
+ const raises=[[mn,''],[half,''],[full,'']].filter((x,i,a)=>x[0]<all&&x[0]>G.cur&&a.findIndex(y=>y[0]===x[0])===i);
  let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}"><b>${tie?'ספליט פוט':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' עשה פולד':'עשית פולד'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
  const act=myTurn?`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">פולד</button>${call<=0?'<button type="button" class="pkb check" data-a="check">צ׳ק</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">אול־אין ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">קול ${call}</button>`}</div>
-   ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">${x[1]}<small>${x[0]}</small></button>`).join('')}<button type="button" class="pkb allin" data-a="allin">אול־אין<small>${all}</small></button></div>`:''}</div>`
+   ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">רייז ${x[0]}</button>`).join('')}<button type="button" class="pkb allin" data-a="allin">אול־אין ${all}</button></div>`:''}</div>`
   :`<div class="pkact wait">${R?'':G.wait||!(M.cards[0]>=0)?'השרת מחלק קלפים...':M.allin?'אתה באול־אין. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
  const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="pktable"><div class="pkhead"><span>בליינדים ${G.sb}/${G.bb} · יד ${G.hand}</span>${PK.mode==='online'?'<button type="button" class="pkq" id="pkChat">💬</button>':''}<button type="button" class="pkq" id="pkQuit">${PK.quitArm?'בטוח? עוד לחיצה':PK.mode==='ai'?'קום מהשולחן':'פרישה'}</button></div>
@@ -4443,7 +4443,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='5.5';
+const VERSION='5.6';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
