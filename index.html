@@ -628,7 +628,7 @@ body.fighting .room{height:350px}
 .gcard em{position:absolute;top:-8px;inset-inline-start:10px;font-style:normal;background:#c0392b;color:#fff;font-size:11px;font-weight:900;border-radius:99px;padding:1px 8px}
 .g-pk{background:linear-gradient(135deg,#1f7a4a,#0e4a2c);color:#fff;border-color:#0b2a1a}.g-pk small{color:#d8f2e2}.g-rev{background:#d8f2ea}.g-bg{background:#fff1c7}.g-pvp{background:#ffe1dc}
 .pvgames.g3{grid-template-columns:repeat(3,1fr)}.pvgames.g3 .big{font-size:17px;padding:10px 4px}.pkgo{background:#1f4f8a!important;color:#fff!important}
-.pkl:disabled{opacity:.45}.pkl small{font-family:var(--f-body,inherit);font-size:13px;opacity:.75}.pk-yossi{background:#e8f6e3}.pk-samal{background:#fff6d6}.pk-rasar{background:#1b1d14;color:#ffd43b}.pk-rasar em,.pk-rasar span{color:#f1e6cb}
+.pkl:disabled{opacity:.45}.pkl small{font-family:var(--f-body,inherit);font-size:13px;opacity:.75}.lvl.pk-yossi{background:#e8f6e3}.lvl.pk-samal{background:#fff6d6}.lvl.pk-rasar{background:#1b1d14;color:#ffd43b}.lvl.pk-rasar em,.lvl.pk-rasar span{color:#f1e6cb}
 .pktable{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:calc(8px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));
   background:radial-gradient(ellipse at 50% 45%,#2a2016,#120d08 75%);color:#f6efe0;overflow:hidden}
 .pkhead{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;opacity:.9}.pkhead span{flex:1}.pkq{border:1px solid rgba(255,255,255,.35);background:transparent;color:#f6efe0;border-radius:99px;padding:4px 10px;font-weight:800;font-size:12px}
@@ -638,7 +638,22 @@ body.fighting .room{height:350px}
 .pkav{width:54px;height:54px;border-radius:50%;overflow:hidden;background:#3a2c1c;border:2px solid #d4a017;flex:none}.pkav svg{width:100%;height:100%}
 .pkname{display:grid;flex:1;min-width:0}.pkname b{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pkname span,.pkinfo span{font-size:12.5px;font-weight:700;opacity:.85}
 .pkcards{display:flex;gap:4px}.pkcards.mine .pc{width:58px;height:82px;font-size:22px}
-.pkbub{position:absolute;inset-inline-end:8px;top:-4px;transform:translateY(-100%);background:#fff;color:#1b1d14;font-weight:800;font-size:13px;padding:5px 10px;border-radius:12px;max-width:70%;animation:nuIn .3s both;z-index:3}
+.pkbub{display:block;margin-top:3px;font-style:normal;background:#fff;color:#1b1d14;font-weight:800;font-size:12.5px;padding:3px 9px;border-radius:10px;max-width:100%;width:max-content;line-height:1.3;white-space:normal}
+.pkbub.new{animation:nuIn .3s both}
+.pkcwrap{display:grid;justify-items:center;gap:3px}.pkhn{font-size:11.5px;font-weight:900;color:#ffd43b;white-space:nowrap}.pkhn.f{color:#cbbfa8;opacity:.8}
+.pkav{position:relative}.pkd{position:absolute;bottom:-3px;inset-inline-end:-3px;width:20px;height:20px;border-radius:50%;background:#fff;color:#1b1d14;font-size:11px;font-weight:900;display:grid;place-items:center;border:2px solid #1b1d14}
+.pkd.s{position:static;display:inline-grid;width:18px;height:18px;font-size:10px;vertical-align:middle}
+.pc.hl{box-shadow:0 0 0 3px #ffd43b,0 0 16px rgba(255,212,59,.85);transform:translateY(-4px);transition:transform .3s,box-shadow .3s;transition-delay:.2s}.pc.dim{filter:brightness(.55) saturate(.6)}
+.pkeq{position:relative;height:16px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:4px;max-width:200px}.pkeq i{position:absolute;inset:0 auto 0 0;background:#c9a227;transition:width .4s}.pkeq i.hi{background:#2fa84f}.pkeq i.lo{background:#b0392b}
+.pkeq span{position:relative;display:block;text-align:center;font-size:10.5px;font-weight:900;line-height:16px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.pkallin{position:absolute;top:18%;left:50%;transform:translateX(-50%);font-family:var(--f-display);font-size:44px;color:#ffd43b;text-shadow:0 3px 0 #7a1f10,0 0 20px rgba(255,120,0,.8);animation:pkAllin 1.6s both;pointer-events:none;z-index:5;white-space:nowrap}
+@keyframes pkAllin{0%{opacity:0;transform:translateX(-50%) scale(2.2)}15%{opacity:1;transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(.9)}}
+.pkfly{position:fixed;z-index:120;font-size:18px;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+.pkrec{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0}.pkrec div{display:grid;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:5px 3px}.pkrec b{font-family:var(--f-display);font-size:24px;line-height:1.1}.pkrec b.sm{font-family:inherit;font-size:12px;font-weight:900;line-height:1.6}.pkrec span{font-size:10.5px;font-weight:800;color:var(--ink-soft)}
+.pkl.locked{opacity:.55}.lvl.pk-magad{background:linear-gradient(135deg,#3a0d0d,#1b1d14);color:#ffd43b}.lvl.pk-magad span,.lvl.pk-magad em{color:#f1e6cb}
+.pkunl{font-weight:900;color:#b07d00;font-size:16px}
+.pklobby .lvl span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-height:760px){.pklobby .tip{display:none}.pklobby h2{font-size:34px;margin:2px 0}.pklobby .lvl{padding:5px 10px;gap:0}.pklobby .lvl b{font-size:19px}.pklobby .lvl em{font-size:11px}.pkrec b{font-size:19px}.pkrec{margin:4px 0}.pklobby .pvrank{padding:4px;margin-top:4px}}.pklobby .lvls{gap:6px}.pklobby .lvl{padding:7px 12px}.pklobby .lvl b{font-size:22px}
 .pkfelt{position:relative;flex:1;min-height:150px;display:grid;place-items:center;align-content:center;gap:8px;border-radius:50%/40%;background:radial-gradient(ellipse at 50% 40%,#1f7a4a,#0e4a2c 70%);border:8px solid #5a3a1c;box-shadow:inset 0 0 30px rgba(0,0,0,.55),0 10px 24px rgba(0,0,0,.5)}
 .pkboard{display:flex;gap:5px;direction:ltr}.pkpot{font-weight:800;font-size:13px;background:rgba(0,0,0,.35);border-radius:99px;padding:3px 12px}.pkpot b{color:#ffd43b;font-size:16px}
 .pkchip{font-weight:900;font-size:13px;color:#ffd43b;min-height:16px}.pkchip.op{position:absolute;top:10px}.pkchip.me{position:absolute;bottom:10px}
@@ -2165,6 +2180,7 @@ function jail(reason){
 
 /* ================= achievements ================= */
 const ACH={
+ pkmagad:{n:'הדחת את המג״ד',d:'ניקית את המג״ד בפוקר',g:'ג'},
  poker:{n:'כריש בש״ג',d:'ניצחת משחק פוקר',g:'פ'},
  pkrasar:{n:'עקפת את הרס״ר',d:'ניקית את הרס״ר בפוקר',g:'ק'},
  king:{n:'מלך הגימלים',d:'7 ימים ברצף כניסות',g:'מ'},
@@ -4208,19 +4224,67 @@ function pkAI(G,i,P){const me=G.p[i],call=G.cur-me.bet,pot=G.pot+G.p[0].bet+G.p[
  return{a:'fold'}}
 /* ---- controller + UI ---- */
 let PK=null;
-function showPkLobby(){const ov=$('#overlay');ov.hidden=false;const c=getCoins(),w=store.get('gm_pkwins',{});
- ov.innerHTML=`<div class="sheet pvp"><div class="tag">טקסס הולדם · אחד על אחד · 1000 צ׳יפים</div><h2>פוקר בש״ג</h2>
-  <div class="lvls">${Object.entries(PK_AI).map(([k,P])=>`<button type="button" class="lvl pkl pk-${k}" data-pk="${k}" ${c<P.buy?'disabled':''}><b>${P.n} <small>· ${P.lv}</small></b><span>${P.d}</span><em>כניסה: ${P.buy} ${COIN} · מוציאים לפי הצ׳יפים${w[k]?' · ניצחת '+w[k]:''}</em></button>`).join('')}</div>
-  <p class="tip">${c<30?'אין לך מספיק מטבעות לכניסה. תשחק ריצה ותחזור.':'מה שנשאר לך בצ׳יפים כשאתה קם, חוזר אליך כמטבעות.'}</p>
+PK_AI.magad={n:'המג״ד',d:'הבוס של הבסיס. משחק כמו מקצוען ולא מפחד מכלום.',buy:200,loose:.04,aggr:.7,bluff:.13,char:'king',lv:'בוס',lock:'rasar'};
+const PK_BLUFF=['😏 תראה עם מה הרצתי אותך.','כלום. לא היה לי כלום. חחח','בלוף נקי. תלמד.'];
+/* ---- poker sounds & table ambience ---- */
+const pkS={
+ chips(n,at){n=n||3;at=at||0;for(let i=0;i<n;i++){tone(2300+Math.random()*900,.025,{type:'square',v:.035,at:at+i*.045});tone(1500+Math.random()*400,.03,{type:'triangle',v:.03,at:at+i*.045+.01})}},
+ deal(at){noise(.07,.05,at||0);tone(900,.03,{type:'triangle',v:.025,at:(at||0)+.02})},
+ flip(at){noise(.04,.06,at||0);tone(1400,.025,{type:'square',v:.025,at:at||0})},
+ allin(){tone(110,.5,{type:'sawtooth',v:.06,to:220});tone(220,.5,{type:'square',v:.03,to:440,at:.05});for(let i=0;i<8;i++)tone(180,.05,{type:'triangle',v:.05,at:.1+i*.07})},
+ win(big){pkS.chips(big?14:8);tone(784,.12,{type:'triangle',v:.06,at:.1});tone(988,.12,{type:'triangle',v:.06,at:.22});tone(1318,.25,{type:'triangle',v:.07,at:.34})},
+ lose(){tone(330,.25,{type:'triangle',v:.05,to:180})}};
+let PKAMB=null;
+function pkAmbStart(){pkAmbStop();const a=ac();if(!a)return;try{const len=a.sampleRate*3,buf=a.createBuffer(1,len,a.sampleRate),ch=buf.getChannelData(0);let last=0;
+  for(let i=0;i<len;i++){const w=Math.random()*2-1;last=(last+.02*w)/1.02;ch[i]=last*3.2}
+  const s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();s.buffer=buf;s.loop=true;f.type='lowpass';f.frequency.value=420;g.gain.value=0;g.gain.linearRampToValueAtTime(.05,a.currentTime+1.5);
+  s.connect(f).connect(g).connect(a.destination);s.start();PKAMB={s,g,iv:setInterval(()=>{if(!PK){pkAmbStop();return}if(Math.random()<.45)pkS.chips(1+Math.floor(Math.random()*3));},1700)}}catch(e){}}
+function pkAmbStop(){if(!PKAMB)return;const A=PKAMB;PKAMB=null;clearInterval(A.iv);try{const a=ac();if(a){A.g.gain.linearRampToValueAtTime(0,a.currentTime+.4);setTimeout(()=>{try{A.s.stop()}catch(e){}},500)}else A.s.stop()}catch(e){}}
+/* ---- helpers ---- */
+function pkBest5(cs){let best=-1,set=[];const n=cs.length;for(let a=0;a<n;a++)for(let b=a+1;b<n;b++){const five=cs.filter((_,i)=>i!==a&&i!==b);const v=pkEval(five);if(v>best){best=v;set=five}}return n<=5?cs:set}
+function pkLabel(cards,board){if(!(cards[0]>=0))return'';if(board.length>=3)return pkName(pkEval(cards.concat(board)));const r=[cards[0]%13,cards[1]%13].sort((a,b)=>b-a);
+ return r[0]===r[1]?'Pocket Pair '+PK_R[r[0]]:PK_R[r[0]]+'-'+PK_R[r[1]]+((cards[0]/13|0)===(cards[1]/13|0)?' suited':'')}
+const pkStats=()=>Object.assign({hands:0,won:0,biggest:0,best:0,bestName:'',games:0,net:0},store.get('gm_pkstats',{}));
+function pkStatHand(){const G=PK.G,R=G.result,me=PK.me,M=G.p[me];if(!R||PK.statDone===G.hand)return;PK.statDone=G.hand;const st=pkStats();st.hands++;let rec='';
+ if(R.w===me){st.won++;if(R.amount>st.biggest&&R.amount>=200){if(st.hands>3)rec='שיא חדש: Pot של '+R.amount+'!';st.biggest=R.amount}PK.sess.biggest=Math.max(PK.sess.biggest,R.amount)}
+ if(!R.fold&&M.cards[0]>=0&&G.board.length===5){const v=pkEval(M.cards.concat(G.board));if(v>PK.sess.best){PK.sess.best=v;PK.sess.bestName=pkName(v)}
+  if(v>st.best){if(st.hands>3&&pkCat(v)>=2)rec='שיא חדש: '+pkName(v)+'!';st.best=v;st.bestName=pkName(v)}}
+ store.set('gm_pkstats',st);if(rec)setTimeout(()=>toastMsg('🏆',rec,'נשמר בשיאים שלך'),900)}
+function pkReport(net,won){if(!ONLINE||!PK)return;const S2=PK.sess;sbRpc('pk_report',{p_id:deviceId(),p_name:pvpMe().name,p_net:Math.round(net),p_won:!!won,p_biggest:S2.biggest|0,p_best:S2.best|0,p_best_name:S2.bestName||''}).catch(()=>{});
+ const st=pkStats();st.games++;st.net+=Math.round(net);store.set('gm_pkstats',st)}
+function pkFly(from,to,n,delay){if(reduced||!from||!to)return;const a=from.getBoundingClientRect(),b=to.getBoundingClientRect();
+ for(let i=0;i<(n||1);i++){const c=document.createElement('div');c.className='pkfly';c.textContent='🪙';c.style.left=(a.left+a.width/2-10+(Math.random()*20-10))+'px';c.style.top=(a.top+a.height/2-10)+'px';document.body.appendChild(c);
+  const an=c.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${b.left+b.width/2-a.left-a.width/2}px,${b.top+b.height/2-a.top-a.height/2}px) scale(.8)`,opacity:.9}],{duration:520,delay:(delay||0)+i*60,easing:'cubic-bezier(.3,.7,.3,1)',fill:'both'});an.onfinish=()=>c.remove()}}
+/* ---- lobby, records, leaderboard ---- */
+function showPkLobby(){pkAmbStop();const ov=$('#overlay');ov.hidden=false;const c=getCoins(),w=store.get('gm_pkwins',{}),st=pkStats();
+ const row=([k,P])=>{const locked=P.lock&&!w[P.lock],beat=w[k];
+  return `<button type="button" class="lvl pkl pk-${k}${locked?' locked':''}" data-pk="${k}" ${c<P.buy||locked?'disabled':''}><b>${beat?'✓ ':''}${P.n} <small>· ${P.lv}</small></b><span>${locked?'🔒 תנצח את '+PK_AI[P.lock].n+' כדי לפתוח':P.d}</span><em>כניסה: ${P.buy} ${COIN}${beat?' · ניצחת '+beat:''}</em></button>`};
+ ov.innerHTML=`<div class="sheet pvp pklobby"><div class="tag">Texas Hold'em · אחד על אחד · 1000 צ׳יפים</div><h2>פוקר בש״ג</h2>
+  <div class="lvls">${Object.entries(PK_AI).map(row).join('')}</div>
+  <div class="pkrec"><div><b>${st.won}</b><span>ידיים שלקחת</span></div><div><b>${st.biggest||'—'}</b><span>Pot הכי גדול</span></div><div><b class="sm">${st.bestName||'—'}</b><span>יד הכי טובה</span></div></div>
+  ${ONLINE?'<button type="button" class="pvrank" id="pkTop"><b>🏆 טבלת הפוקר</b><span id="pkMy">מי הכריש של הבסיס?</span></button>':''}
+  <p class="tip">${c<30?'אין לך מספיק מטבעות לכניסה. תשחק ריצה ותחזור.':'הצ׳יפים שנשארו לך כשאתה קם חוזרים אליך כמטבעות.'}</p>
   <button class="ghostbtn" id="pkBack" type="button">חזרה</button></div>`;
  ov.querySelectorAll('[data-pk]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.pk,P=PK_AI[k];if(getCoins()<P.buy)return;ac();addCoins(-P.buy);track('pk_'+k);pkStartSolo(k)}));
+ const tp=$('#pkTop');if(tp){tp.addEventListener('click',showPkTop);sbRpc('my_pk',{p_id:deviceId()}).then(r=>{const e=$('#pkMy');if(e&&r&&r.games)e.textContent=`מקום ${r.place} · ${r.net>=0?'+':''}${r.net} ${COIN} נטו · ${r.wins} ניצחונות`}).catch(()=>{})}
  $('#pkBack').addEventListener('click',showGames)}
-function pkStartSolo(k){const P=PK_AI[k],G=pkNewGame(['אתה',P.n],1000);PK={G,mode:'ai',me:0,ai:P,key:k,shown:0,bub:'',quitArm:false};musicPlay('chief');pkDeal(G);pkRender();pkLoop()}
+async function showPkTop(){const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet pvp"><div class="tag">כל הבסיסים · רווח נטו בפוקר</div><h2>כרישי הש״ג</h2><ol class="lb bgtop pktop" id="pkTopL"><li class="lbmsg">טוען...</li></ol><button class="big" id="ptBack" type="button">חזרה</button></div>`;
+ $('#ptBack').addEventListener('click',showPkLobby);
+ try{const rows=await sbRpc('top_pk',{p_limit:10});const ol=$('#pkTopL');if(!ol)return;ol.innerHTML='';
+  if(!rows||!rows.length){ol.innerHTML='<li class="lbmsg">עוד אין כרישים. תהיה הראשון.</li>';return}
+  rows.forEach((r,i)=>{const li=document.createElement('li'),n=document.createElement('b'),k=document.createElement('span'),v=document.createElement('em');
+   n.textContent=(i===0?'🦈 ':'')+r.name;k.textContent=(r.best_name||'')+(r.biggest?' · Pot '+r.biggest:'');v.textContent=(r.net>=0?'+':'')+r.net;li.append(n,k,v);ol.appendChild(li)})}
+ catch(e){const ol=$('#pkTopL');if(ol)ol.innerHTML='<li class="lbmsg">אין חיבור לטבלה כרגע.</li>'}}
+/* ---- solo ---- */
+function pkStartSolo(k){const P=PK_AI[k],G=pkNewGame(['אתה',P.n],1000);PK={G,mode:'ai',me:0,ai:P,key:k,shown:0,bub:'',quitArm:false,sess:{biggest:0,best:0,bestName:''},pb:[0,0]};
+ musicPlay('chief');pkAmbStart();pkDeal(G);pkS.deal();pkS.deal(.15);pkRender();pkLoop()}
+/* ---- online (cards dealt by the server) ---- */
 const pkSecret=()=>{const a=new Uint8Array(16);(window.crypto||{}).getRandomValues?crypto.getRandomValues(a):a.forEach((_,i)=>a[i]=Math.random()*256|0);return Array.from(a,x=>x.toString(16).padStart(2,'0')).join('')};
 const pkRpc=(fn,args)=>sbRpc(fn,Object.assign({p_code:PK.table,p_secret:PK.secret},args||{}));
 async function pkOnlineStart(){if(!PV)return;PV.state='pk';PV.meRematch=PV.peerRematch=false;track('pk_online');const P=PV.peer||{name:'יריב',char:'tiron'};
  PV.pkRound=(PV.pkRound||0)+1;
- PK={G:null,mode:'online',me:PV.host?0:1,host:PV.host,oname:P.name,ochar:P.char||'tiron',shown:0,bub:'',quitArm:false,tEnd:0,secret:pkSecret(),table:(PV.code+'r'+PV.pkRound).slice(0,12),mine:null,req:{}};musicPlay('chief');
+ PK={G:null,mode:'online',me:PV.host?0:1,host:PV.host,oname:P.name,ochar:P.char||'tiron',shown:0,bub:'',quitArm:false,tEnd:0,secret:pkSecret(),table:(PV.code+'r'+PV.pkRound).slice(0,12),mine:null,req:{},sess:{biggest:0,best:0,bestName:''},pb:[0,0]};musicPlay('chief');pkAmbStart();
  const ov=$('#overlay');ov.hidden=false;ov.innerHTML='<div class="sheet pvp"><h2>מחלקים קלפים...</h2><p class="tip">הקלפים מגיעים מהשרת. אף אחד לא רואה את הקלפים של השני.</p></div>';
  const me=PK;clearInterval(PK.iv);PK.iv=setInterval(()=>{if(PK!==me){clearInterval(me.iv);return}pkTick()},250);
  let ok=false;for(let i=0;i<6&&!ok&&PK===me;i++){try{ok=await pkRpc('pk_join',{p_seat:me.me})}catch(e){}if(!ok)await wait(800)}
@@ -4228,12 +4292,12 @@ async function pkOnlineStart(){if(!PV)return;PV.state='pk';PV.meRematch=PV.peerR
  if(PV.host){PK.G=pkNewGame([PV.me.name,P.name],1000,true);await pkHostNewHand()}}
 async function pkHostNewHand(){const me=PK;if(!me||!me.host)return;const G=me.G;pkDeal(G);me.mine=null;me.shown=0;me.dealt=false;me.bub='';me.req={};
  for(let i=0;i<8&&PK===me;i++){try{await pkRpc('pk_deal',{p_hand:G.hand});const c=await pkRpc('pk_cards',{p_hand:G.hand});if(c&&c.length===2){me.mine=c;G.p[0].cards=c;break}}catch(e){}await wait(600)}
- if(PK!==me)return;pkBroadcast();pkRender();pkLoop()}
-async function pkGuestCards(hand){const me=PK;for(let i=0;i<12&&PK===me&&me.G&&me.G.hand===hand;i++){try{const c=await pkRpc('pk_cards',{p_hand:hand});if(c&&c.length===2){me.mine=c;me.dealt=false;pkRender();return}}catch(e){}await wait(500)}}
+ if(PK!==me)return;pkS.deal();pkS.deal(.15);pkBroadcast();pkRender();pkLoop()}
+async function pkGuestCards(hand){const me=PK;for(let i=0;i<12&&PK===me&&me.G&&me.G.hand===hand;i++){try{const c=await pkRpc('pk_cards',{p_hand:hand});if(c&&c.length===2){me.mine=c;me.dealt=false;pkS.deal();pkS.deal(.15);pkRender();return}}catch(e){}await wait(500)}}
 async function pkSync(){const me=PK;if(!me||me.syncing||!me.G)return;me.syncing=true;
  try{for(let i=0;i<200&&PK===me&&me.G.wait;i++){const G=me.G;
    if(G.need>G.board.length){const k=G.hand+'b'+G.need;const r=await pkRpc('pk_reveal',{p_hand:G.hand,p_n:G.need}).catch(()=>null);
-    if(me.host){if(r&&pkGotBoard(G,r)){me.shown=me.shown||0;pkAfter();continue}}else{me.req[k]=1;if(r)break}}
+    if(me.host){if(r&&pkGotBoard(G,r)){pkAfter();continue}}else{me.req[k]=1;if(r)break}}
    else if(G.needShow){const r=await pkRpc('pk_show',{p_hand:G.hand}).catch(()=>null);if(me.host){if(r&&pkGotShow(G,r)){pkAfter();break}}else if(r)break}
    if(!me.host)break;await wait(650)}}
  finally{me.syncing=false}}
@@ -4243,24 +4307,30 @@ function pkNet(m){if(!PK||PK.mode!=='online')return;
   if(PK.mine&&!(m.s.p[1].cards[0]>=0))m.s.p[1].cards=PK.mine.slice();
   if(m.s.wait){const k=m.s.hand+(m.s.needShow&&m.s.board.length>=5?'s':'b'+m.s.need);if(!PK.req[k]){PK.req[k]=1;pkSync()}}
   if(m.s.last&&m.s.last.i===0)PK.bub=pkActText(m.s.last);if(m.s.toAct===1&&!m.s.result&&!m.s.wait)PK.tEnd=Date.now()+30000;pkRender();if(m.s.result)pkResultFx();pkCheckEnd();return}
- if(m.t==='pa'&&PK.host){const G=PK.G;if(G.toAct!==1||G.result||m.hand!==G.hand)return;if(pkAct(G,1,m.a,m.to)){PK.bub=pkActText(G.last);pkAfter()}}}
+ if(m.t==='pa'&&PK.host){const G=PK.G;if(G.toAct!==1||G.result||m.hand!==G.hand)return;if(pkAct(G,1,m.a,m.to)){PK.bub=pkActText(G.last);if(G.last.a==='allin')pkS.allin();pkAfter()}}}
 function pkActText(L){if(!L)return'';return{fold:'Fold',check:'Check',call:'Call',raise:'Raise '+L.amt,allin:'All-in!'}[L.a]||''}
-function pkPlayer(a,to){if(!PK||!PK.G)return;const G=PK.G;if(G.toAct!==PK.me||G.result)return;SFX.tick();PK.quitArm=false;
+function pkPlayer(a,to){if(!PK||!PK.G)return;const G=PK.G;if(G.toAct!==PK.me||G.result)return;PK.quitArm=false;
+ if(a==='allin')pkS.allin();else SFX.tick();
  if(PK.mode==='online'&&!PK.host){pvpSend({t:'pa',a,to,hand:G.hand});PK.waiting=true;pkRender();return}
- if(pkAct(G,PK.me,a,to)){if(a==='raise'||a==='allin')SFX.clang();pkAfter()}}
+ if(pkAct(G,PK.me,a,to))pkAfter()}
 function pkAfter(){if(PK.host)pkBroadcast();pkRender();if(PK.mode==='online'&&PK.G&&PK.G.wait)pkSync();pkLoop()}
 function pkLoop(){if(!PK||!PK.G)return;const G=PK.G;
- if(G.result){pkResultFx();clearTimeout(PK.nt);PK.nt=setTimeout(()=>{if(!PK)return;if(G.over)return pkGameOver();if(PK.mode==='ai'){pkDeal(G);PK.shown=0;PK.dealt=false;PK.bub='';pkAfter()}else if(PK.host)pkHostNewHand()},G.result.fold?1800:3200);return}
- if(PK.mode==='ai'&&G.toAct===1){clearTimeout(PK.at);PK.at=setTimeout(()=>{if(!PK||PK.G!==G||G.toAct!==1||G.result)return;const d=pkAI(G,1,PK.ai);const before=G.last;
-   if(!pkAct(G,1,d.a,d.to))pkAct(G,1,G.cur>G.p[1].bet?'call':'check');PK.bub=pickOne(PK_TALK[G.last&&G.last.a]||PK_TALK.check);if(G.last.a==='raise'||G.last.a==='allin')SFX.clang();else SFX.tick();pkAfter()},700+Math.random()*900)}
+ if(G.result){pkResultFx();clearTimeout(PK.nt);PK.nt=setTimeout(()=>{if(!PK)return;if(G.over)return pkGameOver();
+   if(PK.mode==='ai'){pkDeal(G);PK.shown=0;PK.dealt=false;PK.bub='';pkS.deal();pkS.deal(.15);pkAfter()}else if(PK.host)pkHostNewHand()},(G.result.fold?2200:3600)+(PK.runout||0));return}
+ if(PK.mode==='ai'&&G.toAct===1){clearTimeout(PK.at);PK.at=setTimeout(()=>{if(!PK||PK.G!==G||G.toAct!==1||G.result)return;const d=pkAI(G,1,PK.ai);
+   if(!pkAct(G,1,d.a,d.to))pkAct(G,1,G.cur>G.p[1].bet?'call':'check');PK.bub=pickOne(PK_TALK[G.last&&G.last.a]||PK_TALK.check);if(G.last.a==='allin')pkS.allin();else if(G.last.a==='check')SFX.tick();pkAfter()},650+Math.random()*900)}
  if(PK.mode==='online'&&G.toAct===PK.me&&!G.result)PK.tEnd=Date.now()+30000}
 function pkTick(){if(!PK||PK.mode!=='online'||!PK.G)return;const G=PK.G,el=document.querySelector('.pktimer i');
  if(G.toAct===PK.me&&!G.result&&!G.wait&&PK.tEnd){const left=PK.tEnd-Date.now();if(el)el.style.width=Math.max(0,left/300)+'%';
   if(left<=0){PK.tEnd=0;pkPlayer(G.cur>G.p[PK.me].bet?'fold':'check')}}else if(el)el.style.width='0%';
  const quiet=PV?Date.now()-PV.last:0;if(PV&&PV.state==='pk'&&quiet>120000)pkForfeit(true,'החבר נעלם. ניצחון טכני.')}
 function pkResultFx(){const G=PK.G,R=G.result;if(!R||PK.fxDone===G.hand+'-'+G.seq)return;PK.fxDone=G.hand+'-'+G.seq;
- const won=R.w===PK.me;if(R.w<0){SFX.bell()}else if(won){SFX.jack();buzz([20,30,60]);spawn('conf',reduced?4:16,'🪙')}else{SFX.fail();buzz(40)}
- if(PK.mode==='ai')PK.bub=R.w<0?'Split pot. נו.':won?pickOne(PK_TALK.lose):pickOne(PK_TALK.win);pkRender()}
+ const won=R.w===PK.me,delay=PK.runout||0;pkStatHand();
+ setTimeout(()=>{if(!PK)return;if(R.w<0)SFX.bell();else if(won){pkS.win(R.amount>=400);buzz([20,30,60]);if(R.amount>=400)spawn('conf',reduced?4:20,'🪙')}else{pkS.lose();buzz(40)}
+  pkFly(document.querySelector('.pkpot'),document.querySelector(R.w===PK.me?'.pkme':'.pkopp'),R.w<0?0:Math.min(10,3+Math.round(R.amount/150)))},delay+250);
+ if(PK.mode==='ai'){const O=G.p[1];let bub=R.w<0?'Split pot. נו.':won?pickOne(PK_TALK.lose):pickOne(PK_TALK.win);
+  if(R.fold&&R.w===1&&G.board.length>=3&&pkEquity(O.cards,G.board,150)<.4&&Math.random()<.7)bub=pickOne(PK_BLUFF);PK.bub=bub}
+ pkRender()}
 function pkCard(c,cls){if(c==null||c<0)return`<span class="pc back ${cls||''}"><i>צה״ל</i></span>`;const r=c%13,s=(c/13)|0,red=s===1||s===2;
  return`<span class="pc ${red?'red':''} ${cls||''}"><b>${PK_R[r]}</b><i>${PK_S[s]}</i></span>`}
 function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me],O=G.p[op],R=G.result;
@@ -4268,46 +4338,64 @@ function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me]
  const myTurn=!R&&!G.wait&&G.toAct===me&&G.street<4&&!M.allin&&!PK.waiting&&M.cards[0]>=0,call=G.cur-M.bet,pot=G.pot+M.bet+O.bet;
  if(!myTurn||G.toAct!==me)PK.waiting=false;
  const oname=PK.mode==='ai'?PK.ai.n:PK.oname,ochar=PK.mode==='ai'?PK.ai.char:PK.ochar;
- const showOpp=G.reveal||(R&&!R.fold&&O.cards[0]>=0);
- const newFrom=PK.shown;PK.shown=G.board.length;
- const board=Array.from({length:5},(_,i)=>i<G.board.length?pkCard(G.board[i],i>=newFrom?'deal d'+(i-newFrom):''):'<span class="pc slot"></span>').join('');
- const hint=M.cards[0]>=0?(G.board.length?'יש לך: '+pkName(pkEval(M.cards.concat(G.board))):(M.cards[0]%13===M.cards[1]%13?'Pocket Pair '+PK_R[M.cards[0]%13]+'!':PK_R[Math.max(M.cards[0]%13,M.cards[1]%13)]+'-'+PK_R[Math.min(M.cards[0]%13,M.cards[1]%13)])):'';
+ const showOpp=O.cards[0]>=0&&(PK.mode==='ai'?!!R:G.reveal);
+ /* board with dramatic runout on all-in */
+ const newFrom=PK.shown,nNew=G.board.length-newFrom;PK.shown=G.board.length;
+ const runout=R&&!R.fold&&nNew>=2&&G.reveal;if(runout)PK.runout=nNew*650+300;else if(!R)PK.runout=0;
+ const win5=R&&!R.fold&&R.w>=0?pkBest5(G.p[R.w].cards.concat(G.board)):null,hl=c=>win5?(win5.includes(c)?' hl':' dim'):'';
+ const board=Array.from({length:5},(_,i)=>{if(i>=G.board.length)return'<span class="pc slot"></span>';const c=G.board[i],nw=i>=newFrom;
+  return pkCard(c,(nw?(runout?'deal':'deal d'+(i-newFrom)):'')+hl(c)).replace('class="pc',nw&&runout?`style="animation-delay:${(i-newFrom)*.65+.3}s" class="pc`:'class="pc')}).join('');
+ if(nNew>0&&!PK.silentDeal){for(let i=0;i<nNew;i++)pkS.deal(runout?(i*.65+.3):i*.12)}
+ const flipKey=G.hand+(showOpp?'s':'h'),doFlip=showOpp&&PK.flipKey!==flipKey;if(doFlip){PK.flipKey=flipKey;pkS.flip(.05);pkS.flip(.15)}
+ /* my hand info + win chance */
+ const hint=M.cards[0]>=0?(G.board.length?'יש לך: '+pkLabel(M.cards,G.board):pkLabel(M.cards,[])):'';
+ let eqH='';if(myTurn&&M.cards[0]>=0){const k=G.hand+'/'+G.board.length;if(PK.eqK!==k){PK.eqK=k;PK.eq=pkEquity(M.cards,G.board,400)}const e=Math.round(PK.eq*100);
+  eqH=`<div class="pkeq"><i style="width:${e}%" class="${e>=60?'hi':e<35?'lo':''}"></i><span>סיכוי לנצח ${e}%</span></div>`}
  const mn=Math.min(M.bet+M.chips,G.cur+G.minR),half=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,Math.round(pot/2))),full=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,pot)),all=M.bet+M.chips;
  const raises=[[mn,''],[half,''],[full,'']].filter((x,i,a)=>x[0]<all&&x[0]>G.cur&&a.findIndex(y=>y[0]===x[0])===i);
- let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}"><b>${tie?'Split Pot':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' עשה Fold':'עשית Fold'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
+ let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}" style="animation-delay:${runout?PK.runout/1000:0}s"><b>${tie?'Split Pot':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' עשה Fold':'עשית Fold'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
  const act=myTurn?`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">Fold</button>${call<=0?'<button type="button" class="pkb check" data-a="check">Check</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">All-in ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">Call ${call}</button>`}</div>
    ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">Raise ${x[0]}</button>`).join('')}<button type="button" class="pkb allin" data-a="allin">All-in ${all}</button></div>`:''}</div>`
   :`<div class="pkact wait">${R?'':G.wait||!(M.cards[0]>=0)?'השרת מחלק קלפים...':M.allin?'אתה All-in. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
+ const oppCards=showOpp?pkCard(O.cards[0],(doFlip?'flip':'')+(O.folded?' dim':hl(O.cards[0])))+pkCard(O.cards[1],(doFlip?'flip':'')+(O.folded?' dim':hl(O.cards[1]))):O.folded?'':pkCard(-1)+pkCard(-1);
+ const oppLbl=showOpp?`<span class="pkhn${O.folded?' f':''}">${O.folded?'Fold · ':''}${escH(pkLabel(O.cards,G.board))}</span>`:'';
+ const bubNew=PK.bub&&PK.bubK!==PK.bub;PK.bubK=PK.bub;
+ const allinBanner=runout?`<div class="pkallin">ALL-IN!</div>`:'';
  const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="pktable"><div class="pkhead"><span>Blinds ${G.sb}/${G.bb} · יד ${G.hand}</span>${PK.mode==='online'?'<button type="button" class="pkq" id="pkChat">💬</button>':''}<button type="button" class="pkq" id="pkQuit">${PK.quitArm?'בטוח? עוד לחיצה':PK.mode==='ai'?'קום מהשולחן':'פרישה'}</button></div>
   ${PK.mode==='online'?'<div class="pktimer"><i></i></div>':''}
-  <div class="pkopp${!R&&G.toAct===op?' turn':''}"><div class="pkav">${portrait(CHARS[ochar]?ochar:'tiron')}</div><div class="pkname"><b>${escH(oname)}</b><span>${O.chips} 🪙${G.btn===op?' · Dealer':''}</span></div>
-   <div class="pkcards">${O.folded?'':showOpp?pkCard(O.cards[0],'flip')+pkCard(O.cards[1],'flip'):pkCard(-1)+pkCard(-1)}</div>${PK.bub?`<div class="pkbub">${escH(PK.bub)}</div>`:''}</div>
-  <div class="pkfelt"><div class="pkchip op">${O.bet?'🪙 '+O.bet:''}</div><div class="pkboard">${board}</div><div class="pkpot">Pot <b>${pot}</b></div><div class="pkchip me">${M.bet?'🪙 '+M.bet:''}</div>${res}</div>
-  <div class="pkme${myTurn?' turn':''}"><div class="pkcards mine">${M.folded?'':pkCard(M.cards[0],G.hand&&!PK.dealt?'deal d0':'')+pkCard(M.cards[1],G.hand&&!PK.dealt?'deal d1':'')}</div>
-   <div class="pkinfo"><b>אתה · ${M.chips} 🪙${G.btn===me?' · Dealer':''}</b><span>${escH(hint)}</span></div></div>
+  <div class="pkopp${!R&&G.toAct===op?' turn':''}"><div class="pkav">${portrait(CHARS[ochar]?ochar:'tiron')}${G.btn===op?'<span class="pkd">D</span>':''}</div><div class="pkname"><b>${escH(oname)}</b><span>${O.chips} 🪙</span>${PK.bub?`<em class="pkbub${bubNew?' new':''}">${escH(PK.bub)}</em>`:''}</div>
+   <div class="pkcwrap"><div class="pkcards">${oppCards}</div>${oppLbl}</div></div>
+  <div class="pkfelt"><div class="pkchip op">${O.bet?'🪙 '+O.bet:''}</div><div class="pkboard">${board}</div><div class="pkpot">Pot <b>${pot}</b></div><div class="pkchip me">${M.bet?'🪙 '+M.bet:''}</div>${res}${allinBanner}</div>
+  <div class="pkme${myTurn?' turn':''}"><div class="pkcards mine">${M.folded?'':pkCard(M.cards[0],(G.hand&&!PK.dealt?'deal d0':'')+hl(M.cards[0]))+pkCard(M.cards[1],(G.hand&&!PK.dealt?'deal d1':'')+hl(M.cards[1]))}</div>
+   <div class="pkinfo"><b>אתה · ${M.chips} 🪙${G.btn===me?' <span class="pkd s">D</span>':''}</b><span>${escH(hint)}</span>${eqH}</div></div>
   ${act}</div>`;
  PK.dealt=true;
+ /* chips flying into the pot when someone bets */
+ const pb=PK.pb||[0,0],nb=[G.p[0].bet,G.p[1].bet];
+ [me,op].forEach(i=>{if(nb[i]>pb[i]&&!R){pkFly(document.querySelector(i===me?'.pkme':'.pkopp'),document.querySelector(i===me?'.pkchip.me':'.pkchip.op'),Math.min(5,1+Math.round((nb[i]-pb[i])/G.bb)));pkS.chips(Math.min(6,2+Math.round((nb[i]-pb[i])/(G.bb*2))))}});
+ PK.pb=nb;
  ov.querySelectorAll('.pkb').forEach(b=>b.addEventListener('click',()=>pkPlayer(b.dataset.a,+b.dataset.to||0)));
  const ch=$('#pkChat');if(ch)ch.addEventListener('click',chatMenu);
  $('#pkQuit').addEventListener('click',()=>{if(!PK.quitArm){PK.quitArm=true;pkRender();setTimeout(()=>{if(PK&&PK.quitArm){PK.quitArm=false;pkRender()}},3000);return}
   if(PK.mode==='online'){pvpSend({t:'pq'});return pkForfeit(false,'פרשת מהשולחן.')}pkCashOut(false)})}
-function pkCheckEnd(){const G=PK&&PK.G;if(G&&G.over&&!PK.ended){clearTimeout(PK.nt);PK.nt=setTimeout(pkGameOver,2600)}}
+function pkCheckEnd(){const G=PK&&PK.G;if(G&&G.over&&!PK.ended){clearTimeout(PK.nt);PK.nt=setTimeout(pkGameOver,2600+(PK.runout||0))}}
 function pkGameOver(){if(!PK||PK.ended)return;PK.ended=true;const G=PK.G,won=G.winner===PK.me;
- if(PK.mode==='online'){clearInterval(PK.iv);PK=null;return pvpResult(won?'win':'lose',won?'לקחת לו את כל הצ׳יפים.':'הוא לקח את כל הצ׳יפים.','pk')}
+ if(PK.mode==='online'){clearInterval(PK.iv);pkReport(won?100:-100,won);pkAmbStop();PK=null;return pvpResult(won?'win':'lose',won?'לקחת לו את כל הצ׳יפים.':'הוא לקח את כל הצ׳יפים.','pk')}
  pkCashOut(true)}
-function pkForfeit(won,why){if(!PK||PK.ended)return;PK.ended=true;clearInterval(PK.iv);clearTimeout(PK.nt);PK=null;pvpResult(won?'win':'lose',why,'pk')}
-function pkCashOut(bust){const P=PK.ai,G=PK.G,chips=G.p[0].chips-(G.result?0:G.p[0].bet>0?0:0),won=G.over&&G.winner===0;
+function pkForfeit(won,why){if(!PK||PK.ended)return;PK.ended=true;clearInterval(PK.iv);clearTimeout(PK.nt);if(PK.G)pkReport(won?100:-100,won);pkAmbStop();PK=null;pvpResult(won?'win':'lose',why,'pk')}
+function pkCashOut(bust){const P=PK.ai,G=PK.G,won=G.over&&G.winner===0;
  const coins=Math.round(Math.max(0,G.p[0].chips)*P.buy/1000)+(won?Math.round(P.buy*.5):0);clearTimeout(PK.at);clearTimeout(PK.nt);
- if(coins)addCoins(coins);if(won){const W=store.get('gm_pkwins',{});W[PK.key]=(W[PK.key]||0)+1;store.set('gm_pkwins',W);unlock('poker');if(PK.key==='rasar')unlock('pkrasar');SFX.jack();spawn('conf',reduced?6:30,'🪙')}
- track(won?'pk_win':'pk_end');const key=PK.key;PK=null;musicPlay('menu');
- const net=coins-P.buy,ov=$('#overlay');ov.hidden=false;
+ if(coins)addCoins(coins);if(won){const W=store.get('gm_pkwins',{});W[PK.key]=(W[PK.key]||0)+1;store.set('gm_pkwins',W);unlock('poker');if(PK.key==='rasar')unlock('pkrasar');if(PK.key==='magad')unlock('pkmagad');SFX.jack();spawn('conf',reduced?6:30,'🪙')}
+ track(won?'pk_win':'pk_end');const key=PK.key,net=coins-P.buy,sess=PK.sess,hands=G.hand;pkReport(net,won);pkAmbStop();PK=null;musicPlay('menu');
+ const unlocked=won&&key==='rasar'&&(store.get('gm_pkwins',{}).rasar===1);
+ const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="sheet pvp"><div class="end-stamp ${net>=0?'ok':'no'}">${won?'ניקית אותו':G.over?'נוקית':'קמת'}</div><div class="tag">פוקר בש״ג · ${escH(P.n)}</div>
   <h2>${won?'לקחת לו הכל!':G.over?'הוא לקח הכל':'קמת מהשולחן'}</h2><div class="bigscore"><b>${net>=0?'+':''}${net}</b><span>${COIN} נטו</span></div>
-  <p class="sumline">יצאת עם ${coins} ${COIN} · ${G.hand} ידיים</p>
-  <button class="big" id="pkAgain" type="button">עוד משחק (${P.buy} ${COIN})</button><button class="ghostbtn" id="pkOut" type="button">חזרה</button></div>`;
+  <p class="sumline">יצאת עם ${coins} ${COIN} · ${hands} ידיים${sess.biggest?' · Pot הכי גדול '+sess.biggest:''}${sess.bestName?' · '+sess.bestName:''}</p>
+  ${unlocked?'<p class="pkunl">🔓 נפתח בוס חדש: המג״ד!</p>':''}
+  <button class="big" id="pkAgain" type="button">עוד משחק (${P.buy} ${COIN})</button><button class="ghostbtn" id="pkOut" type="button">לשולחנות</button></div>`;
  const ag=$('#pkAgain');if(getCoins()<P.buy)ag.disabled=true;ag.addEventListener('click',()=>{if(getCoins()<P.buy)return;addCoins(-P.buy);pkStartSolo(key)});$('#pkOut').addEventListener('click',showPkLobby)}
-
 
 /* ---- games hub (home screen) ---- */
 function showGames(){const ov=$('#overlay');ov.hidden=false;
@@ -4443,7 +4531,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='5.7';
+const VERSION='5.8';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
