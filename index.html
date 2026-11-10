@@ -620,6 +620,36 @@ body.fighting .room{height:350px}
 .dailybtn b{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--pow)}
 .dailybtn span{font-size:12px;font-weight:700;opacity:.85}
 .dailybtn:active{transform:translateY(2px)}
+.pvgames.g3{grid-template-columns:repeat(3,1fr)}.pvgames.g3 .big{font-size:17px;padding:10px 4px}.pkgo{background:#1f4f8a!important;color:#fff!important}
+.pkl:disabled{opacity:.45}.pkl small{font-family:var(--f-body,inherit);font-size:13px;opacity:.75}.pk-yossi{background:#e8f6e3}.pk-samal{background:#fff6d6}.pk-rasar{background:#1b1d14;color:#ffd43b}.pk-rasar em,.pk-rasar span{color:#f1e6cb}
+.pktable{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:calc(8px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));
+  background:radial-gradient(ellipse at 50% 45%,#2a2016,#120d08 75%);color:#f6efe0;overflow:hidden}
+.pkhead{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;opacity:.9}.pkhead span{flex:1}.pkq{border:1px solid rgba(255,255,255,.35);background:transparent;color:#f6efe0;border-radius:99px;padding:4px 10px;font-weight:800;font-size:12px}
+.pktimer{height:5px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.pktimer i{display:block;height:100%;width:0;background:#ffd43b;transition:width .25s linear}
+.pkopp,.pkme{position:relative;display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:14px;transition:background .3s}
+.pkopp.turn,.pkme.turn{background:rgba(255,212,59,.12);box-shadow:inset 0 0 0 2px rgba(255,212,59,.55)}
+.pkav{width:54px;height:54px;border-radius:50%;overflow:hidden;background:#3a2c1c;border:2px solid #d4a017;flex:none}.pkav svg{width:100%;height:100%}
+.pkname{display:grid;flex:1;min-width:0}.pkname b{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pkname span,.pkinfo span{font-size:12.5px;font-weight:700;opacity:.85}
+.pkcards{display:flex;gap:4px}.pkcards.mine .pc{width:58px;height:82px;font-size:22px}
+.pkbub{position:absolute;inset-inline-end:8px;top:-4px;transform:translateY(-100%);background:#fff;color:#1b1d14;font-weight:800;font-size:13px;padding:5px 10px;border-radius:12px;max-width:70%;animation:nuIn .3s both;z-index:3}
+.pkfelt{position:relative;flex:1;min-height:150px;display:grid;place-items:center;align-content:center;gap:8px;border-radius:50%/40%;background:radial-gradient(ellipse at 50% 40%,#1f7a4a,#0e4a2c 70%);border:8px solid #5a3a1c;box-shadow:inset 0 0 30px rgba(0,0,0,.55),0 10px 24px rgba(0,0,0,.5)}
+.pkboard{display:flex;gap:5px;direction:ltr}.pkpot{font-weight:800;font-size:13px;background:rgba(0,0,0,.35);border-radius:99px;padding:3px 12px}.pkpot b{color:#ffd43b;font-size:16px}
+.pkchip{font-weight:900;font-size:13px;color:#ffd43b;min-height:16px}.pkchip.op{position:absolute;top:10px}.pkchip.me{position:absolute;bottom:10px}
+.pc{position:relative;display:grid;place-items:center;width:42px;height:60px;border-radius:7px;background:linear-gradient(160deg,#fff,#efe9dc);color:#1b1d14;box-shadow:0 3px 6px rgba(0,0,0,.4);font-weight:900;font-size:17px;line-height:1;direction:ltr}
+.pc b{position:absolute;top:4px;left:5px;font-size:.8em}.pc i{font-style:normal;font-size:1.35em}.pc.red{color:#c62828}
+.pc.back{background:repeating-linear-gradient(45deg,#2c5a36 0 6px,#244a2c 6px 12px);border:2px solid #f1e6cb}.pc.back i{font-size:9px;color:#f1e6cb;font-weight:900}
+.pc.slot{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
+.pc.deal{animation:pcDeal .45s cubic-bezier(.2,.9,.3,1.2) both}.pc.d1{animation-delay:.12s}.pc.d2{animation-delay:.24s}.pc.flip{animation:pcFlip .5s both}
+@keyframes pcDeal{from{opacity:0;transform:translateY(-60px) rotate(-20deg) scale(.6)}to{opacity:1;transform:none}}
+@keyframes pcFlip{0%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+.pkinfo{display:grid;flex:1;min-width:0}.pkinfo b{font-size:15px}
+.pkres{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);display:grid;gap:2px;text-align:center;padding:10px 16px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:truthIn .35s both;z-index:4;min-width:60%}
+.pkres b{font-family:var(--f-display);font-size:30px;line-height:1}.pkres span{font-weight:800;font-size:13px}.pkres.win{background:#2fa84f}.pkres.lose{background:#8a2a20}.pkres.tie{background:#5a5f66}
+.pkact{display:grid;gap:6px}.pkact.wait{text-align:center;font-weight:800;opacity:.75;padding:14px 0}
+.pkrow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px}
+.pkb{border:0;border-radius:12px;font-weight:900;font-size:17px;padding:11px 4px;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.4);display:grid;line-height:1.1}.pkb small{font-size:11px;opacity:.85}
+.pkb:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.4)}.pkb.fold{background:#7a2a20}.pkb.check,.pkb.call{background:#2e7d32}.pkb.raise{background:#1f4f8a;font-size:14px}.pkb.allin{background:#d4a017;color:#1b1d14}
+@media (max-height:620px){.pkav{width:44px;height:44px}.pc{width:36px;height:52px;font-size:15px}.pkcards.mine .pc{width:48px;height:68px}.pkb{padding:9px 4px;font-size:15px}}
 .sheet.login{text-align:center}.lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
 .lday{position:relative;display:grid;justify-items:center;gap:2px;padding:7px 2px;border-radius:10px;background:#fff;border:2px solid #cfc7b0;color:var(--ink)}
 .lday small{font-size:10.5px;font-weight:800;color:var(--ink-soft)}.lday .lic{font-size:24px;line-height:1.1}.lday b{font-size:12px;font-weight:900}
@@ -2128,6 +2158,8 @@ function jail(reason){
 
 /* ================= achievements ================= */
 const ACH={
+ poker:{n:'כריש בש״ג',d:'ניצחת משחק פוקר',g:'פ'},
+ pkrasar:{n:'עקפת את הרס״ר',d:'ניקית את הרס״ר בפוקר',g:'ק'},
  king:{n:'מלך הגימלים',d:'7 ימים ברצף כניסות',g:'מ'},
  revenge:{n:'לקחת בחזרה',d:'עקפת מישהו שעקף אותך',g:'נ'},
  rev:{n:'הרופא המתנקם',d:'2600 נקודות במשמרת',g:'ר'},
@@ -3653,10 +3685,10 @@ function showBgPractice(){const ov=$('#overlay');ov.hidden=false;const w=store.g
   bgStart({practice:true,full:true,level:lv,onEnd:(won,x)=>{if(won){const c=BG_LEVELS[lv].c*x.pts;addCoins(c);const W=store.get('gm_bglv',{});W[lv]=(W[lv]||0)+1;store.set('gm_bglv',W);if(lv==='legend')unlock('bglegend');toastMsg('🎲','ניצחת את שלומי ('+BG_LEVELS[lv].n+')','+'+c+' '+COIN)}showBgPractice()}})}));
  $('#lvBack').addEventListener('click',showProgress)}
 /* ---- quick chat (online, both games) ---- */
-const PCHAT={bg:['דושש? מזל של טירון','תתחיל לבכות','אני עוד חוזר','יאללה תזיז כבר','מהלך של רס״ר','זה כל מה שיש לך?'],
+const PCHAT={pk:['כל הקופה שלי','בלופר!','יש לי זוג... אולי','אמא שלך משחקת יותר טוב','קיפלת? חח','עוד יד?'],bg:['דושש? מזל של טירון','תתחיל לבכות','אני עוד חוזר','יאללה תזיז כבר','מהלך של רס״ר','זה כל מה שיש לך?'],
  box:['בוא בוא','זה הכל?','סבתא שלי מרביצה חזק יותר','אוקיי, זה כאב','🫡','עוד סיבוב?']};
 let chatLast=0;
-function chatMenu(){const old=document.querySelector('.chatpop');if(old){old.remove();return}if(!PV)return;const L=PCHAT[PV.game==='bg'?'bg':'box'];
+function chatMenu(){const old=document.querySelector('.chatpop');if(old){old.remove();return}if(!PV)return;const L=PCHAT[PV.game==='bg'?'bg':PV.game==='pk'?'pk':'box'];
  const p=document.createElement('div');p.className='chatpop';p.innerHTML=L.map((t,k)=>`<button type="button" data-k="${k}">${t}</button>`).join('');document.body.appendChild(p);
  p.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;p.remove();const now=Date.now();if(now-chatLast<1500)return;chatLast=now;
   pvpSend({t:'chat',k:+b.dataset.k,g:PV.game});chatShow('אתה',L[+b.dataset.k],true)});
@@ -3735,9 +3767,9 @@ function showPvpLobby(){pvpLeave();seekStop();const ov=$('#overlay');ov.hidden=f
  ov.innerHTML=`<div class="sheet pvp"><div class="tag">מול בני אדם · בזמן אמת</div><h2>במה מתחרים?</h2>
   ${pvpNameRow()}
   <p class="pvlbl">להזמין חבר בקישור</p>
-  <div class="pvgames"><button class="big" id="pvCreate" type="button">🥊 אגרוף</button><button class="big green" id="pvCreateBg" type="button">🎲 שש בש</button></div>
+  <div class="pvgames g3"><button class="big" id="pvCreate" type="button">🥊 אגרוף</button><button class="big green" id="pvCreateBg" type="button">🎲 שש בש</button><button class="big pkgo" id="pvCreatePk" type="button">🃏 פוקר</button></div>
   <p class="pvlbl">או יריב אקראי שמחכה עכשיו</p>
-  <div class="pvgames rnd"><button class="tl" id="pvSeekBox" type="button">🥊 חפש יריב</button><button class="tl" id="pvSeekBg" type="button">🎲 חפש יריב</button></div>
+  <div class="pvgames rnd g3"><button class="tl" id="pvSeekBox" type="button">🥊 אקראי</button><button class="tl" id="pvSeekBg" type="button">🎲 אקראי</button><button class="tl" id="pvSeekPk" type="button">🃏 אקראי</button></div>
   <div class="lbform pvjoin"><input id="pvCode" maxlength="6" placeholder="יש לך קוד?" autocomplete="off" dir="ltr"><button type="button" class="buy" id="pvJoin">הצטרף</button></div>
   <button type="button" class="pvrank" id="pvRank"><b>🏆 טבלת שש בש</b><span id="pvMy">הדרגה שלך: ${bgRank(store.get('gm_pbgwins',0))}</span></button>
   <button class="ghostbtn" id="pvBack" type="button">חזרה</button></div>`;
@@ -3746,6 +3778,8 @@ function showPvpLobby(){pvpLeave();seekStop();const ov=$('#overlay');ov.hidden=f
  $('#pvCreateBg').addEventListener('click',()=>{if(!pvpTakeName())return;pvpHost('bg')});
  $('#pvSeekBox').addEventListener('click',()=>{if(!pvpTakeName())return;seekStart('box')});
  $('#pvSeekBg').addEventListener('click',()=>{if(!pvpTakeName())return;seekStart('bg')});
+ $('#pvCreatePk').addEventListener('click',()=>{if(!pvpTakeName())return;pvpHost('pk')});
+ $('#pvSeekPk').addEventListener('click',()=>{if(!pvpTakeName())return;seekStart('pk')});
  $('#pvRank').addEventListener('click',showBgTop);
  $('#pvJoin').addEventListener('click',()=>{if(!pvpTakeName())return;const c=($('#pvCode').value||'').toLowerCase().replace(/[^a-z0-9]/g,'');if(c.length<5){$('#pvCode').focus();return}pvpJoin(c)});
  sbRpc('my_pbg',{p_id:deviceId()}).then(r=>{const e=$('#pvMy');if(e&&r&&r.games)e.textContent=`הדרגה שלך: ${bgRank(r.wins)} · ${r.wins} ניצחונות · מקום ${r.place}`}).catch(()=>{})}
@@ -3788,10 +3822,11 @@ async function pvpConnect(code,host,game){PV={code,host,game:game||'box',me:pvpM
  try{PV.T=await pvpTransport(code)}catch(e){PV=null;throw e}
  PV.T.on(pvpOnMsg);PV.hb=setInterval(()=>{if(!PV)return;pvpSend({t:'hi',name:PV.me.name,char:PV.me.char,host:PV.host,state:PV.state,game:PV.game,bgseq:BG&&BG.o.online?BG.seq:-1});
   const quiet=Date.now()-PV.last;
+  if(PV.state==='pk'&&PK&&PK.host&&PK.G)pkBroadcast();
   if(PV.state==='fight'&&quiet>9000)pvpEnd('win','החבר התנתק. ניצחון טכני.');
   if(PV.state==='bg'&&BG&&BG.o.online&&BG.turn!=='over'){if(quiet>120000)bgEnd(true,'החבר נעלם לשתי דקות. ניצחון טכני.');else if(quiet>15000&&BG.turn==='opp')bgMsg(BG.oname+' לא מגיב... מחכים לו ('+Math.round(quiet/1000)+' שנ׳)')}},2500);
  pvpSend({t:'hi',name:PV.me.name,char:PV.me.char,host,state:'lobby'})}
-async function pvpHost(game){const code=pvpCode(),ov=$('#overlay'),isBg=game==='bg',url=SHARE_BASE+(isBg?'#psb-':'#pvp-')+code;track(isBg?'pbg_create':'pvp_create');
+async function pvpHost(game){const code=pvpCode(),ov=$('#overlay'),isBg=game==='bg',isPk=game==='pk',url=SHARE_BASE+(isBg?'#psb-':isPk?'#pkr-':'#pvp-')+code;track(isBg?'pbg_create':isPk?'pk_create':'pvp_create');
  ov.innerHTML=`<div class="sheet pvp"><div class="tag">${isBg?'שולחן':'זירה'} ${code.toUpperCase()}</div><h2>מחכה ליריב</h2>
   <div class="pvwait"><span class="dotload"><i></i><i></i><i></i></span><span id="pvStatus">מתחבר לשרת...</span></div>
   <p class="copytext" id="pvUrl" dir="ltr"></p>
@@ -3800,7 +3835,7 @@ async function pvpHost(game){const code=pvpCode(),ov=$('#overlay'),isBg=game==='
   <p class="tip">החבר פותח את הקישור, ו${isBg?'המשחק':'הקרב'} מתחיל לבד. אפשר גם להקליד את הקוד <b dir="ltr">${code.toUpperCase()}</b>.</p>
   <button class="ghostbtn" id="pvBack" type="button">ביטול</button></div>`;
  ov.querySelectorAll('[data-mt]').forEach(b=>b.addEventListener('click',()=>{PMATCH=+b.dataset.mt;ov.querySelectorAll('[data-mt]').forEach(x=>x.classList.toggle('on',x===b));SFX.tick()}));
- $('#pvUrl').textContent=url;const txt=isBg?`🎲 ${pvpMe().name} מזמין אותך לשש בש אונליין במלך הגימלים. יש לך סיכוי?\n${url}`:`🥊 ${pvpMe().name} מזמין אותך לקרב אגרוף חי במלך הגימלים. יש לך סיכוי?\n${url}`;
+ $('#pvUrl').textContent=url;const txt=isPk?`🃏 ${pvpMe().name} מזמין אותך לפוקר בש״ג במלך הגימלים. יש לך סיכוי?\n${url}`:isBg?`🎲 ${pvpMe().name} מזמין אותך לשש בש אונליין במלך הגימלים. יש לך סיכוי?\n${url}`:`🥊 ${pvpMe().name} מזמין אותך לקרב אגרוף חי במלך הגימלים. יש לך סיכוי?\n${url}`;
  $('#pvShare').addEventListener('click',()=>{if(navigator.share)navigator.share({title:'קרב אונליין',text:txt}).catch(()=>{});else{try{navigator.clipboard.writeText(txt)}catch(e){}$('#pvShare').textContent='הועתק'}});
  $('#pvCopy').addEventListener('click',e=>{try{navigator.clipboard.writeText(txt).then(()=>{e.target.textContent='הועתק'},()=>selectText($('#pvUrl')))}catch(err){selectText($('#pvUrl'))}});
  $('#pvBack').addEventListener('click',()=>{pvpLeave();showPvpLobby()});
@@ -3812,11 +3847,11 @@ async function pvpJoin(code){const ov=$('#overlay');ov.hidden=false;track('pvp_j
  $('#pvBack').addEventListener('click',()=>{pvpLeave();showStart()});
  try{await pvpConnect(code,false);$('#pvStatus')&&($('#pvStatus').textContent='מחכה ליריב...')}
  catch(e){$('#pvStatus')&&($('#pvStatus').textContent='לא הצלחתי להתחבר. בדוק אינטרנט ונסה שוב.')}}
-function checkPvpHash(){const h=(location.hash||'').match(/^#(pvp|psb)-([a-z0-9]{5,8})$/);if(!h||!ONLINE)return;const m=[h[0],h[2]],isBg=h[1]==='psb';
+function checkPvpHash(){const h=(location.hash||'').match(/^#(pvp|psb|pkr)-([a-z0-9]{5,8})$/);if(!h||!ONLINE)return;const m=[h[0],h[2]],isBg=h[1]==='psb',isPk=h[1]==='pkr';
  try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
  const ov=$('#overlay');ov.hidden=false;
- ov.innerHTML=`<div class="sheet pvp"><div class="tag">הזמנה</div><h2>${isBg?'הוזמנת לשש בש':'קיבלת אתגר לקרב חי'}</h2><p class="tip">${isBg?'משחק שש בש מלא מול חבר, בזמן אמת.':'קרב אגרוף של דקה מול חבר, בזמן אמת.'}</p>
-  ${pvpNameRow()}<button class="big" id="pvGo" type="button">${isBg?'🎲 לשולחן':'🥊 לזירה'}</button><button class="ghostbtn" id="pvNo" type="button">לא עכשיו</button></div>`;
+ ov.innerHTML=`<div class="sheet pvp"><div class="tag">הזמנה</div><h2>${isPk?'הוזמנת לפוקר':isBg?'הוזמנת לשש בש':'קיבלת אתגר לקרב חי'}</h2><p class="tip">${isPk?'טקסס הולדם אחד על אחד, בזמן אמת.':isBg?'משחק שש בש מלא מול חבר, בזמן אמת.':'קרב אגרוף של דקה מול חבר, בזמן אמת.'}</p>
+  ${pvpNameRow()}<button class="big" id="pvGo" type="button">${isPk?'🃏 לשולחן':isBg?'🎲 לשולחן':'🥊 לזירה'}</button><button class="ghostbtn" id="pvNo" type="button">לא עכשיו</button></div>`;
  $('#pvGo').addEventListener('click',()=>{if(!pvpTakeName())return;ac();pvpJoin(m[1])});$('#pvNo').addEventListener('click',showStart)}
 
 /* ---- messages ---- */
@@ -3829,8 +3864,10 @@ function pvpOnMsg(m){if(!PV||!m||m.from===PV.me.id)return;
   else if(PV.state==='over'&&m.state==='lobby'){} return}
  if(m.t==='start'){if(PV.state==='lobby'||PV.state==='over'){PV.state='count';PV.game=m.game||'box';pvpCountdown({open:m.open?[m.open[1],m.open[0]]:null,match:m.match?{to:m.match.to,me:m.match.g,him:m.match.h,craw:m.match.craw}:null})}return}
  if(m.t&&m.t[0]==='b'&&m.t!=='bye'){bgNet(m);return}
- if(m.t==='chat'){const L=PCHAT[m.g==='bg'?'bg':'box'];if(L&&L[m.k])chatShow(PV.peer?PV.peer.name:'יריב',L[m.k],false);return}
- if(m.t==='bye'){if(PV.state==='fight')pvpEnd('win','החבר ברח מהזירה. ניצחון טכני.');else if(PV.state==='bg'&&BG&&BG.o.online)bgEnd(true,'החבר עזב את השולחן. ניצחון טכני.');else if(PV.state!=='over'){const st=$('#pvStatus');if(st)st.textContent='החבר יצא.'}PV.peer=null;return}
+ if(m.t==='ps'||m.t==='pa'){pkNet(m);return}
+ if(m.t==='pq'){if(PV.state==='pk')pkForfeit(true,(PV.peer?PV.peer.name:'היריב')+' פרש מהשולחן.');return}
+ if(m.t==='chat'){const L=PCHAT[m.g==='bg'?'bg':m.g==='pk'?'pk':'box'];if(L&&L[m.k])chatShow(PV.peer?PV.peer.name:'יריב',L[m.k],false);return}
+ if(m.t==='bye'){if(PV.state==='fight')pvpEnd('win','החבר ברח מהזירה. ניצחון טכני.');else if(PV.state==='bg'&&BG&&BG.o.online)bgEnd(true,'החבר עזב את השולחן. ניצחון טכני.');else if(PV.state==='pk')pkForfeit(true,'החבר עזב את השולחן. ניצחון טכני.');else if(PV.state!=='over'){const st=$('#pvStatus');if(st)st.textContent='החבר יצא.'}PV.peer=null;return}
  if(m.t==='rematch'){PV.peerRematch=true;if(PV.meRematch&&PV.host)pvpHostStart();const r=$('#pvRe');if(r&&!PV.meRematch)r.textContent='החבר רוצה עוד סיבוב! לחץ';return}
  const F=S&&S.F;if(!F||!F.pvp||F.done)return;
  const op=$('#fOp'),me=$('#fMe'),now=performance.now();
@@ -3865,7 +3902,7 @@ function pvpCountdown(info){info=info||{};const ov=$('#overlay');ov.hidden=false
  const mt=info.match&&info.match.to>1?`<p class="tip">משחק עד ${info.match.to} · אתה ${info.match.me} : ${info.match.him}${info.match.craw?' · משחק קרופורד, בלי הכפלות':''}</p>`:'';
  ov.innerHTML=`<div class="sheet pvp"><div class="vs"><div class="vsc">${portrait(PV.me.char)}<b>אתה</b></div><div class="vsx">נגד</div><div class="vsc">${portrait(P.char)}<b id="pvPeer"></b></div></div>${mt}<div class="countbig" id="cnt">3</div></div>`;
  $('#pvPeer').textContent=P.name;SFX.bell();let n=3;
- const iv=setInterval(()=>{n--;const c=$('#cnt');if(!c){clearInterval(iv);return}if(n>0){c.textContent=n;tone(660,.12,{type:'triangle',v:.07})}else{clearInterval(iv);c.textContent=PV&&PV.game==='bg'?'משחקים!':'קרב!';tone(990,.3,{type:'triangle',v:.08});setTimeout(()=>PV&&PV.game==='bg'?pbgStart(info):pvpFight(),450)}},800)}
+ const iv=setInterval(()=>{n--;const c=$('#cnt');if(!c){clearInterval(iv);return}if(n>0){c.textContent=n;tone(660,.12,{type:'triangle',v:.07})}else{clearInterval(iv);c.textContent=PV&&PV.game!=='box'?'משחקים!':'קרב!';tone(990,.3,{type:'triangle',v:.08});setTimeout(()=>PV&&PV.game==='bg'?pbgStart(info):PV&&PV.game==='pk'?pkOnlineStart():pvpFight(),450)}},800)}
 function pbgStart(info){if(!PV)return;PV.state='bg';PV.meRematch=PV.peerRematch=false;track('pbg_play');const P=PV.peer||{name:'יריב'};
  if(info.match){const X=PV.match||{};PV.match={to:info.match.to,me:info.match.me,him:info.match.him,crawUsed:PV.host?X.crawUsed:false}}
  bgStart({online:true,full:true,open:info.open,oname:P.name,noCube:!!(info.match&&info.match.craw),match:PV.match,
@@ -3907,7 +3944,8 @@ async function pvpEnd(res,why){const F=S.F;if(!F||F.done)return;F.done=true;canc
  else{stamp('תיקו','ok');addCoins(20)}
  track('pvp_done');await wait(1900);teardownRing();document.body.classList.remove('pvpon');S.mode='end';pvpResult(res,why,'box')}
 function pvpResult(res,why,game,mars,pts){if(PV)PV.state='over';pts=pts||1;
- let coins=game==='bg'?(res==='win'?15*pts:5):(res==='win'?40:res==='lose'?10:20),X=null,matchOver=true,matchWon=res==='win';
+ if(game==='pk'){addCoins(res==='win'?60:10);if(res==='win')unlock('poker');track('pk_online_done')}
+ let coins=game==='bg'?(res==='win'?15*pts:5):game==='pk'?(res==='win'?60:10):(res==='win'?40:res==='lose'?10:20),X=null,matchOver=true,matchWon=res==='win';
  if(game==='bg'&&PV&&PV.match){X=PV.match;if(res==='win')X.me+=pts;else X.him+=pts;matchOver=X.me>=X.to||X.him>=X.to;X.done=matchOver;matchWon=X.me>=X.to;
   if(matchOver&&matchWon)coins+=50}
  if(game==='bg'){addCoins(coins);track('pbg_done');if(res==='win')unlock('pbg')
@@ -3915,7 +3953,7 @@ function pvpResult(res,why,game,mars,pts){if(PV)PV.state='over';pts=pts||1;
  const ov=$('#overlay');ov.hidden=false;const P=PV&&PV.peer?PV.peer.name:'היריב';
  const big=X&&X.to>1?(matchOver?(matchWon?'לקחת את הסדרה!':'הוא לקח את הסדרה'):(res==='win'?'לקחת משחק':'הוא לקח משחק')):(res==='win'?'ניצחת!':res==='lose'?'הפסדת':'תיקו');
  const score=X&&X.to>1?`<div class="mscore"><span>אתה</span><b>${X.me}</b><i>:</i><b>${X.him}</b><span class="pn"></span></div><p class="tip">משחק עד ${X.to}${pts>1?` · המשחק הזה היה שווה ${pts} נק׳`:''}</p>`:'';
- ov.innerHTML=`<div class="sheet pvp"><div class="end-stamp ${res==='lose'?'no':'ok'}">${res==='win'?'ניצחון':res==='lose'?'הפסד':'תיקו'}</div><div class="tag">${game==='bg'?'שש בש אונליין':'קרב אונליין'}</div>
+ ov.innerHTML=`<div class="sheet pvp"><div class="end-stamp ${res==='lose'?'no':'ok'}">${res==='win'?'ניצחון':res==='lose'?'הפסד':'תיקו'}</div><div class="tag">${game==='bg'?'שש בש אונליין':game==='pk'?'פוקר אונליין':'קרב אונליין'}</div>
   <h2>${big}</h2><p>${escH(why)} נגד <b id="pvP"></b>. +${coins} ${COIN}</p>${score}
   <button class="big" id="pvRe" type="button">${X&&X.to>1&&!matchOver?'למשחק הבא ▶':'עוד סיבוב'}</button>
   ${PV&&PV.peer?'<button class="tl chatbtn" id="pvChat" type="button">💬 לעקוץ</button>':''}
@@ -4083,6 +4121,160 @@ function goalBlock(g){const G=RUN&&RUN.goal;if(!G)return'';
  if(g>G.score)return`<div class="goalres ok"><b>👑 לקחת בחזרה!</b><span>${g} מול ${G.score} של ${escH(G.name)} · +40 ${COIN}</span></div>`;
  return`<div class="goalres"><b>חסרו ${G.score-g+1} ימים</b><span>כדי לעקוף את ${escH(G.name)} (${G.score}). עוד ניסיון?</span></div>`}
 
+/* ================= poker at the gate: heads-up Texas Hold'em ================= */
+const PK_R=['2','3','4','5','6','7','8','9','10','J','Q','K','A'],PK_S=['♠','♥','♦','♣'];
+const PK_CAT=['קלף גבוה','זוג','שני זוגות','שלישייה','רצף','צבע','פול האוס','רביעייה','רצף צבע'];
+const PK_RN=['2','3','4','5','6','7','8','9','10','נסיכים','מלכות','מלכים','אסים'];
+function pkStr(set){for(let h=12;h>=3;h--){let ok=true;for(let k=0;k<5;k++){const r=h-k;if(!set.has(r<0?12:r)){ok=false;break}}if(ok)return h}return -1}
+function pkEval(cs){const cnt=Array(13).fill(0),bys=[[],[],[],[]];for(const c of cs){const r=c%13;cnt[r]++;bys[(c/13)|0].push(r)}
+ const enc=(cat,ks)=>{let v=cat;for(let i=0;i<5;i++)v=v*13+(ks[i]||0);return v};
+ for(const L of bys)if(L.length>=5){const h=pkStr(new Set(L));if(h>=0)return enc(8,[h])}
+ const g=[];for(let r=12;r>=0;r--)if(cnt[r])g.push([cnt[r],r]);g.sort((a,b)=>b[0]-a[0]||b[1]-a[1]);
+ const others=ex=>{const o=[];for(let r=12;r>=0;r--)if(cnt[r]&&!ex.includes(r))o.push(r);return o};
+ if(g[0][0]===4)return enc(7,[g[0][1],others([g[0][1]])[0]]);
+ if(g[0][0]===3&&g[1]&&g[1][0]>=2)return enc(6,[g[0][1],g[1][1]]);
+ for(const L of bys)if(L.length>=5)return enc(5,L.slice().sort((a,b)=>b-a).slice(0,5));
+ const st=pkStr(new Set(cs.map(c=>c%13)));if(st>=0)return enc(4,[st]);
+ if(g[0][0]===3)return enc(3,[g[0][1],...others([g[0][1]]).slice(0,2)]);
+ if(g[0][0]===2&&g[1]&&g[1][0]===2)return enc(2,[g[0][1],g[1][1],others([g[0][1],g[1][1]])[0]]);
+ if(g[0][0]===2)return enc(1,[g[0][1],...others([g[0][1]]).slice(0,3)]);
+ return enc(0,others([]).slice(0,5))}
+const pkCat=v=>Math.floor(v/371293);
+function pkName(v){const c=pkCat(v),top=Math.floor(v/28561)%13;
+ if(c===8&&top===12)return'רויאל פלאש!';if(c===1)return'זוג '+PK_RN[top];if(c===3)return'שלישיית '+PK_RN[top];if(c===7)return'רביעיית '+PK_RN[top];return PK_CAT[c]}
+function pkEquity(hole,board,n){const used=new Set([...hole,...board]),deck=[];for(let c=0;c<52;c++)if(!used.has(c))deck.push(c);let w=0;const need=2+(5-board.length);
+ for(let i=0;i<n;i++){for(let k=0;k<need;k++){const j=k+Math.floor(Math.random()*(deck.length-k));const t=deck[k];deck[k]=deck[j];deck[j]=t}
+  const b=board.concat(deck.slice(2,need)),a=pkEval(hole.concat(b)),o=pkEval([deck[0],deck[1]].concat(b));w+=a>o?1:a===o?.5:0}
+ return w/n}
+/* ---- engine (pure state, shared by solo and online) ---- */
+function pkNewGame(names,chips){return{p:names.map(n=>({name:n,chips,cards:[],bet:0,folded:false,allin:false,acted:false})),btn:Math.random()<.5?0:1,hand:0,sb:10,bb:20,board:[],pot:0,cur:0,minR:20,street:0,toAct:0,deck:[],reveal:false,result:null,over:false,winner:-1,last:null,seq:0}}
+function pkPay(G,i,x){const P=G.p[i];x=Math.max(0,Math.min(x,P.chips));P.chips-=x;P.bet+=x;if(P.chips===0)P.allin=true}
+function pkDeal(G){G.hand++;G.btn=1-G.btn;const lvl=Math.min(5,Math.floor((G.hand-1)/8));G.sb=10*(1<<lvl);G.bb=G.sb*2;
+ const d=[];for(let c=0;c<52;c++)d.push(c);for(let i=51;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=d[i];d[i]=d[j];d[j]=t}G.deck=d;
+ G.board=[];G.pot=0;G.street=0;G.reveal=false;G.result=null;G.last=null;
+ G.p.forEach(P=>{P.cards=[d.pop(),d.pop()];P.bet=0;P.folded=false;P.allin=false;P.acted=false});
+ pkPay(G,G.btn,G.sb);pkPay(G,1-G.btn,G.bb);G.cur=Math.max(G.p[0].bet,G.p[1].bet);G.minR=G.bb;G.toAct=G.btn;
+ if(G.p[G.btn].allin||G.p[1-G.btn].allin)pkAdvance(G);G.seq++}
+function pkAct(G,i,a,to){if(G.result||G.street>3||G.toAct!==i)return false;const P=G.p[i],O=G.p[1-i],call=G.cur-P.bet;
+ if(a==='fold'){P.folded=true;G.last={i,a};pkFinish(G,1-i);G.seq++;return true}
+ if(a==='check'){if(call>0)return false}
+ else if(a==='call'){pkPay(G,i,call);if(P.allin)a='allin'}
+ else if(a==='raise'||a==='allin'){const maxTo=P.bet+P.chips;let t=a==='allin'?maxTo:Math.max(to|0,G.cur+G.minR);if(t>maxTo)t=maxTo;
+  if(t<=G.cur){pkPay(G,i,call);a=P.allin?'allin':'call'}else{const inc=t-G.cur;if(inc>=G.minR)G.minR=inc;G.cur=t;pkPay(G,i,t-P.bet);O.acted=false;a=P.allin?'allin':'raise'}}
+ else return false;
+ P.acted=true;G.last={i,a,amt:P.bet};pkAdvance(G);G.seq++;return true}
+function pkAdvance(G){const[A,B]=G.p,ok=(P,Q)=>P.allin||(P.acted&&P.bet===G.cur)||(Q.allin&&P.bet>=Q.bet);
+ if(!(ok(A,B)&&ok(B,A))){for(const i of[1-G.toAct,G.toAct]){const P=G.p[i];if(!P.allin&&(!P.acted||P.bet<G.cur)){G.toAct=i;return}}}
+ const m=Math.min(A.bet,B.bet);A.chips+=A.bet-m;B.chips+=B.bet-m;G.pot+=2*m;A.bet=B.bet=0;A.allin=A.chips===0;B.allin=B.chips===0;G.cur=0;G.minR=G.bb;A.acted=B.acted=false;
+ if(A.allin||B.allin){while(G.board.length<5)G.board.push(G.deck.pop());G.street=4;return pkShowdown(G)}
+ G.street++;if(G.street===1)G.board.push(G.deck.pop(),G.deck.pop(),G.deck.pop());else if(G.street<=3)G.board.push(G.deck.pop());
+ if(G.street>3)return pkShowdown(G);G.toAct=1-G.btn}
+function pkFinish(G,w){G.pot+=G.p[0].bet+G.p[1].bet;G.p[0].bet=G.p[1].bet=0;G.p[w].chips+=G.pot;G.result={w,fold:true,amount:G.pot};G.pot=0;pkCheckOver(G)}
+function pkShowdown(G){G.reveal=true;G.street=4;const v=G.p.map(P=>pkEval(P.cards.concat(G.board)));let w=v[0]>v[1]?0:v[1]>v[0]?1:-1;const amt=G.pot;
+ if(w<0){const h=Math.floor(G.pot/2);G.p[0].chips+=h;G.p[1].chips+=G.pot-h}else G.p[w].chips+=G.pot;
+ G.result={w,fold:false,amount:amt,names:v.map(pkName),best:v};G.pot=0;pkCheckOver(G)}
+function pkCheckOver(G){const z=G.p.findIndex(P=>P.chips<=0);if(z>=0){G.over=true;G.winner=1-z}}
+/* ---- opponents ---- */
+const PK_AI={
+ yossi:{n:'יוסי מהש״ג',d:'משחק כל יד וצוחק מכל דבר. קל.',buy:30,loose:.35,aggr:.3,bluff:.06,char:'driver',lv:'קל'},
+ samal:{n:'הסמל',d:'סבלני. מעלה רק כשיש לו משהו.',buy:50,loose:.05,aggr:.6,bluff:.05,char:'fighter',lv:'בינוני'},
+ rasar:{n:'הרס״ר',d:'בלופר מקצועי. אי אפשר לדעת מה יש לו.',buy:100,loose:.15,aggr:.75,bluff:.2,char:'jobnik',lv:'קשה'}};
+const PK_TALK={raise:['אני מעלה. כמו את החשד שלך.','בוא נראה אותך עכשיו, טירון.','העלאה. תתחיל לבכות.','שמע, יש לי פה משהו.'],call:['משווה. ממילא אין מה לעשות בש״ג.','בסדר, אני בפנים.','נראה מה יש לך.'],
+ fold:['זבל. אני מקפל.','קח. שתהיה בריא.','הפעם ויתרתי לך.'],check:['צ׳ק.','נו, תעשה משהו.','בוא נראה קלף.'],allin:['הכל! או שהולכים עד הסוף או שלא.','אול־אין, יא מלך!','כל הקופה. אמא שלי לא תדע.'],
+ win:['הכסף שלי. הקפה עליך.','לימדתי אותך שיעור.','עוד יד כזאת ואני קונה גימלים.'],lose:['מזל של טירון.','הקלפים מקולקלים.','חכה חכה, אני חוזר.']};
+function pkAI(G,i,P){const me=G.p[i],call=G.cur-me.bet,pot=G.pot+G.p[0].bet+G.p[1].bet,r=Math.random();
+ const eq=pkEquity(me.cards,G.board,G.board.length?260:200)+P.loose*.06,odds=call>0?call/(pot+call):0;
+ const raiseTo=f=>G.cur+Math.max(G.minR,Math.round(pot*f/G.sb)*G.sb);
+ if(call===0){if(eq>.82&&r<.25)return{a:'allin'};if(eq>.66||r<P.bluff)return{a:'raise',to:raiseTo(.5+Math.random()*.5)};if(eq>.52&&r<P.aggr*.5)return{a:'raise',to:raiseTo(.4)};return{a:'check'}}
+ if(call>=me.chips)return eq>Math.max(.45,odds)-P.loose*.1?{a:'call'}:{a:'fold'};
+ if(eq>.8&&r<P.aggr)return r<.3?{a:'allin'}:{a:'raise',to:raiseTo(.9)};
+ if(eq>.62&&r<P.aggr*.45)return{a:'raise',to:raiseTo(.6)};
+ if(eq+P.loose*.15>=odds)return{a:'call'};
+ if(r<P.bluff*.6)return{a:'raise',to:raiseTo(.7)};
+ return{a:'fold'}}
+/* ---- controller + UI ---- */
+let PK=null;
+function showPkLobby(){const ov=$('#overlay');ov.hidden=false;const c=getCoins(),w=store.get('gm_pkwins',{});
+ ov.innerHTML=`<div class="sheet pvp"><div class="tag">טקסס הולדם · אחד על אחד · 1000 צ׳יפים</div><h2>פוקר בש״ג</h2>
+  <div class="lvls">${Object.entries(PK_AI).map(([k,P])=>`<button type="button" class="lvl pkl pk-${k}" data-pk="${k}" ${c<P.buy?'disabled':''}><b>${P.n} <small>· ${P.lv}</small></b><span>${P.d}</span><em>כניסה: ${P.buy} ${COIN} · מוציאים לפי הצ׳יפים${w[k]?' · ניצחת '+w[k]:''}</em></button>`).join('')}</div>
+  <p class="tip">${c<30?'אין לך מספיק מטבעות לכניסה. תשחק ריצה ותחזור.':'מה שנשאר לך בצ׳יפים כשאתה קם, חוזר אליך כמטבעות.'}</p>
+  <button class="ghostbtn" id="pkBack" type="button">חזרה</button></div>`;
+ ov.querySelectorAll('[data-pk]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.pk,P=PK_AI[k];if(getCoins()<P.buy)return;ac();addCoins(-P.buy);track('pk_'+k);pkStartSolo(k)}));
+ $('#pkBack').addEventListener('click',showProgress)}
+function pkStartSolo(k){const P=PK_AI[k],G=pkNewGame(['אתה',P.n],1000);PK={G,mode:'ai',me:0,ai:P,key:k,shown:0,bub:'',quitArm:false};musicPlay('chief');pkDeal(G);pkRender();pkLoop()}
+function pkOnlineStart(){if(!PV)return;PV.state='pk';PV.meRematch=PV.peerRematch=false;track('pk_online');const P=PV.peer||{name:'יריב',char:'tiron'};
+ PK={G:null,mode:'online',me:PV.host?0:1,host:PV.host,oname:P.name,ochar:P.char||'tiron',shown:0,bub:'',quitArm:false,tEnd:0};musicPlay('chief');
+ if(PV.host){PK.G=pkNewGame([PV.me.name,P.name],1000);pkDeal(PK.G);pkBroadcast();pkRender();pkLoop()}
+ else{const ov=$('#overlay');ov.hidden=false;ov.innerHTML='<div class="sheet pvp"><h2>מחלקים קלפים...</h2></div>'}
+ clearInterval(PK.iv);const me=PK;PK.iv=setInterval(()=>{if(PK!==me){clearInterval(me.iv);return}pkTick()},250)}
+function pkBroadcast(){if(!PK||!PK.host)return;const G=PK.G,s=JSON.parse(JSON.stringify(G));delete s.deck;if(!G.reveal&&!(G.result&&!G.result.fold))s.p[0].cards=[-1,-1];pvpSend({t:'ps',s})}
+function pkNet(m){if(!PK||PK.mode!=='online')return;
+ if(m.t==='ps'&&!PK.host){if(PK.G&&m.s.seq<PK.G.seq&&m.s.hand<=PK.G.hand)return;const prevHand=PK.G?PK.G.hand:0;PK.G=m.s;if(m.s.hand!==prevHand){PK.shown=0;PK.dealt=false;PK.bub=''}
+  if(m.s.last&&m.s.last.i===0)PK.bub=pkActText(m.s.last);if(m.s.toAct===1&&!m.s.result)PK.tEnd=Date.now()+30000;pkRender();if(m.s.result)pkResultFx();pkCheckEnd();return}
+ if(m.t==='pa'&&PK.host){const G=PK.G;if(G.toAct!==1||G.result||m.hand!==G.hand)return;if(pkAct(G,1,m.a,m.to)){PK.bub=pkActText(G.last);pkAfter()}}}
+function pkActText(L){if(!L)return'';return{fold:'מקפל',check:'צ׳ק',call:'משווה',raise:'מעלה ל־'+L.amt,allin:'אול־אין!'}[L.a]||''}
+function pkPlayer(a,to){if(!PK||!PK.G)return;const G=PK.G;if(G.toAct!==PK.me||G.result)return;SFX.tick();PK.quitArm=false;
+ if(PK.mode==='online'&&!PK.host){pvpSend({t:'pa',a,to,hand:G.hand});PK.waiting=true;pkRender();return}
+ if(pkAct(G,PK.me,a,to)){if(a==='raise'||a==='allin')SFX.clang();pkAfter()}}
+function pkAfter(){if(PK.host)pkBroadcast();pkRender();pkLoop()}
+function pkLoop(){if(!PK||!PK.G)return;const G=PK.G;
+ if(G.result){pkResultFx();clearTimeout(PK.nt);PK.nt=setTimeout(()=>{if(!PK)return;if(G.over)return pkGameOver();if(PK.mode==='ai'||PK.host){pkDeal(G);PK.shown=0;PK.dealt=false;PK.bub='';pkAfter()}},G.result.fold?1800:3200);return}
+ if(PK.mode==='ai'&&G.toAct===1){clearTimeout(PK.at);PK.at=setTimeout(()=>{if(!PK||PK.G!==G||G.toAct!==1||G.result)return;const d=pkAI(G,1,PK.ai);const before=G.last;
+   if(!pkAct(G,1,d.a,d.to))pkAct(G,1,G.cur>G.p[1].bet?'call':'check');PK.bub=pickOne(PK_TALK[G.last&&G.last.a]||PK_TALK.check);if(G.last.a==='raise'||G.last.a==='allin')SFX.clang();else SFX.tick();pkAfter()},700+Math.random()*900)}
+ if(PK.mode==='online'&&G.toAct===PK.me&&!G.result)PK.tEnd=Date.now()+30000}
+function pkTick(){if(!PK||PK.mode!=='online'||!PK.G)return;const G=PK.G,el=document.querySelector('.pktimer i');
+ if(G.toAct===PK.me&&!G.result&&PK.tEnd){const left=PK.tEnd-Date.now();if(el)el.style.width=Math.max(0,left/300)+'%';
+  if(left<=0){PK.tEnd=0;pkPlayer(G.cur>G.p[PK.me].bet?'fold':'check')}}else if(el)el.style.width='0%';
+ const quiet=PV?Date.now()-PV.last:0;if(PV&&PV.state==='pk'&&quiet>120000)pkForfeit(true,'החבר נעלם. ניצחון טכני.')}
+function pkResultFx(){const G=PK.G,R=G.result;if(!R||PK.fxDone===G.hand+'-'+G.seq)return;PK.fxDone=G.hand+'-'+G.seq;
+ const won=R.w===PK.me;if(R.w<0){SFX.bell()}else if(won){SFX.jack();buzz([20,30,60]);spawn('conf',reduced?4:16,'🪙')}else{SFX.fail();buzz(40)}
+ if(PK.mode==='ai')PK.bub=R.w<0?'חצי־חצי. נו.':won?pickOne(PK_TALK.lose):pickOne(PK_TALK.win);pkRender()}
+function pkCard(c,cls){if(c==null||c<0)return`<span class="pc back ${cls||''}"><i>צה״ל</i></span>`;const r=c%13,s=(c/13)|0,red=s===1||s===2;
+ return`<span class="pc ${red?'red':''} ${cls||''}"><b>${PK_R[r]}</b><i>${PK_S[s]}</i></span>`}
+function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me],O=G.p[op],R=G.result;
+ const myTurn=!R&&G.toAct===me&&G.street<4&&!M.allin&&!PK.waiting,call=G.cur-M.bet,pot=G.pot+M.bet+O.bet;
+ if(!myTurn||G.toAct!==me)PK.waiting=false;
+ const oname=PK.mode==='ai'?PK.ai.n:PK.oname,ochar=PK.mode==='ai'?PK.ai.char:PK.ochar;
+ const showOpp=G.reveal||(R&&!R.fold&&O.cards[0]>=0);
+ const newFrom=PK.shown;PK.shown=G.board.length;
+ const board=Array.from({length:5},(_,i)=>i<G.board.length?pkCard(G.board[i],i>=newFrom?'deal d'+(i-newFrom):''):'<span class="pc slot"></span>').join('');
+ const hint=M.cards[0]>=0?(G.board.length?'יש לך: '+pkName(pkEval(M.cards.concat(G.board))):(M.cards[0]%13===M.cards[1]%13?'זוג '+PK_RN[M.cards[0]%13]+' ביד!':PK_R[Math.max(M.cards[0]%13,M.cards[1]%13)]+'-'+PK_R[Math.min(M.cards[0]%13,M.cards[1]%13)])):'';
+ const mn=Math.min(M.bet+M.chips,G.cur+G.minR),half=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,Math.round(pot/2))),full=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,pot)),all=M.bet+M.chips;
+ const raises=[[mn,'מינימום'],[half,'½ קופה'],[full,'קופה']].filter((x,i,a)=>x[0]<all&&x[0]>G.cur&&a.findIndex(y=>y[0]===x[0])===i);
+ let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}"><b>${tie?'תיקו':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' קיפל':'קיפלת'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
+ const act=myTurn?`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">קיפול</button>${call<=0?'<button type="button" class="pkb check" data-a="check">צ׳ק</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">אול־אין ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">השווה ${call}</button>`}</div>
+   ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">${x[1]}<small>${x[0]}</small></button>`).join('')}<button type="button" class="pkb allin" data-a="allin">הכל<small>${all}</small></button></div>`:''}</div>`
+  :`<div class="pkact wait">${R?'':M.allin?'אתה באול־אין. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
+ const ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="pktable"><div class="pkhead"><span>בליינדים ${G.sb}/${G.bb} · יד ${G.hand}</span>${PK.mode==='online'?'<button type="button" class="pkq" id="pkChat">💬</button>':''}<button type="button" class="pkq" id="pkQuit">${PK.quitArm?'בטוח? עוד לחיצה':PK.mode==='ai'?'קום מהשולחן':'פרישה'}</button></div>
+  ${PK.mode==='online'?'<div class="pktimer"><i></i></div>':''}
+  <div class="pkopp${!R&&G.toAct===op?' turn':''}"><div class="pkav">${portrait(CHARS[ochar]?ochar:'tiron')}</div><div class="pkname"><b>${escH(oname)}</b><span>${O.chips} 🪙${G.btn===op?' · דילר':''}</span></div>
+   <div class="pkcards">${O.folded?'':showOpp?pkCard(O.cards[0],'flip')+pkCard(O.cards[1],'flip'):pkCard(-1)+pkCard(-1)}</div>${PK.bub?`<div class="pkbub">${escH(PK.bub)}</div>`:''}</div>
+  <div class="pkfelt"><div class="pkchip op">${O.bet?'🪙 '+O.bet:''}</div><div class="pkboard">${board}</div><div class="pkpot">קופה <b>${pot}</b></div><div class="pkchip me">${M.bet?'🪙 '+M.bet:''}</div>${res}</div>
+  <div class="pkme${myTurn?' turn':''}"><div class="pkcards mine">${M.folded?'':pkCard(M.cards[0],G.hand&&!PK.dealt?'deal d0':'')+pkCard(M.cards[1],G.hand&&!PK.dealt?'deal d1':'')}</div>
+   <div class="pkinfo"><b>אתה · ${M.chips} 🪙${G.btn===me?' · דילר':''}</b><span>${escH(hint)}</span></div></div>
+  ${act}</div>`;
+ PK.dealt=true;
+ ov.querySelectorAll('.pkb').forEach(b=>b.addEventListener('click',()=>pkPlayer(b.dataset.a,+b.dataset.to||0)));
+ const ch=$('#pkChat');if(ch)ch.addEventListener('click',chatMenu);
+ $('#pkQuit').addEventListener('click',()=>{if(!PK.quitArm){PK.quitArm=true;pkRender();setTimeout(()=>{if(PK&&PK.quitArm){PK.quitArm=false;pkRender()}},3000);return}
+  if(PK.mode==='online'){pvpSend({t:'pq'});return pkForfeit(false,'פרשת מהשולחן.')}pkCashOut(false)})}
+function pkCheckEnd(){const G=PK&&PK.G;if(G&&G.over&&!PK.ended){clearTimeout(PK.nt);PK.nt=setTimeout(pkGameOver,2600)}}
+function pkGameOver(){if(!PK||PK.ended)return;PK.ended=true;const G=PK.G,won=G.winner===PK.me;
+ if(PK.mode==='online'){clearInterval(PK.iv);PK=null;return pvpResult(won?'win':'lose',won?'לקחת לו את כל הצ׳יפים.':'הוא לקח את כל הצ׳יפים.','pk')}
+ pkCashOut(true)}
+function pkForfeit(won,why){if(!PK||PK.ended)return;PK.ended=true;clearInterval(PK.iv);clearTimeout(PK.nt);PK=null;pvpResult(won?'win':'lose',why,'pk')}
+function pkCashOut(bust){const P=PK.ai,G=PK.G,chips=G.p[0].chips-(G.result?0:G.p[0].bet>0?0:0),won=G.over&&G.winner===0;
+ const coins=Math.round(Math.max(0,G.p[0].chips)*P.buy/1000)+(won?Math.round(P.buy*.5):0);clearTimeout(PK.at);clearTimeout(PK.nt);
+ if(coins)addCoins(coins);if(won){const W=store.get('gm_pkwins',{});W[PK.key]=(W[PK.key]||0)+1;store.set('gm_pkwins',W);unlock('poker');if(PK.key==='rasar')unlock('pkrasar');SFX.jack();spawn('conf',reduced?6:30,'🪙')}
+ track(won?'pk_win':'pk_end');const key=PK.key;PK=null;musicPlay('menu');
+ const net=coins-P.buy,ov=$('#overlay');ov.hidden=false;
+ ov.innerHTML=`<div class="sheet pvp"><div class="end-stamp ${net>=0?'ok':'no'}">${won?'ניקית אותו':G.over?'נוקית':'קמת'}</div><div class="tag">פוקר בש״ג · ${escH(P.n)}</div>
+  <h2>${won?'לקחת לו הכל!':G.over?'הוא לקח הכל':'קמת מהשולחן'}</h2><div class="bigscore"><b>${net>=0?'+':''}${net}</b><span>${COIN} נטו</span></div>
+  <p class="sumline">יצאת עם ${coins} ${COIN} · ${G.hand} ידיים</p>
+  <button class="big" id="pkAgain" type="button">עוד משחק (${P.buy} ${COIN})</button><button class="ghostbtn" id="pkOut" type="button">חזרה</button></div>`;
+ const ag=$('#pkAgain');if(getCoins()<P.buy)ag.disabled=true;ag.addEventListener('click',()=>{if(getCoins()<P.buy)return;addCoins(-P.buy);pkStartSolo(key)});$('#pkOut').addEventListener('click',showPkLobby)}
+
 /* ---- funnel tracking ---- */
 function track(step){if(IN_CLAUDE)return;sbRpc('track',{p_id:deviceId(),p_step:step}).catch(()=>{})}
 /* ---- first-run guide ---- */
@@ -4115,10 +4307,11 @@ function shareGame(){track('share_game');const txt=SHARE_TXT+'\n'+GAME_URL;
 
 /* ---- progress sheet: missions, rank, achievements ---- */
 function showProgress(){const ov=$('#overlay');ov.hidden=false;const career=store.get('gm_career',0);
- ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="ghostbtn albtn" id="prAl" type="button">📖 אלבום המשפטים · ${albumSet().size}/${LINES.length}</button><button class="ghostbtn" id="prBg" type="button">🎲 שש בש עם שלומי (אימון)</button><button class="ghostbtn" id="prTut" type="button">לעשות טירונות שוב</button><button class="big" id="prBack" type="button">חזרה</button></div>`;
+ ov.innerHTML=`<div class="sheet"><h2>התקדמות</h2>${missionsBlock()}${careerBlock(career)}${achGrid()}<button class="ghostbtn albtn" id="prAl" type="button">📖 אלבום המשפטים · ${albumSet().size}/${LINES.length}</button><button class="ghostbtn" id="prPk" type="button">🃏 פוקר בש״ג</button><button class="ghostbtn" id="prBg" type="button">🎲 שש בש עם שלומי (אימון)</button><button class="ghostbtn" id="prTut" type="button">לעשות טירונות שוב</button><button class="big" id="prBack" type="button">חזרה</button></div>`;
  $('#prTut').addEventListener('click',()=>showTutorialIntro());
  $('#prBg').addEventListener('click',showBgPractice);
  $('#prAl').addEventListener('click',showAlbum);
+ $('#prPk').addEventListener('click',showPkLobby);
  $('#prBack').addEventListener('click',showStart)}
 
 /* ---- title screen ---- */
@@ -4208,7 +4401,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='5.2';
+const VERSION='5.3';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
