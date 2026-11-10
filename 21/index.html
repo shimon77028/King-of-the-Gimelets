@@ -1,0 +1,664 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="description" content="בלאק ג׳ק בש״ג: שמוליק ושושי מחלקים, טורניר יומי, שולחנות עם חברים."><meta property="og:title" content="21 בש״ג · בלאק ג׳ק"><meta property="og:description" content="הקזינו הכי רועש בבסיס. בוא לשחק!"><meta property="og:image" content="https://king-of-the-gimelets.vercel.app/og.png"><link rel="icon" href="../favicon.png"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><title>21 בש״ג</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#16052a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Rubik:wght@400;500;700;800;900&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#12041f;--bg2:#2a0b45;--ink:#fff;--mut:#d9c8f0;--gold:#ffd43b;--pink:#ff3d8b;--hot:#ff7a3b;--cyan:#3be0ff;--lime:#7cff6b;--green:#1fa34a;--red:#e53935;--blue:#1e5fb3;--purple:#7b2fbf;
+ --f-display:"Karantina","Rubik","Arial Hebrew",system-ui,sans-serif;--f-body:"Rubik","Arial Hebrew",system-ui,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);direction:rtl;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+button{font-family:inherit;cursor:pointer}button:disabled{opacity:.45;cursor:default}
+#app{position:fixed;inset:0;overflow:hidden;background:radial-gradient(circle at 50% -10%,#7a1fb0 0%,#3a0d5c 36%,#16052a 72%,#0b0216 100%)}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) max(14px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));overflow-y:auto;overflow-x:hidden}
+.scr.in{animation:scrIn .32s cubic-bezier(.2,.9,.3,1.1) both}@keyframes scrIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+/* neon logo */
+.neon{font-family:var(--f-display);font-weight:700;color:#fff;text-shadow:0 0 6px var(--pink),0 0 18px var(--pink),0 0 38px #ff2f6d;line-height:.85}
+.flick{animation:flick 3s infinite}@keyframes flick{0%,46%,50%,55%,100%{opacity:1}48%{opacity:.35}53%{opacity:.6}}
+/* top bar */
+.bar{display:flex;align-items:center;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:5px 11px;font-weight:900;font-size:14px;background:rgba(0,0,0,.4);border:1.5px solid rgba(255,212,59,.65);white-space:nowrap}
+.pill.chips{color:var(--gold)}.pill.chips b{font-variant-numeric:tabular-nums}
+.ib{border:1.5px solid rgba(255,255,255,.35);background:rgba(0,0,0,.3);color:#fff;border-radius:99px;min-width:36px;height:34px;padding:0 10px;font-weight:900;font-size:15px}
+.lvl{display:flex;align-items:center;gap:7px;flex:1;min-width:0}
+.lvl .bd{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:15px;background:conic-gradient(var(--gold) calc(var(--p)*1%),rgba(255,255,255,.15) 0);position:relative}
+.lvl .bd::before{content:"";position:absolute;inset:4px;border-radius:50%;background:#2a0b45}.lvl .bd span{position:relative}
+.lvl .rk{display:grid;line-height:1.1;min-width:0}.lvl .rk b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lvl .rk small{font-size:11px;color:var(--mut);font-weight:700}
+/* home */
+.home{gap:10px}
+.logo{display:grid;justify-items:center;margin:4px 0 0}
+.logo .n21{font-size:clamp(76px,min(24vw,15vh),130px)}
+.logo .sub{font-family:var(--f-display);font-size:clamp(30px,9vw,42px);color:var(--gold);line-height:.9;text-shadow:0 3px 0 #7a1036}
+.logo .tg{font-size:12px;color:var(--mut);font-weight:700;letter-spacing:.04em;margin-top:4px}
+.dpick{display:flex;gap:10px;justify-content:center}
+.dcard{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:8px;align-items:center;text-align:start;gap:0 8px;flex:1;border:2px solid transparent;background:rgba(255,255,255,.06);border-radius:16px;padding:8px 12px;color:#fff;min-width:118px;transition:transform .2s}
+.dcard.on{border-color:var(--gold);background:rgba(255,212,59,.12);box-shadow:0 0 18px rgba(255,212,59,.35);transform:scale(1.04)}
+.dcard .av{width:50px;height:50px;grid-row:span 2}.dcard b{font-size:14px}.dcard small{font-size:11px;color:var(--mut);font-weight:700}
+.av{display:inline-block;border-radius:50%;overflow:hidden;flex:none}.av svg{display:block;width:100%;height:100%}
+.av .eye{animation:blink 4.2s infinite;transform-box:fill-box;transform-origin:center}@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.talk .mouth{animation:talk .16s 6 alternate;transform-box:fill-box;transform-origin:center}@keyframes talk{to{transform:scaleY(2.4)}}
+.cta{border:0;border-radius:18px;padding:15px 10px;font-weight:900;font-size:22px;color:#fff;background:linear-gradient(90deg,#ff2f6d,#ff7a3b,#ffd43b);box-shadow:0 6px 0 #7a1036,0 0 26px rgba(255,79,216,.55);animation:glow 1.5s ease-in-out infinite;font-family:var(--f-display);letter-spacing:.02em}
+.cta small{display:block;font-family:var(--f-body);font-size:12px;font-weight:800;opacity:.92;letter-spacing:0}
+.cta:active{transform:translateY(4px);box-shadow:0 2px 0 #7a1036}@keyframes glow{50%{box-shadow:0 6px 0 #7a1036,0 0 40px rgba(255,212,59,.85)}}
+.grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tile{position:relative;border:0;border-radius:16px;padding:10px 4px 9px;color:#fff;font-weight:900;font-size:14px;display:grid;justify-items:center;gap:2px;box-shadow:0 4px 0 rgba(0,0,0,.45);line-height:1.15}
+.tile i{font-style:normal;font-size:26px;line-height:1}.tile small{font-size:10.5px;font-weight:700;opacity:.9}
+.tile:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.45)}
+.t-tour{background:linear-gradient(135deg,#ffb300,#e65100)}.t-friends{background:linear-gradient(135deg,#00b4d8,#1e5fb3)}.t-wheel{background:linear-gradient(135deg,#ff3d8b,#7b2fbf)}.t-miss{background:linear-gradient(135deg,#1fa34a,#0b6b3a)}.t-board{background:linear-gradient(135deg,#5b5bd6,#2a0b45)}.t-gift{background:linear-gradient(135deg,#ff7a3b,#c62828)}
+.dot{position:absolute;top:-5px;left:-5px;min-width:22px;height:22px;border-radius:99px;background:var(--red);color:#fff;font-size:12px;display:grid;place-items:center;padding:0 6px;box-shadow:0 0 0 2px var(--bg);animation:pop 1.2s ease-in-out infinite}
+@keyframes pop{50%{transform:scale(1.18)}}
+.foot{display:flex;gap:8px;justify-content:center;margin-top:auto;padding-top:6px}
+/* sheets */
+.sheetbg{position:fixed;inset:0;z-index:60;background:rgba(8,0,18,.72);backdrop-filter:blur(3px);display:grid;place-items:center;padding:16px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));animation:fade .2s both}
+@keyframes fade{from{opacity:0}}
+.sheet{width:min(100%,420px);max-height:calc(100% - 10px);overflow-y:auto;background:linear-gradient(170deg,#2f0d50,#16052a);border:2px solid var(--gold);border-radius:22px;padding:16px;display:grid;gap:10px;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 30px rgba(255,79,216,.3);animation:sheetIn .35s cubic-bezier(.2,.9,.3,1.3) both;text-align:center}
+@keyframes sheetIn{from{opacity:0;transform:scale(.85) translateY(20px)}}
+.sheet h2{margin:0;font-family:var(--f-display);font-size:40px;line-height:.95;color:var(--gold);text-wrap:balance}
+.sheet p{margin:0;color:var(--mut);font-weight:600;font-size:14px;line-height:1.45}
+.btn{border:0;border-radius:14px;padding:12px;font-weight:900;font-size:16px;color:#fff;background:linear-gradient(90deg,#ff2f6d,#ff7a3b);box-shadow:0 4px 0 #7a1036}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #7a1036}
+.btn.alt{background:rgba(255,255,255,.1);box-shadow:none;border:1.5px solid rgba(255,255,255,.3)}.btn.blue{background:linear-gradient(90deg,#00b4d8,#1e5fb3);box-shadow:0 4px 0 #0b2d5a}.btn.green{background:linear-gradient(90deg,#2fd06a,#14883a);box-shadow:0 4px 0 #0b4d20}
+.inp{width:100%;border-radius:12px;border:2px solid rgba(255,212,59,.6);background:rgba(0,0,0,.35);color:#fff;font:inherit;font-weight:800;font-size:17px;padding:10px 12px;text-align:center}
+.avs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.avs button{width:44px;height:44px;border-radius:50%;border:2px solid transparent;background:rgba(255,255,255,.08);font-size:24px}.avs button.on{border-color:var(--gold);background:rgba(255,212,59,.18)}
+/* tables list */
+.tables{display:grid;gap:10px}
+.tbl{position:relative;border:0;border-radius:18px;padding:14px 14px 12px;color:#fff;text-align:start;display:grid;grid-template-columns:auto 1fr auto;gap:2px 12px;align-items:center;box-shadow:0 5px 0 rgba(0,0,0,.45);overflow:hidden}
+.tbl .ic{grid-row:span 2;font-size:34px}.tbl b{font-family:var(--f-display);font-size:30px;line-height:.95}.tbl small{font-size:12px;font-weight:700;opacity:.9}.tbl em{grid-row:span 2;font-style:normal;font-weight:900;font-size:13px;background:rgba(0,0,0,.35);border-radius:99px;padding:4px 10px}
+.tbl.lock{filter:grayscale(.8) brightness(.7)}
+.f1{background:linear-gradient(120deg,#0f8a4f,#075530)}.f2{background:linear-gradient(120deg,#1e5fb3,#0b2d5a)}.f3{background:linear-gradient(120deg,#7b2fbf,#3a0d5c);box-shadow:0 5px 0 rgba(0,0,0,.45),inset 0 0 0 2px var(--gold)}
+/* ============ table ============ */
+.tt{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:calc(6px + env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));--cw:clamp(40px,min(14.5vw,8.2vh),80px)}
+.thead{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:900}
+.thead .ttl{flex:1;text-align:center;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heat{display:flex;align-items:center;gap:4px;font-weight:900;font-size:12px}
+.heat .hb{width:54px;height:9px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden}.heat .hb i{display:block;height:100%;background:linear-gradient(90deg,#ffd43b,#ff7a3b,#ff2f6d);transition:width .4s}
+.hh{background:linear-gradient(90deg,#ff2f6d,#ffd43b);color:#1b0b2a;border-radius:99px;padding:2px 8px;animation:pop .8s infinite}
+.timer{height:5px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.timer i{display:block;height:100%;width:0;background:var(--gold);transition:width .25s linear}
+.arena{flex:1;min-height:0;display:flex;justify-content:center;padding:8px 8px 4px}
+.felt{position:relative;width:100%;max-width:540px;height:100%;border-radius:22px 22px 50% 50%/22px 22px 30% 30%;
+ background:radial-gradient(ellipse at 50% 28%,var(--f1) 0%,var(--f2) 45%,var(--f3) 80%,var(--f4) 100%);border:7px solid #4a230c;
+ box-shadow:0 0 0 3px #e9b52a,0 0 26px rgba(255,79,216,.45),0 16px 40px rgba(0,0,0,.6),inset 0 0 50px rgba(0,0,0,.5);
+ display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:6px 6px 16px;--f1:#21c178;--f2:#0f8a4f;--f3:#09603a;--f4:#063f26}
+.felt.blue{--f1:#3b8ee8;--f2:#1e5fb3;--f3:#123f7a;--f4:#0a2650}.felt.vip{--f1:#9a4fe0;--f2:#6b1fa8;--f3:#45106e;--f4:#2a0845;border-color:#2b1500}.felt.tour{--f1:#ff9a3b;--f2:#c8541a;--f3:#8a320c;--f4:#5a1e06}
+.bulbs{position:absolute;inset:-15px;border-radius:30px 30px 50% 50%/30px 30px 31% 31%;border:4px dotted var(--gold);pointer-events:none;animation:bulbs .9s steps(2) infinite;filter:drop-shadow(0 0 4px var(--gold))}
+@keyframes bulbs{50%{border-color:var(--pink);filter:drop-shadow(0 0 5px var(--pink))}}
+.shoe{position:absolute;top:10px;left:10px;width:34px;height:44px;border-radius:5px 5px 3px 3px;background:linear-gradient(#6b1414,#3a0909);box-shadow:0 4px 8px rgba(0,0,0,.5),inset 0 0 0 2px #e9b52a;transform:rotate(-12deg)}
+.shoe i{position:absolute;inset:4px 5px auto;height:8px;border-radius:2px;background:repeating-linear-gradient(45deg,#8a1c1c 0 3px,#f6efe0 3px 5px)}.shoe i+i{top:10px}.shoe i+i+i{top:16px}
+.tlim{position:absolute;top:10px;right:12px;font-size:10px;font-weight:900;background:rgba(0,0,0,.35);border-radius:8px;padding:3px 6px;line-height:1.2;text-align:center;direction:ltr}
+.dl{position:relative;z-index:4;display:flex;align-items:center;gap:6px;background:linear-gradient(#2a0f40,#13061f);border:2px solid var(--gold);border-radius:99px;padding:2px 12px 2px 3px;box-shadow:0 0 12px rgba(255,212,59,.45)}
+.dl .av{width:40px;height:40px;border:2px solid var(--gold)}
+.dl .nm{display:grid;line-height:1.1}.dl .nm b{font-size:13.5px}.dl .nm span{font-size:10px;letter-spacing:.2em;color:var(--gold);font-weight:900}
+.bub{position:absolute;top:calc(100% + 5px);left:50%;transform:translateX(-50%);width:max-content;max-width:min(250px,74vw);text-align:center;z-index:6;background:#fff;color:#1b1d14;font-weight:800;font-size:12.5px;padding:3px 10px;border-radius:10px;line-height:1.3;box-shadow:0 4px 12px rgba(0,0,0,.45)}
+.bub:empty{display:none}.bub.new{animation:bubIn .35s cubic-bezier(.2,.9,.3,1.4) both}@keyframes bubIn{from{opacity:0;transform:translate(-50%,-8px) scale(.7)}}
+.dc{position:relative;z-index:2;display:grid;justify-items:center;gap:3px;margin-top:22px}
+.cards{display:flex;direction:ltr;justify-content:center}.cards .pc+.pc{margin-left:calc(var(--cw)*-.52)}
+.cards .pc:nth-child(2){transform:translateY(2px)}.cards .pc:nth-child(3){transform:translateY(4px)}.cards .pc:nth-child(n+4){transform:translateY(6px)}
+.pc{position:relative;display:grid;place-items:center;width:var(--cw);height:calc(var(--cw)*1.4);border-radius:calc(var(--cw)*.12);background:linear-gradient(160deg,#fff,#f1ebde);color:#1b1d14;box-shadow:0 4px 8px rgba(0,0,0,.45);font-weight:900;font-size:calc(var(--cw)*.34);line-height:1;direction:ltr;flex:none}
+.pc b{position:absolute;top:4%;left:7%;display:grid;justify-items:center;line-height:.95}.pc b u{text-decoration:none;font-size:.8em}.pc b.br{top:auto;left:auto;bottom:4%;right:7%;transform:rotate(180deg)}
+.pc i{font-style:normal;font-size:calc(var(--cw)*.62)}.pc.red{color:#c62828}
+.pc.back{background:repeating-linear-gradient(45deg,#8a1c1c 0 5px,#701515 5px 10px);border:3px solid #f6efe0}.pc.back i{font-size:calc(var(--cw)*.4);color:#f6efe0}
+.pc.slot{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 2px rgba(255,255,255,.22)}
+.pc.nd{animation:deal var(--dd,.4s) cubic-bezier(.2,.9,.3,1.15) both}
+@keyframes deal{from{opacity:0;transform:translate(-42vw,-28vh) rotate(-160deg) scale(.5)}to{opacity:1}}
+.pc.flip{animation:flip .45s both}@keyframes flip{0%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+.tot{font-weight:900;font-size:13px;background:var(--gold);color:#1b1d14;border-radius:99px;padding:1px 9px;box-shadow:0 2px 0 rgba(0,0,0,.4);direction:ltr}
+.tot.bust{background:var(--red);color:#fff}.tot.bjn{background:linear-gradient(90deg,#ffd43b,#ff4fd8);color:#1b0b2a}
+.mid{position:relative;z-index:2;display:grid;place-items:center;min-height:52px;width:100%}
+.arc{width:min(100%,330px);height:auto;overflow:visible;direction:ltr;unicode-bidi:isolate}.arc text{font-weight:900;font-family:system-ui,sans-serif}
+.arc .a1{fill:var(--gold);font-size:15px;letter-spacing:.12em}.arc .a2{fill:rgba(255,255,255,.8);font-size:8.4px;letter-spacing:.1em}
+.res{display:grid;justify-items:center;gap:1px;padding:6px 22px;border-radius:16px;animation:resIn .45s cubic-bezier(.2,.9,.3,1.4) both;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.res b{font-family:var(--f-display);font-size:38px;line-height:1}.res span{font-size:12px;font-weight:900}
+.res.win{background:linear-gradient(135deg,#2fd06a,#14883a)}.res.lose{background:linear-gradient(135deg,#b0392b,#6e1a12)}.res.tie{background:#5a5f66}
+@keyframes resIn{from{opacity:0;transform:scale(.5)}}
+.seats{position:relative;z-index:3;display:flex;justify-content:center;align-items:flex-end;gap:6px;width:100%}
+.seat{display:grid;justify-items:center;gap:4px;min-width:0;flex:0 1 auto;border-radius:14px;padding:4px 10px;transition:background .3s}
+.multi .seat{flex:1;padding:4px 1px}
+.seat.turn{background:rgba(255,212,59,.13);box-shadow:inset 0 0 0 2px rgba(255,212,59,.6)}
+.hands{display:flex;justify-content:center;gap:6px;direction:ltr;align-items:flex-end;min-height:calc(var(--cw)*1.2)}
+.hand{position:relative;display:grid;justify-items:center;gap:3px;padding:12px 3px 2px;border-radius:12px;transition:transform .25s}
+.hand.cur{background:rgba(255,255,255,.12);box-shadow:0 0 0 2px var(--gold),0 0 18px rgba(255,212,59,.6);transform:translateY(-4px)}
+.solo .seat.me .hand .pc{width:calc(var(--cw)*1.12);height:calc(var(--cw)*1.57);font-size:calc(var(--cw)*.38)}.solo .seat.me .hand .pc i{font-size:calc(var(--cw)*.7)}
+.multi .hand .pc,.seat.many .hand .pc{width:calc(var(--cw)*.74);height:calc(var(--cw)*1.04);font-size:calc(var(--cw)*.26)}.multi .hand .pc i,.seat.many .hand .pc i{font-size:calc(var(--cw)*.46)}
+.multi.n2 .hand .pc{width:calc(var(--cw)*.86);height:calc(var(--cw)*1.2);font-size:calc(var(--cw)*.3)}
+.hand.r-lose .pc,.hand.r-bust .pc{filter:brightness(.6) saturate(.6)}
+.tag{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:5;font-style:normal;font-weight:900;font-size:11px;padding:1px 7px;border-radius:99px;white-space:nowrap;direction:ltr;animation:tagIn .4s cubic-bezier(.2,.9,.3,1.5) both;box-shadow:0 3px 8px rgba(0,0,0,.45)}
+@keyframes tagIn{from{opacity:0;transform:translateX(-50%) scale(.3)}}
+.tag.win{background:#2fd06a;color:#06260f}.tag.bj{background:linear-gradient(90deg,#ffd43b,#ff4fd8);color:#1b0b2a}.tag.lose,.tag.bust{background:var(--red);color:#fff}.tag.push{background:#cfd6da;color:#1b1d14}
+.bet{display:flex;align-items:center;gap:3px;min-height:24px}.bet small{font-weight:900;color:var(--gold);font-size:12px}
+.stk{display:inline-flex;align-items:flex-end;gap:2px;direction:ltr}.stk .col{position:relative;width:20px;height:26px}.stk b{font-weight:900;font-size:12px;color:var(--gold);margin-left:3px;align-self:center;text-shadow:0 1px 2px #000}
+.chip{position:absolute;left:0;width:20px;height:8px;border-radius:50%;border:2px dashed rgba(255,255,255,.9);box-shadow:0 2px 0 rgba(0,0,0,.45)}
+.k5{background:#e53935}.k10{background:#1e5fb3}.k25{background:#1fa34a}.k100{background:#1b1b1b}.k500{background:#7b2fbf}.k1000{background:#ff9800}.k1{background:#f2f2f2}
+.who{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.35);border:1.5px solid rgba(255,212,59,.6);border-radius:99px;padding:2px 8px 2px 2px;font-size:11.5px;max-width:100%;min-width:0}
+.who .em{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:15px;flex:none}
+.who b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}.who span{font-weight:800;white-space:nowrap;color:var(--gold)}
+.seat.away{opacity:.45}.multi.n3 .who .em,.multi.n4 .who .em{display:none}.multi.n3 .who,.multi.n4 .who{padding:2px 6px;gap:3px;font-size:11px}
+@media (max-height:700px){.home{gap:7px}}
+.empty{font-size:11.5px;font-weight:800;opacity:.85;align-self:center;text-align:center}
+.sidewin{font-size:10.5px;font-weight:900;background:linear-gradient(90deg,#3be0ff,#7cff6b);color:#06260f;border-radius:99px;padding:1px 7px;animation:tagIn .4s both;white-space:nowrap}
+.burst{position:absolute;left:50%;top:44%;z-index:9;transform:translate(-50%,-50%);font-family:var(--f-display);font-size:clamp(42px,14vw,72px);line-height:1;white-space:nowrap;pointer-events:none;animation:burst 1.8s cubic-bezier(.2,.9,.3,1.2) both;direction:ltr;text-align:center}
+.burst.gold{color:var(--gold);text-shadow:0 4px 0 #8a4b00,0 0 26px #ff4fd8,0 0 50px var(--gold)}.burst.pink{color:#fff;text-shadow:0 4px 0 #8a0f5a,0 0 28px #ff4fd8}.burst.red{color:#ff5a4a;text-shadow:0 4px 0 #4a0a05,0 0 18px rgba(255,60,40,.8)}.burst.cyan{color:#fff;text-shadow:0 4px 0 #04506a,0 0 28px var(--cyan)}
+@keyframes burst{0%{opacity:0;transform:translate(-50%,-50%) scale(2.6) rotate(-8deg)}18%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4deg)}75%{opacity:1}100%{opacity:0;transform:translate(-50%,-80%) scale(1.1) rotate(-4deg)}}
+.cf{position:absolute;top:-16px;z-index:8;width:8px;height:14px;border-radius:2px;pointer-events:none;animation:fall 2s ease-in forwards}
+@keyframes fall{to{transform:translateY(85vh) rotate(var(--r));opacity:.7}}
+.fly{position:fixed;z-index:70;font-size:20px;pointer-events:none;transition:transform .7s cubic-bezier(.5,0,.2,1),opacity .7s}
+.emo{position:absolute;z-index:9;font-size:34px;pointer-events:none;animation:emo 2.2s ease-out forwards}
+@keyframes emo{0%{opacity:0;transform:translateY(10px) scale(.4)}15%{opacity:1;transform:translateY(0) scale(1.2)}100%{opacity:0;transform:translateY(-120px) scale(1)}}
+/* controls */
+.act{display:grid;gap:6px}.act.wait{text-align:center;font-weight:900;opacity:.85;padding:16px 0;font-size:14px}
+.act.betp{background:rgba(0,0,0,.35);border:1.5px solid rgba(255,79,216,.55);border-radius:16px;padding:7px 8px;box-shadow:0 0 18px rgba(255,79,216,.25)}
+.bs{display:flex;align-items:baseline;justify-content:center;gap:7px}.bs span{font-weight:900}.bs b{font-family:var(--f-display);font-size:36px;line-height:1;color:var(--gold);text-shadow:0 0 12px rgba(255,212,59,.6)}.bs small{font-size:11px;font-weight:800;opacity:.8}
+.bs b.nope{animation:nope .4s}@keyframes nope{25%{transform:translateX(-6px);color:#ff5a4a}75%{transform:translateX(6px)}}
+.chipsrow{display:flex;gap:6px;justify-content:center;direction:ltr}
+.ch{width:46px;height:46px;border-radius:50%;border:3px dashed rgba(255,255,255,.92);color:#fff;font-weight:900;font-size:13px;box-shadow:0 3px 0 rgba(0,0,0,.5),inset 0 0 0 3px rgba(0,0,0,.15);flex:none}
+.ch:active{transform:translateY(2px) scale(.94)}.ch.clr{background:#5a5f66;font-size:18px}.ch.x2{background:#ff7a3b;font-size:14px}
+.siderow{display:flex;gap:6px;justify-content:center}
+.sb{border:1.5px solid rgba(59,224,255,.6);background:rgba(59,224,255,.08);color:#fff;border-radius:99px;padding:4px 10px;font-weight:900;font-size:12px}.sb.on{background:linear-gradient(90deg,#3be0ff,#7cff6b);color:#06260f;border-color:transparent}
+.sb.auto.on{background:linear-gradient(90deg,#ffd43b,#ff7a3b);color:#1b0b2a}
+.deal{border:0;border-radius:14px;padding:12px 6px;font-weight:900;font-size:19px;color:#fff;background:linear-gradient(90deg,#ff2f6d,#ff7a3b,#ffd43b);box-shadow:0 5px 0 #7a1036,0 0 22px rgba(255,79,216,.5);animation:glow 1.4s ease-in-out infinite}
+.deal:active{transform:translateY(3px);box-shadow:0 2px 0 #7a1036}
+.row{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;direction:ltr}
+.ab{border:0;border-radius:12px;font-weight:900;font-size:17px;padding:10px 2px 8px;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.45);line-height:1.05;display:grid;gap:2px}
+.ab small{font-size:10.5px;font-weight:800;opacity:.9}.ab:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.45)}
+.ab.hit{background:#1fa34a}.ab.stand{background:#c62828}.ab.double{background:#e9a800;color:#1b1d14}.ab.split{background:#1e5fb3}.ab.surrender{background:#5a5f66}.ab.ins{background:#7b2fbf}
+.ab.rec{outline:3px solid #fff;outline-offset:-3px}
+.hint{text-align:center;font-size:12.5px;font-weight:800;color:#ffe9a8}.hint b{color:var(--gold)}
+.emobar{display:flex;gap:4px;justify-content:center}.emobar button{border:0;background:rgba(255,255,255,.08);border-radius:99px;width:36px;height:30px;font-size:17px}
+/* wheel */
+.wheelw{position:relative;width:min(78vw,300px);aspect-ratio:1;margin:4px auto}
+.wheel{width:100%;height:100%;border-radius:50%;border:6px solid var(--gold);box-shadow:0 0 30px rgba(255,212,59,.6),inset 0 0 0 4px #4a230c;transition:transform 4.6s cubic-bezier(.12,.75,.12,1)}
+.wheel text{font-family:system-ui,sans-serif;font-weight:900;fill:#fff;font-size:11px}
+.wptr{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:28px solid #fff;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5));z-index:2}
+.whub{position:absolute;inset:40%;border-radius:50%;background:radial-gradient(#ffd43b,#e9a800);display:grid;place-items:center;font-family:var(--f-display);font-size:30px;color:#7a1036;box-shadow:0 0 0 4px #4a230c}
+/* missions & boards */
+.mis{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;background:rgba(255,255,255,.06);border-radius:14px;padding:10px 12px;text-align:start}
+.mis i{font-style:normal;font-size:24px;grid-row:span 2}.mis b{font-size:14px}.mis em{font-style:normal;grid-row:span 2;font-weight:900;color:var(--gold);font-size:13px}
+.mis .pb{height:7px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.mis .pb u{display:block;height:100%;background:linear-gradient(90deg,#7cff6b,#3be0ff)}
+.mis.done{background:rgba(124,255,107,.12);box-shadow:inset 0 0 0 1.5px rgba(124,255,107,.6)}
+.tabs{display:flex;gap:6px;justify-content:center}.tabs button{border:1.5px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:99px;padding:6px 12px;font-weight:800;font-size:13px}.tabs button.on{background:var(--gold);color:#1b0b2a;border-color:var(--gold)}
+.lb{display:grid;gap:4px;text-align:start;max-height:46vh;overflow-y:auto}
+.lb div{display:grid;grid-template-columns:30px 1fr auto;gap:8px;align-items:center;background:rgba(255,255,255,.05);border-radius:10px;padding:7px 10px;font-weight:800;font-size:14px}
+.lb div.me{background:rgba(255,212,59,.18);box-shadow:inset 0 0 0 1.5px var(--gold)}.lb div span:first-child{font-family:var(--f-display);font-size:22px;color:var(--gold);text-align:center}.lb div span:last-child{color:var(--gold);font-variant-numeric:tabular-nums}
+.lb small{opacity:.7;font-size:11px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.stats div{background:rgba(255,255,255,.07);border-radius:12px;padding:8px 4px;display:grid;gap:1px}.stats b{font-family:var(--f-display);font-size:28px;color:var(--gold);line-height:1}.stats span{font-size:11px;color:var(--mut);font-weight:700}
+.room{display:grid;gap:6px}.room div{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border-radius:12px;padding:8px 10px;font-weight:800}.room div i{font-style:normal;font-size:22px}.room div small{margin-inline-start:auto;color:var(--gold)}
+.code{font-family:var(--f-display);font-size:44px;letter-spacing:.12em;color:#fff;direction:ltr;text-shadow:0 0 12px var(--pink)}
+.url{font-size:12px;direction:ltr;word-break:break-all;background:rgba(0,0,0,.35);border-radius:10px;padding:6px 8px;color:var(--mut);user-select:all;-webkit-user-select:all}
+.toast{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:90;width:max-content;max-width:calc(100% - 32px);display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,#2a0b45,#4a1270);border:2px solid var(--gold);border-radius:16px;padding:8px 14px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:toast 3s both}
+.toast i{font-style:normal;font-size:26px}.toast b{display:block;font-size:14px}.toast small{font-size:12px;color:var(--mut);font-weight:700}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,-30px)}10%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-20px)}}
+.lvup{font-family:var(--f-display);font-size:80px;line-height:.9;color:var(--gold);text-shadow:0 0 20px var(--pink)}
+@media (max-height:640px){.tt{--cw:clamp(36px,min(13vw,7.4vh),64px);gap:4px}.dl .av{width:32px;height:32px}.dc{margin-top:18px}.ch{width:40px;height:40px}.bs b{font-size:30px}.deal{padding:10px 6px;font-size:17px}.ab{padding:8px 2px 6px;font-size:15px}.mid{min-height:40px}.arc{width:min(100%,280px)}
+ .logo .n21{font-size:72px}.logo .tg{display:none}.dcard{padding:6px 8px;min-width:0}.dcard small{display:none}.dcard .av{width:40px;height:40px;grid-row:auto}.tile{padding:8px 3px 7px}.tile small{display:none}.tile i{font-size:22px}.cta{padding:11px 10px;font-size:20px}}
+@media (prefers-reduced-motion:reduce){.bulbs,.deal,.cta,.flick,.dot,.hh{animation:none}}
+</style>
+</head><body><div id="app"></div>
+<script>
+(()=>{'use strict';
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const wait=ms=>new Promise(r=>setTimeout(r,ms)),pick=a=>a[Math.random()*a.length|0],fmt=n=>Math.round(n).toLocaleString('en-US');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IN_CLAUDE=!!(window.claude&&typeof window.claude.use==='function'),ONLINE=!IN_CLAUDE;
+const SB_URL='https://fwemsagnsjghljghvdom.supabase.co',SB_KEY='sb_publishable_zmpj-avYWjlSUz3eFk6vQw_cokwAdfa',
+ SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3ZW1zYWduc2pnaGxqZ2h2ZG9tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM5NjI5NTksImV4cCI6MjEwOTUzODk1OX0.wTJ1mnchOXhnigYDrM_89vGhA5N3dSi0qzOs5K4pdVc',
+ SBJS='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js';
+const SHARE_BASE=location.protocol==='file:'||IN_CLAUDE?'https://king-of-the-gimelets.vercel.app/21/':location.origin+location.pathname;
+const VERSION='1.0';
+/* ---------- profile ---------- */
+const LSK='bj21';
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
+const P=(()=>{let p={};try{p=JSON.parse(localStorage.getItem(LSK)||'{}')||{}}catch(e){}
+ return Object.assign({id:Math.random().toString(36).slice(2,10)+Date.now().toString(36),name:'',av:'🦁',chips:1000,xp:0,lvl:1,dealer:'shmulik',
+  st:{hands:0,wins:0,bjs:0,biggest:0,streak:0,won:0,lost:0,dbust:0},heat:0,wheel:'',gift:0,refill:0,mis:null,tour:{day:'',tries:0,best:0},
+  set:{snd:true,mus:true,turbo:false},seen:false},p,{st:Object.assign({hands:0,wins:0,bjs:0,biggest:0,streak:0,won:0,lost:0,dbust:0},p.st||{}),set:Object.assign({snd:true,mus:true,turbo:false},p.set||{}),tour:Object.assign({day:'',tries:0,best:0},p.tour||{})})})();
+let saveT=0;function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(LSK,JSON.stringify(P))}catch(e){}},120)}
+save();
+const RANKS=['טירון','טוראי','רב״ט','סמל','סמ״ר','רס״ל','רס״ר','רס״ם','רס״ב','סג״מ','סגן','סרן','רס״ן','סא״ל','אל״ם','תא״ל','אלוף','רב־אלוף'];
+const rankOf=l=>RANKS[Math.min(RANKS.length-1,Math.floor((l-1)/2))];
+const need=l=>80+l*45;
+function xpLeft(){return need(P.lvl)-P.xp}
+/* ---------- audio ---------- */
+const AU={c:null,m:null,mg:null};
+function actx(){if(!AU.c){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AU.c=new C();AU.m=AU.c.createGain();AU.m.gain.value=.85;AU.m.connect(AU.c.destination);AU.mg=AU.c.createGain();AU.mg.gain.value=.16;AU.mg.connect(AU.m)}
+ if(AU.c.state==='suspended')AU.c.resume();return AU.c}
+function tone(f,d,o={}){if(!P.set.snd&&!o.music)return;const c=actx();if(!c)return;const t=c.currentTime+(o.at||0),g=c.createGain(),os=c.createOscillator();os.type=o.type||'sine';os.frequency.setValueAtTime(f,t);if(o.to)os.frequency.exponentialRampToValueAtTime(o.to,t+d);
+ g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v||.1,t+(o.a||.008));g.gain.exponentialRampToValueAtTime(.0001,t+d);os.connect(g);g.connect(o.dest||AU.m);os.start(t);os.stop(t+d+.05)}
+let NB=null;function nbuf(c){if(!NB){NB=c.createBuffer(1,c.sampleRate,c.sampleRate);const d=NB.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}return NB}
+function noise(d,o={}){if(!P.set.snd&&!o.music)return;const c=actx();if(!c)return;const t=c.currentTime+(o.at||0),s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=nbuf(c);f.type=o.type||'bandpass';f.frequency.setValueAtTime(o.f||1500,t);if(o.sw)f.frequency.exponentialRampToValueAtTime(o.sw,t+d);f.Q.value=o.q||1;
+ g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v||.2,t+(o.a||.005));g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(o.dest||AU.m);s.start(t,Math.random()*.5);s.stop(t+d+.05)}
+const SFX={
+ btn(){tone(720,.05,{type:'square',v:.035})},
+ chip(n=1){for(let i=0;i<n;i++){noise(.04,{f:3000+Math.random()*1800,q:5,v:.35,at:i*.05});tone(2300+Math.random()*700,.03,{type:'triangle',v:.04,at:i*.05})}},
+ card(at=0){noise(.1,{f:1400,sw:5000,q:.9,v:.22,at})},
+ flip(){noise(.07,{f:2600,q:1,v:.25});tone(880,.05,{type:'triangle',v:.05,at:.03})},
+ win(){[523,659,784,1047].forEach((f,i)=>tone(f,.18,{type:'square',v:.05,at:i*.07}));SFX.coins(6,.25)},
+ big(){[392,523,659,784,1047,1319].forEach((f,i)=>tone(f,.22,{type:'square',v:.055,at:i*.08}));tone(1568,.7,{type:'triangle',v:.07,at:.5});SFX.coins(14,.3);SFX.crowd()},
+ bj(){[523,659,784,1047].forEach((f,i)=>{tone(f,.5,{type:'sawtooth',v:.035,at:i*.06});tone(f*2,.4,{type:'square',v:.025,at:.32+i*.06})});SFX.coins(18,.2);SFX.crowd();SFX.ding(.6)},
+ bust(){tone(330,.55,{type:'sawtooth',to:80,v:.07});noise(.3,{f:400,q:.6,v:.12})},
+ lose(){tone(392,.18,{type:'triangle',v:.07});tone(294,.34,{type:'triangle',v:.07,at:.16})},
+ push(){tone(660,.08,{v:.06});tone(660,.08,{v:.06,at:.12})},
+ coins(n,at=0){for(let i=0;i<n;i++)tone(1700+Math.random()*1100,.07,{type:'square',v:.025,at:at+i*.045})},
+ crowd(){noise(1.8,{f:900,q:.4,v:.3,a:.25});noise(1.4,{f:2200,q:.6,v:.12,a:.2,at:.1})},
+ ding(at=0){tone(1568,.5,{v:.07,at});tone(2093,.6,{v:.06,at:at+.09});tone(2637,.7,{v:.04,at:at+.18})},
+ lvl(){[392,494,587,784,988,1175,1568].forEach((f,i)=>tone(f,.2,{type:'square',v:.05,at:i*.06}));SFX.crowd()},
+ tick(){tone(1300,.02,{type:'square',v:.04})},
+ talk(hi){const b=hi?520:240;for(let i=0;i<5;i++)tone(b+Math.random()*b*.5,.06,{type:'triangle',v:.035,at:i*.07})}};
+/* casino lounge loop: 4-on-the-floor, bass and chord stabs, plus random slot-machine dings */
+const MU={on:false,step:0,next:0,iv:0,amb:0};
+const PROG=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]];
+const mtf=n=>440*Math.pow(2,(n-69)/12);
+function muStart(){if(MU.on||!P.set.mus)return;const c=actx();if(!c)return;MU.on=true;MU.next=c.currentTime+.05;MU.step=0;
+ MU.iv=setInterval(()=>{const c=AU.c;if(!c)return;const spb=60/122/4;while(MU.next<c.currentTime+.25){const s=MU.step%16,bar=(MU.step>>4)%4,ch=PROG[bar],at=MU.next-c.currentTime,o={music:true,dest:AU.mg};
+   if(s%4===0)tone(110,.18,Object.assign({to:45,v:.5,type:'sine',at},o));
+   if(s%4===2)noise(.04,Object.assign({f:8000,type:'highpass',v:.18,at},o));
+   if([0,3,6,8,10,14].includes(s))tone(mtf(ch[0]-24),.16,Object.assign({type:'triangle',v:.32,at},o));
+   if(s===4||s===12)noise(.12,Object.assign({f:1800,q:.7,v:.25,at},o));
+   if(s===2||s===7||s===10)ch.forEach(n=>tone(mtf(n+12),.11,Object.assign({type:'square',v:.045,at},o)));
+   if(s===15&&Math.random()<.4)tone(mtf(ch[2]+24),.2,Object.assign({type:'sine',v:.08,at},o));
+   MU.next+=spb;MU.step++}},60);
+ clearInterval(MU.amb);MU.amb=setInterval(()=>{if(!document.hidden&&P.set.snd&&Math.random()<.5)SFX.ding()},7000)}
+function muStop(){MU.on=false;clearInterval(MU.iv);clearInterval(MU.amb)}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)muStop();else if(started&&P.set.mus)muStart()});
+let started=false;function firstTouch(){if(started)return;started=true;actx();if(P.set.mus)muStart()}
+const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+/* ---------- dealers (original cartoon portraits) ---------- */
+const AV={
+ shmulik:`<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#5a2a8a"/><path d="M14 100Q16 72 50 70Q84 72 86 100Z" fill="#fff"/><path d="M14 100Q16 74 38 71L45 100ZM86 100Q84 74 62 71L55 100Z" fill="#1b1b1b"/><path d="M40 77L50 81L60 77L60 86L50 82L40 86Z" fill="#e53935"/><rect x="43" y="60" width="14" height="13" fill="#e0a77a"/><ellipse cx="50" cy="45" rx="22" ry="25" fill="#f0b98d"/><ellipse cx="28" cy="47" rx="4" ry="6" fill="#e6a77c"/><ellipse cx="72" cy="47" rx="4" ry="6" fill="#e6a77c"/><path d="M27 41Q27 16 50 16Q74 16 73 41Q70 27 50 26Q34 26 27 41Z" fill="#2b1a10"/><path d="M40 21Q52 14 64 22" stroke="#4a3020" stroke-width="2" fill="none"/><circle class="eye" cx="41" cy="45" r="2.8" fill="#1b1b1b"/><circle class="eye" cx="59" cy="45" r="2.8" fill="#1b1b1b"/><path d="M35 38L46 37M54 37L65 38" stroke="#2b1a10" stroke-width="2.6" stroke-linecap="round"/><path d="M47 47Q50 53 53 47" stroke="#c98a60" stroke-width="2" fill="none"/><path d="M36 57Q43 51 50 55Q57 51 64 57Q57 60 50 58Q43 60 36 57Z" fill="#2b1a10"/><ellipse class="mouth" cx="50" cy="62" rx="5" ry="1.8" fill="#7a2020"/></svg>`,
+ shoshi:`<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#c2185b"/><circle cx="50" cy="14" r="13" fill="#7a1f1f"/><path d="M14 100Q16 72 50 70Q84 72 86 100Z" fill="#fff"/><path d="M14 100Q16 74 38 71L45 100ZM86 100Q84 74 62 71L55 100Z" fill="#1b1b1b"/><path d="M40 77L50 81L60 77L60 86L50 82L40 86Z" fill="#ffd43b"/><rect x="43" y="60" width="14" height="13" fill="#d9946a"/><path d="M24 50Q22 22 50 22Q78 22 76 50Q76 66 70 70L66 46Q50 30 34 46L30 70Q24 66 24 50Z" fill="#7a1f1f"/><ellipse cx="50" cy="47" rx="20" ry="23" fill="#f3c19a"/><path d="M30 44Q34 26 50 27Q66 26 70 44Q62 32 50 33Q38 32 30 44Z" fill="#7a1f1f"/><circle cx="29" cy="56" r="3.4" fill="#ffd43b"/><circle cx="71" cy="56" r="3.4" fill="#ffd43b"/><circle class="eye" cx="42" cy="47" r="2.8" fill="#1b1b1b"/><circle class="eye" cx="58" cy="47" r="2.8" fill="#1b1b1b"/><path d="M37 43L40 41M36 46L39 45M63 43L60 41M64 46L61 45" stroke="#1b1b1b" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="38" cy="55" rx="4" ry="2.4" fill="#ff8aa8" opacity=".7"/><ellipse cx="62" cy="55" rx="4" ry="2.4" fill="#ff8aa8" opacity=".7"/><path d="M48 49Q50 54 52 49" stroke="#c98a60" stroke-width="1.8" fill="none"/><path class="mouth" d="M44 60Q50 56 56 60Q50 65 44 60Z" fill="#d81b60"/></svg>`};
+const DEALERS={shmulik:{n:'שמוליק',full:'שמוליק הדילר',tag:'Dealer',hi:false,desc:'ותיק, ציני, לא אוהב להפסיד'},shoshi:{n:'שושי',full:'שושי הדילרית',tag:'Dealer',hi:true,desc:'מהירה, עוקצנית, אוהבת מנצחים'}};
+const TALK={
+ shmulik:{deal:['הימורים סגורים! קלפים על השולחן!','יאללה, מי רוצה להתעשר?','הבית מזמין. הקלפים לא.','שב, שב. שמוליק מחלק.'],bj:['בלאק ג׳ק!!! מחיאות כפיים!','21 טבעי! נולדת לזה!','וואלה. אני הולך לבכות.'],
+  bust:['באסט! יותר מדי, אחי.','22. שרפת.','ביקשת עוד אחד... קיבלת.'],dbust:['נשרפתי!!! משלם לכולם!','באסט לבית! קחו קחו!','אל תספרו לרס״ר.'],win:['ניצחת. קח, תהנה.','משלם! מזל של טירון?','בום! עוד יד?'],
+  lose:['הבית לוקח. תודה.','יפה ניסית.','שמוליק אוסף. בפעם הבאה.'],push:['Push. אף אחד לא בוכה.','תיקו. מחזיר לך.'],dbl:['Double! איזה אומץ!','מכפיל? אני אוהב את זה.'],split:['Split! כפול כיף.','מפצל? קדימה.'],
+  ins:['יש לי A... רוצה ביטוח?','A אצלי. מפחד?'],hot:['הוא חם! תביאו מטף!','מישהו יעצור אותו!'],side:['הימור צד נכנס! איזה מזל!'],hh:['שעת שמחה! כל ניצחון כפול!'],shift:['החלפת משמרת! שושי, תורך.']},
+ shoshi:{deal:['יאללה מותק, קלפים!','מהר מהר, אין לי כל היום.','שושי מחלקת. תתפלל.','הימורים סגורים, חמוד.'],bj:['בלאק ג׳ק! אתה מלך!','21! אוהבת אותך!','וואו! שושי בשוק!'],
+  bust:['באסט, מתוק. קורה.','אופס! 22.','שרפת. שושי מחייכת.'],dbust:['נשרפתי! קחו הכל!','אוי לא, באסט לשושי!','משלמת לכולם, יאללה!'],win:['ניצחת! מגיע לך.','משלמת! עוד אחת?','כל הכבוד, חמוד!'],
+  lose:['שושי לוקחת, סליחה.','לא נורא, עוד יד.','הבית לוקח, מותק.'],push:['תיקו! מחזירה.','Push. אף אחד לא נפגע.'],dbl:['Double? איזה גבר!','מכפיל! אני מתרגשת!'],split:['Split! שתי ידיים, שתי הזדמנויות.','מפצל? אוהבת את זה.'],
+  ins:['יש לי A... ביטוח, מותק?','A! אתה מפחד?'],hot:['הוא בוער! 🔥','מישהו תעצור אותו!'],side:['הימור צד! איזה מזל יש לך!'],hh:['שעת שמחה! הכל כפול!'],shift:['החלפת משמרת! שמוליק, בוא.']}};
+/* ---------- engine ---------- */
+const R=['2','3','4','5','6','7','8','9','10','J','Q','K','A'],SU=['♠','♥','♦','♣'];
+const val=c=>{const r=c%13;return r===12?11:r>=8?10:r+2};
+function tot(cs){let t=0,a=0;for(const c of cs){if(c==null||c<0)continue;t+=val(c);if(c%13===12)a++}while(t>21&&a){t-=10;a--}return{t,soft:a>0}}
+const nat=h=>h.cards.length===2&&!h.sp&&tot(h.cards).t===21;
+function shoe(){const s=[];for(let d=0;d<6;d++)for(let c=0;c<52;c++)s.push(c);for(let i=s.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[s[i],s[j]]=[s[j],s[i]]}return s}
+function ppEval(a,b){if(a%13!==b%13)return 0;const sa=a/13|0,sb=b/13|0;if(sa===sb)return 25;const red=x=>x===1||x===2;return red(sa)===red(sb)?12:6}
+function t3Eval(cs){const r=cs.map(c=>c%13).sort((x,y)=>x-y),s=cs.map(c=>c/13|0),fl=s[0]===s[1]&&s[1]===s[2],tr=r[0]===r[2],
+ st=(r[0]+1===r[1]&&r[1]+1===r[2])||(r[0]===0&&r[1]===1&&r[2]===12);if(tr&&fl)return 100;if(st&&fl)return 40;if(tr)return 30;if(st)return 10;if(fl)return 5;return 0}
+const PPN={25:'Perfect Pair',12:'Colored Pair',6:'Mixed Pair'},T3N={100:'Suited Trips',40:'Straight Flush',30:'Trips',10:'Straight',5:'Flush'};
+function gNew(seats,o){o=o||{};return{shoe:shoe(),seats:seats.map(s=>({id:s.id,name:s.name,av:s.av,chips:s.chips,bet:s.bet||0,pp:0,t3:0,last:0,hands:[],ins:0,insQ:false,ready:false,net:0,side:[],away:false})),
+ dealer:[],hole:true,phase:'bet',turn:[-1,-1],round:0,rounds:o.rounds||0,min:o.min||5,max:o.max||500,luck:o.luck||0,mode:o.mode||'solo',seq:0,shuffled:false,over:false}}
+function draw(G,who,cards){if(G.shoe.length<26){G.shoe=shoe();G.shuffled=true}let c=G.shoe.pop();
+ if(G.luck>0&&Math.random()<G.luck){const t=tot(cards.concat(c)).t;if((who==='p'&&t>21)||(who==='d'&&t>=17&&t<=21)||(who==='h'&&t===21)){G.shoe.unshift(c);c=G.shoe.pop()}}return c}
+function gDeal(G){G.round++;G.dealer=[];G.hole=true;G.shuffled=false;G.turn=[-1,-1];
+ for(const s of G.seats){s.hands=[];s.ins=0;s.insQ=false;s.net=0;s.side=[];s.ready=false;s.sideNet=0;
+  if(!s.away&&s.bet>0&&s.chips>=s.bet){s.chips-=s.bet;s.last=s.bet;s.hands=[{cards:[],bet:s.bet}];
+   s.ppB=s.pp&&s.chips>=s.pp?s.pp:0;s.chips-=s.ppB;s.t3B=s.t3&&s.chips>=s.t3?s.t3:0;s.chips-=s.t3B}else{s.ppB=s.t3B=0}}
+ for(let k=0;k<2;k++){for(const s of G.seats)if(s.hands.length)s.hands[0].cards.push(draw(G,'x',[]));G.dealer.push(draw(G,k?'h':'x',G.dealer))}
+ for(const s of G.seats){if(!s.hands.length)continue;const c=s.hands[0].cards;
+  if(s.ppB){const m=ppEval(c[0],c[1]);if(m){s.chips+=s.ppB*(m+1);s.side.push({n:PPN[m],m,w:s.ppB*m});s.sideNet+=s.ppB*m}else s.sideNet-=s.ppB}
+  if(s.t3B){const m=t3Eval([c[0],c[1],G.dealer[0]]);if(m){s.chips+=s.t3B*(m+1);s.side.push({n:T3N[m],m,w:s.t3B*m});s.sideNet+=s.t3B*m}else s.sideNet-=s.t3B}}
+ G.seq++;
+ if(G.dealer[0]%13===12){let any=false;G.seats.forEach(s=>{s.insQ=s.hands.length>0&&!s.away&&!nat(s.hands[0])&&s.hands[0].bet>=2&&s.chips>=Math.floor(s.hands[0].bet/2);if(s.insQ)any=true});if(any){G.phase='ins';return}}
+ gPeek(G)}
+function gIns(G,i,yes){const s=G.seats[i];if(G.phase!=='ins'||!s||!s.insQ)return false;if(yes){const v=Math.floor(s.hands[0].bet/2);s.chips-=v;s.ins=v}s.insQ=false;G.seq++;if(!G.seats.some(x=>x.insQ))gPeek(G);return true}
+function gPeek(G){if(val(G.dealer[0])>=10&&tot(G.dealer).t===21){G.hole=false;gSettle(G);return}G.phase='play';G.turn=[0,-1];gNext(G)}
+function gNext(G){let[i,j]=G.turn;j++;for(;i<G.seats.length;i++,j=0){const H=G.seats[i].hands;for(;j<H.length;j++){const h=H[j];if(h.done)continue;if(nat(h)||tot(h.cards).t>=21){h.done=true;continue}G.turn=[i,j];G.seq++;return}}
+ G.phase='dealer';G.turn=[-1,-1];G.seq++}
+function gOpts(G,i){if(!G||G.phase!=='play'||G.turn[0]!==i)return null;const s=G.seats[i],h=s.hands[G.turn[1]];if(!h)return null;const two=h.cards.length===2;
+ return{hit:true,stand:true,double:two&&s.chips>=h.bet,split:two&&val(h.cards[0])===val(h.cards[1])&&s.hands.length<4&&s.chips>=h.bet,surrender:two&&s.hands.length===1&&!h.sp}}
+function gAct(G,i,a){const o=gOpts(G,i);if(!o||!o[a])return false;const s=G.seats[i],h=s.hands[G.turn[1]];
+ if(a==='hit'){h.cards.push(draw(G,'p',h.cards));if(tot(h.cards).t>=21)h.done=true}
+ else if(a==='stand')h.done=true;
+ else if(a==='double'){s.chips-=h.bet;h.bet*=2;h.dbl=true;h.cards.push(draw(G,'p',h.cards));h.done=true}
+ else if(a==='surrender'){h.sur=true;h.done=true;s.chips+=Math.floor(h.bet/2)}
+ else if(a==='split'){const ace=h.cards[0]%13===12;s.chips-=h.bet;const h2={cards:[h.cards.pop()],bet:h.bet,sp:true};h.sp=true;s.didSplit=true;
+  h.cards.push(draw(G,'x',h.cards));h2.cards.push(draw(G,'x',h2.cards));s.hands.splice(G.turn[1]+1,0,h2);if(ace){h.done=true;h2.done=true}else if(tot(h.cards).t===21)h.done=true}
+ G.seq++;if(h.done)gNext(G);return true}
+const live=G=>G.seats.some(s=>s.hands.some(h=>!h.sur&&tot(h.cards).t<=21&&!nat(h)));
+function gDealer(G){if(G.phase!=='dealer')return'none';if(G.hole){G.hole=false;G.seq++;return'reveal'}
+ if(live(G)&&tot(G.dealer).t<17){G.dealer.push(draw(G,'d',G.dealer));G.seq++;return'hit'}gSettle(G);return'done'}
+function gSettle(G){const d=tot(G.dealer).t,dbj=G.dealer.length===2&&d===21;G.hole=false;
+ for(const s of G.seats){let net=s.sideNet||0;if(s.ins){if(dbj){s.chips+=s.ins*3;net+=s.ins*2}else net-=s.ins}
+  for(const h of s.hands){const t=tot(h.cards).t,n=nat(h);let pay=0,r;
+   if(h.sur){r='sur';pay=Math.floor(h.bet/2)}else if(t>21)r='bust';else if(dbj){r=n?'push':'lose';pay=n?h.bet:0}else if(n){r='bj';pay=h.bet+Math.floor(h.bet*1.5)}
+   else if(d>21||t>d){r='win';pay=h.bet*2}else if(t===d){r='push';pay=h.bet}else r='lose';
+   h.res=r;if(r!=='sur')s.chips+=pay;h.net=pay-h.bet;net+=h.net}
+  s.net=net}
+ G.phase='done';G.turn=[-1,-1];G.seq++}
+function hint(h,up,o){const{t,soft}=tot(h.cards),u=val(up),D=o.double;
+ if(o.split){const r=val(h.cards[0]);if(r===11||r===8)return'split';if(r===9&&![7,10,11].includes(u))return'split';if(r===7&&u<=7)return'split';if(r===6&&u<=6)return'split';if((r===2||r===3)&&u<=7)return'split';if(r===4&&(u===5||u===6))return'split'}
+ if(o.surrender&&!soft&&((t===16&&u>=9)||(t===15&&u===10)))return'surrender';
+ if(soft){if(t>=20)return'stand';if(t===19)return u===6&&D?'double':'stand';if(t===18)return u>=3&&u<=6&&D?'double':u<=8?'stand':'hit';if(t===17)return u>=3&&u<=6&&D?'double':'hit';if(t>=15)return u>=4&&u<=6&&D?'double':'hit';return u>=5&&u<=6&&D?'double':'hit'}
+ if(t>=17)return'stand';if(t>=13)return u<=6?'stand':'hit';if(t===12)return u>=4&&u<=6?'stand':'hit';if(t===11)return D?'double':'hit';if(t===10)return u<=9&&D?'double':'hit';if(t===9)return u>=3&&u<=6&&D?'double':'hit';return'hit'}
+/* ---------- tables, missions, wheel ---------- */
+const TABLES=[{id:'mess',n:'חדר האוכל',ic:'🍽️',min:5,max:200,lv:1,felt:'',chips:[5,25,100,500]},{id:'gate',n:'הש״ג',ic:'🚧',min:25,max:1000,lv:4,felt:'blue',chips:[25,100,500,1000]},{id:'vip',n:'לשכת המג״ד',ic:'👑',min:100,max:5000,lv:8,felt:'vip',chips:[100,500,1000,5000]}];
+const MPOOL=[{k:'win',n:10,t:'נצח 10 ידיים',i:'🏆',r:300},{k:'bj',n:2,t:'תפוס 2 בלאק ג׳ק',i:'🃏',r:400},{k:'streak',n:3,t:'נצח 3 ידיים ברצף',i:'🔥',r:350},{k:'dblwin',n:2,t:'נצח 2 ידיים עם Double',i:'✌️',r:350},
+ {k:'split',n:2,t:'פצל 2 פעמים',i:'✂️',r:250},{k:'hands',n:30,t:'שחק 30 ידיים',i:'🎲',r:300},{k:'side',n:1,t:'נצח בהימור צד',i:'💎',r:450},{k:'five',n:1,t:'יד של 5 קלפים בלי להישרף',i:'🖐️',r:500},
+ {k:'dbust',n:4,t:'ראה את הדילר נשרף 4 פעמים',i:'💥',r:300},{k:'online',n:3,t:'שחק 3 ידיים עם חברים',i:'👥',r:400},{k:'tour',n:1,t:'השתתף בטורניר היומי',i:'🏅',r:300}];
+function missions(){const d=today();if(!P.mis||P.mis.day!==d){let seed=[...d].reduce((a,c)=>a*31+c.charCodeAt(0)|0,7);const pool=MPOOL.filter(m=>ONLINE||!['online','tour'].includes(m.k)),out=[];
+  while(out.length<3){seed=(seed*1103515245+12345)&0x7fffffff;const m=pool[seed%pool.length];if(!out.includes(m.k))out.push(m.k)}P.mis={day:d,list:out.map(k=>({k,p:0,done:false})),chest:false};save()}return P.mis}
+function ev(k,n=1,set){const M=missions();let changed=false;M.list.forEach(m=>{if(m.k!==k||m.done)return;const def=MPOOL.find(x=>x.k===k);m.p=set?Math.max(m.p,n):m.p+n;if(m.p>=def.n){m.p=def.n;m.done=true;addChips(def.r);toast('🎯','משימה הושלמה!',`${def.t} · +${fmt(def.r)} צ׳יפים`);SFX.big()}changed=true});
+ if(changed){if(!M.chest&&M.list.every(m=>m.done)){M.chest=true;addChips(1000);setTimeout(()=>{toast('🎁','תיבת אוצר!','כל המשימות של היום · +1,000');SFX.bj()},3200)}save();updDots()}}
+const WHEEL=[[100,'#e53935',20],[250,'#1e5fb3',18],[150,'#1fa34a',20],[500,'#7b2fbf',12],[200,'#ff7a3b',18],[1000,'#c2185b',7],[300,'#00897b',15],[2500,'#ffb300',2]];
+const wheelReady=()=>P.wheel!==today();
+const GIFT_MS=3*3600e3,giftLeft=()=>Math.max(0,P.gift+GIFT_MS-Date.now());
+/* ---------- chips & xp ---------- */
+function addChips(n){P.chips=Math.max(0,P.chips+n);save();const e=$('#chipsV');if(e)e.textContent=fmt(P.chips);reportSoon()}
+function addXP(n){P.xp+=n;let up=0;while(P.xp>=need(P.lvl)){P.xp-=need(P.lvl);P.lvl++;up++}save();if(up)levelUp();reportSoon()}
+function levelUp(){const r=P.lvl*150;P.chips+=r;save();const unl=TABLES.find(t=>t.lv===P.lvl);SFX.lvl();buzz([40,40,120]);
+ sheet(`<div class="lvup">${P.lvl}</div><h2>עלית דרגה!</h2><p>אתה עכשיו <b>${rankOf(P.lvl)}</b>. קיבלת ${fmt(r)} צ׳יפים.${unl?`<br>🔓 נפתח שולחן חדש: <b>${unl.n}</b>`:''}</p><button class="btn" data-x="close">יאללה! 🚀</button>`);confetti(document.body,50)}
+/* ---------- ui helpers ---------- */
+function toast(i,t,s){const d=document.createElement('div');d.className='toast';d.innerHTML=`<i>${i}</i><div><b>${esc(t)}</b><small>${esc(s||'')}</small></div>`;document.body.appendChild(d);setTimeout(()=>d.remove(),3100)}
+function sheet(html,onClick){closeSheet();const bg=document.createElement('div');bg.className='sheetbg';bg.id='sheet';bg.innerHTML=`<div class="sheet">${html}</div>`;document.body.appendChild(bg);
+ bg.addEventListener('click',e=>{if(e.target===bg){closeSheet();return}const b=e.target.closest('[data-x]');if(!b)return;SFX.btn();if(b.dataset.x==='close'){closeSheet();if(SCR==='home')home();return}onClick&&onClick(b.dataset.x,b,bg)});return bg}
+function closeSheet(){const s=$('#sheet');if(s)s.remove()}
+function confetti(host,n){if(reduced)n=Math.min(n,6);const C=['#ffd43b','#ff4fd8','#3be0ff','#7cff6b','#ff7a3b','#fff'];for(let i=0;i<n;i++){const p=document.createElement('i');p.className='cf';p.style.position=host===document.body?'fixed':'absolute';p.style.zIndex=95;p.style.left=(Math.random()*100)+'%';p.style.background=C[i%C.length];
+  p.style.setProperty('--r',(Math.random()*900-450)+'deg');p.style.animationDuration=(1.3+Math.random()*1.2)+'s';p.style.animationDelay=(Math.random()*.5)+'s';host.appendChild(p);setTimeout(()=>p.remove(),3300)}}
+function flyChips(from,to,n,delay=0){if(!from||!to||reduced)return;const a=from.getBoundingClientRect(),b=to.getBoundingClientRect();for(let i=0;i<n;i++)setTimeout(()=>{const e=document.createElement('div');e.className='fly';e.textContent='🪙';
+  e.style.left=(a.left+a.width/2-10+(Math.random()*20-10))+'px';e.style.top=(a.top+a.height/2-10)+'px';document.body.appendChild(e);requestAnimationFrame(()=>requestAnimationFrame(()=>{e.style.transform=`translate(${b.left-a.left+(Math.random()*16-8)}px,${b.top-a.top}px) scale(.8)`;e.style.opacity='.4'}));
+  setTimeout(()=>{e.remove();SFX.chip()},720)},delay+i*70)}
+const card=(c,cls)=>c==null||c<0?`<span class="pc back ${cls||''}"><i>♠</i></span>`:(()=>{const r=c%13,s=c/13|0,red=s===1||s===2;return`<span class="pc ${red?'red':''} ${cls||''}"><b>${R[r]}<u>${SU[s]}</u></b><i>${SU[s]}</i><b class="br">${R[r]}<u>${SU[s]}</u></b></span>`})();
+function stack(amt){if(!amt)return'';const den=[[5000,'k1000'],[1000,'k1000'],[500,'k500'],[100,'k100'],[25,'k25'],[10,'k10'],[5,'k5']];let left=amt,ch=[];den.forEach(([d,c])=>{let n=Math.floor(left/d);left-=n*d;while(n-->0&&ch.length<12)ch.push(c)});if(left>0||!ch.length)ch.push('k1');
+ const cols=[];for(let i=0;i<ch.length;i+=4)cols.push(ch.slice(i,i+4));return`<span class="stk">${cols.map(c=>`<span class="col">${c.map((x,i)=>`<i class="chip ${x}" style="bottom:${i*4}px"></i>`).join('')}</span>`).join('')}<b>${fmt(amt)}</b></span>`}
+function lvlHTML(){const p=Math.round(P.xp/need(P.lvl)*100);return`<div class="lvl"><span class="bd" style="--p:${p}"><span>${P.lvl}</span></span><span class="rk"><b>${rankOf(P.lvl)}</b><small>עוד ${fmt(xpLeft())} XP לדרגה</small></span></div>`}
+let SCR='home';
+function show(html,cls){closeSheet();const a=$('#app');a.innerHTML=`<div class="scr in ${cls||''}">${html}</div>`;return a.firstElementChild}
+/* ---------- home ---------- */
+function updDots(){const m=missions(),left=m.list.filter(x=>!x.done).length,d=$('#misDot');if(d){d.textContent=left;d.hidden=!left}const w=$('#wheelDot');if(w)w.hidden=!wheelReady();const g=$('#giftT');if(g){const l=giftLeft();g.textContent=l?fmtT(l):'מוכן!';$('#giftDot').hidden=!!l}}
+const fmtT=ms=>{const s=Math.ceil(ms/1000),h=s/3600|0,m=(s%3600)/60|0,x=s%60;return(h?h+':':'')+String(m).padStart(h?2:1,'0')+':'+String(x).padStart(2,'0')};
+let homeIv=0;
+function home(){SCR='home';if(T)tableClose();const d=DEALERS[P.dealer];
+ const el=show(`<div class="bar"><span class="pill chips">💰 <b id="chipsV">${fmt(P.chips)}</b></span>${lvlHTML()}<button class="ib" id="setB" aria-label="הגדרות">⚙️</button></div>
+  <div class="logo"><div class="neon flick n21">21</div><div class="sub">בלאק ג׳ק בש״ג</div><div class="tg">הקזינו הכי רועש בבסיס</div></div>
+  <div class="dpick">${Object.keys(DEALERS).map(k=>`<button class="dcard${P.dealer===k?' on':''}" data-d="${k}" type="button"><span class="av">${AV[k]}</span><b>${DEALERS[k].full}</b><small>${DEALERS[k].desc}</small></button>`).join('')}</div>
+  <button class="cta" id="playB" type="button">▶ לשבת לשולחן<small>${esc(d.full)} מחכה לך</small></button>
+  <div class="grid2">
+   ${ONLINE?`<button class="tile t-tour" id="tourB" type="button"><i>🏅</i>טורניר יומי<small>${P.tour.day===today()?`ניסיונות: ${P.tour.tries}/3`:'15 ידיים · טבלה חיה'}</small></button>
+   <button class="tile t-friends" id="friendsB" type="button"><i>👥</i>שולחן עם חברים<small>עד 4 שחקנים, בזמן אמת</small></button>`:''}
+   <button class="tile t-wheel" id="wheelB" type="button"><span class="dot" id="wheelDot">!</span><i>🎡</i>גלגל המזל<small>סיבוב חינם כל יום</small></button>
+   <button class="tile t-gift" id="giftB" type="button"><span class="dot" id="giftDot">!</span><i>🎁</i>מתנה מהדילר<small id="giftT">--</small></button>
+   <button class="tile t-miss" id="misB" type="button"><span class="dot" id="misDot">3</span><i>🎯</i>משימות יומיות<small>תיבת אוצר על כולן</small></button>
+   <button class="tile t-board" id="boardB" type="button"><i>📊</i>${ONLINE?'טבלאות':'הסטטיסטיקה שלי'}<small>${ONLINE?'מלכי השבוע':'שיאים'}</small></button>
+  </div>
+  <div class="foot"><button class="ib" id="sndB" type="button">${P.set.snd?'🔊':'🔇'}</button><button class="ib" id="musB" type="button">${P.set.mus?'🎵':'🎵̸'} מוזיקה</button><button class="ib" id="nameB" type="button">${P.av} ${esc(P.name||'השם שלי')}</button></div>`,'home');
+ updDots();clearInterval(homeIv);homeIv=setInterval(()=>{if(SCR!=='home'){clearInterval(homeIv);return}updDots()},1000);
+ el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;firstTouch();SFX.btn();
+  if(b.dataset.d){P.dealer=b.dataset.d;save();SFX.talk(DEALERS[P.dealer].hi);home();const av=$(`[data-d="${P.dealer}"] .av`);if(av){av.classList.add('talk')}return}
+  const id=b.id;if(id==='playB')tablesScr();else if(id==='wheelB')wheelScr();else if(id==='giftB')giftScr();else if(id==='misB')misScr();else if(id==='boardB')boardScr();else if(id==='tourB')tourScr();else if(id==='friendsB')friendsScr();
+  else if(id==='sndB'){P.set.snd=!P.set.snd;save();home()}else if(id==='musB'){P.set.mus=!P.set.mus;save();P.set.mus?muStart():muStop();home()}else if(id==='nameB'||id==='setB')nameScr()});
+ if(!P.seen){P.seen=true;save();setTimeout(()=>nameScr(true),500)}}
+function nameScr(first){const AVS=['🦁','🐯','🦊','🐸','🐼','🐵','🦄','🐙','🦖','👽','🤠','😎'];let av=P.av;
+ const bg=sheet(`<h2>${first?'ברוך הבא לקזינו!':'מי אתה?'}</h2><p>${first?'קיבלת 1,000 צ׳יפים להתחלה. ':''}השם יופיע בטבלאות ובשולחנות עם חברים.</p>
+  <input class="inp" id="nmI" maxlength="16" placeholder="השם שלך" value="${esc(P.name)}"><div class="avs">${AVS.map(a=>`<button type="button" data-x="av" data-a="${a}" class="${a===av?'on':''}">${a}</button>`).join('')}</div>
+  <label style="display:flex;gap:8px;justify-content:center;font-weight:800;font-size:14px"><input type="checkbox" id="turboI" ${P.set.turbo?'checked':''}> ⚡ מצב טורבו (חלוקה מהירה)</label>
+  <button class="btn" data-x="ok" type="button">שמור</button>`,(x,b,bg)=>{if(x==='av'){av=b.dataset.a;$$('.avs button',bg).forEach(e=>e.classList.toggle('on',e===b))}
+  if(x==='ok'){const n=$('#nmI',bg).value.trim().slice(0,16);P.name=n||P.name||('שחקן '+(Math.random()*900+100|0));P.av=av;P.set.turbo=$('#turboI',bg).checked;save();reportSoon(true);closeSheet();home()}})}
+function tablesScr(){SCR='tables';const el=show(`<div class="bar"><button class="ib" id="bk" type="button">→</button><span class="pill chips">💰 <b id="chipsV">${fmt(P.chips)}</b></span>${lvlHTML()}</div>
+  <h2 style="font-family:var(--f-display);font-size:42px;margin:10px 0 2px;color:var(--gold);text-align:center">בחר שולחן</h2>
+  <div class="tables">${TABLES.map((t,i)=>`<button class="tbl f${i+1}${P.lvl<t.lv?' lock':''}" data-t="${i}" type="button"><span class="ic">${t.ic}</span><b>${t.n}</b><em>${P.lvl<t.lv?`🔒 דרגה ${t.lv}`:`${fmt(t.min)}–${fmt(t.max)}`}</em><small>${['השולחן של כולם. הימורים קטנים, כיף גדול.','הימורים בינוניים. רק למי שעבר טירונות.','VIP. צ׳יפים זהובים, לב חזק.'][i]}</small></button>`).join('')}</div>
+  <p style="text-align:center;color:var(--mut);font-size:12.5px;font-weight:700;margin-top:12px">בלאק ג׳ק משלם 3:2 · הדילר עוצר על 17 · Double, Split, ביטוח, כניעה · הימורי צד Perfect Pairs ו־21+3</p>`);
+ el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;SFX.btn();if(b.id==='bk')return home();if(b.dataset.t){const t=TABLES[+b.dataset.t];if(P.lvl<t.lv){toast('🔒','השולחן נעול',`תגיע לדרגה ${t.lv} (${rankOf(t.lv)})`);return}soloStart(t)}})}
+/* ---------- wheel / gift ---------- */
+function wheelScr(){const n=WHEEL.length,seg=360/n;let svg='<svg class="wheel" id="wh" viewBox="-100 -100 200 200">';
+ WHEEL.forEach(([v,c],i)=>{const a0=(i*seg-90)*Math.PI/180,a1=((i+1)*seg-90)*Math.PI/180;svg+=`<path d="M0 0L${(Math.cos(a0)*96).toFixed(1)} ${(Math.sin(a0)*96).toFixed(1)}A96 96 0 0 1 ${(Math.cos(a1)*96).toFixed(1)} ${(Math.sin(a1)*96).toFixed(1)}Z" fill="${c}" stroke="#ffd43b" stroke-width="1.5"/>`;
+  const am=(i+.5)*seg;svg+=`<text transform="rotate(${am}) translate(0,-64) rotate(90)" text-anchor="middle" dominant-baseline="middle" font-size="${v>=1000?13:14}">${fmt(v)}</text>`});svg+='</svg>';
+ const ready=wheelReady();
+ sheet(`<h2>גלגל המזל</h2><p>${ready?'סיבוב חינם אחד ביום. עד 2,500 צ׳יפים!':'כבר סובבת היום. תחזור מחר!'}</p><div class="wheelw"><i class="wptr"></i>${svg}<div class="whub">21</div></div>
+  <button class="btn" data-x="spin" type="button" ${ready?'':'disabled'}>🎡 סובב!</button><button class="btn alt" data-x="close" type="button">חזרה</button>`,async(x,b,bg)=>{
+  if(x!=='spin'||!wheelReady())return;b.disabled=true;P.wheel=today();save();const tot=WHEEL.reduce((a,w)=>a+w[2],0);let r=Math.random()*tot,i=0;for(;i<n;i++){r-=WHEEL[i][2];if(r<0)break}i=Math.min(i,n-1);
+  const deg=360*7+(360-(i+.5)*seg)+(Math.random()*seg*.6-seg*.3);$('#wh',bg).style.transform=`rotate(${deg}deg)`;
+  for(let k=0;k<34;k++)setTimeout(()=>SFX.tick(),k<20?k*60:1200+(k-20)*(k-18)*14);
+  await wait(4800);const v=WHEEL[i][0];addChips(v);(v>=1000?SFX.bj:SFX.big)();confetti(document.body,v>=1000?70:36);buzz([50,50,100]);
+  $('p',bg).innerHTML=`<b style="color:var(--gold);font-size:24px">+${fmt(v)} צ׳יפים!</b>`;b.hidden=true})}
+function giftScr(){const l=giftLeft(),d=DEALERS[P.dealer];if(l){sheet(`<span class="av" style="width:80px;height:80px;margin:auto">${AV[P.dealer]}</span><h2>עוד לא...</h2><p>${d.n} מכין לך מתנה. חזור בעוד <b id="gT">${fmtT(l)}</b>.</p><button class="btn alt" data-x="close" type="button">אוקיי</button>`);
+  const iv=setInterval(()=>{const e=$('#gT');if(!e){clearInterval(iv);return}const r=giftLeft();e.textContent=fmtT(r);if(!r){clearInterval(iv);giftScr()}},1000);return}
+ const amt=150+P.lvl*25;sheet(`<span class="av talk" style="width:84px;height:84px;margin:auto">${AV[P.dealer]}</span><h2>מתנה מ${d.n}!</h2><p>״קח, מגיע לך. אל תבזבז הכל ביד אחת.״</p><div class="neon" style="font-size:64px">+${fmt(amt)}</div><button class="btn" data-x="take" type="button">🎁 קח!</button>`,x=>{
+  if(x!=='take')return;P.gift=Date.now();addChips(amt);SFX.big();confetti(document.body,40);closeSheet();home()});SFX.talk(DEALERS[P.dealer].hi)}
+function misScr(){const M=missions();sheet(`<h2>משימות יומיות</h2><p>מתחלפות כל לילה בחצות. כל השלוש = תיבת אוצר של 1,000.</p>
+  ${M.list.map(m=>{const d=MPOOL.find(x=>x.k===m.k);return`<div class="mis${m.done?' done':''}"><i>${m.done?'✅':d.i}</i><b>${d.t}</b><em>+${fmt(d.r)}</em><div class="pb"><u style="width:${m.p/d.n*100}%"></u></div></div>`}).join('')}
+  <div class="mis${M.chest?' done':''}"><i>${M.chest?'🎉':'🎁'}</i><b>תיבת אוצר</b><em>+1,000</em><div class="pb"><u style="width:${M.list.filter(x=>x.done).length/3*100}%"></u></div></div>
+  <button class="btn" data-x="close" type="button">יאללה לשחק</button>`)}
+/* ---------- boards ---------- */
+async function sbRpc(fn,body){const r=await fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body||{})});if(!r.ok)throw new Error('http '+r.status);const t=await r.text();return t?JSON.parse(t):null}
+let repT=0,repDirty=false;
+function reportSoon(now){if(!ONLINE||!P.name)return;repDirty=true;clearTimeout(repT);repT=setTimeout(report,now?50:4000)}
+function report(){if(!repDirty)return;repDirty=false;sbRpc('bj21_report',{p_id:P.id,p_name:P.name,p_xp:P.lvl*1000000+P.xp,p_level:P.lvl,p_chips:P.chips,p_won:P.st.won,p_biggest:P.st.biggest,p_bjs:P.st.bjs,p_hands:P.st.hands}).catch(()=>{repDirty=true})}
+function statsHTML(){const s=P.st;return`<div class="stats"><div><b>${fmt(s.hands)}</b><span>ידיים</span></div><div><b>${s.hands?Math.round(s.wins/s.hands*100):0}%</b><span>ניצחונות</span></div><div><b>${fmt(s.bjs)}</b><span>Blackjacks</span></div>
+ <div><b>${fmt(s.biggest)}</b><span>הזכייה הגדולה</span></div><div><b>🔥${s.streak}</b><span>רצף שיא</span></div><div><b>${fmt(s.dbust)}</b><span>דילר נשרף</span></div></div>`}
+function boardScr(tab){tab=tab||(ONLINE?'week':'me');const tabs=ONLINE?[['week','מלכי השבוע'],['tour','טורניר היום'],['level','דרגות'],['me','אני']]:[['me','אני']];
+ const bg=sheet(`<h2>${ONLINE?'טבלאות':'השיאים שלי'}</h2>${tabs.length>1?`<div class="tabs">${tabs.map(([k,n])=>`<button type="button" data-x="tab" data-t="${k}" class="${k===tab?'on':''}">${n}</button>`).join('')}</div>`:''}
+  <div id="lbB">${tab==='me'?statsHTML():'<p>טוען... 🎰</p>'}</div><button class="btn alt" data-x="close" type="button">סגור</button>`,(x,b)=>{if(x==='tab')boardScr(b.dataset.t)});
+ if(tab==='me')return;
+ const row=(r,i,v,sub)=>`<div class="${r.id===P.id?'me':''}"><span>${i+1}</span><span>${esc(r.name)}${sub?` <small>${sub}</small>`:''}</span><span>${v}</span></div>`;
+ const box=()=>$('#lbB',bg);
+ (tab==='tour'?sbRpc('bj21_tour_top',{p_id:P.id}).then(d=>{const t=d&&d.top||[];box().innerHTML=`<p>${fmt(d.count||0)} שחקנים היום${d.mine?` · השיא שלך: <b>${fmt(d.mine.score)}</b>`:''}</p><div class="lb">${t.length?t.map((r,i)=>row(r,i,fmt(r.score))).join(''):'<p>עוד אין משתתפים. תהיה הראשון!</p>'}</div>`})
+ :sbRpc('bj21_top',{p_kind:tab}).then(t=>{t=t||[];box().innerHTML=`<p>${tab==='week'?'הכי הרבה צ׳יפים שנלקחו מהבית השבוע':'הדרגות הכי גבוהות בקזינו'}</p><div class="lb">${t.length?t.map((r,i)=>row(r,i,tab==='week'?'+'+fmt(r.score):rankOf(r.level),tab==='level'?`דרגה ${r.level}`:'')).join(''):'<p>הטבלה ריקה. זה הזמן שלך!</p>'}</div>`}))
+ .catch(()=>{const b=box();if(b)b.innerHTML='<p>אין חיבור לטבלאות כרגע.</p>'})}
+/* ============ table controller ============ */
+let T=null;
+const turbo=()=>P.set.turbo;
+function luckNow(){return Math.max(.02,.45-P.st.hands*.012)}
+function soloStart(tb){const G=gNew([{id:P.id,name:P.name||'אתה',av:P.av,chips:P.chips}],{luck:luckNow(),min:tb.min,max:tb.max,mode:'solo'});
+ T={G,mode:'solo',tb,me:0,host:true,cnt:{},streak:0,wallet:P.chips,bet:Math.max(tb.min,Math.min(P['last_'+tb.id]||tb.min,tb.max)),pp:0,t3:0,auto:false,bub:'',hh:0,dealer:P.dealer,dealt:0};
+ tableMount();say('deal');render()}
+function tourStart(){const G=gNew([{id:P.id,name:P.name||'אתה',av:P.av,chips:1000}],{luck:0,min:10,max:500,mode:'tour',rounds:15});
+ T={G,mode:'tour',tb:{id:'tour',n:'טורניר יומי',min:10,max:500,felt:'tour',chips:[10,25,100,500]},me:0,host:true,cnt:{},streak:0,bet:50,pp:0,t3:0,auto:false,bub:'',hh:0,dealer:P.dealer,dealt:0};
+ ev('tour');tableMount();say('deal');render()}
+function tableMount(){SCR='table';closeSheet();clearInterval(homeIv);const a=$('#app');a.innerHTML='<div class="tt" id="tt"></div>';const el=$('#tt');el.addEventListener('click',tableClick);clearInterval(T.iv);const me=T;me.iv=setInterval(()=>{if(T!==me){clearInterval(me.iv);return}tick()},250);firstTouch()}
+function tableClose(){if(T){clearInterval(T.iv);clearTimeout(T.overT);clearTimeout(T.autoT)}T=null}
+function say(k){if(!T)return;const L=TALK[T.dealer][k];if(!L)return;T.bub=pick(L);const e=$('#bub');if(e){e.textContent=T.bub;e.classList.remove('new');void e.offsetWidth;e.classList.add('new');const av=$('.dl .av');if(av){av.classList.remove('talk');void av.offsetWidth;av.classList.add('talk')}}SFX.talk(DEALERS[T.dealer].hi)}
+function sync(){if(!T||T.mode!=='solo')return;const s=T.G.seats[0],d=s.chips-T.wallet;if(d){P.chips=Math.max(0,P.chips+d);save()}T.wallet=s.chips}
+function push(){if(!T)return;const G=T.G;sync();
+ if(((T.mode==='online'&&T.host)||T.mode==='tour')&&G.phase==='done'&&overCond(G)&&!T.overT){const me=T;T.overT=setTimeout(()=>{if(T===me&&G.phase==='done'){G.phase='over';G.seq++;push()}},T.mode==='tour'?2600:4000)}
+ if(T.mode==='online'&&T.host){if(false){const me=T;T.overT=setTimeout(()=>{if(T===me&&G.phase==='done'){G.phase='over';G.seq++;push()}},4000)}
+  const k=G.phase+G.turn.join()+G.round;if(k!==T.key){T.key=k;T.tEnd=Date.now()+(G.phase==='ins'?12000:G.phase==='play'?20000:22000)}broadcast()}
+ render()}
+function after(){push();if(T&&T.G&&T.G.phase==='dealer')flow()}
+async function flow(){const me=T;if(!me||!me.host||me.flowing)return;me.flowing=true;
+ try{while(T===me&&me.G.phase==='dealer'){const r=gDealer(me.G);push();if(r!=='done')await wait(turbo()?330:(r==='reveal'?700:620))}}finally{me.flowing=false}}
+const overCond=G=>(G.rounds&&G.round>=G.rounds)||(G.mode==='online'&&G.rounds&&G.seats.filter(s=>!s.away&&s.chips>=G.min).length===0)||(G.mode==='tour'&&G.seats[0].chips<G.min);
+function tryDeal(){const G=T.G;if(G.mode!=='online'&&overCond(G)){G.phase='over';G.seq++;return}
+ if(G.mode==='online'&&G.rounds&&overCond(G)){G.phase='over';G.seq++;return}
+ if(G.seats.some(s=>!s.away&&s.chips>=G.min&&!s.ready))return;if(!G.seats.some(s=>s.ready&&s.bet>0))return;gDeal(G)}
+function apply(i,a,v){const G=T&&T.G;if(!G)return;let ok=false;
+ if(a==='ready'){if(G.phase==='bet'||G.phase==='done'){const s=G.seats[i];if(s&&s.chips>=G.min){const o=v&&typeof v==='object'?v:{b:v};s.bet=Math.max(G.min,Math.min(Math.round(+o.b)||0,s.chips,G.max));const rest=s.chips-s.bet;
+   s.pp=Math.min(Math.max(0,Math.round(+o.pp)||0),25*Math.ceil(G.min/5),rest);s.t3=Math.min(Math.max(0,Math.round(+o.t3)||0),25*Math.ceil(G.min/5),rest-s.pp);s.ready=true;s.away=false;ok=true;G.seq++;tryDeal()}}}
+ else if(a==='ins')ok=gIns(G,i,!!v);else ok=gAct(G,i,a);
+ if(ok){if(i===T.me&&(a==='double'||a==='split'))say(a==='double'?'dbl':'split');if(i===T.me&&a==='split')ev('split');after()}}
+function my(a,v){if(!T)return;if(T.host){apply(T.me,a,v);return}if(!T.G||T.pend===T.G.seq)return;T.pend=T.G.seq;netSend({t:'act',a,v});render()}
+function tick(){if(!T)return;if(T.mode!=='online')return;const tm=$('#tm'),left=Math.max(0,T.tEnd-Date.now());if(tm)tm.style.width=Math.min(100,left/220)+'%';
+ if(!T.host||!T.G||left>0)return;const G=T.G;
+ if(G.phase==='bet'||G.phase==='done'){let any=false;G.seats.forEach(s=>{if(!s.ready&&!s.away&&s.chips>=G.min){if(s.idle>=1){s.away=true}else{s.bet=Math.max(G.min,Math.min(s.last||G.min,s.chips));s.pp=s.t3=0;s.ready=true}s.idle=(s.idle||0)+1;any=true}});if(any){G.seq++;tryDeal();after()}else T.tEnd=Date.now()+5000}
+ else if(G.phase==='ins'){G.seats.forEach((s,i)=>{if(s.insQ)gIns(G,i,false)});after()}
+ else if(G.phase==='play'){gAct(G,G.turn[0],'stand');after()}}
+function roundEnd(){const G=T.G,s=G.seats[T.me];if(!s.hands.length||T.fxRound===G.round)return;T.fxRound=G.round;
+ const bjs=s.hands.filter(h=>h.res==='bj').length,wins=s.hands.filter(h=>h.net>0).length,dbust=tot(G.dealer).t>21;let bonus=0,bonusWhy='';
+ if(s.net>0)T.streak++;else if(s.net<0)T.streak=0;
+ const solo=T.mode==='solo';
+ if(solo&&s.net>0){if(T.hh>0){bonus+=Math.max(1,s.net);bonusWhy='🎉 שעת שמחה ×2'}else if(T.streak>=3){const tb=s.hands.reduce((a,h)=>a+h.bet,0);bonus+=Math.max(1,Math.round(tb*.1*Math.min(T.streak-2,5)));bonusWhy=`🔥 רצף ${T.streak}`}}
+ if(solo&&T.hh>0)T.hh--;
+ if(bonus){s.chips+=bonus;sync()}T.bonus=bonus;T.bonusWhy=bonusWhy;
+ /* heat meter: wins fill it, losses cool it. Full = happy hour (solo) */
+ if(solo){P.heat=Math.max(0,Math.min(10,P.heat+(bjs?3:s.net>0?2:s.net<0?-1:0)));if(P.heat>=10&&!T.hh){T.hh=3;P.heat=0;setTimeout(()=>{if(!T)return;burst('HAPPY HOUR!','cyan');say('hh');SFX.bj();confetti($('.felt'),40)},1700)}}
+ const st=P.st;st.hands++;if(s.net>0){st.wins++;st.won+=s.net+bonus}else st.lost+=-s.net;st.bjs+=bjs;st.biggest=Math.max(st.biggest,s.net+bonus);st.streak=Math.max(st.streak,T.streak);if(dbust&&s.hands.some(h=>h.res==='win'))st.dbust++;
+ if(T.mode!=='tour'){const xp=4+Math.min(40,Math.round(s.hands.reduce((a,h)=>a+h.bet,0)/(T.tb?T.tb.min:10)))+wins*3+bjs*10;addXP(xp)}
+ save();reportSoon();
+ if(T.mode!=='tour'){ev('hands');if(wins)ev('win',wins);if(bjs)ev('bj',bjs);ev('streak',T.streak,true);const dw=s.hands.filter(h=>h.dbl&&h.net>0).length;if(dw)ev('dblwin',dw);if(s.side.length)ev('side');
+  if(s.hands.some(h=>h.cards.length>=5&&tot(h.cards).t<=21))ev('five');if(dbust)ev('dbust');if(T.mode==='online')ev('online')}
+ const tt=$('#tt'),dl=tt&&tt.querySelector('.dl .av');
+ s.hands.forEach((h,j)=>{const el=tt&&tt.querySelector(`[data-h="${T.me}-${j}"] .bet`);if(!el)return;if(h.net>0)flyChips(dl,el,Math.min(8,2+Math.round(h.net/Math.max(1,h.bet))*2),250+j*140);else if(h.net<0&&!h.sur)flyChips(el,dl,3,250+j*140)});
+ const felt=$('.felt');
+ if(bjs){SFX.bj();confetti(felt,50);burst('BLACKJACK!','gold');say('bj');buzz([40,40,90])}
+ else if(dbust&&s.net>0){SFX.big();confetti(felt,30);burst('הדילר נשרף!','pink');say('dbust');buzz([30,30,60])}
+ else if(s.net>0){(s.net>=s.last*2?SFX.big:SFX.win)();confetti(felt,16);say(T.streak>=3?'hot':'win');buzz(40)}
+ else if(s.net<0){SFX.lose();say(s.hands.every(h=>h.res==='bust')?'bust':'lose')}else{SFX.push();say('push')}
+ /* dealer shift change every 15 hands in solo */
+ if(solo){T.dealt++;if(T.dealt%15===0){setTimeout(()=>{if(!T)return;say('shift');setTimeout(()=>{if(!T)return;T.dealer=T.dealer==='shmulik'?'shoshi':'shmulik';T.cnt={};render();say('deal')},1300)},2200)}}
+ if(T.auto&&solo){clearTimeout(T.autoT);const me=T;T.autoT=setTimeout(()=>{if(T===me&&T.auto&&T.G.phase==='done')dealPress()},turbo()?1500:2400)}}
+function burst(t,cls){const f=$('.felt');if(!f)return;const b=document.createElement('div');b.className='burst '+(cls||'');b.textContent=t;f.appendChild(b);setTimeout(()=>b.remove(),1900)}
+function quitTable(){if(!T)return;const G=T.G,mid=G&&['play','ins','dealer'].includes(G.phase)&&G.seats[T.me]&&G.seats[T.me].hands.length;
+ if((mid||T.mode!=='solo')&&!T.quitArm){T.quitArm=true;const q=$('#qB');if(q)q.textContent=T.mode==='online'?'לעזוב?':T.mode==='tour'?'לוותר?':'ההימור יישרף!';setTimeout(()=>{if(T){T.quitArm=false;const q2=$('#qB');if(q2)q2.textContent='→'}},2500);return}
+ if(T.mode==='online'){netSend({t:'bye'});netLeave()}if(T.mode==='tour'&&G.phase!=='over')tourEnd(true);tableClose();home()}
+function dealPress(){const G=T&&T.G;if(!G)return;const bet=T.bet;if(bet<G.min||G.seats[T.me].chips<G.min){const s=$('#betV');if(s){s.classList.remove('nope');void s.offsetWidth;s.classList.add('nope')}SFX.tick();T.auto=false;return}
+ if(T.mode==='solo')P['last_'+T.tb.id]=bet;SFX.chip(3);my('ready',{b:bet,pp:T.pp,t3:T.t3});if(T.host&&T.mode!=='online'&&Math.random()<.3)say('deal')}
+function tableClick(e){const b=e.target.closest('button');if(!b||!T)return;const G=T.G;firstTouch();
+ if(b.id==='qB')return quitTable();
+ if(b.dataset.emo){netSend({t:'emo',e:b.dataset.emo});showEmo(T.me,b.dataset.emo);return}
+ if(b.dataset.chip){const v=+b.dataset.chip,cap=Math.min(G.max,G.seats[T.me].chips);T.bet=Math.min(cap,(T.bet||0)+v);SFX.chip(2);render();return}
+ const a=b.dataset.a;if(!a)return;
+ if(a==='clr'){T.bet=0;SFX.tick();render();return}
+ if(a==='x2'){T.bet=Math.min(G.max,G.seats[T.me].chips,(T.bet||0)*2);SFX.chip(3);render();return}
+ if(a==='pp'||a==='t3'){const steps=[0,G.min,G.min*5];const cur=steps.indexOf(T[a]);T[a]=steps[(cur+1)%steps.length];SFX.chip(1);render();return}
+ if(a==='auto'){T.auto=!T.auto;SFX.btn();render();if(T.auto&&(G.phase==='bet'||G.phase==='done'))dealPress();return}
+ if(a==='refill'){P.refill=Date.now();addChips(500);T.wallet+=500;G.seats[0].chips+=500;SFX.big();toast('🤝',DEALERS[T.dealer].n+' מילא לך את הקופה','+500 צ׳יפים');render();return}
+ if(a==='deal')return dealPress();
+ if(a==='insY'||a==='insN'){SFX.btn();my('ins',a==='insY');return}
+ if(['hit','stand','double','split','surrender'].includes(a)){SFX.btn();my(a)}}
+function cardsHTML(key,cards,flipIdx){const old=T.cnt[key]||0;let k=0;const step=turbo()?.08:.13;const out=cards.map((c,i)=>{let cls='',st='';if(i>=old){const at=k++;cls='nd';st=` style="animation-delay:${(at*step).toFixed(2)}s;--dd:${turbo()?'.25s':'.4s'}"`;SFX.card(at*step)}
+  else if(i===flipIdx){cls='flip';SFX.flip()}return card(c,cls).replace('<span ',`<span${st} `)}).join('');T.cnt[key]=cards.length;return out}
+const txt=cs=>{const{t,soft}=tot(cs);return soft&&t<21?(t-10)+'/'+t:''+t};
+const RES={bj:['BLACKJACK','bj'],win:['WIN','win'],lose:['LOSE','lose'],push:['PUSH','push'],bust:['BUST','bust'],sur:['SURRENDER','push']};
+const resTxt=n=>n?`<bdi dir="ltr">${n>0?'+'+fmt(n):'−'+fmt(-n)}</bdi>`:'PUSH';
+function render(){const tt=$('#tt');if(!tt||!T)return;const G=T.G;
+ if(!G){tt.innerHTML=`<div class="thead"><button class="ib" id="qB" type="button">→</button><span class="ttl">שולחן חברים</span></div><div style="flex:1;display:grid;place-items:center;text-align:center"><div><div class="neon flick" style="font-size:80px">21</div><p style="font-weight:800">${DEALERS[T.dealer].n} מערבב קלפים...</p></div></div>`;return}
+ const me=T.me,S=G.seats[me],multi=G.seats.length>1,O=gOpts(G,me);
+ if(T.r!==G.round){T.r=G.round;T.cnt={};T.holeWas=true;if(G.round>1&&Math.random()<.35)say('deal');if(G.shuffled)T.bub=`${DEALERS[T.dealer].n} מערבב שו חדש. 6 חפיסות.`}
+ if(G.phase==='ins'&&T.insR!==G.round){T.insR=G.round;say('ins')}
+ const flipIdx=T.holeWas&&!G.hole?1:-1;T.holeWas=G.hole;
+ const dCards=G.hole?[G.dealer[0],-1]:G.dealer,dT=G.hole?(G.dealer[0]>=0?''+val(G.dealer[0]):''):txt(G.dealer),dTot=tot(dCards).t;
+ const seatH=(s,i)=>{const isMe=i===me,turnSeat=G.phase==='play'&&G.turn[0]===i;
+  const hands=s.hands.map((h,j)=>{const t=tot(h.cards).t,n=nat(h),cur=turnSeat&&G.turn[1]===j,Rr=h.res?RES[h.res]:t>21?RES.bust:null;
+   const bk='b'+G.round+'-'+i+'-'+j;if(t>21&&!T[bk]){T[bk]=1;if(!h.res&&isMe){SFX.bust();burst('BUST!','red');say('bust');buzz(60)}}
+   if(isMe&&n&&!T['n'+G.round+j]&&G.phase!=='done'){T['n'+G.round+j]=1;setTimeout(()=>{SFX.ding()},400)}
+   const tag=Rr?`<em class="tag ${Rr[1]}">${Rr[0]}${h.res&&h.net>0?' +'+fmt(h.net):''}</em>`:'';
+   return`<div class="hand${cur?' cur':''}${Rr?' r-'+Rr[1]:''}" data-h="${i}-${j}">${tag}<div class="cards">${cardsHTML('s'+i+'h'+j,h.cards,-1)}</div>
+    <span class="tot${t>21?' bust':n?' bjn':''}">${n?'21 ★':txt(h.cards)}</span><div class="bet">${stack(h.bet)}${h.dbl?'<small>×2</small>':''}</div></div>`}).join('');
+  const side=s.side&&s.side.length?s.side.map(x=>`<span class="sidewin">💎 ${x.n} +${fmt(x.w)}</span>`).join(''):'';
+  if(isMe&&side&&T.sideR!==G.round){T.sideR=G.round;setTimeout(()=>{SFX.big();burst(s.side[0].n.toUpperCase()+'!','cyan');say('side')},500)}
+  return`<div class="seat${isMe?' me':''}${turnSeat?' turn':''}${s.hands.length>2?' many':''}${s.away?' away':''}" data-seat="${i}">
+   <div class="hands">${hands||(multi?`<div class="empty">${s.away?'💤 לא פה':s.ready?'מוכן ✓':'בוחר...'}</div>`:'')}</div>${side}
+   ${s.ins?`<span class="sidewin" style="background:#7b2fbf;color:#fff">ביטוח ${fmt(s.ins)}</span>`:''}
+   ${multi?`<div class="who"><span class="em">${esc(s.av||'🙂')}</span><b>${isMe?'אתה':esc(s.name)}</b><span>${fmt(s.chips)}</span></div>`:''}</div>`};
+ const order=multi?[me,...G.seats.map((_,i)=>i).filter(i=>i!==me)]:[0];
+ let res='';if(G.phase==='done'&&S.hands.length){const n=S.net;res=`<div class="res ${n>0?'win':n<0?'lose':'tie'}"><b>${resTxt(n)}</b>${T.fxRound===G.round&&T.bonus?`<span>${T.bonusWhy} · בונוס +${fmt(T.bonus)}</span>`:T.streak>=2&&n>0?`<span>🔥 רצף ${T.streak}</span>`:''}</div>`}
+ const arc=`<svg class="arc" viewBox="0 0 320 78" aria-hidden="true"><defs><path id="A1" d="M16,6 Q160,66 304,6"/><path id="A2" d="M4,26 Q160,96 316,26"/></defs><text class="a1"><textPath href="#A1" startOffset="50%" text-anchor="middle">BLACKJACK PAYS 3 TO 2</textPath></text><text class="a2"><textPath href="#A2" startOffset="50%" text-anchor="middle">DEALER STANDS ON SOFT 17 · INSURANCE PAYS 2 TO 1</textPath></text></svg>`;
+ /* controls */
+ let act='';const wt=t=>`<div class="act wait">${t}</div>`;
+ if(G.phase==='over'||(G.mode!=='solo'&&G.phase==='done'&&overCond(G)))act=wt('סוף המשחק! סופרים צ׳יפים... 🧮');
+ else if((G.phase==='bet'||G.phase==='done')&&!S.ready){const c=S.chips;
+  if(c<G.min){const canRefill=T.mode==='solo'&&Date.now()-P.refill>10*60e3;act=T.mode==='solo'?(canRefill?`<div class="act"><p style="text-align:center;font-weight:900;margin:0">הקופה ריקה!</p><button class="deal" data-a="refill" type="button">🤝 ${DEALERS[T.dealer].n}, תמלא לי 500</button></div>`:wt(`הקופה ריקה. מילוי חינם בעוד ${fmtT(10*60e3-(Date.now()-P.refill))} · או גלגל/מתנה במסך הבית`)):wt('נגמרו הצ׳יפים...')}
+  else{const v=Math.min(Math.max(T.bet||0,0),c,G.max);T.bet=v;const chips=T.tb?T.tb.chips:[10,25,100,500];
+   act=`<div class="act betp"><div class="bs"><span>הימור</span><b id="betV">${fmt(v)}</b><small>מתוך ${fmt(c)}</small></div>
+    <div class="chipsrow">${chips.map(x=>`<button type="button" class="ch ${x>=5000?'k1000':'k'+x}" data-chip="${x}">${x>=1000?x/1000+'K':x}</button>`).join('')}<button type="button" class="ch clr" data-a="clr" aria-label="נקה">↺</button><button type="button" class="ch x2" data-a="x2">×2</button></div>
+    <div class="siderow"><button type="button" class="sb${T.pp?' on':''}" data-a="pp">💎 Pairs ${T.pp?fmt(T.pp):'—'}</button><button type="button" class="sb${T.t3?' on':''}" data-a="t3">🎰 21+3 ${T.t3?fmt(T.t3):'—'}</button>${T.mode==='solo'?`<button type="button" class="sb auto${T.auto?' on':''}" data-a="auto">🔁 אוטו</button>`:''}</div>
+    <button class="deal" data-a="deal" type="button">🃏 חלק! ${v?'· '+fmt(v+T.pp+T.t3):''}</button></div>`}}
+ else if(G.phase==='bet'||G.phase==='done')act=wt('מוכן ✓ · מחכה לשאר השחקנים...');
+ else if(G.phase==='ins')act=S.insQ&&T.pend!==G.seq?`<div class="act"><p style="text-align:center;font-weight:900;margin:0">ל${DEALERS[T.dealer].n} יש A 😱 ביטוח על ${fmt(Math.floor(S.hands[0].bet/2))}?</p><div class="row"><button class="ab ins" data-a="insY" type="button">Insurance<small>כן, תבטח</small></button><button class="ab stand" data-a="insN" type="button">No<small>אני לוקח סיכון</small></button></div></div>`:wt('מחכים להחלטות ביטוח...');
+ else if(G.phase==='play'&&O&&T.pend!==G.seq){const h=S.hands[G.turn[1]],hn=hint(h,G.dealer[0],O),N={hit:['Hit','עוד קלף'],stand:['Stand','עוצר'],double:['Double','כפול + קלף'],split:['Split','לפצל'],surrender:['Surrender','חצי בחזרה']};
+  act=`<div class="act">${T.mode==='tour'?'':`<div class="hint">💡 הספר אומר: <b><bdi>${N[hn][0]}</bdi></b>${S.hands.length>1?` · יד ${G.turn[1]+1}/${S.hands.length}`:''}</div>`}<div class="row">${['hit','stand','double','split','surrender'].filter(k=>O[k]).map(k=>`<button class="ab ${k}${k===hn&&T.mode!=='tour'?' rec':''}" data-a="${k}" type="button">${N[k][0]}<small>${N[k][1]}</small></button>`).join('')}</div></div>`}
+ else if(G.phase==='play')act=wt(G.turn[0]===me?'...':`${esc(G.seats[G.turn[0]].name)} חושב... 🤔`);
+ else act=wt(`${DEALERS[T.dealer].n} הופך קלפים... 🥁`);
+ if(T.mode==='online')act+=`<div class="emobar">${['🔥','😂','😱','👏','🤑','💀'].map(e=>`<button type="button" data-emo="${e}">${e}</button>`).join('')}</div>`;
+ const d=DEALERS[T.dealer];
+ const title=T.mode==='tour'?`🏅 טורניר · יד ${Math.min(G.round+(G.phase==='bet'||G.phase==='done'?1:0),G.rounds)}/${G.rounds}`:T.mode==='online'?`${T.coop?'👥 ביחד':'⚔️ תחרות'}${G.rounds?` · יד ${Math.max(1,G.round)}/${G.rounds}`:''}`:T.tb.n;
+ const felt=T.mode==='tour'?'tour':T.tb?T.tb.felt:'';
+ tt.innerHTML=`<div class="thead"><button class="ib" id="qB" type="button">→</button>
+   <span class="pill chips">💰 <b>${fmt(S.chips)}</b></span><span class="ttl">${title}</span>
+   ${T.mode==='solo'?`<span class="heat">${T.hh?`<span class="hh">×2 ${T.hh}</span>`:`🔥<span class="hb"><i style="width:${P.heat*10}%"></i></span>`}</span>`:T.streak>=2?`<span class="hh">🔥${T.streak}</span>`:''}</div>
+  ${T.mode==='online'?'<div class="timer"><i id="tm"></i></div>':''}
+  <div class="arena"><div class="felt ${felt} ${multi?'multi n'+G.seats.length:'solo'}"><i class="bulbs"></i>
+   <div class="shoe" aria-hidden="true"><i></i><i></i><i></i></div><div class="tlim">MIN ${fmt(G.min)}<br>MAX ${fmt(G.max)}</div>
+   <div class="dl"><span class="av">${AV[T.dealer]}</span><span class="nm"><b>${d.full}</b><span>${d.tag}</span></span><i class="bub new" id="bub"></i></div>
+   <div class="dc"><div class="cards">${G.dealer.length?cardsHTML('d',dCards,flipIdx):'<span class="pc slot"></span><span class="pc slot"></span>'}</div>${G.dealer.length?`<span class="tot${!G.hole&&dTot>21?' bust':''}">${dT}</span>`:''}</div>
+   <div class="mid">${res||arc}</div>
+   <div class="seats">${order.map(i=>seatH(G.seats[i],i)).join('')}</div>
+  </div></div>${act}`;
+ const bb=$('#bub');if(bb)bb.textContent=T.bub;
+ if(G.phase==='done'&&S.hands.length&&T.fxRound!==G.round){roundEnd();const r=tt.querySelector('.res');if(r&&T.bonus){const sp=r.querySelector('span')||r.appendChild(document.createElement('span'));sp.textContent=`${T.bonusWhy} · בונוס +${fmt(T.bonus)}`}
+  const cv=tt.querySelector('.thead .chips b');if(cv)cv.textContent=fmt(S.chips)}
+ if(G.phase==='over'){if(T.mode==='tour')tourEnd();else if(T.mode==='online')onlineEnd()}}
+/* ---------- tournament ---------- */
+function tourScr(){const t=P.tour,d=today();if(t.day!==d){t.day=d;t.tries=0;t.best=0;save()}
+ const bg=sheet(`<h2>🏅 טורניר יומי</h2><p>כולם מתחילים עם <b>1,000</b> צ׳יפים ו־<b>15 ידיים</b>. בלי מזל מתחילים, בלי רמזים. מי שגומר עם הכי הרבה, מלך היום.<br>3 ניסיונות ביום, נספר הטוב ביותר.</p>
+  <div class="stats" style="grid-template-columns:1fr 1fr"><div><b>${t.tries}/3</b><span>ניסיונות היום</span></div><div><b>${fmt(t.best)}</b><span>השיא שלך היום</span></div></div>
+  <div id="ttop" class="lb"><p>טוען טבלה... 🎰</p></div>
+  <button class="btn" data-x="go" type="button" ${t.tries>=3?'disabled':''}>${t.tries>=3?'נגמרו הניסיונות להיום':'▶ התחל ניסיון '+(t.tries+1)}</button><button class="btn alt" data-x="close" type="button">חזרה</button>`,x=>{
+  if(x==='go'&&P.tour.tries<3){if(!P.name){nameScr();return}P.tour.tries++;save();tourStart()}});
+ sbRpc('bj21_tour_top',{p_id:P.id}).then(r=>{const e=$('#ttop',bg);if(!e)return;const top=(r&&r.top||[]).slice(0,8);e.innerHTML=top.length?top.map((x,i)=>`<div class="${x.id===P.id?'me':''}"><span>${i+1}</span><span>${esc(x.name)}</span><span>${fmt(x.score)}</span></div>`).join('')+`<p>${fmt(r.count)} משתתפים היום</p>`:'<p>עוד אין משתתפים היום. תהיה הראשון!</p>'}).catch(()=>{const e=$('#ttop',bg);if(e)e.innerHTML='<p>אין חיבור לטבלה כרגע.</p>'})}
+function tourEnd(gaveUp){if(!T||T.ended)return;T.ended=true;const score=gaveUp?0:T.G.seats[0].chips;const best=Math.max(P.tour.best,score);P.tour.best=best;save();
+ const reward=Math.max(0,Math.round((score-1000)/4));if(reward)addChips(reward);addXP(30);
+ setTimeout(()=>{if(gaveUp)return;tableClose();SCR='home';home();
+  const bg=sheet(`<h2>${score>1000?'סיימת ברווח! 🤑':score>0?'סיימת את הטורניר':'נשרפת... 💀'}</h2><div class="neon" style="font-size:70px">${fmt(score)}</div><p>${reward?`קיבלת ${fmt(reward)} צ׳יפים לקופה האמיתית (רבע מהרווח). `:''}השיא שלך היום: <b>${fmt(best)}</b></p>
+   <div id="trank"><p>שולח לטבלה... 📡</p></div><button class="btn" data-x="board" type="button">🏆 לטבלת היום</button><button class="btn alt" data-x="close" type="button">לתפריט</button>`,x=>{if(x==='board')boardScr('tour')});
+  if(score>1000){SFX.big();confetti(document.body,50)}
+  sbRpc('bj21_tour_submit',{p_id:P.id,p_name:P.name,p_score:score}).then(r=>{const e=$('#trank',bg);if(e&&r)e.innerHTML=`<p style="font-size:18px">אתה במקום <b style="color:var(--gold)">${r.rank}</b> מתוך ${fmt(r.count)} היום!</p>`}).catch(()=>{const e=$('#trank',bg);if(e)e.innerHTML='<p>לא הצלחנו לשלוח לטבלה.</p>'})},1500)}
+/* ---------- online rooms ---------- */
+let NET=null;
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('script'));document.head.appendChild(s)})}
+async function sbClient(){if(window.__sbc)return window.__sbc;if(!window.supabase)await loadScript(SBJS);window.__sbc=window.supabase.createClient(SB_URL,SB_ANON,{auth:{persistSession:false},realtime:{params:{eventsPerSecond:40}}});return window.__sbc}
+async function transport(code){let local=false;try{local=localStorage.getItem('bj21_local')==='1'}catch(e){}
+ const X={h:[],on:f=>X.h.push(f),emit:m=>X.h.forEach(f=>f(m))};
+ if(local){const bc=new BroadcastChannel('bj21-'+code);bc.onmessage=e=>X.emit(e.data);X.send=m=>bc.postMessage(m);X.leave=()=>bc.close();return X}
+ const sb=await sbClient(),ch=sb.channel('bj21-room-'+code,{config:{broadcast:{self:false,ack:false}}});ch.on('broadcast',{event:'m'},({payload})=>X.emit(payload));
+ await new Promise((res,rej)=>{const to=setTimeout(()=>rej(new Error('timeout')),12000);ch.subscribe(st=>{if(st==='SUBSCRIBED'){clearTimeout(to);res()}else if(st==='CHANNEL_ERROR'||st==='TIMED_OUT'){clearTimeout(to);rej(new Error(st))}})});
+ X.send=m=>ch.send({type:'broadcast',event:'m',payload:m});X.leave=()=>{try{sb.removeChannel(ch)}catch(e){}};return X}
+const roomCode=()=>Array.from({length:5},()=>'abcdefghjkmnpqrstuvwxyz23456789'[Math.random()*31|0]).join('');
+function netSend(m){if(NET&&NET.X){m.from=P.id;try{NET.X.send(m)}catch(e){}}}
+function netLeave(){if(!NET)return;clearInterval(NET.hb);try{NET.X&&NET.X.leave()}catch(e){}NET=null}
+function friendsScr(){if(!P.name){nameScr();return}
+ sheet(`<h2>👥 שולחן עם חברים</h2><p>עד 4 שחקנים מול הדילר, בזמן אמת. כל אחד מקבל 1,000 צ׳יפים לשולחן.</p>
+  <button class="btn green" data-x="coop" type="button">🤝 ביחד מול הבית<small style="display:block;font-size:12px;opacity:.9">משחק חופשי, נכנסים ויוצאים מתי שרוצים</small></button>
+  <button class="btn" data-x="comp" type="button">⚔️ תחרות · 10 ידיים<small style="display:block;font-size:12px;opacity:.9">מי שגומר עם הכי הרבה צ׳יפים לוקח 500 אמיתיים</small></button>
+  <p>יש לך קוד?</p><input class="inp" id="codeI" maxlength="5" placeholder="קוד חדר" style="direction:ltr;letter-spacing:.2em"><button class="btn blue" data-x="join" type="button">הצטרף</button>
+  <button class="btn alt" data-x="close" type="button">חזרה</button>`,(x,b,bg)=>{if(x==='coop'||x==='comp')roomHost(x==='coop');if(x==='join'){const c=$('#codeI',bg).value.trim().toLowerCase();if(/^[a-z0-9]{5}$/.test(c))roomJoin(c);else toast('⚠️','קוד לא תקין','5 תווים')}})}
+async function roomOpen(code,host,coop){netLeave();NET={code,host,coop,X:null,players:[{id:P.id,name:P.name,av:P.av}],seen:{},started:false,last:Date.now()};
+ roomRender();try{NET.X=await transport(code)}catch(e){toast('📡','אין חיבור','נסה שוב בעוד רגע');netLeave();home();return}
+ NET.X.on(onNet);netSend({t:'hi',name:P.name,av:P.av});
+ NET.hb=setInterval(()=>{if(!NET)return;netSend({t:'hb'});const now=Date.now();
+  if(NET.host){if(T&&T.G&&T.mode==='online'){T.G.seats.forEach(s=>{if(s.id!==P.id&&now-(NET.seen[s.id]||0)>25000&&!s.away){s.away=true;s.ready=false;T.G.seq++}});broadcast()}else roomBroadcast()}
+  else if(now-NET.last>30000){toast('📡','המארח נעלם','השולחן נסגר');netLeave();if(T)tableClose();home()}},2000)}
+function roomHost(coop){const code=roomCode();roomOpen(code,true,coop)}
+function roomJoin(code){roomOpen(code,false,true)}
+function roomBroadcast(){if(NET&&NET.host)netSend({t:'room',players:NET.players,coop:NET.coop,started:NET.started})}
+function roomRender(){if(!NET||NET.started)return;SCR='room';const url=SHARE_BASE+'#r-'+NET.code;
+ const bg=sheet(`<h2>${NET.host?(NET.coop?'🤝 שולחן ביחד':'⚔️ שולחן תחרות'):'נכנסת לשולחן'}</h2>${NET.host?`<p>שלח לחברים את הקישור או את הקוד:</p><div class="code">${NET.code.toUpperCase()}</div><div class="url">${url}</div>
+   <button class="btn blue" data-x="share" type="button">📤 שתף קישור</button>`:'<p>מחכים שהמארח יתחיל...</p>'}
+  <div class="room">${NET.players.map(p=>`<div><i>${esc(p.av)}</i>${esc(p.name)}${p.id===P.id?' (אתה)':''}<small>${p.id===NET.players[0].id?'👑 מארח':'✓'}</small></div>`).join('')}${NET.players.length<4?'<div style="opacity:.5"><i>⏳</i>מחכה לשחקן...</div>':''}</div>
+  ${NET.host?`<button class="btn green" data-x="start" type="button" ${NET.players.length<2&&!NET.coop?'disabled':''}>▶ התחל (${NET.players.length}/4)</button>`:''}<button class="btn alt" data-x="leave" type="button">יציאה</button>`,x=>{
+  if(x==='share'){const t=`🃏 בוא לשחק איתי בלאק ג׳ק בש״ג! ${NET.coop?'ביחד מול הדילר':'תחרות 10 ידיים'}\n${url}`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>toast('📋','הקישור הועתק','שלח לחברים'),()=>{})}
+  if(x==='leave'){netSend({t:'bye'});netLeave();home()}if(x==='start'&&NET.host)onlineStart()})}
+function onNet(m){if(!NET||!m||m.from===P.id)return;NET.last=Date.now();NET.seen[m.from]=Date.now();
+ if(m.t==='hi'&&NET.host){if(!NET.players.find(p=>p.id===m.from)){if(NET.players.length>=4)return;NET.players.push({id:m.from,name:String(m.name||'שחקן').slice(0,16),av:String(m.av||'🙂').slice(0,4)});SFX.ding();toast(m.av||'🙂',(m.name||'שחקן')+' הצטרף!','')}
+  if(NET.started&&T&&T.G){const G=T.G;let s=G.seats.find(x=>x.id===m.from);if(!s&&NET.coop&&G.seats.length<4){G.seats.push({id:m.from,name:String(m.name||'שחקן').slice(0,16),av:String(m.av||'🙂').slice(0,4),chips:1000,bet:0,pp:0,t3:0,last:0,hands:[],ins:0,insQ:false,ready:false,net:0,side:[],away:false});G.seq++}
+   else if(s){s.away=false;s.idle=0}netSend({t:'go',coop:NET.coop});broadcast();render()}else{roomBroadcast();roomRender()}return}
+ if(m.t==='room'&&!NET.host){NET.players=m.players||[];NET.coop=m.coop;if(!NET.started)roomRender();return}
+ if(m.t==='go'&&!NET.host){if(!NET.started){NET.started=true;NET.coop=m.coop;onlineStart()}return}
+ if(m.t==='st'&&!NET.host){if(!T||T.mode!=='online'){NET.started=true;NET.coop=m.s&&m.s.coop;onlineStart()}if(!m.s||(T.G&&m.s.seq<=T.G.seq))return;T.G=m.s;if(m.s.dl&&m.s.dl!==T.dealer){T.dealer=m.s.dl}const mi=T.G.seats.findIndex(s=>s.id===P.id);if(mi<0)return;T.me=mi;T.tEnd=Date.now()+(+m.tl||0);T.coop=m.s.coop;render();return}
+ if(m.t==='act'&&NET.host&&T&&T.G){const i=T.G.seats.findIndex(s=>s.id===m.from);if(i>=0){T.G.seats[i].idle=0;apply(i,String(m.a||''),m.v)}return}
+ if(m.t==='emo'&&T&&T.G){const i=T.G.seats.findIndex(s=>s.id===m.from);showEmo(i,String(m.e||'').slice(0,4));return}
+ if(m.t==='bye'){if(NET.host){NET.players=NET.players.filter(p=>p.id!==m.from);if(T&&T.G){const s=T.G.seats.find(x=>x.id===m.from);if(s){s.away=true;s.ready=false;T.G.seq++;if(T.G.phase==='play'&&T.G.seats[T.G.turn[0]]===s)gAct(T.G,T.G.turn[0],'stand');after()}}else roomRender()}
+  else if(m.from===(NET.players[0]&&NET.players[0].id)){toast('🚪','המארח עזב','השולחן נסגר');netLeave();if(T)tableClose();home()}}}
+function showEmo(i,e){const s=$(`[data-seat="${i}"]`)||$('.seats');if(!s)return;const d=document.createElement('div');d.className='emo';d.textContent=e;const f=$('.felt'),r=s.getBoundingClientRect(),fr=f.getBoundingClientRect();d.style.left=(r.left-fr.left+r.width/2-17)+'px';d.style.top=(r.top-fr.top-10)+'px';f.appendChild(d);setTimeout(()=>d.remove(),2300);SFX.tick()}
+const pub=G=>Object.assign({},G,{shoe:null,left:G.shoe.length,dealer:G.hole?[G.dealer[0],-1]:G.dealer.slice()});
+function broadcast(){if(!T||!T.G||T.mode!=='online'||!T.host)return;netSend({t:'st',s:pub(T.G),tl:Math.max(0,T.tEnd-Date.now())})}
+function onlineStart(){if(!NET)return;closeSheet();NET.started=true;
+ if(NET.host){netSend({t:'go',coop:NET.coop});const G=gNew(NET.players.map(p=>({id:p.id,name:p.name,av:p.av,chips:1000,bet:25})),{min:10,max:500,mode:'online',rounds:NET.coop?0:10});G.coop=NET.coop;G.dl=P.dealer;
+  T={G,mode:'online',host:true,me:0,cnt:{},streak:0,bet:25,pp:0,t3:0,bub:'',coop:NET.coop,dealer:P.dealer,tEnd:0,tb:{chips:[10,25,100,500],min:10}};tableMount();say('deal');push()}
+ else{T={G:null,mode:'online',host:false,me:0,cnt:{},streak:0,bet:25,pp:0,t3:0,bub:'',coop:NET.coop,dealer:'shoshi',tEnd:0,tb:{chips:[10,25,100,500],min:10}};tableMount();render()}}
+function onlineEnd(){if(!T||T.ended)return;T.ended=true;const G=T.G,myI=T.me,sorted=G.seats.map((s,i)=>({s,i})).sort((a,b)=>b.s.chips-a.s.chips),meS=G.seats[T.me],place=sorted.findIndex(x=>x.i===T.me)+1;
+ const win=place===1&&sorted.length>1&&sorted[0].s.chips>(sorted[1]?sorted[1].s.chips:0);const reward=win?500:100;addChips(reward);addXP(win?60:25);
+ setTimeout(()=>{tableClose();netLeave();SCR='home';home();sheet(`<h2>${win?'🏆 ניצחת את השולחן!':`מקום ${place}`}</h2><div class="lb">${sorted.map((x,k)=>`<div class="${x.i===myI?'me':''}"><span>${k+1}</span><span>${esc(x.s.av||'')} ${esc(x.s.name)}</span><span>${fmt(x.s.chips)}</span></div>`).join('')}</div>
+  <p>+${fmt(reward)} צ׳יפים לקופה האמיתית</p><button class="btn" data-x="again" type="button">👥 עוד שולחן</button><button class="btn alt" data-x="close" type="button">לתפריט</button>`,x=>{if(x==='again')friendsScr()});if(win){SFX.bj();confetti(document.body,60)}},1800)}
+/* deep link */
+function checkHash(){const h=(location.hash||'').match(/^#r-([a-z0-9]{5})$/);if(!h||!ONLINE)return false;history.replaceState(null,'',location.pathname+location.search);
+ if(!P.name){P.seen=true;save();nameScr(true);const iv=setInterval(()=>{if(P.name){clearInterval(iv);roomJoin(h[1])}},400);return true}roomJoin(h[1]);return true}
+window.addEventListener('hashchange',checkHash);
+document.addEventListener('pointerdown',firstTouch,{once:true});
+window.addEventListener('pagehide',()=>{if(repDirty)report();if(NET)netSend({t:'bye'})});
+home();checkHash();
+window.__bj={P,getT:()=>T,getNET:()=>NET,home,soloStart:i=>soloStart(TABLES[i||0]),tourStart,ev,missions,TABLES,gNew,gDeal};
+})();
+</script>
+</body></html>

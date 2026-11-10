@@ -750,7 +750,7 @@ body.fighting .room{height:350px}
 .bjdlr{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border-radius:14px;padding:8px 10px;text-align:start}.bjdlr p{margin:0;font-weight:800;font-size:13px}
 .bjlobby .pkrec div{background:rgba(255,255,255,.08);border-color:rgba(255,212,59,.6)}.bjlobby .pkrec span{color:#e8d8ff}
 .bjgo{display:grid!important;gap:2px;background:linear-gradient(90deg,#ff2f6d,#ff7a3b)!important;border-color:#7a1036!important}.bjgo small{font-size:12px;opacity:.9;font-weight:800}
-.bjmodes .big{font-size:16px;padding:12px 6px}.sheet.bjlobby h2{font-size:36px;line-height:1;margin:4px 0}.bjfelt:not(.two) .bjseat{flex:0 1 auto;padding:4px 16px}
+.bjmodes .big{font-size:16px;padding:12px 6px}.bjfull{display:block;border-radius:14px;padding:10px;background:linear-gradient(90deg,#00b4d8,#7b2fbf);color:#fff;font-weight:800;font-size:13.5px;text-decoration:none;box-shadow:0 0 16px rgba(59,224,255,.4)}.bjfull b{color:#ffd43b}.sheet.bjlobby h2{font-size:36px;line-height:1;margin:4px 0}.bjfelt:not(.two) .bjseat{flex:0 1 auto;padding:4px 16px}
 @media (max-height:700px){.bjlobby .bjdlr,.bjlobby .bjneon{display:none}.bjlobby .tip{font-size:11.5px;margin:4px 0}}.bjseek{width:100%;margin-top:2px}
 .bjhome{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:8px 0 2px;border:2px solid #ffd43b;border-radius:14px;padding:7px 12px;color:#fff;
  background:linear-gradient(90deg,#3a0d5c,#7a1fb0 50%,#3a0d5c);box-shadow:0 4px 0 #1b0630,0 0 18px rgba(255,79,216,.45);position:relative;overflow:hidden}
@@ -4821,6 +4821,7 @@ function showBjLobby(){const ov=$('#overlay');ov.hidden=false;const c=getCoins()
   ${ONLINE?`${pvpNameRow()}<p class="pvlbl">עם חבר בזמן אמת · 10 ידיים</p><div class="pvgames bjmodes"><button class="big green" id="bjCoop" type="button">🤝 ביחד מול הדילר</button><button class="big" id="bjDuel" type="button">⚔️ אחד מול השני</button></div>
    <button class="tl bjseek" id="bjSeek" type="button">🎲 יריב אקראי (אחד מול השני)</button>`:''}
   <p class="tip">בלאק ג׳ק משלם 3:2 · הדילר עוצר על 17 · 3 ניצחונות ברצף = בונוס 🔥</p>
+  ${ONLINE?`<a class="bjfull" href="${SHARE_BASE.replace(/[^/]*$/,'')}21/" target="_blank" rel="noopener">🎰 <b>21 בש״ג</b> · הגרסה המלאה: שושי הדילרית, טורניר יומי, עד 4 חברים</a>`:''}
   <button class="ghostbtn" id="bjBack" type="button">חזרה</button></div>`;
  $('#bjSolo').addEventListener('click',()=>{ac();ov.hidden=true;ov.innerHTML='';bjStartSolo()});
  const go=m=>{if(!pvpTakeName())return;ac();BJMODE=m;pvpHost('bj')};
@@ -4963,7 +4964,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='6.0';
+const VERSION='6.1';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
