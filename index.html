@@ -629,49 +629,96 @@ body.fighting .room{height:350px}
 .g-pk{background:linear-gradient(135deg,#1f7a4a,#0e4a2c);color:#fff;border-color:#0b2a1a}.g-pk small{color:#d8f2e2}.g-rev{background:#d8f2ea}.g-bg{background:#fff1c7}.g-pvp{background:#ffe1dc}
 .pvgames.g3{grid-template-columns:repeat(3,1fr)}.pvgames.g3 .big{font-size:17px;padding:10px 4px}.pkgo{background:#1f4f8a!important;color:#fff!important}
 .pkl:disabled{opacity:.45}.pkl small{font-family:var(--f-body,inherit);font-size:13px;opacity:.75}.lvl.pk-yossi{background:#e8f6e3}.lvl.pk-samal{background:#fff6d6}.lvl.pk-rasar{background:#1b1d14;color:#ffd43b}.lvl.pk-rasar em,.lvl.pk-rasar span{color:#f1e6cb}
-.pktable{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:calc(8px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));
-  background:radial-gradient(ellipse at 50% 45%,#2a2016,#120d08 75%);color:#f6efe0;overflow:hidden}
-.pkhead{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;opacity:.9}.pkhead span{flex:1}.pkq{border:1px solid rgba(255,255,255,.35);background:transparent;color:#f6efe0;border-radius:99px;padding:4px 10px;font-weight:800;font-size:12px}
-.pktimer{height:5px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.pktimer i{display:block;height:100%;width:0;background:#ffd43b;transition:width .25s linear}
-.pkopp,.pkme{position:relative;display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:14px;transition:background .3s}
-.pkopp.turn,.pkme.turn{background:rgba(255,212,59,.12);box-shadow:inset 0 0 0 2px rgba(255,212,59,.55)}
-.pkav{width:54px;height:54px;border-radius:50%;overflow:hidden;background:#3a2c1c;border:2px solid #d4a017;flex:none}.pkav svg{width:100%;height:100%}
-.pkname{display:grid;flex:1;min-width:0}.pkname b{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pkname span,.pkinfo span{font-size:12.5px;font-weight:700;opacity:.85}
-.pkcards{display:flex;gap:4px}.pkcards.mine .pc{width:58px;height:82px;font-size:22px}
+.pkav{width:54px;height:54px;border-radius:50%;overflow:hidden;background:#3a2c1c;border:2px solid #d4a017;flex:none}
+.pkav svg{width:100%;height:100%}
 .pkbub{display:block;margin-top:3px;font-style:normal;background:#fff;color:#1b1d14;font-weight:800;font-size:12.5px;padding:3px 9px;border-radius:10px;max-width:100%;width:max-content;line-height:1.3;white-space:normal}
 .pkbub.new{animation:nuIn .3s both}
-.pkcwrap{display:grid;justify-items:center;gap:3px}.pkhn{font-size:11.5px;font-weight:900;color:#ffd43b;white-space:nowrap}.pkhn.f{color:#cbbfa8;opacity:.8}
-.pkav{position:relative}.pkd{position:absolute;bottom:-3px;inset-inline-end:-3px;width:20px;height:20px;border-radius:50%;background:#fff;color:#1b1d14;font-size:11px;font-weight:900;display:grid;place-items:center;border:2px solid #1b1d14}
+.pkcwrap{display:grid;justify-items:center;gap:3px}
+.pkhn.f{color:#cbbfa8;opacity:.8}
+.pkav{position:relative}
+.pkd{position:absolute;bottom:-3px;inset-inline-end:-3px;width:20px;height:20px;border-radius:50%;background:#fff;color:#1b1d14;font-size:11px;font-weight:900;display:grid;place-items:center;border:2px solid #1b1d14}
 .pkd.s{position:static;display:inline-grid;width:18px;height:18px;font-size:10px;vertical-align:middle}
-.pc.hl{box-shadow:0 0 0 3px #ffd43b,0 0 16px rgba(255,212,59,.85);transform:translateY(-4px);transition:transform .3s,box-shadow .3s;transition-delay:.2s}.pc.dim{filter:brightness(.55) saturate(.6)}
-.pkeq{position:relative;height:16px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:4px;max-width:200px}.pkeq i{position:absolute;inset:0 auto 0 0;background:#c9a227;transition:width .4s}.pkeq i.hi{background:#2fa84f}.pkeq i.lo{background:#b0392b}
+.pc.hl{box-shadow:0 0 0 3px #ffd43b,0 0 16px rgba(255,212,59,.85);transform:translateY(-4px);transition:transform .3s,box-shadow .3s;transition-delay:.2s}
+.pc.dim{filter:brightness(.55) saturate(.6)}
+.pkeq{position:relative;height:16px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:4px;max-width:200px}
+.pkeq i{position:absolute;inset:0 auto 0 0;background:#c9a227;transition:width .4s}
+.pkeq i.hi{background:#2fa84f}
+.pkeq i.lo{background:#b0392b}
 .pkeq span{position:relative;display:block;text-align:center;font-size:10.5px;font-weight:900;line-height:16px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
 .pkallin{position:absolute;top:18%;left:50%;transform:translateX(-50%);font-family:var(--f-display);font-size:44px;color:#ffd43b;text-shadow:0 3px 0 #7a1f10,0 0 20px rgba(255,120,0,.8);animation:pkAllin 1.6s both;pointer-events:none;z-index:5;white-space:nowrap}
 @keyframes pkAllin{0%{opacity:0;transform:translateX(-50%) scale(2.2)}15%{opacity:1;transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(.9)}}
 .pkfly{position:fixed;z-index:120;font-size:18px;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
-.pkrec{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0}.pkrec div{display:grid;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:5px 3px}.pkrec b{font-family:var(--f-display);font-size:24px;line-height:1.1}.pkrec b.sm{font-family:inherit;font-size:12px;font-weight:900;line-height:1.6}.pkrec span{font-size:10.5px;font-weight:800;color:var(--ink-soft)}
-.pkl.locked{opacity:.55}.lvl.pk-magad{background:linear-gradient(135deg,#3a0d0d,#1b1d14);color:#ffd43b}.lvl.pk-magad span,.lvl.pk-magad em{color:#f1e6cb}
+.pkrec{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0}
+.pkrec div{display:grid;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:5px 3px}
+.pkrec b{font-family:var(--f-display);font-size:24px;line-height:1.1}
+.pkrec b.sm{font-family:inherit;font-size:12px;font-weight:900;line-height:1.6}
+.pkrec span{font-size:10.5px;font-weight:800;color:var(--ink-soft)}
+.pkl.locked{opacity:.55}
+.lvl.pk-magad{background:linear-gradient(135deg,#3a0d0d,#1b1d14);color:#ffd43b}
+.lvl.pk-magad span,.lvl.pk-magad em{color:#f1e6cb}
 .pkunl{font-weight:900;color:#b07d00;font-size:16px}
 .pklobby .lvl span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (max-height:760px){.pklobby .tip{display:none}.pklobby h2{font-size:34px;margin:2px 0}.pklobby .lvl{padding:5px 10px;gap:0}.pklobby .lvl b{font-size:19px}.pklobby .lvl em{font-size:11px}.pkrec b{font-size:19px}.pkrec{margin:4px 0}.pklobby .pvrank{padding:4px;margin-top:4px}}.pklobby .lvls{gap:6px}.pklobby .lvl{padding:7px 12px}.pklobby .lvl b{font-size:22px}
-.pkfelt{position:relative;flex:1;min-height:150px;display:grid;place-items:center;align-content:center;gap:8px;border-radius:50%/40%;background:radial-gradient(ellipse at 50% 40%,#1f7a4a,#0e4a2c 70%);border:8px solid #5a3a1c;box-shadow:inset 0 0 30px rgba(0,0,0,.55),0 10px 24px rgba(0,0,0,.5)}
-.pkboard{display:flex;gap:5px;direction:ltr}.pkpot{font-weight:800;font-size:13px;background:rgba(0,0,0,.35);border-radius:99px;padding:3px 12px}.pkpot b{color:#ffd43b;font-size:16px}
-.pkchip{font-weight:900;font-size:13px;color:#ffd43b;min-height:16px}.pkchip.op{position:absolute;top:10px}.pkchip.me{position:absolute;bottom:10px}
-.pc{position:relative;display:grid;place-items:center;width:42px;height:60px;border-radius:7px;background:linear-gradient(160deg,#fff,#efe9dc);color:#1b1d14;box-shadow:0 3px 6px rgba(0,0,0,.4);font-weight:900;font-size:17px;line-height:1;direction:ltr}
-.pc b{position:absolute;top:4px;left:5px;font-size:.8em}.pc i{font-style:normal;font-size:1.35em}.pc.red{color:#c62828}
-.pc.back{background:repeating-linear-gradient(45deg,#2c5a36 0 6px,#244a2c 6px 12px);border:2px solid #f1e6cb}.pc.back i{font-size:9px;color:#f1e6cb;font-weight:900}
-.pc.slot{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
+@media (max-height:760px){.pklobby .tip{display:none}.pklobby h2{font-size:34px;margin:2px 0}.pklobby .lvl{padding:5px 10px;gap:0}.pklobby .lvl b{font-size:19px}.pklobby .lvl em{font-size:11px}.pkrec b{font-size:19px}.pkrec{margin:4px 0}.pklobby .pvrank{padding:4px;margin-top:4px}}
+.pklobby .lvls{gap:6px}
+.pklobby .lvl{padding:7px 12px}
+.pklobby .lvl b{font-size:22px}
+.pkb small{font-size:11px;opacity:.85}
+.pktable{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:calc(6px + env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));
+  background:radial-gradient(ellipse at 50% 30%,#3a2a18 0%,#1a120a 55%,#0b0805 100%);color:#f6efe0;overflow:hidden;--cw:clamp(38px,min(12.6vw,8vh),68px)}
+.pkhead{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;opacity:.9;direction:rtl}.pkhead span{flex:1}.pkq{border:1px solid rgba(255,255,255,.35);background:transparent;color:#f6efe0;border-radius:99px;padding:4px 10px;font-weight:800;font-size:12px}
+.pktimer{height:5px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.pktimer i{display:block;height:100%;width:0;background:#ffd43b;transition:width .25s linear}
+.pkarena{flex:1;min-height:0;display:grid;place-items:center;padding:24px 0}
+.pkrail{position:relative;height:100%;aspect-ratio:.7;max-width:100%;border-radius:50%;background:linear-gradient(160deg,#7a4a22,#4a2a10 40%,#6b3d18 70%,#3a200c);box-shadow:0 18px 40px rgba(0,0,0,.7),inset 0 2px 0 rgba(255,255,255,.18),inset 0 -3px 6px rgba(0,0,0,.5)}
+.pkrail::before{content:"";position:absolute;inset:5px;border-radius:50%;border:2px solid rgba(255,214,120,.35)}
+.pkfelt2{position:absolute;inset:13px;border-radius:50%;background:radial-gradient(ellipse at 50% 42%,#2f9a5e 0%,#167a45 45%,#0c5530 80%,#083d22 100%);box-shadow:inset 0 0 45px rgba(0,0,0,.65),inset 0 0 0 3px rgba(0,0,0,.25);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:0 6%}
+.feltart{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:0;pointer-events:none;opacity:.16;color:#fff}
+.fa-crown{font-size:calc(var(--cw)*1.1);line-height:1;filter:grayscale(1) brightness(2)}.fa-t{font-family:var(--f-display);font-size:calc(var(--cw)*.62);line-height:1}.fa-s{font-size:calc(var(--cw)*.36);letter-spacing:.35em}
+.fa-line{position:absolute;inset:17% 12%;border-radius:50%;border:2px dashed rgba(255,255,255,.7)}
+.seat{position:relative;z-index:4;display:flex;align-items:center;gap:6px;background:linear-gradient(#2a2016,#140d07);border:2px solid #d4a017;border-radius:99px;padding:3px 12px 3px 4px;box-shadow:0 6px 14px rgba(0,0,0,.55);transition:box-shadow .3s}
+.seat.top{margin-top:-24px}.seat.bot{margin-bottom:-24px;flex-wrap:wrap;justify-content:center;max-width:110%}
+.seat.turn{box-shadow:0 0 0 3px #ffd43b,0 0 22px rgba(255,212,59,.8)}
+.seat .pkav{width:40px;height:40px;border-width:2px}.seat .pkname{display:grid;line-height:1.15}.seat .pkname b{font-size:14px}.seat .pkname span{font-size:12px}
+.seat .pkbub{position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);width:max-content;max-width:min(230px,70vw);text-align:center;z-index:6;box-shadow:0 4px 10px rgba(0,0,0,.4)}
+.seat .pkbub.new{animation:bubIn .3s both}@keyframes bubIn{from{opacity:0;transform:translate(-50%,-6px)}to{opacity:1;transform:translate(-50%,0)}}
+.seat.bot .pkeq{flex-basis:100%;max-width:none;margin:2px 0 1px;height:14px}.seat.bot .pkeq span{line-height:14px;font-size:10px}
+.ocards,.mcards{position:relative;z-index:2;display:grid;justify-items:center;gap:2px}.ocards{margin-top:6px}.mcards{margin-bottom:4px}
+.pkhn{font-size:11.5px;font-weight:900;color:#ffd43b;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.7)}.pkhn.me{color:#fff;font-size:12.5px}
+.pkfelt2 .pkchip{position:relative;z-index:2;min-height:22px;display:grid;place-items:center}
+.mid{position:relative;z-index:2;display:grid;justify-items:center;gap:6px}
+.pkboard{display:flex;gap:4px;direction:ltr}
+.pkpot{display:flex;align-items:center;gap:6px;min-height:24px;transition:transform .9s cubic-bezier(.45,0,.2,1),opacity .9s}.pkpot em{font-style:normal;font-weight:900;font-size:12px;opacity:.85}
+.pkpot.to-me.go{transform:translateY(34vh) scale(.85);opacity:0}.pkpot.to-op.go{transform:translateY(-30vh) scale(.85);opacity:0}
+.stk{display:inline-flex;align-items:flex-end;gap:2px;direction:ltr}.stk .col{position:relative;width:24px;height:34px}.stk b{font-weight:900;font-size:13px;color:#ffd43b;margin-left:4px;text-shadow:0 1px 2px rgba(0,0,0,.8);align-self:center}
+.chip{position:absolute;left:0;width:24px;height:10px;border-radius:50%;border:2px dashed rgba(255,255,255,.9);box-shadow:0 2px 0 rgba(0,0,0,.45),inset 0 -2px 0 rgba(0,0,0,.25)}
+.chip.c10{background:#c62828}.chip.c50{background:#1e5fb3}.chip.c1{background:#1b1b1b}.chip.c5{background:#6b2fa0}
+.pc{position:relative;display:grid;place-items:center;width:var(--cw);height:calc(var(--cw)*1.4);border-radius:calc(var(--cw)*.12);background:linear-gradient(160deg,#fff,#f1ebde);color:#1b1d14;box-shadow:0 4px 8px rgba(0,0,0,.45);font-weight:900;font-size:calc(var(--cw)*.34);line-height:1;direction:ltr}
+.pc b{position:absolute;top:4%;left:7%;display:grid;justify-items:center;font-size:1em;line-height:.95}.pc b u{text-decoration:none;font-size:.8em}.pc b.br{top:auto;left:auto;bottom:4%;right:7%;transform:rotate(180deg)}
+.pc i{font-style:normal;font-size:calc(var(--cw)*.62)}.pc.red{color:#c62828}
+.pc.back{background:repeating-linear-gradient(45deg,#8a1c1c 0 5px,#701515 5px 10px);border:3px solid #f6efe0}.pc.back i{font-size:calc(var(--cw)*.4);color:#f6efe0;opacity:.9}
+.pc.slot{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 2px rgba(255,255,255,.22)}
+.pc.sm,.ocards .pc{width:calc(var(--cw)*.78);height:calc(var(--cw)*1.09);font-size:calc(var(--cw)*.27)}.ocards .pc i{font-size:calc(var(--cw)*.46)}
+.pkcards{display:flex;gap:4px;direction:ltr}.mine .pc{width:calc(var(--cw)*1.22);height:calc(var(--cw)*1.71);font-size:calc(var(--cw)*.42)}.mine .pc i{font-size:calc(var(--cw)*.78)}.mine .pc:last-child{transform:rotate(5deg)}.mine .pc:first-child{transform:rotate(-5deg)}
 .pc.deal{animation:pcDeal .45s cubic-bezier(.2,.9,.3,1.2) both}.pc.d1{animation-delay:.12s}.pc.d2{animation-delay:.24s}.pc.flip{animation:pcFlip .5s both}
-@keyframes pcDeal{from{opacity:0;transform:translateY(-60px) rotate(-20deg) scale(.6)}to{opacity:1;transform:none}}
+@keyframes pcDeal{from{opacity:0;transform:translateY(-60px) rotate(-20deg) scale(.6)}to{opacity:1}}
 @keyframes pcFlip{0%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
-.pkinfo{display:grid;flex:1;min-width:0}.pkinfo b{font-size:15px}
-.pkres{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);display:grid;gap:2px;text-align:center;padding:10px 16px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:truthIn .35s both;z-index:4;min-width:60%}
-.pkres b{font-family:var(--f-display);font-size:30px;line-height:1}.pkres span{font-weight:800;font-size:13px}.pkres.win{background:#2fa84f}.pkres.lose{background:#8a2a20}.pkres.tie{background:#5a5f66}
+.pkres{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:7;display:grid;gap:2px;text-align:center;padding:10px 18px;border-radius:16px;box-shadow:0 12px 34px rgba(0,0,0,.6);animation:resIn .5s cubic-bezier(.2,.9,.3,1.3) both,resUp .5s 1.7s ease forwards;min-width:58%}
+@keyframes resUp{to{transform:translate(-50%,-165%) scale(.82)}}
+.pkres b{font-family:var(--f-display);font-size:28px;line-height:1.05}.pkres span{font-weight:800;font-size:12.5px}.pkres.win{background:linear-gradient(135deg,#2fa84f,#1d7a37)}.pkres.lose{background:#8a2a20}.pkres.tie{background:#5a5f66}
+@keyframes resIn{from{opacity:0;transform:translate(-50%,-50%) scale(.6)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.pkallin{top:38%}
 .pkact{display:grid;gap:6px}.pkact.wait{text-align:center;font-weight:800;opacity:.75;padding:14px 0}
-.pkrow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px}
-.pkb{border:0;border-radius:12px;font-weight:900;font-size:17px;padding:11px 4px;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.4);display:grid;line-height:1.1}.pkb small{font-size:11px;opacity:.85}
-.pkb:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.4)}.pkb.fold{background:#7a2a20}.pkb.check,.pkb.call{background:#2e7d32}.pkb.raise{background:#1f4f8a;font-size:14px}.pkb.allin{background:#d4a017;color:#1b1d14}
-@media (max-height:620px){.pkav{width:44px;height:44px}.pc{width:36px;height:52px;font-size:15px}.pkcards.mine .pc{width:48px;height:68px}.pkb{padding:9px 4px;font-size:15px}}
+.pkrow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;direction:ltr}
+.pkb{border:0;border-radius:12px;font-weight:900;font-size:16px;padding:12px 4px;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.4);line-height:1.1}
+.pkb:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.4)}.pkb.fold{background:#7a2a20}.pkb.check,.pkb.call{background:#2e7d32}.pkb.raise{background:#1f4f8a}.pkb.allin{background:#d4a017;color:#1b1d14}
+.pkact.bet{background:rgba(0,0,0,.35);border:1px solid rgba(255,212,59,.35);border-radius:14px;padding:8px}
+.betshow{display:flex;align-items:baseline;justify-content:center;gap:6px}.betshow span{font-weight:800}.betshow b{font-family:var(--f-display);font-size:34px;line-height:1;color:#ffd43b}.betshow small{font-size:11px;opacity:.75;font-weight:800}
+#betR{width:100%;accent-color:#ffd43b;height:26px;margin:0}
+.betchips{display:flex;gap:6px;justify-content:center;direction:ltr}.bch{width:46px;height:46px;border-radius:50%;border:3px dashed rgba(255,255,255,.9);color:#fff;font-weight:900;font-size:12px;box-shadow:0 3px 0 rgba(0,0,0,.45)}
+.bch.c10{background:#c62828}.bch.c50{background:#1e5fb3}.bch.c1{background:#1b1b1b}.bch.c5{background:#6b2fa0}.bch.clr{background:#5a5f66;font-size:18px}.bch:active{transform:translateY(2px) scale(.96)}
+.pkb.go{font-size:18px}
+.pktable:has(.pkact.bet){--cw:clamp(32px,min(11vw,6.2vh),58px)}.pktable:has(.pkact.bet) .seat.bot .pkeq{display:none}.pktable:has(.pkact.bet) .pkarena{padding-bottom:30px}
+@media (max-height:640px){.pktable{--cw:clamp(34px,min(11.5vw,7.4vh),60px)}.seat .pkav{width:32px;height:32px}.seat{padding:2px 10px 2px 3px}.seat .pkname b{font-size:12.5px}.pkarena{padding:20px 0}.pkb{padding:10px 4px;font-size:15px}.bch{width:40px;height:40px}.betshow b{font-size:28px}.stk .col{height:28px}}
 .sheet.login{text-align:center}.lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
 .lday{position:relative;display:grid;justify-items:center;gap:2px;padding:7px 2px;border-radius:10px;background:#fff;border:2px solid #cfc7b0;color:var(--ink)}
 .lday small{font-size:10.5px;font-weight:800;color:var(--ink-soft)}.lday .lic{font-size:24px;line-height:1.1}.lday b{font-size:12px;font-weight:900}
@@ -4303,7 +4350,7 @@ async function pkSync(){const me=PK;if(!me||me.syncing||!me.G)return;me.syncing=
  finally{me.syncing=false}}
 function pkBroadcast(){if(!PK||!PK.host||!PK.G)return;const G=PK.G,s=JSON.parse(JSON.stringify(G));delete s.deck;if(!G.reveal)s.p[0].cards=[-1,-1];if(!G.reveal)s.p[1].cards=[-1,-1];pvpSend({t:'ps',s})}
 function pkNet(m){if(!PK||PK.mode!=='online')return;
- if(m.t==='ps'&&!PK.host){if(PK.G&&m.s.seq<PK.G.seq&&m.s.hand<=PK.G.hand)return;const prevHand=PK.G?PK.G.hand:0;PK.G=m.s;if(m.s.hand!==prevHand){PK.shown=0;PK.dealt=false;PK.bub='';PK.mine=null;pkGuestCards(m.s.hand)}
+ if(m.t==='ps'&&!PK.host){if(PK.G&&m.s.seq<PK.G.seq&&m.s.hand<=PK.G.hand)return;if(PK.betOpen&&PK.G&&m.s.seq===PK.G.seq&&m.s.hand===PK.G.hand)return;const prevHand=PK.G?PK.G.hand:0;PK.G=m.s;if(m.s.hand!==prevHand){PK.shown=0;PK.dealt=false;PK.bub='';PK.mine=null;pkGuestCards(m.s.hand)}
   if(PK.mine&&!(m.s.p[1].cards[0]>=0))m.s.p[1].cards=PK.mine.slice();
   if(m.s.wait){const k=m.s.hand+(m.s.needShow&&m.s.board.length>=5?'s':'b'+m.s.need);if(!PK.req[k]){PK.req[k]=1;pkSync()}}
   if(m.s.last&&m.s.last.i===0)PK.bub=pkActText(m.s.last);if(m.s.toAct===1&&!m.s.result&&!m.s.wait)PK.tEnd=Date.now()+30000;pkRender();if(m.s.result)pkResultFx();pkCheckEnd();return}
@@ -4331,51 +4378,75 @@ function pkResultFx(){const G=PK.G,R=G.result;if(!R||PK.fxDone===G.hand+'-'+G.se
  if(PK.mode==='ai'){const O=G.p[1];let bub=R.w<0?'Split pot. נו.':won?pickOne(PK_TALK.lose):pickOne(PK_TALK.win);
   if(R.fold&&R.w===1&&G.board.length>=3&&pkEquity(O.cards,G.board,150)<.4&&Math.random()<.7)bub=pickOne(PK_BLUFF);PK.bub=bub}
  pkRender()}
-function pkCard(c,cls){if(c==null||c<0)return`<span class="pc back ${cls||''}"><i>צה״ל</i></span>`;const r=c%13,s=(c/13)|0,red=s===1||s===2;
- return`<span class="pc ${red?'red':''} ${cls||''}"><b>${PK_R[r]}</b><i>${PK_S[s]}</i></span>`}
+function pkCard(c,cls){if(c==null||c<0)return`<span class="pc back ${cls||''}"><i>♠</i></span>`;const r=c%13,s=(c/13)|0,red=s===1||s===2;
+ return`<span class="pc ${red?'red':''} ${cls||''}"><b>${PK_R[r]}<u>${PK_S[s]}</u></b><i>${PK_S[s]}</i><b class="br">${PK_R[r]}<u>${PK_S[s]}</u></b></span>`}
+/* real chip stacks: 500 purple, 100 black, 50 blue, 10 red */
+function pkStack(amt,big){if(!amt)return'';const den=[500,100,50,10],cls=['c5','c1','c50','c10'];let left=amt,chips=[];
+ den.forEach((d,i)=>{let n=Math.floor(left/d);left-=n*d;while(n-->0)chips.push(cls[i])});if(left>0)chips.push('c10');
+ const max=big?12:7,shown=chips.slice(0,max),cols=[];for(let i=0;i<shown.length;i+=big?6:7)cols.push(shown.slice(i,i+(big?6:7)));
+ return`<span class="stk">${cols.map(col=>`<span class="col">${col.map((k,j)=>`<i class="chip ${k}" style="bottom:${j*4}px"></i>`).join('')}</span>`).join('')}<b>${amt}</b></span>`}
 function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me],O=G.p[op],R=G.result;
  if(PK.mode==='online'&&PK.mine&&!(M.cards[0]>=0))M.cards=PK.mine.slice();
  const myTurn=!R&&!G.wait&&G.toAct===me&&G.street<4&&!M.allin&&!PK.waiting&&M.cards[0]>=0,call=G.cur-M.bet,pot=G.pot+M.bet+O.bet;
- if(!myTurn||G.toAct!==me)PK.waiting=false;
- const oname=PK.mode==='ai'?PK.ai.n:PK.oname,ochar=PK.mode==='ai'?PK.ai.char:PK.ochar;
+ if(!myTurn||G.toAct!==me){PK.waiting=false;PK.betOpen=false}
+ const oname=PK.mode==='ai'?PK.ai.n:PK.oname,ochar=PK.mode==='ai'?PK.ai.char:PK.ochar,mychar=charId();
  const showOpp=O.cards[0]>=0&&(PK.mode==='ai'?!!R:G.reveal);
- /* board with dramatic runout on all-in */
  const newFrom=PK.shown,nNew=G.board.length-newFrom;PK.shown=G.board.length;
  const runout=R&&!R.fold&&nNew>=2&&G.reveal;if(runout)PK.runout=nNew*650+300;else if(!R)PK.runout=0;
  const win5=R&&!R.fold&&R.w>=0?pkBest5(G.p[R.w].cards.concat(G.board)):null,hl=c=>win5?(win5.includes(c)?' hl':' dim'):'';
  const board=Array.from({length:5},(_,i)=>{if(i>=G.board.length)return'<span class="pc slot"></span>';const c=G.board[i],nw=i>=newFrom;
   return pkCard(c,(nw?(runout?'deal':'deal d'+(i-newFrom)):'')+hl(c)).replace('class="pc',nw&&runout?`style="animation-delay:${(i-newFrom)*.65+.3}s" class="pc`:'class="pc')}).join('');
- if(nNew>0&&!PK.silentDeal){for(let i=0;i<nNew;i++)pkS.deal(runout?(i*.65+.3):i*.12)}
+ if(nNew>0){for(let i=0;i<nNew;i++)pkS.deal(runout?(i*.65+.3):i*.12)}
  const flipKey=G.hand+(showOpp?'s':'h'),doFlip=showOpp&&PK.flipKey!==flipKey;if(doFlip){PK.flipKey=flipKey;pkS.flip(.05);pkS.flip(.15)}
- /* my hand info + win chance */
- const hint=M.cards[0]>=0?(G.board.length?'יש לך: '+pkLabel(M.cards,G.board):pkLabel(M.cards,[])):'';
+ const hint=M.cards[0]>=0?(G.board.length?pkLabel(M.cards,G.board):pkLabel(M.cards,[])):'';
  let eqH='';if(myTurn&&M.cards[0]>=0){const k=G.hand+'/'+G.board.length;if(PK.eqK!==k){PK.eqK=k;PK.eq=pkEquity(M.cards,G.board,400)}const e=Math.round(PK.eq*100);
   eqH=`<div class="pkeq"><i style="width:${e}%" class="${e>=60?'hi':e<35?'lo':''}"></i><span>סיכוי לנצח ${e}%</span></div>`}
- const mn=Math.min(M.bet+M.chips,G.cur+G.minR),half=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,Math.round(pot/2))),full=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,pot)),all=M.bet+M.chips;
- const raises=[[mn,''],[half,''],[full,'']].filter((x,i,a)=>x[0]<all&&x[0]>G.cur&&a.findIndex(y=>y[0]===x[0])===i);
- let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}" style="animation-delay:${runout?PK.runout/1000:0}s"><b>${tie?'Split Pot':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' עשה Fold':'עשית Fold'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
- const act=myTurn?`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">Fold</button>${call<=0?'<button type="button" class="pkb check" data-a="check">Check</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">All-in ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">Call ${call}</button>`}</div>
-   ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">Raise ${x[0]}</button>`).join('')}<button type="button" class="pkb allin" data-a="allin">All-in ${all}</button></div>`:''}</div>`
-  :`<div class="pkact wait">${R?'':G.wait||!(M.cards[0]>=0)?'השרת מחלק קלפים...':M.allin?'אתה All-in. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
- const oppCards=showOpp?pkCard(O.cards[0],(doFlip?'flip':'')+(O.folded?' dim':hl(O.cards[0])))+pkCard(O.cards[1],(doFlip?'flip':'')+(O.folded?' dim':hl(O.cards[1]))):O.folded?'':pkCard(-1)+pkCard(-1);
+ /* bet choice */
+ const minTo=Math.min(M.bet+M.chips,G.cur+G.minR),all=M.bet+M.chips;
+ if(PK.betAmt==null||PK.betAmt<minTo||PK.betAmt>all)PK.betAmt=minTo;
+ const canRaise=call<M.chips&&minTo<all;
+ let act;
+ if(myTurn&&PK.betOpen&&canRaise){const v=PK.betAmt;
+  act=`<div class="pkact bet"><div class="betshow"><span>Raise ל־</span><b id="betV">${v}</b><small id="betS">${v>=all?'All-in':'מתוך '+all}</small></div>
+   <input type="range" id="betR" min="${minTo}" max="${all}" step="${G.sb}" value="${v}" aria-label="כמה לשים">
+   <div class="betchips">${[[10,'c10'],[50,'c50'],[100,'c1'],[500,'c5']].map(([d,c])=>`<button type="button" class="bch ${c}" data-add="${d}">+${d}</button>`).join('')}<button type="button" class="bch clr" data-add="0">↺</button></div>
+   <div class="pkrow"><button type="button" class="pkb fold" id="betX">ביטול</button><button type="button" class="pkb raise go" id="betGo">${v>=all?'All-in '+all:'Raise '+v}</button></div></div>`}
+ else if(myTurn){act=`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">Fold</button>${call<=0?'<button type="button" class="pkb check" data-a="check">Check</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">All-in ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">Call ${call}</button>`}
+   ${canRaise?'<button type="button" class="pkb raise" id="betOpen">Raise ▴</button>':''}${call<M.chips?`<button type="button" class="pkb allin" data-a="allin">All-in</button>`:''}</div></div>`}
+ else act=`<div class="pkact wait">${R?'':G.wait||!(M.cards[0]>=0)?'השרת מחלק קלפים...':M.allin?'אתה All-in. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
+ let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}" style="animation-delay:${runout?PK.runout/1000:0}s"><b>${tie?'Split Pot':w?'+'+R.amount+' 🪙':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' עשה Fold':'עשית Fold'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
+ const oppCards=showOpp?pkCard(O.cards[0],(doFlip?'flip':'')+(O.folded?' dim':hl(O.cards[0])))+pkCard(O.cards[1],(doFlip?'flip':'')+(O.folded?' dim':hl(O.cards[1]))):O.folded?'':pkCard(-1,'sm')+pkCard(-1,'sm');
  const oppLbl=showOpp?`<span class="pkhn${O.folded?' f':''}">${O.folded?'Fold · ':''}${escH(pkLabel(O.cards,G.board))}</span>`:'';
  const bubNew=PK.bub&&PK.bubK!==PK.bub;PK.bubK=PK.bub;
- const allinBanner=runout?`<div class="pkallin">ALL-IN!</div>`:'';
+ const potWin=R&&R.w>=0?(R.w===me?' to-me':' to-op'):'',potAmt=R?R.amount:pot;
  const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="pktable"><div class="pkhead"><span>Blinds ${G.sb}/${G.bb} · יד ${G.hand}</span>${PK.mode==='online'?'<button type="button" class="pkq" id="pkChat">💬</button>':''}<button type="button" class="pkq" id="pkQuit">${PK.quitArm?'בטוח? עוד לחיצה':PK.mode==='ai'?'קום מהשולחן':'פרישה'}</button></div>
   ${PK.mode==='online'?'<div class="pktimer"><i></i></div>':''}
-  <div class="pkopp${!R&&G.toAct===op?' turn':''}"><div class="pkav">${portrait(CHARS[ochar]?ochar:'tiron')}${G.btn===op?'<span class="pkd">D</span>':''}</div><div class="pkname"><b>${escH(oname)}</b><span>${O.chips} 🪙</span>${PK.bub?`<em class="pkbub${bubNew?' new':''}">${escH(PK.bub)}</em>`:''}</div>
-   <div class="pkcwrap"><div class="pkcards">${oppCards}</div>${oppLbl}</div></div>
-  <div class="pkfelt"><div class="pkchip op">${O.bet?'🪙 '+O.bet:''}</div><div class="pkboard">${board}</div><div class="pkpot">Pot <b>${pot}</b></div><div class="pkchip me">${M.bet?'🪙 '+M.bet:''}</div>${res}${allinBanner}</div>
-  <div class="pkme${myTurn?' turn':''}"><div class="pkcards mine">${M.folded?'':pkCard(M.cards[0],(G.hand&&!PK.dealt?'deal d0':'')+hl(M.cards[0]))+pkCard(M.cards[1],(G.hand&&!PK.dealt?'deal d1':'')+hl(M.cards[1]))}</div>
-   <div class="pkinfo"><b>אתה · ${M.chips} 🪙${G.btn===me?' <span class="pkd s">D</span>':''}</b><span>${escH(hint)}</span>${eqH}</div></div>
+  <div class="pkarena"><div class="pkrail"><div class="pkfelt2">
+   <div class="feltart" aria-hidden="true"><span class="fa-crown">👑</span><span class="fa-t">מלך הגימלים</span><span class="fa-s">♠ ♥ ♣ ♦</span><span class="fa-line"></span></div>
+   <div class="pkopp seat top${!R&&G.toAct===op?' turn':''}"><div class="pkav">${portrait(CHARS[ochar]?ochar:'tiron')}${G.btn===op?'<span class="pkd">D</span>':''}</div>
+    <div class="pkname"><b>${escH(oname)}</b><span>${O.chips} 🪙</span></div>${PK.bub?`<em class="pkbub${bubNew?' new':''}">${escH(PK.bub)}</em>`:''}</div>
+   <div class="ocards"><div class="pkcards">${oppCards}</div>${oppLbl}</div>
+   <div class="pkchip op">${pkStack(O.bet)}</div>
+   <div class="mid"><div class="pkpot${potWin}" style="${potWin?`transition-delay:${(runout?PK.runout/1000:0)+.5}s`:''}">${pkStack(potAmt,true)}<em>Pot</em></div><div class="pkboard">${board}</div></div>
+   <div class="pkchip me">${pkStack(M.bet)}</div>
+   <div class="mcards"><div class="pkcards mine">${M.folded?'':pkCard(M.cards[0],(G.hand&&!PK.dealt?'deal d0':'')+hl(M.cards[0]))+pkCard(M.cards[1],(G.hand&&!PK.dealt?'deal d1':'')+hl(M.cards[1]))}</div>${hint?`<span class="pkhn me">${escH(hint)}</span>`:''}</div>
+   <div class="pkme seat bot${myTurn?' turn':''}"><div class="pkav">${portrait(CHARS[mychar]?mychar:'tiron')}${G.btn===me?'<span class="pkd">D</span>':''}</div><div class="pkname"><b>אתה</b><span>${M.chips} 🪙</span></div>${eqH}</div>
+   ${res}${runout?'<div class="pkallin">ALL-IN!</div>':''}
+  </div></div></div>
   ${act}</div>`;
  PK.dealt=true;
- /* chips flying into the pot when someone bets */
  const pb=PK.pb||[0,0],nb=[G.p[0].bet,G.p[1].bet];
- [me,op].forEach(i=>{if(nb[i]>pb[i]&&!R){pkFly(document.querySelector(i===me?'.pkme':'.pkopp'),document.querySelector(i===me?'.pkchip.me':'.pkchip.op'),Math.min(5,1+Math.round((nb[i]-pb[i])/G.bb)));pkS.chips(Math.min(6,2+Math.round((nb[i]-pb[i])/(G.bb*2))))}});
+ [me,op].forEach(i=>{if(nb[i]>pb[i]&&!R){pkFly(document.querySelector(i===me?'.pkme .pkav':'.pkopp .pkav'),document.querySelector(i===me?'.pkchip.me':'.pkchip.op'),Math.min(5,1+Math.round((nb[i]-pb[i])/G.bb)));pkS.chips(Math.min(6,2+Math.round((nb[i]-pb[i])/(G.bb*2))))}});
  PK.pb=nb;
- ov.querySelectorAll('.pkb').forEach(b=>b.addEventListener('click',()=>pkPlayer(b.dataset.a,+b.dataset.to||0)));
+ if(potWin)requestAnimationFrame(()=>{const p=ov.querySelector('.pkpot');if(p)p.classList.add('go')});
+ ov.querySelectorAll('.pkb[data-a]').forEach(b=>b.addEventListener('click',()=>pkPlayer(b.dataset.a,+b.dataset.to||0)));
+ const bo=$('#betOpen');if(bo)bo.addEventListener('click',()=>{PK.betOpen=true;PK.betAmt=minTo;SFX.tick();pkRender()});
+ const br=$('#betR');if(br){const upd=v=>{v=Math.max(minTo,Math.min(all,Math.round(v/G.sb)*G.sb));PK.betAmt=v;br.value=v;$('#betV').textContent=v;$('#betS').textContent=v>=all?'All-in':'מתוך '+all;$('#betGo').textContent=v>=all?'All-in '+all:'Raise '+v};
+  br.addEventListener('input',()=>{upd(+br.value);tone(1800,.015,{type:'square',v:.02})});
+  ov.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>{const d=+b.dataset.add;upd(d?PK.betAmt+d:minTo);pkS.chips(1)}));
+  $('#betX').addEventListener('click',()=>{PK.betOpen=false;pkRender()});
+  $('#betGo').addEventListener('click',()=>{const v=PK.betAmt;PK.betOpen=false;pkPlayer(v>=all?'allin':'raise',v)})}
  const ch=$('#pkChat');if(ch)ch.addEventListener('click',chatMenu);
  $('#pkQuit').addEventListener('click',()=>{if(!PK.quitArm){PK.quitArm=true;pkRender();setTimeout(()=>{if(PK&&PK.quitArm){PK.quitArm=false;pkRender()}},3000);return}
   if(PK.mode==='online'){pvpSend({t:'pq'});return pkForfeit(false,'פרשת מהשולחן.')}pkCashOut(false)})}
@@ -4531,7 +4602,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='5.8';
+const VERSION='5.9';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
