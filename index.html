@@ -620,6 +620,13 @@ body.fighting .room{height:350px}
 .dailybtn b{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--pow)}
 .dailybtn span{font-size:12px;font-weight:700;opacity:.85}
 .dailybtn:active{transform:translateY(2px)}
+.gamesbtn{position:relative}.gamesbtn::after{content:"פוקר!";position:absolute;top:-7px;inset-inline-start:-4px;background:#ffd43b;color:#1b1d14;font-size:9.5px;font-weight:900;border-radius:99px;padding:1px 6px;transform:rotate(-8deg)}
+.revbtn2.gamesbtn{background:linear-gradient(135deg,#1f3f7a,#122650)!important;border-color:#7fb0ff!important;box-shadow:0 4px 0 #0a1630!important}.revbtn2.gamesbtn b{color:#d7e6ff}
+.sheet.games{text-align:center}.glist{display:grid;gap:8px;margin:10px 0}
+.gcard{position:relative;display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;text-align:start;border:2px solid var(--ink);border-radius:14px;padding:10px 12px;background:#fff;color:var(--ink);box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.gcard:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.25)}.gic{font-size:32px;line-height:1}.gtx{display:grid;gap:1px;min-width:0}.gtx b{font-family:var(--f-display);font-size:24px;line-height:1}.gtx small{font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.gcard em{position:absolute;top:-8px;inset-inline-start:10px;font-style:normal;background:#c0392b;color:#fff;font-size:11px;font-weight:900;border-radius:99px;padding:1px 8px}
+.g-pk{background:linear-gradient(135deg,#1f7a4a,#0e4a2c);color:#fff;border-color:#0b2a1a}.g-pk small{color:#d8f2e2}.g-rev{background:#d8f2ea}.g-bg{background:#fff1c7}.g-pvp{background:#ffe1dc}
 .pvgames.g3{grid-template-columns:repeat(3,1fr)}.pvgames.g3 .big{font-size:17px;padding:10px 4px}.pkgo{background:#1f4f8a!important;color:#fff!important}
 .pkl:disabled{opacity:.45}.pkl small{font-family:var(--f-body,inherit);font-size:13px;opacity:.75}.pk-yossi{background:#e8f6e3}.pk-samal{background:#fff6d6}.pk-rasar{background:#1b1d14;color:#ffd43b}.pk-rasar em,.pk-rasar span{color:#f1e6cb}
 .pktable{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:calc(8px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));
@@ -3683,7 +3690,7 @@ function showBgPractice(){const ov=$('#overlay');ov.hidden=false;const w=store.g
   <button class="ghostbtn" id="lvBack" type="button">חזרה</button></div>`;
  ov.querySelectorAll('[data-lv]').forEach(b=>b.addEventListener('click',()=>{ac();const lv=b.dataset.lv;track('bg_lv_'+lv);
   bgStart({practice:true,full:true,level:lv,onEnd:(won,x)=>{if(won){const c=BG_LEVELS[lv].c*x.pts;addCoins(c);const W=store.get('gm_bglv',{});W[lv]=(W[lv]||0)+1;store.set('gm_bglv',W);if(lv==='legend')unlock('bglegend');toastMsg('🎲','ניצחת את שלומי ('+BG_LEVELS[lv].n+')','+'+c+' '+COIN)}showBgPractice()}})}));
- $('#lvBack').addEventListener('click',showProgress)}
+ $('#lvBack').addEventListener('click',showGames)}
 /* ---- quick chat (online, both games) ---- */
 const PCHAT={pk:['כל הקופה שלי','בלופר!','יש לי זוג... אולי','אמא שלך משחקת יותר טוב','קיפלת? חח','עוד יד?'],bg:['דושש? מזל של טירון','תתחיל לבכות','אני עוד חוזר','יאללה תזיז כבר','מהלך של רס״ר','זה כל מה שיש לך?'],
  box:['בוא בוא','זה הכל?','סבתא שלי מרביצה חזק יותר','אוקיי, זה כאב','🫡','עוד סיבוב?']};
@@ -3984,7 +3991,7 @@ function showRevIntro(){const ov=$('#overlay');ov.hidden=false;const best=store.
   <p class="tip">75 שניות. חיילים נכנסים בלי הפסקה. תסתכל על הרמזים ותחליט מהר. 3 טעויות ונגמרה המשמרת. רצף פגיעות מכפיל את הניקוד.</p>
   ${best?`<p class="best">השיא שלך: ${best} · ${revRank(best)}</p>`:''}
   <button class="big" id="rvGo" type="button">🩺 מתחילים משמרת</button><button class="ghostbtn" id="rvBack" type="button">חזרה</button></div>`;
- $('#rvGo').addEventListener('click',()=>{ac();revStart()});$('#rvBack').addEventListener('click',showStart)}
+ $('#rvGo').addEventListener('click',()=>{ac();revStart()});$('#rvBack').addEventListener('click',showGames)}
 function revSoldier(){const t=REV?(performance.now()-REV.t0)/REV_T:0,boss=REV&&REV.n>=4&&Math.random()<.06;
  const sick=boss?false:Math.random()<.47,keys=Object.keys(CHARS);
  const pool=LINES.filter(L=>!L.gold&&!L.c&&(sick?(Math.random()<.7?L.r===1:true):(Math.random()<.7?L.r>=2:true)));
@@ -4147,15 +4154,15 @@ function pkEquity(hole,board,n){const used=new Set([...hole,...board]),deck=[];f
   const b=board.concat(deck.slice(2,need)),a=pkEval(hole.concat(b)),o=pkEval([deck[0],deck[1]].concat(b));w+=a>o?1:a===o?.5:0}
  return w/n}
 /* ---- engine (pure state, shared by solo and online) ---- */
-function pkNewGame(names,chips){return{p:names.map(n=>({name:n,chips,cards:[],bet:0,folded:false,allin:false,acted:false})),btn:Math.random()<.5?0:1,hand:0,sb:10,bb:20,board:[],pot:0,cur:0,minR:20,street:0,toAct:0,deck:[],reveal:false,result:null,over:false,winner:-1,last:null,seq:0}}
+function pkNewGame(names,chips,remote){return{remote:!!remote,need:0,wait:false,needShow:false,p:names.map(n=>({name:n,chips,cards:[],bet:0,folded:false,allin:false,acted:false})),btn:Math.random()<.5?0:1,hand:0,sb:10,bb:20,board:[],pot:0,cur:0,minR:20,street:0,toAct:0,deck:[],reveal:false,result:null,over:false,winner:-1,last:null,seq:0}}
 function pkPay(G,i,x){const P=G.p[i];x=Math.max(0,Math.min(x,P.chips));P.chips-=x;P.bet+=x;if(P.chips===0)P.allin=true}
 function pkDeal(G){G.hand++;G.btn=1-G.btn;const lvl=Math.min(5,Math.floor((G.hand-1)/8));G.sb=10*(1<<lvl);G.bb=G.sb*2;
- const d=[];for(let c=0;c<52;c++)d.push(c);for(let i=51;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=d[i];d[i]=d[j];d[j]=t}G.deck=d;
- G.board=[];G.pot=0;G.street=0;G.reveal=false;G.result=null;G.last=null;
- G.p.forEach(P=>{P.cards=[d.pop(),d.pop()];P.bet=0;P.folded=false;P.allin=false;P.acted=false});
+ const d=[];if(!G.remote){for(let c=0;c<52;c++)d.push(c);for(let i=51;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=d[i];d[i]=d[j];d[j]=t}}G.deck=d;
+ G.board=[];G.pot=0;G.street=0;G.reveal=false;G.result=null;G.last=null;G.need=0;G.wait=false;G.needShow=false;
+ G.p.forEach(P=>{P.cards=G.remote?[-1,-1]:[d.pop(),d.pop()];P.bet=0;P.folded=false;P.allin=false;P.acted=false});
  pkPay(G,G.btn,G.sb);pkPay(G,1-G.btn,G.bb);G.cur=Math.max(G.p[0].bet,G.p[1].bet);G.minR=G.bb;G.toAct=G.btn;
  if(G.p[G.btn].allin||G.p[1-G.btn].allin)pkAdvance(G);G.seq++}
-function pkAct(G,i,a,to){if(G.result||G.street>3||G.toAct!==i)return false;const P=G.p[i],O=G.p[1-i],call=G.cur-P.bet;
+function pkAct(G,i,a,to){if(G.result||G.wait||G.street>3||G.toAct!==i)return false;const P=G.p[i],O=G.p[1-i],call=G.cur-P.bet;
  if(a==='fold'){P.folded=true;G.last={i,a};pkFinish(G,1-i);G.seq++;return true}
  if(a==='check'){if(call>0)return false}
  else if(a==='call'){pkPay(G,i,call);if(P.allin)a='allin'}
@@ -4166,9 +4173,14 @@ function pkAct(G,i,a,to){if(G.result||G.street>3||G.toAct!==i)return false;const
 function pkAdvance(G){const[A,B]=G.p,ok=(P,Q)=>P.allin||(P.acted&&P.bet===G.cur)||(Q.allin&&P.bet>=Q.bet);
  if(!(ok(A,B)&&ok(B,A))){for(const i of[1-G.toAct,G.toAct]){const P=G.p[i];if(!P.allin&&(!P.acted||P.bet<G.cur)){G.toAct=i;return}}}
  const m=Math.min(A.bet,B.bet);A.chips+=A.bet-m;B.chips+=B.bet-m;G.pot+=2*m;A.bet=B.bet=0;A.allin=A.chips===0;B.allin=B.chips===0;G.cur=0;G.minR=G.bb;A.acted=B.acted=false;
- if(A.allin||B.allin){while(G.board.length<5)G.board.push(G.deck.pop());G.street=4;return pkShowdown(G)}
- G.street++;if(G.street===1)G.board.push(G.deck.pop(),G.deck.pop(),G.deck.pop());else if(G.street<=3)G.board.push(G.deck.pop());
- if(G.street>3)return pkShowdown(G);G.toAct=1-G.btn}
+ if(A.allin||B.allin){G.street=4;if(G.remote){G.need=5;G.needShow=true;G.wait=true;return}while(G.board.length<5)G.board.push(G.deck.pop());return pkShowdown(G)}
+ G.street++;
+ if(G.street>3){if(G.remote){G.need=5;G.needShow=true;G.wait=true;return}return pkShowdown(G)}
+ G.toAct=1-G.btn;
+ if(G.remote){G.need=G.street===1?3:G.street===2?4:5;G.wait=true;return}
+ if(G.street===1)G.board.push(G.deck.pop(),G.deck.pop(),G.deck.pop());else G.board.push(G.deck.pop())}
+function pkGotBoard(G,b){if(!b||b.length<G.need)return false;G.board=b.slice(0,G.need);if(!G.needShow)G.wait=false;G.seq++;return true}
+function pkGotShow(G,r){if(!r)return false;G.p[0].cards=r.c0;G.p[1].cards=r.c1;G.board=r.board;G.wait=false;G.needShow=false;pkShowdown(G);G.seq++;return true}
 function pkFinish(G,w){G.pot+=G.p[0].bet+G.p[1].bet;G.p[0].bet=G.p[1].bet=0;G.p[w].chips+=G.pot;G.result={w,fold:true,amount:G.pot};G.pot=0;pkCheckOver(G)}
 function pkShowdown(G){G.reveal=true;G.street=4;const v=G.p.map(P=>pkEval(P.cards.concat(G.board)));let w=v[0]>v[1]?0:v[1]>v[0]?1:-1;const amt=G.pot;
  if(w<0){const h=Math.floor(G.pot/2);G.p[0].chips+=h;G.p[1].chips+=G.pot-h}else G.p[w].chips+=G.pot;
@@ -4200,30 +4212,48 @@ function showPkLobby(){const ov=$('#overlay');ov.hidden=false;const c=getCoins()
   <p class="tip">${c<30?'אין לך מספיק מטבעות לכניסה. תשחק ריצה ותחזור.':'מה שנשאר לך בצ׳יפים כשאתה קם, חוזר אליך כמטבעות.'}</p>
   <button class="ghostbtn" id="pkBack" type="button">חזרה</button></div>`;
  ov.querySelectorAll('[data-pk]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.pk,P=PK_AI[k];if(getCoins()<P.buy)return;ac();addCoins(-P.buy);track('pk_'+k);pkStartSolo(k)}));
- $('#pkBack').addEventListener('click',showProgress)}
+ $('#pkBack').addEventListener('click',showGames)}
 function pkStartSolo(k){const P=PK_AI[k],G=pkNewGame(['אתה',P.n],1000);PK={G,mode:'ai',me:0,ai:P,key:k,shown:0,bub:'',quitArm:false};musicPlay('chief');pkDeal(G);pkRender();pkLoop()}
-function pkOnlineStart(){if(!PV)return;PV.state='pk';PV.meRematch=PV.peerRematch=false;track('pk_online');const P=PV.peer||{name:'יריב',char:'tiron'};
- PK={G:null,mode:'online',me:PV.host?0:1,host:PV.host,oname:P.name,ochar:P.char||'tiron',shown:0,bub:'',quitArm:false,tEnd:0};musicPlay('chief');
- if(PV.host){PK.G=pkNewGame([PV.me.name,P.name],1000);pkDeal(PK.G);pkBroadcast();pkRender();pkLoop()}
- else{const ov=$('#overlay');ov.hidden=false;ov.innerHTML='<div class="sheet pvp"><h2>מחלקים קלפים...</h2></div>'}
- clearInterval(PK.iv);const me=PK;PK.iv=setInterval(()=>{if(PK!==me){clearInterval(me.iv);return}pkTick()},250)}
-function pkBroadcast(){if(!PK||!PK.host)return;const G=PK.G,s=JSON.parse(JSON.stringify(G));delete s.deck;if(!G.reveal&&!(G.result&&!G.result.fold))s.p[0].cards=[-1,-1];pvpSend({t:'ps',s})}
+const pkSecret=()=>{const a=new Uint8Array(16);(window.crypto||{}).getRandomValues?crypto.getRandomValues(a):a.forEach((_,i)=>a[i]=Math.random()*256|0);return Array.from(a,x=>x.toString(16).padStart(2,'0')).join('')};
+const pkRpc=(fn,args)=>sbRpc(fn,Object.assign({p_code:PK.table,p_secret:PK.secret},args||{}));
+async function pkOnlineStart(){if(!PV)return;PV.state='pk';PV.meRematch=PV.peerRematch=false;track('pk_online');const P=PV.peer||{name:'יריב',char:'tiron'};
+ PV.pkRound=(PV.pkRound||0)+1;
+ PK={G:null,mode:'online',me:PV.host?0:1,host:PV.host,oname:P.name,ochar:P.char||'tiron',shown:0,bub:'',quitArm:false,tEnd:0,secret:pkSecret(),table:(PV.code+'r'+PV.pkRound).slice(0,12),mine:null,req:{}};musicPlay('chief');
+ const ov=$('#overlay');ov.hidden=false;ov.innerHTML='<div class="sheet pvp"><h2>מחלקים קלפים...</h2><p class="tip">הקלפים מגיעים מהשרת. אף אחד לא רואה את הקלפים של השני.</p></div>';
+ const me=PK;clearInterval(PK.iv);PK.iv=setInterval(()=>{if(PK!==me){clearInterval(me.iv);return}pkTick()},250);
+ let ok=false;for(let i=0;i<6&&!ok&&PK===me;i++){try{ok=await pkRpc('pk_join',{p_seat:me.me})}catch(e){}if(!ok)await wait(800)}
+ if(PK!==me)return;if(!ok){ov.innerHTML='<div class="sheet pvp"><h2>אין חיבור לשרת הקלפים</h2><p class="tip">נסו שוב בעוד רגע.</p><button class="big" id="pkBk" type="button">חזרה</button></div>';$('#pkBk').addEventListener('click',()=>{pkForfeit(false,'החיבור נכשל.')});return}
+ if(PV.host){PK.G=pkNewGame([PV.me.name,P.name],1000,true);await pkHostNewHand()}}
+async function pkHostNewHand(){const me=PK;if(!me||!me.host)return;const G=me.G;pkDeal(G);me.mine=null;me.shown=0;me.dealt=false;me.bub='';me.req={};
+ for(let i=0;i<8&&PK===me;i++){try{await pkRpc('pk_deal',{p_hand:G.hand});const c=await pkRpc('pk_cards',{p_hand:G.hand});if(c&&c.length===2){me.mine=c;G.p[0].cards=c;break}}catch(e){}await wait(600)}
+ if(PK!==me)return;pkBroadcast();pkRender();pkLoop()}
+async function pkGuestCards(hand){const me=PK;for(let i=0;i<12&&PK===me&&me.G&&me.G.hand===hand;i++){try{const c=await pkRpc('pk_cards',{p_hand:hand});if(c&&c.length===2){me.mine=c;me.dealt=false;pkRender();return}}catch(e){}await wait(500)}}
+async function pkSync(){const me=PK;if(!me||me.syncing||!me.G)return;me.syncing=true;
+ try{for(let i=0;i<200&&PK===me&&me.G.wait;i++){const G=me.G;
+   if(G.need>G.board.length){const k=G.hand+'b'+G.need;const r=await pkRpc('pk_reveal',{p_hand:G.hand,p_n:G.need}).catch(()=>null);
+    if(me.host){if(r&&pkGotBoard(G,r)){me.shown=me.shown||0;pkAfter();continue}}else{me.req[k]=1;if(r)break}}
+   else if(G.needShow){const r=await pkRpc('pk_show',{p_hand:G.hand}).catch(()=>null);if(me.host){if(r&&pkGotShow(G,r)){pkAfter();break}}else if(r)break}
+   if(!me.host)break;await wait(650)}}
+ finally{me.syncing=false}}
+function pkBroadcast(){if(!PK||!PK.host||!PK.G)return;const G=PK.G,s=JSON.parse(JSON.stringify(G));delete s.deck;if(!G.reveal)s.p[0].cards=[-1,-1];if(!G.reveal)s.p[1].cards=[-1,-1];pvpSend({t:'ps',s})}
 function pkNet(m){if(!PK||PK.mode!=='online')return;
- if(m.t==='ps'&&!PK.host){if(PK.G&&m.s.seq<PK.G.seq&&m.s.hand<=PK.G.hand)return;const prevHand=PK.G?PK.G.hand:0;PK.G=m.s;if(m.s.hand!==prevHand){PK.shown=0;PK.dealt=false;PK.bub=''}
-  if(m.s.last&&m.s.last.i===0)PK.bub=pkActText(m.s.last);if(m.s.toAct===1&&!m.s.result)PK.tEnd=Date.now()+30000;pkRender();if(m.s.result)pkResultFx();pkCheckEnd();return}
+ if(m.t==='ps'&&!PK.host){if(PK.G&&m.s.seq<PK.G.seq&&m.s.hand<=PK.G.hand)return;const prevHand=PK.G?PK.G.hand:0;PK.G=m.s;if(m.s.hand!==prevHand){PK.shown=0;PK.dealt=false;PK.bub='';PK.mine=null;pkGuestCards(m.s.hand)}
+  if(PK.mine&&!(m.s.p[1].cards[0]>=0))m.s.p[1].cards=PK.mine.slice();
+  if(m.s.wait){const k=m.s.hand+(m.s.needShow&&m.s.board.length>=5?'s':'b'+m.s.need);if(!PK.req[k]){PK.req[k]=1;pkSync()}}
+  if(m.s.last&&m.s.last.i===0)PK.bub=pkActText(m.s.last);if(m.s.toAct===1&&!m.s.result&&!m.s.wait)PK.tEnd=Date.now()+30000;pkRender();if(m.s.result)pkResultFx();pkCheckEnd();return}
  if(m.t==='pa'&&PK.host){const G=PK.G;if(G.toAct!==1||G.result||m.hand!==G.hand)return;if(pkAct(G,1,m.a,m.to)){PK.bub=pkActText(G.last);pkAfter()}}}
 function pkActText(L){if(!L)return'';return{fold:'מקפל',check:'צ׳ק',call:'משווה',raise:'מעלה ל־'+L.amt,allin:'אול־אין!'}[L.a]||''}
 function pkPlayer(a,to){if(!PK||!PK.G)return;const G=PK.G;if(G.toAct!==PK.me||G.result)return;SFX.tick();PK.quitArm=false;
  if(PK.mode==='online'&&!PK.host){pvpSend({t:'pa',a,to,hand:G.hand});PK.waiting=true;pkRender();return}
  if(pkAct(G,PK.me,a,to)){if(a==='raise'||a==='allin')SFX.clang();pkAfter()}}
-function pkAfter(){if(PK.host)pkBroadcast();pkRender();pkLoop()}
+function pkAfter(){if(PK.host)pkBroadcast();pkRender();if(PK.mode==='online'&&PK.G&&PK.G.wait)pkSync();pkLoop()}
 function pkLoop(){if(!PK||!PK.G)return;const G=PK.G;
- if(G.result){pkResultFx();clearTimeout(PK.nt);PK.nt=setTimeout(()=>{if(!PK)return;if(G.over)return pkGameOver();if(PK.mode==='ai'||PK.host){pkDeal(G);PK.shown=0;PK.dealt=false;PK.bub='';pkAfter()}},G.result.fold?1800:3200);return}
+ if(G.result){pkResultFx();clearTimeout(PK.nt);PK.nt=setTimeout(()=>{if(!PK)return;if(G.over)return pkGameOver();if(PK.mode==='ai'){pkDeal(G);PK.shown=0;PK.dealt=false;PK.bub='';pkAfter()}else if(PK.host)pkHostNewHand()},G.result.fold?1800:3200);return}
  if(PK.mode==='ai'&&G.toAct===1){clearTimeout(PK.at);PK.at=setTimeout(()=>{if(!PK||PK.G!==G||G.toAct!==1||G.result)return;const d=pkAI(G,1,PK.ai);const before=G.last;
    if(!pkAct(G,1,d.a,d.to))pkAct(G,1,G.cur>G.p[1].bet?'call':'check');PK.bub=pickOne(PK_TALK[G.last&&G.last.a]||PK_TALK.check);if(G.last.a==='raise'||G.last.a==='allin')SFX.clang();else SFX.tick();pkAfter()},700+Math.random()*900)}
  if(PK.mode==='online'&&G.toAct===PK.me&&!G.result)PK.tEnd=Date.now()+30000}
 function pkTick(){if(!PK||PK.mode!=='online'||!PK.G)return;const G=PK.G,el=document.querySelector('.pktimer i');
- if(G.toAct===PK.me&&!G.result&&PK.tEnd){const left=PK.tEnd-Date.now();if(el)el.style.width=Math.max(0,left/300)+'%';
+ if(G.toAct===PK.me&&!G.result&&!G.wait&&PK.tEnd){const left=PK.tEnd-Date.now();if(el)el.style.width=Math.max(0,left/300)+'%';
   if(left<=0){PK.tEnd=0;pkPlayer(G.cur>G.p[PK.me].bet?'fold':'check')}}else if(el)el.style.width='0%';
  const quiet=PV?Date.now()-PV.last:0;if(PV&&PV.state==='pk'&&quiet>120000)pkForfeit(true,'החבר נעלם. ניצחון טכני.')}
 function pkResultFx(){const G=PK.G,R=G.result;if(!R||PK.fxDone===G.hand+'-'+G.seq)return;PK.fxDone=G.hand+'-'+G.seq;
@@ -4232,7 +4262,8 @@ function pkResultFx(){const G=PK.G,R=G.result;if(!R||PK.fxDone===G.hand+'-'+G.se
 function pkCard(c,cls){if(c==null||c<0)return`<span class="pc back ${cls||''}"><i>צה״ל</i></span>`;const r=c%13,s=(c/13)|0,red=s===1||s===2;
  return`<span class="pc ${red?'red':''} ${cls||''}"><b>${PK_R[r]}</b><i>${PK_S[s]}</i></span>`}
 function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me],O=G.p[op],R=G.result;
- const myTurn=!R&&G.toAct===me&&G.street<4&&!M.allin&&!PK.waiting,call=G.cur-M.bet,pot=G.pot+M.bet+O.bet;
+ if(PK.mode==='online'&&PK.mine&&!(M.cards[0]>=0))M.cards=PK.mine.slice();
+ const myTurn=!R&&!G.wait&&G.toAct===me&&G.street<4&&!M.allin&&!PK.waiting&&M.cards[0]>=0,call=G.cur-M.bet,pot=G.pot+M.bet+O.bet;
  if(!myTurn||G.toAct!==me)PK.waiting=false;
  const oname=PK.mode==='ai'?PK.ai.n:PK.oname,ochar=PK.mode==='ai'?PK.ai.char:PK.ochar;
  const showOpp=G.reveal||(R&&!R.fold&&O.cards[0]>=0);
@@ -4244,7 +4275,7 @@ function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me]
  let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}"><b>${tie?'תיקו':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' קיפל':'קיפלת'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
  const act=myTurn?`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">קיפול</button>${call<=0?'<button type="button" class="pkb check" data-a="check">צ׳ק</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">אול־אין ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">השווה ${call}</button>`}</div>
    ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">${x[1]}<small>${x[0]}</small></button>`).join('')}<button type="button" class="pkb allin" data-a="allin">הכל<small>${all}</small></button></div>`:''}</div>`
-  :`<div class="pkact wait">${R?'':M.allin?'אתה באול־אין. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
+  :`<div class="pkact wait">${R?'':G.wait||!(M.cards[0]>=0)?'השרת מחלק קלפים...':M.allin?'אתה באול־אין. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
  const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="pktable"><div class="pkhead"><span>בליינדים ${G.sb}/${G.bb} · יד ${G.hand}</span>${PK.mode==='online'?'<button type="button" class="pkq" id="pkChat">💬</button>':''}<button type="button" class="pkq" id="pkQuit">${PK.quitArm?'בטוח? עוד לחיצה':PK.mode==='ai'?'קום מהשולחן':'פרישה'}</button></div>
   ${PK.mode==='online'?'<div class="pktimer"><i></i></div>':''}
@@ -4275,6 +4306,15 @@ function pkCashOut(bust){const P=PK.ai,G=PK.G,chips=G.p[0].chips-(G.result?0:G.p
   <button class="big" id="pkAgain" type="button">עוד משחק (${P.buy} ${COIN})</button><button class="ghostbtn" id="pkOut" type="button">חזרה</button></div>`;
  const ag=$('#pkAgain');if(getCoins()<P.buy)ag.disabled=true;ag.addEventListener('click',()=>{if(getCoins()<P.buy)return;addCoins(-P.buy);pkStartSolo(key)});$('#pkOut').addEventListener('click',showPkLobby)}
 
+
+/* ---- games hub (home screen) ---- */
+function showGames(){const ov=$('#overlay');ov.hidden=false;
+ const G=[['pk','🃏','פוקר בש״ג','טקסס הולדם מול יוסי, הסמל או הרס״ר','חדש'],['rev','🩺','הרופא המתנקם','אתה הרופא. תתפוס את השקרנים',''],['bg','🎲','שש בש מול שלומי','משחק מלא, 3 רמות קושי',''],...(ONLINE?[['pvp','🆚','מול חבר בזמן אמת','פוקר, שש בש או אגרוף, בקישור או יריב אקראי','']]:[])];
+ ov.innerHTML=`<div class="sheet games"><div class="tag">כשאין תור לרופא</div><h2>משחקים בבסיס</h2>
+  <div class="glist">${G.map(g=>`<button type="button" class="gcard g-${g[0]}" data-g="${g[0]}"><span class="gic">${g[1]}</span><span class="gtx"><b>${g[2]}</b><small>${g[3]}</small></span>${g[4]?`<em>${g[4]}</em>`:''}</button>`).join('')}</div>
+  <button class="ghostbtn" id="gmBack" type="button">חזרה</button></div>`;
+ ov.querySelectorAll('[data-g]').forEach(b=>b.addEventListener('click',()=>{ac();SFX.tick();const k=b.dataset.g;track('hub_'+k);({pk:showPkLobby,rev:showRevIntro,bg:showBgPractice,pvp:showPvpLobby})[k]()}));
+ $('#gmBack').addEventListener('click',showStart)}
 /* ---- funnel tracking ---- */
 function track(step){if(IN_CLAUDE)return;sbRpc('track',{p_id:deviceId(),p_step:step}).catch(()=>{})}
 /* ---- first-run guide ---- */
@@ -4358,8 +4398,8 @@ function showStart(){
   <div class="pdots" id="pDots">${keys.map((k,i)=>`<i class="${owned().includes(k)?'own':''}"></i>`).join('')}</div>
   <button class="big cta" id="go" type="button">${isNewbie()?'שחק עכשיו':'ריצה חדשה'}</button>
   <button type="button" class="goaltick" id="goalTick" hidden></button>
-  ${ONLINE?`<div class="ts-duo three"><button class="dailybtn" id="goDaily" type="button"><b>אתגר יומי</b><span>${dailyBest()>=0?'שיא היום: '+dailyBest():'+50 '+COIN}</span></button><button class="dailybtn pvpbtn" id="goPvp" type="button"><b>🆚 מול חבר</b><span>אגרוף או שש בש</span></button><button class="dailybtn revbtn2" id="goRev" type="button"><b>🩺 המתנקם</b><span>אתה הרופא</span></button></div>`
-   :`<button class="revbtn" id="goRev" type="button"><b>🩺 הרופא המתנקם</b><span>מצב חדש: אתה הרופא. תתפוס את השקרנים</span></button>`}
+  ${ONLINE?`<div class="ts-duo three"><button class="dailybtn" id="goDaily" type="button"><b>אתגר יומי</b><span>${dailyBest()>=0?'שיא היום: '+dailyBest():'+50 '+COIN}</span></button><button class="dailybtn pvpbtn" id="goPvp" type="button"><b>🆚 מול חבר</b><span>אגרוף או שש בש</span></button><button class="dailybtn revbtn2 gamesbtn" id="goGames" type="button"><b>🃏 משחקים</b><span>פוקר ועוד</span></button></div>`
+   :`<button class="revbtn gamesbtn" id="goGames" type="button"><b>🃏 משחקים</b><span>פוקר, הרופא המתנקם, שש בש</span></button>`}
   <div class="ts-menu">
    <button type="button" class="tmb" id="toShop"><b>קנטינה</b><span>שדרוגים ודמויות</span></button>
    <button type="button" class="tmb" id="toLB"><b>שיאים</b><span>כל השחקנים</span></button>
@@ -4385,7 +4425,7 @@ function showStart(){
  render();
  $('#go').addEventListener('click',()=>{ac();SFX.tick();track('title_cta');startRun()});
  const gp=$('#goPvp');if(gp)gp.addEventListener('click',()=>{ac();SFX.tick();showPvpLobby()});
- $('#goRev').addEventListener('click',()=>{ac();SFX.tick();showRevIntro()});
+ $('#goGames').addEventListener('click',()=>{ac();SFX.tick();showGames()});
  renderGoalTick();setTimeout(checkAlerts,500);
  const gd=$('#goDaily');if(gd)gd.addEventListener('click',()=>{ac();SFX.tick();startRun({mode:'daily'})});
  checkMyDuels();
@@ -4401,7 +4441,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='5.3';
+const VERSION='5.4';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
