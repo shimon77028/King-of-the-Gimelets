@@ -3692,7 +3692,7 @@ function showBgPractice(){const ov=$('#overlay');ov.hidden=false;const w=store.g
   bgStart({practice:true,full:true,level:lv,onEnd:(won,x)=>{if(won){const c=BG_LEVELS[lv].c*x.pts;addCoins(c);const W=store.get('gm_bglv',{});W[lv]=(W[lv]||0)+1;store.set('gm_bglv',W);if(lv==='legend')unlock('bglegend');toastMsg('🎲','ניצחת את שלומי ('+BG_LEVELS[lv].n+')','+'+c+' '+COIN)}showBgPractice()}})}));
  $('#lvBack').addEventListener('click',showGames)}
 /* ---- quick chat (online, both games) ---- */
-const PCHAT={pk:['כל הקופה שלי','בלופר!','יש לי זוג... אולי','אמא שלך משחקת יותר טוב','קיפלת? חח','עוד יד?'],bg:['דושש? מזל של טירון','תתחיל לבכות','אני עוד חוזר','יאללה תזיז כבר','מהלך של רס״ר','זה כל מה שיש לך?'],
+const PCHAT={pk:['הפוט שלי','בלופר!','יש לי פייר... אולי','נייס האנד','עשית פולד? חח','עוד יד?'],bg:['דושש? מזל של טירון','תתחיל לבכות','אני עוד חוזר','יאללה תזיז כבר','מהלך של רס״ר','זה כל מה שיש לך?'],
  box:['בוא בוא','זה הכל?','סבתא שלי מרביצה חזק יותר','אוקיי, זה כאב','🫡','עוד סיבוב?']};
 let chatLast=0;
 function chatMenu(){const old=document.querySelector('.chatpop');if(old){old.remove();return}if(!PV)return;const L=PCHAT[PV.game==='bg'?'bg':PV.game==='pk'?'pk':'box'];
@@ -4130,8 +4130,8 @@ function goalBlock(g){const G=RUN&&RUN.goal;if(!G)return'';
 
 /* ================= poker at the gate: heads-up Texas Hold'em ================= */
 const PK_R=['2','3','4','5','6','7','8','9','10','J','Q','K','A'],PK_S=['♠','♥','♦','♣'];
-const PK_CAT=['קלף גבוה','זוג','שני זוגות','שלישייה','רצף','צבע','פול האוס','רביעייה','רצף צבע'];
-const PK_RN=['2','3','4','5','6','7','8','9','10','נסיכים','מלכות','מלכים','אסים'];
+const PK_CAT=['היי קארד','פייר','טו פייר','טריפס','סטרייט','פלאש','פול האוס','קוואדס','סטרייט פלאש'];
+const PK_RN=PK_R;
 function pkStr(set){for(let h=12;h>=3;h--){let ok=true;for(let k=0;k<5;k++){const r=h-k;if(!set.has(r<0?12:r)){ok=false;break}}if(ok)return h}return -1}
 function pkEval(cs){const cnt=Array(13).fill(0),bys=[[],[],[],[]];for(const c of cs){const r=c%13;cnt[r]++;bys[(c/13)|0].push(r)}
  const enc=(cat,ks)=>{let v=cat;for(let i=0;i<5;i++)v=v*13+(ks[i]||0);return v};
@@ -4148,7 +4148,9 @@ function pkEval(cs){const cnt=Array(13).fill(0),bys=[[],[],[],[]];for(const c of
  return enc(0,others([]).slice(0,5))}
 const pkCat=v=>Math.floor(v/371293);
 function pkName(v){const c=pkCat(v),top=Math.floor(v/28561)%13;
- if(c===8&&top===12)return'רויאל פלאש!';if(c===1)return'זוג '+PK_RN[top];if(c===3)return'שלישיית '+PK_RN[top];if(c===7)return'רביעיית '+PK_RN[top];return PK_CAT[c]}
+ const k2=Math.floor(v/2197)%13;
+ if(c===8)return top===12?'רויאל פלאש!':'סטרייט פלאש ל־'+PK_R[top];if(c===0)return'היי קארד '+PK_R[top];if(c===1)return'פייר '+PK_R[top];if(c===2)return'טו פייר '+PK_R[top]+'-'+PK_R[k2];
+ if(c===3)return'טריפס '+PK_R[top];if(c===4)return'סטרייט ל־'+PK_R[top];if(c===6)return'פול האוס '+PK_R[top]+' על '+PK_R[k2];if(c===7)return'קוואדס '+PK_R[top];return PK_CAT[c]}
 function pkEquity(hole,board,n){const used=new Set([...hole,...board]),deck=[];for(let c=0;c<52;c++)if(!used.has(c))deck.push(c);let w=0;const need=2+(5-board.length);
  for(let i=0;i<n;i++){for(let k=0;k<need;k++){const j=k+Math.floor(Math.random()*(deck.length-k));const t=deck[k];deck[k]=deck[j];deck[j]=t}
   const b=board.concat(deck.slice(2,need)),a=pkEval(hole.concat(b)),o=pkEval([deck[0],deck[1]].concat(b));w+=a>o?1:a===o?.5:0}
@@ -4188,11 +4190,11 @@ function pkShowdown(G){G.reveal=true;G.street=4;const v=G.p.map(P=>pkEval(P.card
 function pkCheckOver(G){const z=G.p.findIndex(P=>P.chips<=0);if(z>=0){G.over=true;G.winner=1-z}}
 /* ---- opponents ---- */
 const PK_AI={
- yossi:{n:'יוסי מהש״ג',d:'משחק כל יד וצוחק מכל דבר. קל.',buy:30,loose:.35,aggr:.3,bluff:.06,char:'driver',lv:'קל'},
- samal:{n:'הסמל',d:'סבלני. מעלה רק כשיש לו משהו.',buy:50,loose:.05,aggr:.6,bluff:.05,char:'fighter',lv:'בינוני'},
+ yossi:{n:'יוסי מהש״ג',d:'לוס. משחק כל יד וצוחק מכל דבר.',buy:30,loose:.35,aggr:.3,bluff:.06,char:'driver',lv:'קל'},
+ samal:{n:'הסמל',d:'טייט. עושה רייז רק כשיש לו משהו.',buy:50,loose:.05,aggr:.6,bluff:.05,char:'fighter',lv:'בינוני'},
  rasar:{n:'הרס״ר',d:'בלופר מקצועי. אי אפשר לדעת מה יש לו.',buy:100,loose:.15,aggr:.75,bluff:.2,char:'jobnik',lv:'קשה'}};
-const PK_TALK={raise:['אני מעלה. כמו את החשד שלך.','בוא נראה אותך עכשיו, טירון.','העלאה. תתחיל לבכות.','שמע, יש לי פה משהו.'],call:['משווה. ממילא אין מה לעשות בש״ג.','בסדר, אני בפנים.','נראה מה יש לך.'],
- fold:['זבל. אני מקפל.','קח. שתהיה בריא.','הפעם ויתרתי לך.'],check:['צ׳ק.','נו, תעשה משהו.','בוא נראה קלף.'],allin:['הכל! או שהולכים עד הסוף או שלא.','אול־אין, יא מלך!','כל הקופה. אמא שלי לא תדע.'],
+const PK_TALK={raise:['רייז. כמו החשד שלך.','רייז. בוא נראה אותך עכשיו, טירון.','רייז. תתחיל לבכות.','שמע, יש לי פה משהו. רייז.'],call:['קול. ממילא אין מה לעשות בש״ג.','קול, אני בפנים.','קול. נראה מה יש לך.'],
+ fold:['זבל. פולד.','פולד. שתהיה בריא.','הפעם עשיתי לך פולד.'],check:['צ׳ק.','צ׳ק. נו, תעשה משהו.','צ׳ק. בוא נראה קלף.'],allin:['אול־אין! או שהולכים עד הסוף או שלא.','אול־אין, יא מלך!','אול־אין. אמא שלי לא תדע.'],
  win:['הכסף שלי. הקפה עליך.','לימדתי אותך שיעור.','עוד יד כזאת ואני קונה גימלים.'],lose:['מזל של טירון.','הקלפים מקולקלים.','חכה חכה, אני חוזר.']};
 function pkAI(G,i,P){const me=G.p[i],call=G.cur-me.bet,pot=G.pot+G.p[0].bet+G.p[1].bet,r=Math.random();
  const eq=pkEquity(me.cards,G.board,G.board.length?260:200)+P.loose*.06,odds=call>0?call/(pot+call):0;
@@ -4242,7 +4244,7 @@ function pkNet(m){if(!PK||PK.mode!=='online')return;
   if(m.s.wait){const k=m.s.hand+(m.s.needShow&&m.s.board.length>=5?'s':'b'+m.s.need);if(!PK.req[k]){PK.req[k]=1;pkSync()}}
   if(m.s.last&&m.s.last.i===0)PK.bub=pkActText(m.s.last);if(m.s.toAct===1&&!m.s.result&&!m.s.wait)PK.tEnd=Date.now()+30000;pkRender();if(m.s.result)pkResultFx();pkCheckEnd();return}
  if(m.t==='pa'&&PK.host){const G=PK.G;if(G.toAct!==1||G.result||m.hand!==G.hand)return;if(pkAct(G,1,m.a,m.to)){PK.bub=pkActText(G.last);pkAfter()}}}
-function pkActText(L){if(!L)return'';return{fold:'מקפל',check:'צ׳ק',call:'משווה',raise:'מעלה ל־'+L.amt,allin:'אול־אין!'}[L.a]||''}
+function pkActText(L){if(!L)return'';return{fold:'פולד',check:'צ׳ק',call:'קול',raise:'רייז ל־'+L.amt,allin:'אול־אין!'}[L.a]||''}
 function pkPlayer(a,to){if(!PK||!PK.G)return;const G=PK.G;if(G.toAct!==PK.me||G.result)return;SFX.tick();PK.quitArm=false;
  if(PK.mode==='online'&&!PK.host){pvpSend({t:'pa',a,to,hand:G.hand});PK.waiting=true;pkRender();return}
  if(pkAct(G,PK.me,a,to)){if(a==='raise'||a==='allin')SFX.clang();pkAfter()}}
@@ -4258,7 +4260,7 @@ function pkTick(){if(!PK||PK.mode!=='online'||!PK.G)return;const G=PK.G,el=docum
  const quiet=PV?Date.now()-PV.last:0;if(PV&&PV.state==='pk'&&quiet>120000)pkForfeit(true,'החבר נעלם. ניצחון טכני.')}
 function pkResultFx(){const G=PK.G,R=G.result;if(!R||PK.fxDone===G.hand+'-'+G.seq)return;PK.fxDone=G.hand+'-'+G.seq;
  const won=R.w===PK.me;if(R.w<0){SFX.bell()}else if(won){SFX.jack();buzz([20,30,60]);spawn('conf',reduced?4:16,'🪙')}else{SFX.fail();buzz(40)}
- if(PK.mode==='ai')PK.bub=R.w<0?'חצי־חצי. נו.':won?pickOne(PK_TALK.lose):pickOne(PK_TALK.win);pkRender()}
+ if(PK.mode==='ai')PK.bub=R.w<0?'ספליט פוט. נו.':won?pickOne(PK_TALK.lose):pickOne(PK_TALK.win);pkRender()}
 function pkCard(c,cls){if(c==null||c<0)return`<span class="pc back ${cls||''}"><i>צה״ל</i></span>`;const r=c%13,s=(c/13)|0,red=s===1||s===2;
  return`<span class="pc ${red?'red':''} ${cls||''}"><b>${PK_R[r]}</b><i>${PK_S[s]}</i></span>`}
 function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me],O=G.p[op],R=G.result;
@@ -4269,19 +4271,19 @@ function pkRender(){if(!PK||!PK.G)return;const G=PK.G,me=PK.me,op=1-me,M=G.p[me]
  const showOpp=G.reveal||(R&&!R.fold&&O.cards[0]>=0);
  const newFrom=PK.shown;PK.shown=G.board.length;
  const board=Array.from({length:5},(_,i)=>i<G.board.length?pkCard(G.board[i],i>=newFrom?'deal d'+(i-newFrom):''):'<span class="pc slot"></span>').join('');
- const hint=M.cards[0]>=0?(G.board.length?'יש לך: '+pkName(pkEval(M.cards.concat(G.board))):(M.cards[0]%13===M.cards[1]%13?'זוג '+PK_RN[M.cards[0]%13]+' ביד!':PK_R[Math.max(M.cards[0]%13,M.cards[1]%13)]+'-'+PK_R[Math.min(M.cards[0]%13,M.cards[1]%13)])):'';
+ const hint=M.cards[0]>=0?(G.board.length?'יש לך: '+pkName(pkEval(M.cards.concat(G.board))):(M.cards[0]%13===M.cards[1]%13?'פוקט פייר '+PK_R[M.cards[0]%13]+'!':PK_R[Math.max(M.cards[0]%13,M.cards[1]%13)]+'-'+PK_R[Math.min(M.cards[0]%13,M.cards[1]%13)])):'';
  const mn=Math.min(M.bet+M.chips,G.cur+G.minR),half=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,Math.round(pot/2))),full=Math.min(M.bet+M.chips,G.cur+Math.max(G.minR,pot)),all=M.bet+M.chips;
- const raises=[[mn,'מינימום'],[half,'½ קופה'],[full,'קופה']].filter((x,i,a)=>x[0]<all&&x[0]>G.cur&&a.findIndex(y=>y[0]===x[0])===i);
- let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}"><b>${tie?'תיקו':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' קיפל':'קיפלת'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
- const act=myTurn?`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">קיפול</button>${call<=0?'<button type="button" class="pkb check" data-a="check">צ׳ק</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">אול־אין ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">השווה ${call}</button>`}</div>
-   ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">${x[1]}<small>${x[0]}</small></button>`).join('')}<button type="button" class="pkb allin" data-a="allin">הכל<small>${all}</small></button></div>`:''}</div>`
+ const raises=[[mn,'מין רייז'],[half,'½ פוט'],[full,'פוט']].filter((x,i,a)=>x[0]<all&&x[0]>G.cur&&a.findIndex(y=>y[0]===x[0])===i);
+ let res='';if(R){const w=R.w===me,tie=R.w<0;res=`<div class="pkres ${tie?'tie':w?'win':'lose'}"><b>${tie?'ספליט פוט':w?'לקחת '+R.amount+'!':escH(oname)+' לוקח '+R.amount}</b><span>${R.fold?(R.w===me?escH(oname)+' עשה פולד':'עשית פולד'):escH(R.names[me])+' מול '+escH(R.names[op])}</span></div>`}
+ const act=myTurn?`<div class="pkact"><div class="pkrow"><button type="button" class="pkb fold" data-a="fold">פולד</button>${call<=0?'<button type="button" class="pkb check" data-a="check">צ׳ק</button>':call>=M.chips?`<button type="button" class="pkb allin" data-a="allin">אול־אין ${M.chips}</button>`:`<button type="button" class="pkb call" data-a="call">קול ${call}</button>`}</div>
+   ${call<M.chips?`<div class="pkrow r">${raises.map(x=>`<button type="button" class="pkb raise" data-a="raise" data-to="${x[0]}">${x[1]}<small>${x[0]}</small></button>`).join('')}<button type="button" class="pkb allin" data-a="allin">אול־אין<small>${all}</small></button></div>`:''}</div>`
   :`<div class="pkact wait">${R?'':G.wait||!(M.cards[0]>=0)?'השרת מחלק קלפים...':M.allin?'אתה באול־אין. מחכים לקלפים...':PK.waiting?'שולח...':escH(oname)+' חושב...'}</div>`;
  const ov=$('#overlay');ov.hidden=false;
  ov.innerHTML=`<div class="pktable"><div class="pkhead"><span>בליינדים ${G.sb}/${G.bb} · יד ${G.hand}</span>${PK.mode==='online'?'<button type="button" class="pkq" id="pkChat">💬</button>':''}<button type="button" class="pkq" id="pkQuit">${PK.quitArm?'בטוח? עוד לחיצה':PK.mode==='ai'?'קום מהשולחן':'פרישה'}</button></div>
   ${PK.mode==='online'?'<div class="pktimer"><i></i></div>':''}
   <div class="pkopp${!R&&G.toAct===op?' turn':''}"><div class="pkav">${portrait(CHARS[ochar]?ochar:'tiron')}</div><div class="pkname"><b>${escH(oname)}</b><span>${O.chips} 🪙${G.btn===op?' · דילר':''}</span></div>
    <div class="pkcards">${O.folded?'':showOpp?pkCard(O.cards[0],'flip')+pkCard(O.cards[1],'flip'):pkCard(-1)+pkCard(-1)}</div>${PK.bub?`<div class="pkbub">${escH(PK.bub)}</div>`:''}</div>
-  <div class="pkfelt"><div class="pkchip op">${O.bet?'🪙 '+O.bet:''}</div><div class="pkboard">${board}</div><div class="pkpot">קופה <b>${pot}</b></div><div class="pkchip me">${M.bet?'🪙 '+M.bet:''}</div>${res}</div>
+  <div class="pkfelt"><div class="pkchip op">${O.bet?'🪙 '+O.bet:''}</div><div class="pkboard">${board}</div><div class="pkpot">פוט <b>${pot}</b></div><div class="pkchip me">${M.bet?'🪙 '+M.bet:''}</div>${res}</div>
   <div class="pkme${myTurn?' turn':''}"><div class="pkcards mine">${M.folded?'':pkCard(M.cards[0],G.hand&&!PK.dealt?'deal d0':'')+pkCard(M.cards[1],G.hand&&!PK.dealt?'deal d1':'')}</div>
    <div class="pkinfo"><b>אתה · ${M.chips} 🪙${G.btn===me?' · דילר':''}</b><span>${escH(hint)}</span></div></div>
   ${act}</div>`;
@@ -4441,7 +4443,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='5.4';
+const VERSION='5.5';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
