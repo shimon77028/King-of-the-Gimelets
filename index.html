@@ -761,6 +761,17 @@ body.fighting .room{height:350px}
 .betduo{margin-top:4px;width:100%}.bjday{background:linear-gradient(90deg,#7a1fb0,#ff2f6d)!important;color:#fff!important}
 .g-bj{background:linear-gradient(135deg,#7a1fb0,#2a0b45);color:#fff;border-color:#ffd43b}.g-bj small{color:#ffd9f4}.g-bj .gic{font-family:var(--f-display);color:#fff;text-shadow:0 0 8px #ff4fd8;font-size:30px}
 @media (max-height:640px){.bjt{--cw:clamp(36px,min(13vw,7.6vh),64px);gap:4px}.bjdl .pkav{width:30px;height:30px}.bjdc{margin-top:18px}.bjch{width:40px;height:40px}.bjbs b{font-size:28px}.bjdeal{padding:10px 6px;font-size:17px}.bjb{padding:8px 2px 6px;font-size:15px}.bjmid{min-height:42px}.bjarc{width:min(100%,280px)}.bjhome{padding:5px 12px;margin-top:6px}.bjhome .bjn{font-size:24px}.bjhome b{font-size:19px}}
+.bjreel{display:grid;justify-items:center;gap:4px}.bjreel b{font-family:var(--f-display);font-size:30px;line-height:1;padding:6px 18px;border-radius:14px;background:#13061f;border:2px solid #ffd43b;min-width:72%;text-align:center;box-shadow:0 0 18px rgba(255,212,59,.5)}
+.bjreel b.m-spin{filter:blur(.6px);transform:translateY(-2px)}.bjreel span{font-size:12px;font-weight:800;opacity:.85}
+.bjmod{display:grid;justify-items:center;gap:1px;padding:5px 16px;border-radius:14px;animation:bjResIn .45s cubic-bezier(.2,.9,.3,1.4) both;box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.bjmod b{font-family:var(--f-display);font-size:28px;line-height:1}.bjmod span{font-size:11.5px;font-weight:900}
+.m-tired{background:linear-gradient(135deg,#3a6ea5,#1e3c72)}.m-hot{background:linear-gradient(135deg,#ff2f6d,#ff7a3b)}.m-jack{background:linear-gradient(135deg,#ffd43b,#e9a800);color:#3a1a00}.m-mega{background:linear-gradient(135deg,#ff4fd8,#ffd43b,#3be0ff);color:#1b0b2a;animation:bjResIn .45s both,bjMega 1.2s linear infinite}
+@keyframes bjMega{50%{filter:hue-rotate(40deg) brightness(1.15)}}
+.bjhot.m-tired,.bjhot.m-hot,.bjhot.m-jack,.bjhot.m-mega{animation:bjPulse .8s ease-in-out infinite}
+.bjfelt.ev-hot .bjbulbs{animation-duration:.35s}.bjfelt.ev-jack,.bjfelt.ev-mega{box-shadow:0 0 0 3px #ffd43b,0 0 40px rgba(255,212,59,.8),0 16px 40px rgba(0,0,0,.6),inset 0 0 50px rgba(0,0,0,.5)}
+.bjfelt.ev-jack .bjbulbs,.bjfelt.ev-mega .bjbulbs{animation-duration:.25s;border-width:5px}.bjfelt.ev-mega{animation:bjMega 1.6s linear infinite}
+.bjb.ride{background:linear-gradient(90deg,#ff2f6d,#ff7a3b,#ffd43b);color:#fff;animation:bjGlow 1.1s ease-in-out infinite;text-shadow:0 1px 0 rgba(0,0,0,.3)}
+.ridebox .bjb{font-size:16px}
 @media (max-height:600px){.ts:has(#goalTick:not([hidden])) .sharebtn{display:none}}
 @media (prefers-reduced-motion:reduce){.bjbulbs,.bjdeal,.bjneon,.bjhome::after,.bjhot{animation:none}}
 .pktable{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px;padding:calc(6px + env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));
@@ -4670,9 +4681,36 @@ function bjSync(){if(!BJ||!BJ.G)return;const s=BJ.G.seats[BJ.me];if(BJ.mode==='s
 function bjStartSolo(){const c=getCoins(),G=bjNew([{name:'אתה',char:charId(),chips:c}],{luck:bjLuck(),min:5,max:500});
  BJ={G,mode:'solo',me:0,host:true,cnt:{},streak:0,wallet:c,bet:Math.min(store.get('gm_bjlast',25),c>=5?c:0),bub:''};if(BJ.bet<5&&c>=5)BJ.bet=5;
  track('bj_solo');bjMount();bjSay('deal');bjRender()}
-function bjStartDay(g,onDone){const G=bjNew([{name:'אתה',char:charId(),chips:RUN.total}],{luck:bjLuck(),fixed:g,min:g,max:g});
- BJ={G,mode:'day',me:0,host:true,cnt:{},streak:0,bet:g,onDone,g,start:RUN.total,bub:''};track('bj_day');bjMount();bjSay('deal');
- G.seats[0].bet=g;bjDeal(G);bjAfter()}
+/* end-of-day hand: every hand rolls a table event. Most are plain, some are extreme (x2 / x3 / x5, blackjack up to 10:1).
+   A pity counter guarantees a special round at least every 4th hand, and a win can be ridden ("double or nothing") twice. */
+const BJ_MODS={
+ none:{n:'יד רגילה',ic:'🃏',m:1,d:'בלי הפתעות. רק אתה ושמוליק.'},
+ tired:{n:'הדילר עייף',ic:'😴',m:1,luck:.62,d:'שמוליק אחרי שמירת לילה. הוא נשרף הרבה!'},
+ hot:{n:'שולחן לוהט',ic:'🔥',m:2,d:'כל ניצחון שווה כפול!'},
+ jack:{n:'ג׳קפוט',ic:'💰',m:3,bj:6,luck:.3,d:'ניצחון ×3 · בלאק ג׳ק ×6!'},
+ mega:{n:'מגה ג׳קפוט',ic:'👑',m:5,bj:10,luck:.55,d:'ניצחון ×5 · בלאק ג׳ק ×10!!!'}};
+let BJ_FORCE='';
+function bjRollMod(ride){const st=store.get('gm_bjday',{n:0,dry:0});let k;
+ if(BJ_FORCE)k=BJ_FORCE;
+ else if(!st.n)k='tired';
+ else{const W=ride===2?{none:20,tired:15,hot:30,jack:25,mega:10}:ride===1?{none:38,tired:17,hot:25,jack:15,mega:5}:{none:55,tired:18,hot:17,jack:8,mega:2};
+  if(st.dry>=3){W.none=0;W.tired=Math.min(W.tired,10)}
+  let r=Math.random()*Object.values(W).reduce((a,b)=>a+b,0);for(k in W){r-=W[k];if(r<0)break}}
+ st.n++;st.dry=k==='none'?st.dry+1:0;store.set('gm_bjday',st);return k}
+async function bjRoll(ride){const me=BJ;if(!me)return;const k=bjRollMod(ride),keys=Object.keys(BJ_MODS);const mid=$('#bjL .bjmid');
+ if(mid&&!reduced){mid.innerHTML='<div class="bjreel"><b></b><span>מה שמוליק מכין לך?</span></div>';const b=mid.querySelector('b');
+  for(let i=0;i<16;i++){const kk=i===15?k:keys[(i*3+Math.floor(Math.random()*2))%keys.length],M=BJ_MODS[kk];b.textContent=M.ic+' '+M.n;b.className='m-'+(i===15?k:'spin');SFX.tick();await wait(40+i*i*1.6);if(BJ!==me)return}}
+ me.mod=k;const M=BJ_MODS[k];me.G.luck=Math.max(bjLuck(),M.luck||0);
+ if(k!=='none'){if(k==='jack'||k==='mega')SFX.jack();else pkS.win(true);crowdCheer();bjConf(k==='mega'?60:k==='jack'?36:18);buzz([30,30,80]);
+  me.bub=k==='tired'?'אחחח... אחרי שמירה. מישהו יש קפה?':k==='hot'?'השולחן לוהט! כל ניצחון כפול!':k==='jack'?'ג׳קפוט!!! אני מתחיל להזיע...':'מגה ג׳קפוט!!! מה קורה פה?!'}
+ else{SFX.tick();me.bub=pickOne(BJ_TALK.deal)}
+ bjRender();if(k!=='none')bjBurst(M.ic+' '+(k==='tired'?'דילר עייף':M.n),k==='hot'?'pink':'gold');await wait(k==='none'?350:1300)}
+async function bjStartDay(g,onDone){const G=bjNew([{name:'אתה',char:charId(),chips:RUN.total}],{luck:bjLuck(),fixed:g,min:g,max:g});
+ BJ={G,mode:'day',me:0,host:true,cnt:{},streak:0,bet:g,onDone,g,g0:g,start:RUN.total,bub:'',rides:0,mod:'',rolling:true,broke:false};track('bj_day');bjMount();bjRender();
+ const me=BJ;await bjRoll(0);if(BJ!==me)return;me.rolling=false;G.seats[0].bet=g;bjDeal(G);bjAfter()}
+async function bjRide(){const me=BJ,G=me.G,s=G.seats[0],stake=Math.max(1,(s.net||0)+(me.bonus||0));if(me.rolling||me.rides>=2||stake<=0)return;
+ me.rides++;me.rolling=true;me.g=stake;G.fixed=stake;G.min=stake;G.max=stake;s.hands=[];G.dealer=[];G.phase='bet';me.cnt={};track('bj_ride'+me.rides);bjRender();
+ await bjRoll(me.rides);if(BJ!==me)return;me.rolling=false;bjDeal(G);bjAfter()}
 function bjOnlineStart(){if(!PV)return;PV.state='bj';PV.meRematch=PV.peerRematch=false;track('bj_online');const P=PV.peer||{name:'יריב',char:'tiron'};
  const H={name:PV.host?PV.me.name:P.name,char:PV.host?PV.me.char:P.char,chips:1000,bet:25},Gs={name:PV.host?P.name:PV.me.name,char:PV.host?P.char:PV.me.char,chips:1000,bet:25};
  const coop=(PV.bjMode||'coop')!=='duel';
@@ -4715,7 +4753,11 @@ function bjOnlineFinish(why){if(!BJ||BJ.done)return;BJ.done=true;const G=BJ.G;le
 function bjRoundEnd(){const G=BJ.G,s=G.seats[BJ.me];if(!s.hands.length||BJ.fxRound===G.round)return;BJ.fxRound=G.round;
  const st=bjStats(),bjs=s.hands.filter(h=>h.res==='bj').length;let bonus=0;
  if(s.net>0)BJ.streak++;else if(s.net<0)BJ.streak=0;
+ BJ.bonusWhy='';
  if(BJ.mode==='solo'&&s.net>0&&BJ.streak>=3){const tb=s.hands.reduce((a,h)=>a+h.bet,0);bonus=Math.max(1,Math.round(tb*.1*Math.min(BJ.streak-2,5)));s.chips+=bonus;bjSync()}
+ if(BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'){const M=BJ_MODS[BJ.mod];s.hands.forEach(h=>{if(h.net>0)bonus+=(h.res==='bj'&&M.bj?h.bet*M.bj:Math.round(h.net*M.m))-h.net});
+  const room=BJ.start+BJ.g0*12-s.chips;if(bonus>=room){bonus=Math.max(0,room);BJ.broke=true}
+  if(bonus>0){s.chips+=bonus;bjSync();BJ.bonusWhy=M.ic+' '+M.n;const big=bonus>=BJ.g*2,tot=s.net+bonus,broke=BJ.broke;setTimeout(()=>{if(!BJ)return;bjBurst(broke?'שמוליק פשט רגל!':'+'+tot+' ימים!',big||broke?'gold':'pink');if(broke)BJ.bub='לקחת לי את כל הקופה של היום! 😭';SFX.jack();crowdCheer();bjConf(big?70:30);buzz([60,40,60,40,120])},1300)}else bonus=0}
  BJ.bonus=bonus;st.hands++;if(s.net>0)st.wins++;st.bjs+=bjs;st.biggest=Math.max(st.biggest,s.net+bonus);st.streak=Math.max(st.streak,BJ.streak);if(BJ.mode==='solo')st.net+=s.net+bonus;store.set('gm_bjstats',st);
  if(bjs)unlock('bj');if(BJ.streak>=5)unlock('bjhot');
  const L=$('#bjL'),dl=L&&L.querySelector('.bjdl .pkav'),dbust=bjTot(G.dealer).t>21;
@@ -4741,12 +4783,17 @@ function bjClick(e){const b=e.target.closest('button');if(!b||!BJ)return;const G
  if(a==='clr'){BJ.bet=0;SFX.tick();bjRender();return}
  if(a==='x2'){BJ.bet=Math.min(G.max,G.seats[BJ.me].chips,(BJ.bet||0)*2);pkS.chips(3);bjRender();return}
  if(a==='loan'){store.set('gm_bjloan',todayKey());addCoins(50);BJ.wallet+=50;G.seats[0].chips+=50;BJ.bet=25;SFX.win();toastMsg('🪙','שמוליק נתן לך 50 '+COIN,'מגיע לך. פעם ביום.');bjRender();return}
+ if(a==='ride'){SFX.tick();bjRide();return}
  if(a==='dayback'){const fin=RUN.total,diff=fin-BJ.start,cb=BJ.onDone;bjClose();cb&&cb(diff);return}
  if(a==='deal'){if(!G)return;const min=G.fixed||G.min;if((G.fixed?G.fixed:BJ.bet)<min||G.seats[BJ.me].chips<min){const s=$('#bjBetV');if(s){s.classList.remove('nope');void s.offsetWidth;s.classList.add('nope')}SFX.tick();return}
   if(BJ.mode!=='online')store.set('gm_bjlast',BJ.bet);pkS.chips(4);bjMy('ready',BJ.bet);if(BJ.host&&BJ.mode!=='online'&&G.phase==='play'&&Math.random()<.35)bjSay('deal');return}
  if(a==='insY'||a==='insN'){bjMy('ins',a==='insY');return}
  if(['hit','stand','double','split','surrender'].includes(a)){SFX.tick();bjMy(a)}}
 const bjResTxt=n=>n?`<bdi dir="ltr">${n>0?'+'+n:'−'+(-n)}</bdi> ${BJ.mode==='solo'?COIN:bjUnit()}`:'PUSH';
+function bjDayAct(G,S){let act;const d=RUN.total-BJ.start,last=(S.net||0)+(BJ.fxRound===G.round?BJ.bonus||0:0),ride=last>0&&BJ.rides<2&&!BJ.broke&&d+last<=BJ.g0*12;
+  act=`<div class="bjact"><p class="bjdaysum">${BJ.broke?`👑 ריקנת את הקופה של שמוליק! +${d} ימים · סה״כ ${RUN.total}`:d>0?`${BJ.rides?'עדיין ברווח! ':'ניצחת! '}+${d} ימים · סה״כ ${RUN.total}`:d<0?`שמוליק לקח ${-d} ימים · סה״כ ${RUN.total}`:BJ.rides?`הרווח נשרף 💀 · נשארת עם ${RUN.total}`:`Push · נשארת עם ${RUN.total}`}</p>
+   ${ride?`<div class="bjrow ridebox"><button class="bjb stand" data-a="dayback" type="button">💰 קח<small>+${d} ימים</small></button><button class="bjb ride" data-a="ride" type="button">🔥 כפול או כלום<small>${last} ימים · ${BJ.rides?'סיבוב אחרון!':'אולי ג׳קפוט 👀'}</small></button></div>`
+   :`<button class="bjdeal" data-a="dayback" type="button">חזרה לסוף היום ▶</button>`}</div>`;return act}
 function bjTxt(cs){const{t,soft}=bjTot(cs);return soft&&t<21?(t-10)+'/'+t:''+t}
 const BJ_RES={bj:['BLACKJACK','bj'],win:['WIN','win'],lose:['LOSE','lose'],push:['PUSH','push'],bust:['BUST','bust'],sur:['SURRENDER','push']};
 function bjCardsHTML(key,cards,flipIdx){const old=BJ.cnt[key]||0;let k=0;const out=cards.map((c,i)=>{let cls='';if(i>=old){cls='bjd';const at=k++;cls+=` dl${Math.min(at,5)}`;pkS.deal(at*.13)}
@@ -4775,14 +4822,15 @@ function bjRender(){const L=$('#bjL');if(!L||!BJ)return;const G=BJ.G;
  const seats=two?[me,1-me].map(i=>seatH(G.seats[i],i)).join(''):seatH(S,0);
  /* round result banner for me */
  let res='';if(G.phase==='done'&&S.hands.length){const n=S.net,b=BJ.fxRound===G.round?BJ.bonus:0;
-  res=`<div class="bjres ${n>0?'win':n<0?'lose':'tie'}"><b>${bjResTxt(n)}</b>${b?`<span>🔥 רצף ${BJ.streak} · בונוס +${b}</span>`:BJ.streak>=2&&n>0?`<span>🔥 רצף ${BJ.streak}</span>`:''}</div>`}
+  res=`<div class="bjres ${n>0?'win':n<0?'lose':'tie'}"><b>${bjResTxt(n+(b||0))}</b>${b?`<span>${BJ.bonusWhy||'🔥 רצף '+BJ.streak} · בונוס +${b}</span>`:BJ.streak>=2&&n>0?`<span>🔥 רצף ${BJ.streak}</span>`:''}</div>`}
  const arc=`<svg class="bjarc" viewBox="0 0 320 78" aria-hidden="true"><defs><path id="bjA1" d="M16,6 Q160,66 304,6"/><path id="bjA2" d="M4,26 Q160,96 316,26"/></defs>
   <text class="a1"><textPath href="#bjA1" startOffset="50%" text-anchor="middle">BLACKJACK PAYS 3 TO 2</textPath></text>
   <text class="a2"><textPath href="#bjA2" startOffset="50%" text-anchor="middle">DEALER STANDS ON SOFT 17 · INSURANCE PAYS 2 TO 1</textPath></text></svg>`;
  /* controls */
  let act='';const wt=t=>`<div class="bjact wait">${t}</div>`;const other=two?G.seats[1-me]:null;
  if(G.phase==='over'||(G.phase==='done'&&bjOverCond(G)))act=wt('יד אחרונה! סופרים צ׳יפים... 🧮');
- else if(BJ.mode==='day'&&G.phase==='done'){const d=RUN.total-BJ.start;act=`<div class="bjact"><p class="bjdaysum">${d>0?`ניצחת! +${d} ימים. סה״כ ${RUN.total}.`:d<0?`שמוליק לקח ${-d} ימים. סה״כ ${RUN.total}.`:`Push. נשארת עם ${RUN.total}.`}</p><button class="bjdeal" data-a="dayback" type="button">חזרה לסוף היום ▶</button></div>`}
+ else if(BJ.mode==='day'&&(BJ.rolling||G.phase==='bet'))act=`<div class="bjact wait">🎰 מגלגלים את הסיבוב...</div>`;
+ else if(BJ.mode==='day'&&G.phase==='done')act=bjDayAct(G,S);
  else if((G.phase==='bet'||G.phase==='done')&&!S.ready){const c=S.chips,canLoan=BJ.mode==='solo'&&c<5&&store.get('gm_bjloan','')!==todayKey();
   if(c<G.min&&BJ.mode!=='day')act=canLoan?`<div class="bjact"><p class="bjdaysum">נגמרו לך המטבעות.</p><button class="bjdeal" data-a="loan" type="button">🤝 שמוליק, תלווה לי 50 ${COIN}</button></div>`:wt(BJ.mode==='solo'?'נגמרו לך המטבעות. תשחק ריצה ותחזור, שמוליק מחכה.':'נגמרו לך הצ׳יפים. מחכה לסוף...');
   else{const v=Math.min(BJ.bet||0,c,G.max);BJ.bet=v;
@@ -4795,21 +4843,21 @@ function bjRender(){const L=$('#bjL');if(!L||!BJ)return;const G=BJ.G;
   act=`<div class="bjact"><div class="bjhint">💡 הספר אומר: <b>${N[hint][0]}</b>${S.hands.length>1?` · יד ${G.turn[1]+1} מתוך ${S.hands.length}`:''}</div><div class="bjrow">${['hit','stand','double','split','surrender'].filter(k=>O[k]).map(k=>`<button class="bjb ${k}${k===hint?' rec':''}" data-a="${k}" type="button">${N[k][0]}<small>${N[k][1]}</small></button>`).join('')}</div></div>`}
  else if(G.phase==='play')act=wt(G.turn[0]===me?'...':`${escH(G.seats[G.turn[0]].name)} חושב...`);
  else act=wt('שמוליק הופך קלפים... 🥁');
- const title=BJ.mode==='day'?`יד אחת על ${BJ.g} ימים`:BJ.mode==='online'?`${G.coop?'ביחד מול הדילר':'אחד מול השני'} · יד ${Math.max(1,G.round)}/${G.rounds}`:`הקופה שלך: ${S.chips} ${COIN}`;
+ const title=BJ.mode==='day'?(BJ.rides?`🔥 כפול או כלום ${BJ.rides}/2 · ${BJ.g} ימים`:`יד על ${BJ.g} ימים`):BJ.mode==='online'?`${G.coop?'ביחד מול הדילר':'אחד מול השני'} · יד ${Math.max(1,G.round)}/${G.rounds}`:`הקופה שלך: ${S.chips} ${COIN}`;
  L.innerHTML=`<div class="bjt">
-  <div class="bjhead">${BJ.mode==='day'?'':'<button class="pkq" id="bjQuit" type="button">קום</button>'}<span>${title}</span>${BJ.mode==='online'&&PV&&PV.peer?'<button class="pkq" id="bjChat" type="button">💬</button>':''}${BJ.streak>=2?`<em class="bjhot">🔥 ${BJ.streak}</em>`:''}</div>
+  <div class="bjhead">${BJ.mode==='day'?'':'<button class="pkq" id="bjQuit" type="button">קום</button>'}<span>${title}</span>${BJ.mode==='online'&&PV&&PV.peer?'<button class="pkq" id="bjChat" type="button">💬</button>':''}${BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'?`<em class="bjhot m-${BJ.mod}">${BJ_MODS[BJ.mod].ic}${BJ_MODS[BJ.mod].m>1?' ×'+BJ_MODS[BJ.mod].m:''}</em>`:BJ.streak>=2?`<em class="bjhot">🔥 ${BJ.streak}</em>`:''}</div>
   ${BJ.mode==='online'?'<div class="pktimer"><i id="bjTm"></i></div>':''}
-  <div class="bjarena"><div class="bjfelt${two?' two':''}"><i class="bjbulbs"></i>
+  <div class="bjarena"><div class="bjfelt${two?' two':''}${BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'?' ev-'+BJ.mod:''}"><i class="bjbulbs"></i>
    <div class="bjshoe" aria-hidden="true"><i></i><i></i><i></i></div>
    <div class="bjdl"><span class="pkav">${portrait(BJ_DLR.char)}<i class="bow">🎀</i></span><span class="nm"><b>${BJ_DLR.n}</b><span>Dealer</span></span>${BJ.bub?`<i class="pkbub bjbub new" id="bjBub"></i>`:''}</div>
    <div class="bjdc"><div class="bjcards">${G.dealer.length?bjCardsHTML('d',dCards,flipIdx):'<span class="pc slot"></span><span class="pc slot"></span>'}</div>${G.dealer.length?`<span class="bjtot${!G.hole&&dTot>21?' bust':''}">${dT}</span>`:''}</div>
-   <div class="bjmid">${res||arc}</div>
+   <div class="bjmid">${res||(BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'?`<div class="bjmod m-${BJ.mod}"><b>${BJ_MODS[BJ.mod].ic} ${BJ_MODS[BJ.mod].n}</b><span>${BJ_MODS[BJ.mod].d}</span></div>`:arc)}</div>
    <div class="bjseats">${seats}</div>
   </div></div>
   ${act}</div>`;
  const bb=$('#bjBub');if(bb)bb.textContent=BJ.bub;
- if(G.phase==='done'&&S.hands.length&&BJ.fxRound!==G.round){bjRoundEnd();const r=L.querySelector('.bjres');if(r){const n=S.net,b=BJ.bonus;r.querySelector('b').innerHTML=bjResTxt(n);
-   if(b){const sp=r.querySelector('span')||r.appendChild(document.createElement('span'));sp.textContent=`🔥 רצף ${BJ.streak} · בונוס +${b}`}}
+ if(G.phase==='done'&&S.hands.length&&BJ.fxRound!==G.round){bjRoundEnd();if(BJ.mode==='day'){const a=L.querySelector('.bjact');if(a)a.outerHTML=bjDayAct(G,S)}const r=L.querySelector('.bjres');if(r){const n=S.net,b=BJ.bonus;r.querySelector('b').innerHTML=bjResTxt(n+(b||0));
+   if(b){const sp=r.querySelector('span')||r.appendChild(document.createElement('span'));sp.textContent=`${BJ.bonusWhy||'🔥 רצף '+BJ.streak} · בונוס +${b}`}}
   const hd=L.querySelector('.bjhead span');if(hd&&BJ.mode==='solo')hd.textContent=`הקופה שלך: ${S.chips} ${COIN}`}
  if(G.phase==='over'&&BJ.mode==='online')bjOnlineFinish()}
 /* ---- lobby ---- */
@@ -4964,7 +5012,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='6.1';
+const VERSION='6.2';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
