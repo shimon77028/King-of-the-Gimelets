@@ -716,7 +716,7 @@ body.fighting .room{height:350px}
 .bjtag.win{background:#2fd06a;color:#06260f}.bjtag.bj{background:linear-gradient(90deg,#ffd43b,#ff4fd8);color:#1b0b2a}.bjtag.lose,.bjtag.bust{background:#e53935;color:#fff}.bjtag.push{background:#cfd6da;color:#1b1d14}
 .bjbet{display:flex;align-items:center;gap:3px;min-height:26px}.bjbet small{font-weight:900;color:#ffd43b;font-size:12px}
 .bjbet .stk .col{width:20px;height:26px}.bjbet .chip{width:20px;height:8px}.bjbet .stk b{font-size:12px}
-.chip.k5{background:#e53935}.chip.k25{background:#1fa34a}.chip.k100{background:#1b1b1b}.chip.k500{background:#7b2fbf}.chip.k1{background:#f2f2f2;border-color:#7b2fbf}
+.stk .chip.k5{background:#e53935}.stk .chip.k25{background:#1fa34a}.stk .chip.k100{background:#1b1b1b}.stk .chip.k500{background:#7b2fbf}.stk .chip.k1{background:#f2f2f2;border-color:#7b2fbf}
 .bjins{font-size:11px;font-weight:900;background:#1e5fb3;border-radius:99px;padding:1px 8px}
 .bjwho{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.35);border:1.5px solid rgba(255,212,59,.6);border-radius:99px;padding:2px 10px 2px 2px;font-size:12px;max-width:100%}
 .bjwho .pkav{width:28px;height:28px}.bjwho b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70px}.bjwho span:last-child{font-weight:800;opacity:.9;white-space:nowrap}
@@ -761,6 +761,12 @@ body.fighting .room{height:350px}
 .betduo{margin-top:4px;width:100%}.bjday{background:linear-gradient(90deg,#7a1fb0,#ff2f6d)!important;color:#fff!important}
 .g-bj{background:linear-gradient(135deg,#7a1fb0,#2a0b45);color:#fff;border-color:#ffd43b}.g-bj small{color:#ffd9f4}.g-bj .gic{font-family:var(--f-display);color:#fff;text-shadow:0 0 8px #ff4fd8;font-size:30px}
 @media (max-height:640px){.bjt{--cw:clamp(36px,min(13vw,7.6vh),64px);gap:4px}.bjdl .pkav{width:30px;height:30px}.bjdc{margin-top:18px}.bjch{width:40px;height:40px}.bjbs b{font-size:28px}.bjdeal{padding:10px 6px;font-size:17px}.bjb{padding:8px 2px 6px;font-size:15px}.bjmid{min-height:42px}.bjarc{width:min(100%,280px)}.bjhome{padding:5px 12px;margin-top:6px}.bjhome .bjn{font-size:24px}.bjhome b{font-size:19px}}
+.bjtick{height:16px;overflow:hidden;font-size:11.5px;font-weight:800;color:#ffe9a8;text-align:center;white-space:nowrap;text-overflow:ellipsis}
+.bjtick span.in{display:inline-block;animation:bjTk .5s cubic-bezier(.2,.9,.3,1.2) both}@keyframes bjTk{from{opacity:0;transform:translateY(10px)}}
+.bjpot{font-style:normal;background:linear-gradient(90deg,#3be0ff,#7b2fbf);border-radius:99px;padding:2px 8px;font-size:12px;white-space:nowrap;box-shadow:0 0 10px rgba(59,224,255,.5)}
+.bjhead span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bjpotl{display:grid;gap:1px;background:linear-gradient(90deg,rgba(59,224,255,.18),rgba(123,47,191,.3));border:1.5px solid #3be0ff;border-radius:12px;padding:6px;font-weight:800;font-size:14px}.bjpotl b{color:#ffd43b;font-size:18px}.bjpotl small{font-size:11px;color:#e8d8ff;font-weight:700}
+.slotm{display:grid;justify-items:center;gap:4px;padding:10px;background:#2a0b45;border:2px solid #ffd43b;border-radius:16px;box-shadow:0 0 18px rgba(255,79,216,.4)}.slotm span{font-size:44px;letter-spacing:.15em;direction:ltr}.slotm small{color:#e8d8ff;font-weight:800}
 .bjreel{display:grid;justify-items:center;gap:4px}.bjreel b{font-family:var(--f-display);font-size:30px;line-height:1;padding:6px 18px;border-radius:14px;background:#13061f;border:2px solid #ffd43b;min-width:72%;text-align:center;box-shadow:0 0 18px rgba(255,212,59,.5)}
 .bjreel b.m-spin{filter:blur(.6px);transform:translateY(-2px)}.bjreel span{font-size:12px;font-weight:800;opacity:.85}
 .bjmod{display:grid;justify-items:center;gap:1px;padding:5px 16px;border-radius:14px;animation:bjResIn .45s cubic-bezier(.2,.9,.3,1.4) both;box-shadow:0 6px 20px rgba(0,0,0,.45)}
@@ -801,8 +807,8 @@ body.fighting .room{height:350px}
 .pkpot{display:flex;align-items:center;gap:6px;min-height:24px;transition:transform .9s cubic-bezier(.45,0,.2,1),opacity .9s}.pkpot em{font-style:normal;font-weight:900;font-size:12px;opacity:.85}
 .pkpot.to-me.go{transform:translateY(34vh) scale(.85);opacity:0}.pkpot.to-op.go{transform:translateY(-30vh) scale(.85);opacity:0}
 .stk{display:inline-flex;align-items:flex-end;gap:2px;direction:ltr}.stk .col{position:relative;width:24px;height:34px}.stk b{font-weight:900;font-size:13px;color:#ffd43b;margin-left:4px;text-shadow:0 1px 2px rgba(0,0,0,.8);align-self:center}
-.chip{position:absolute;left:0;width:24px;height:10px;border-radius:50%;border:2px dashed rgba(255,255,255,.9);box-shadow:0 2px 0 rgba(0,0,0,.45),inset 0 -2px 0 rgba(0,0,0,.25)}
-.chip.c10{background:#c62828}.chip.c50{background:#1e5fb3}.chip.c1{background:#1b1b1b}.chip.c5{background:#6b2fa0}
+.stk .chip{position:absolute;left:0;width:24px;height:10px;border-radius:50%;border:2px dashed rgba(255,255,255,.9);box-shadow:0 2px 0 rgba(0,0,0,.45),inset 0 -2px 0 rgba(0,0,0,.25)}
+.stk .chip.c10{background:#c62828}.stk .chip.c50{background:#1e5fb3}.stk .chip.c1{background:#1b1b1b}.stk .chip.c5{background:#6b2fa0}
 .pc{position:relative;display:grid;place-items:center;width:var(--cw);height:calc(var(--cw)*1.4);border-radius:calc(var(--cw)*.12);background:linear-gradient(160deg,#fff,#f1ebde);color:#1b1d14;box-shadow:0 4px 8px rgba(0,0,0,.45);font-weight:900;font-size:calc(var(--cw)*.34);line-height:1;direction:ltr}
 .pc b{position:absolute;top:4%;left:7%;display:grid;justify-items:center;font-size:1em;line-height:.95}.pc b u{text-decoration:none;font-size:.8em}.pc b.br{top:auto;left:auto;bottom:4%;right:7%;transform:rotate(180deg)}
 .pc i{font-style:normal;font-size:calc(var(--cw)*.62)}.pc.red{color:#c62828}
@@ -2843,6 +2849,25 @@ const GOLD_LINES=[
  {gold:1,r:3,t:'הטלפון שלך מצלצל. זו אמא שלך. היא בצד שלי.',w:'אמא, בסדר, נתתי לו! {g}!',f:'אמא שלי אומרת שאתה ממציא. היא מכירה את אמא שלך.'}
 ];
 LINES.push(...NEW_LINES,...GOLD_LINES);
+/* casino pack: the base has a blackjack table at the gate now, and everybody is talking about it */
+LINES.push(
+ {t:'הפסדתי את כל המשכורת אצל שמוליק בבלאק ג׳ק. יש לי פוסט־טראומה מהמספר 22',r:2,w:'גם אני הפסדתי אצלו. אחים לנשק. {g}.',f:'22 זה גם מספר השמירות שאתה הולך לעשות.'},
+ {t:'עשיתי Split באמצע הגב. עכשיו יש לי שני גבות ושניהם כואבים',r:2,w:'שני גבות, שני גימלים. מתמטיקה. {g}.',f:'פיצלת? אז גם השמירה מתפצלת. כפולה.'},
+ {t:'דוקטור, אני מכור להימורים. אני מהמר שתיתן לי גימלים',r:3,w:'...ניצחת בהימור. {g}. אל תספר לשמוליק.',f:'הבית תמיד מנצח. ופה אני הבית.'},
+ {t:'שושי הדילרית אמרה שיש לי ״ידיים רועדות של מהמר״. זה תסמין?',r:1,w:'שושי לא טועה אף פעם. {g}.',f:'הידיים שלך רועדות כי אתה משקר.'},
+ {t:'נשרפתי על 22 שלוש פעמים ברצף. זו טראומה צבאית מוכרת',r:2,w:'ההכרה ממשרד הביטחון בדרך. {g}.',f:'זו לא טראומה. זה Hit על 17. מגיע לך.'},
+ {t:'עשיתי Double Down על המדרגות של חדר האוכל. ירדתי פעמיים',r:2,w:'נשמע כואב. וגם מטופש. {g}.',f:'ראיתי את הסרטון. נפלת על התחת ועשית Stand.'},
+ {t:'אני בלאק ג׳ק טבעי, דוקטור. 21 ימי גימלים זה המצב הטבעי שלי',r:3,w:'אי אפשר להתווכח עם הטבע. {g}.',f:'אצלי אתה 22. באסט. החוצה.'},
+ {t:'יש לי אלרגיה לצ׳יפים. כל פעם שאני מפסיד אני מתנפח',r:2,w:'מוזר, אני מתנפח כשאני מנצח. {g}.',f:'זו לא אלרגיה. זו במבה.'},
+ {t:'עשיתי Insurance על הברך ועכשיו היא לא מכוסה',r:1,w:'ביטוח צבאי. מכיר. {g}.',f:'הביטוח משלם 2 ל־1. אתה מקבל אפס ל־אחת.'},
+ {t:'אני שומע מכונות מזל בראש. כל הזמן. דינג דינג דינג',r:2,w:'רגע... גם אני שומע. {g}.',f:'זה הטלפון שלך. תכבה אותו.'},
+ {t:'הרס״ר תפס אותי מהמר בשמירה והכריח אותי לספור צ׳יפים עד הבוקר. אני רואה כפול',r:2,w:'כמה אצבעות אני מראה? טוב, {g}.',f:'שתי אצבעות. שתי שמירות.'},
+ {t:'שמוליק הדילר חייב לי 3 ימים. הוא אמר שאתה תשלם',r:3,w:'...השמוליק הזה. {g}. ותגיד לו שאנחנו גמורים.',f:'שמוליק חייב לי 300 שקל. אז אתה חייב לי.'},
+ {t:'ביקשתי Surrender מהמג״ד. הוא נתן לי חצי שמירה',r:1,w:'גם חצי שמירה זה כאב. {g}.',f:'כניעה בצבא קוראים לזה עריקה.'},
+ {t:'הספר של הבלאק ג׳ק אמר לי לעמוד על 12 מול 4. אני עומד כבר 9 שעות',r:2,w:'הספר צודק תמיד. {g}, שב קצת.',f:'אתה עומד בתור. זה לא בלאק ג׳ק.'},
+ {t:'זכיתי בג׳קפוט בש״ג ועכשיו כל הפלוגה רוצה ממני כסף. יש לי חרדה',r:2,w:'גם אני רוצה. אבל קודם {g}.',f:'תביא את הג׳קפוט לפה ונדבר.'},
+ {t:'שיחקתי אצל שמוליק עד ארבע בבוקר. אני לא ישן, רק עושה Hit',r:1,w:'אתה נראה כמו 17 רך. {g}.',f:'ארבע בבוקר? אז אתה ער מספיק לשמירה.'},
+ {gold:1,r:3,t:'*מניח צ׳יפ זהב של 1,000 על השולחן ולוחש* All in, דוקטור.',w:'...לא ראיתי כלום. {g}.',f:'זה צ׳יפ מהשק״ם. כתוב עליו ״צעצוע״.'});
 
 /* ---- doctor quirks ---- */
 const SLANG_RX=/אחי|יאללה|סבבה|וואלה|תכלס|אחלה|גבר|נשמה|חבל״ז|נזרום|בומר/;
@@ -3338,6 +3363,11 @@ const SONGS={
   if(i%2===0)mOsc(NOTE([40,40,43,40,45,40,43,38][i/2]),t,d*1.8,'sawtooth',.08);if(i===0)mNoise(t,1.4,.04,700,'bandpass')}},
  fever:{bpm:168,len:16,fn(i,t,d){if(i%4===0){kick(t,.8);mOsc(NOTE(45),t,d*3,'sawtooth',.09)}if(i%8===4)snare(t,.32);hat(t,.045);
   mOsc(NOTE([69,72,76,81,76,72,69,64][i%8]+(i>=8?2:0)),t,d*.9,'square',.045)}},
+ casino:{bpm:118,len:64,fn(i,t,d){const bar=i>>4,ch=[[57,60,64,67],[50,54,57,60],[55,59,62,66],[48,52,55,59]][bar],s=i&15;
+  if(s%4===0)kick(t,.5);if(s%4===2)hat(t,.05);if(s===4||s===12)snare(t,.12);
+  if([0,3,6,8,11,14].includes(s))mOsc(NOTE(ch[0]-24+(s===11?7:s===14?5:0)),t,d*1.6,'triangle',.16);
+  if(s===2||s===7||s===10)ch.forEach(n=>mOsc(NOTE(n+12),t,d*.9,'square',.018));
+  if(s%2===0&&Math.random()<.28)mOsc(NOTE(ch[(Math.random()*4)|0]+24),t,d*2.2,'sine',.04)}},
  chief:{bpm:70,len:16,fn(i,t,d){if(i%4===0){const ch=[[50,53,57],[46,50,53],[45,49,52],[50,53,57]][i/4|0];ch.forEach(n=>mOsc(NOTE(n),t,d*4.2,'sawtooth',.028));mOsc(NOTE(ch[0]-12),t,d*4,'sine',.14)}
   if(i%8===0)kick(t,.55);if(i===12)mNoise(t,.9,.05,3000)}}
 };
@@ -4405,7 +4435,7 @@ let PKAMB=null;
 function pkAmbStart(){pkAmbStop();const a=ac();if(!a)return;try{const len=a.sampleRate*3,buf=a.createBuffer(1,len,a.sampleRate),ch=buf.getChannelData(0);let last=0;
   for(let i=0;i<len;i++){const w=Math.random()*2-1;last=(last+.02*w)/1.02;ch[i]=last*3.2}
   const s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();s.buffer=buf;s.loop=true;f.type='lowpass';f.frequency.value=420;g.gain.value=0;g.gain.linearRampToValueAtTime(.05,a.currentTime+1.5);
-  s.connect(f).connect(g).connect(a.destination);s.start();PKAMB={s,g,iv:setInterval(()=>{if(!PK&&!BJ){pkAmbStop();return}if(Math.random()<.45)pkS.chips(1+Math.floor(Math.random()*3));},1700)}}catch(e){}}
+  s.connect(f).connect(g).connect(a.destination);s.start();PKAMB={s,g,iv:setInterval(()=>{if(!PK&&!BJ){pkAmbStop();return}if(Math.random()<.45)pkS.chips(1+Math.floor(Math.random()*3));if(BJ&&Math.random()<.2)bjDing();},1700)}}catch(e){}}
 function pkAmbStop(){if(!PKAMB)return;const A=PKAMB;PKAMB=null;clearInterval(A.iv);try{const a=ac();if(a){A.g.gain.linearRampToValueAtTime(0,a.currentTime+.4);setTimeout(()=>{try{A.s.stop()}catch(e){}},500)}else A.s.stop()}catch(e){}}
 /* ---- helpers ---- */
 function pkBest5(cs){let best=-1,set=[];const n=cs.length;for(let a=0;a<n;a++)for(let b=a+1;b<n;b++){const five=cs.filter((_,i)=>i!==a&&i!==b);const v=pkEval(five);if(v>best){best=v;set=five}}return n<=5?cs:set}
@@ -4675,7 +4705,7 @@ const bjChipSet=()=>BJ.mode==='online'?[10,25,100,500]:[5,25,100,500];
 const bjSay=k=>{if(!BJ)return;BJ.bub=pickOne(BJ_TALK[k]);BJ.bubN=(BJ.bubN||0)+1;const e=$('#bjBub');if(e){e.textContent=BJ.bub;e.classList.remove('new');void e.offsetWidth;e.classList.add('new')}};
 function bjLuck(){const st=bjStats();return Math.max(.02,.5-st.hands*.016)}
 function bjMount(){let L=$('#bjL');if(!L){L=document.createElement('div');L.id='bjL';L.className='bjlayer';document.body.appendChild(L);L.addEventListener('click',bjClick)}
- musicPlay('chief');pkAmbStart();const me=BJ;clearInterval(me.iv);me.iv=setInterval(()=>{if(BJ!==me){clearInterval(me.iv);return}bjTick()},250)}
+ musicPlay('casino');pkAmbStart();const me=BJ;clearInterval(me.iv);me.iv=setInterval(()=>{if(BJ!==me){clearInterval(me.iv);return}bjTick()},250)}
 function bjClose(){const L=$('#bjL');if(L)L.remove();if(BJ)clearInterval(BJ.iv);BJ=null;pkAmbStop();musicPlay('menu')}
 function bjSync(){if(!BJ||!BJ.G)return;const s=BJ.G.seats[BJ.me];if(BJ.mode==='solo'){const d=s.chips-BJ.wallet;if(d)addCoins(d);BJ.wallet=s.chips}else if(BJ.mode==='day'){RUN.total=Math.max(0,s.chips)}}
 function bjStartSolo(){const c=getCoins(),G=bjNew([{name:'אתה',char:charId(),chips:c}],{luck:bjLuck(),min:5,max:500});
@@ -4690,6 +4720,51 @@ const BJ_MODS={
  jack:{n:'ג׳קפוט',ic:'💰',m:3,bj:6,luck:.3,d:'ניצחון ×3 · בלאק ג׳ק ×6!'},
  mega:{n:'מגה ג׳קפוט',ic:'👑',m:5,bj:10,luck:.55,d:'ניצחון ×5 · בלאק ג׳ק ×10!!!'}};
 let BJ_FORCE='';
+const bjPot=()=>store.get('gm_bjpot',500);
+const BJ_NEWS=['📢 הרס״ר הפסיד את המשכורת בשולחן 2','🎰 הסמל זכה ב־500 במכונה ליד המטבח','🃏 הטבח עשה בלאק ג׳ק שלוש פעמים ברצף','💸 הקב״ן מהמר על אדום. שוב.','👑 המג״ד ביקש שולחן VIP. שושי אמרה לא',
+ '🔥 שולחן 4 לוהט! כולם מנצחים','😴 שמוליק בקפה שלישי. נזהרים','📢 החובשת חילקה צ׳יפים במקום אקמול','🎲 הנהג הימר על הג׳יפ של הפלוגה','🥁 מישהו עשה Split על אסים בשולחן 3','📢 נאסר לשחק בזמן מסדר. כולם משחקים',
+ '🍕 פיצה חינם לכל מי שעושה בלאק ג׳ק','🎺 להקת הנח״ל מנגנת ליד הרולטה','💍 מישהו הציע נישואין לשושי. היא עשתה Stand','🚨 הרופא נראה בשולחן 5. עם משקפי שמש'];
+function bjNews(){return Math.random()<.25?`💎 ג׳קפוט הש״ג עומד על ${bjPot()} ${COIN}. מי ייקח?`:pickOne(BJ_NEWS)}
+function bjDing(){const a=ac();if(!a||muted||a.state!=='running')return;const t=a.currentTime;[1568,2093,2637].forEach((f,i)=>{const o=a.createOscillator(),g=a.createGain();o.frequency.value=f;const s0=t+i*.09;
+ g.gain.setValueAtTime(.0001,s0);g.gain.exponentialRampToValueAtTime(.022,s0+.01);g.gain.exponentialRampToValueAtTime(.0001,s0+.6);o.connect(g).connect(a.destination);o.start(s0);o.stop(s0+.7)})}
+async function bjStartVisit(cb){const G=bjNew([{name:'אתה',char:charId(),chips:100}],{luck:Math.max(bjLuck(),.25),fixed:10,min:10,max:10});
+ BJ={G,mode:'visit',me:0,host:true,cnt:{},streak:0,bet:10,cb,g:1,start:0,bub:'',rides:0,mod:'',rolling:true};track('bj_visit');bjMount();bjRender();
+ const me=BJ;await bjRoll(0);if(BJ!==me)return;me.rolling=false;bjDeal(G);bjAfter()}
+function bjVisitOut(){const s=BJ.G.seats[0],M=BJ_MODS[BJ.mod]||BJ_MODS.none;let g=0;s.hands.forEach(h=>{if(h.net>0)g+=h.res==='bj'?2:1});return{g:Math.min(6,g*M.m),sus:s.net<0?18:0}}
+function bjVisitAct(){const o=bjVisitOut();return`<div class="bjact"><p class="bjdaysum">${o.g?`ניצחת! שמוליק מסדר לך <b>+${o.g}</b> אצל הרופא 🤫`:o.sus?'הפסדת... והרופא שמע את הצ׳יפים. חשד +18%':'Push. אף אחד לא ראה כלום.'}</p><button class="bjdeal" data-a="visitback" type="button">חזרה לרופא ▶</button></div>`}
+async function slotPull(){const I=['🍒','💊','🪖','🃏','💰'];$('#choices').innerHTML='<div class="slotm"><span id="slr">❔ ❔ ❔</span><small>החובש מחזיק את הווילון...</small></div>';const r=$('#slr');
+ for(let i=0;i<15;i++){r.textContent=[0,1,2].map(()=>pickOne(I)).join(' ');SFX.tick();await wait(55+i*14)}
+ const x=GR(),p=I[(GR()*I.length)|0];let out;if(x<.14)out=[p,p,p];else if(x<.6){const q=pickOne(I.filter(z=>z!==p));out=shuffle([p,p,q])}else out=shuffle(I.slice()).slice(0,3);
+ r.textContent=out.join(' ');await wait(500);
+ if(out[0]===out[1]&&out[1]===out[2]){SFX.jack();crowdCheer();return res(`${out.join(' ')} ג׳קפוט!!! החובש צורח, הרופא חותם על הכל: +3.`,{g:3},'הרופא')}
+ if(new Set(out).size===2)return res(`${out.join(' ')} שניים זהים! הרופא מציץ מאחורי הווילון: ״טוב, +1, ותחזיר את המכונה.״`,{g:1},'הרופא');
+ return res(`${out.join(' ')} כלום. והמכונה צפצפה כמו אזעקה. הרופא שמע.`,{sus:10},'הרופא')}
+const HILO_N=n=>['2','3','4','5','6','7','8','9','10','J','Q','K','A'][n-2]+['♠','♥','♦','♣'][(Math.random()*4)|0];
+function hiloGuess(up){const a=S.hilo;let n;do{n=2+((GR()*13)|0)}while(n===a);const ok=(n>a)===up;
+ return ok?res(`הקלף הבא: ${HILO_N(n)}. צדקת! הרופא, מבואס: ״אני שונא את המשחק הזה. +1.״`,{g:1},'הרופא'):res(`הקלף הבא: ${HILO_N(n)}. טעית! ״הבית מנצח. ואתה עכשיו בחשד.״`,{sus:10},'הרופא')}
+EVENTS.push(
+ {id:'shmulik',who:'שמוליק הדילר',text:'פססט! הרופא בטלפון עם אמא שלו. יד בלאק ג׳ק מהירה מאחורי הווילון? תנצח, ואני מסדר לך ימים אצלו.',opts:[
+  {t:'יאללה, חלק! 🃏',c:['r3','ניצחון +1 עד +6 · הפסד: חשד +18'],go:()=>bjStartVisit(o=>{musicPlay(clinicSong());
+   return o.g?res(`שמוליק לחש משהו לרופא. הרופא החוויר: ״${pickOne(['טוב, טוב','רק אל תספר לאף אחד','איך הוא יודע על זה?!'])}״. +${o.g}.`,{g:o.g},'הרופא')
+    :o.sus?res('״קלפים?! אתה מהמר במרפאה שלי?!״',{sus:o.sus},'הרופא'):res('תיקו. שמוליק נעלם. הרופא לא שם לב לכלום.',{},'')})},
+  {t:'לא עכשיו, שמוליק',c:['r1','כלום'],go:()=>res('״פחדן. אני בש״ג כל הלילה. השולחן חם.״',{},'שמוליק הדילר')}]},
+ {id:'hilo',who:'הרופא',enter:()=>{S.hilo=3+((GR()*11)|0)},get text(){return`משעמם לי. בוא נשחק גבוה־נמוך. הקלף שלי: ${HILO_N(S.hilo||8)}. הבא יהיה גבוה או נמוך? תנחש נכון, קיבלת יום.`},opts:[
+  {t:'⬆️ גבוה',c:['r2','ניחוש · +1 או חשד +10'],go:()=>hiloGuess(true)},
+  {t:'⬇️ נמוך',c:['r2','ניחוש · +1 או חשד +10'],go:()=>hiloGuess(false)}]},
+ {id:'slot',who:'החובש',text:'אחי, הבאתי מכונת מזל מהקזינו של הש״ג. היא מאחורי הווילון. רוצה למשוך?',opts:[
+  {t:'🎰 למשוך בידית',c:['r2','3 זהים +3 · 2 זהים +1'],go:()=>slotPull()},
+  {t:'להלשין לרופא',c:['r1','חשד −12'],go:()=>res('הרופא החרים את המכונה. ועכשיו משחק בה בעצמו.',{sus:-12},'הרופא')}]},
+ {id:'shoshi',who:'שושי הדילרית',text:'דוקטור! אתה חייב לי 300 שקל מהבלאק ג׳ק של אתמול! ...אה, יש לך מטופל. אני אחכה.',enter:()=>setMood('shock'),opts:[
+  {t:'״אני עד. ראיתי הכל, דוקטור.״',c:['r2','60% · +2 או חשד +15'],go:()=>coin(.6,()=>res('הרופא, בלחש: ״קח יומיים ותשכח מה ששמעת.״',{g:2},'הרופא'),()=>res('״עד? אתה ישבת לידי והפסדת יותר ממני!״',{sus:15},'הרופא'))},
+  {t:'להציע לשושי לשחק על החוב',c:['r1','חשד −10'],go:()=>res('שושי ניצחה את שניכם. הרופא סוף סוף צוחק.',{sus:-10},'שושי הדילרית')}]},
+ {id:'chip',who:'',text:'מתחת לכיסא במרפאה: צ׳יפ זהב של 500 מהקזינו של הש״ג. מישהו פה מהמר...',opts:[
+  {t:'להחליק לרופא מתחת לטופס',c:['r3','55% · +2 או חשד +25'],go:()=>coin(.55,()=>res('הרופא הכניס לכיס בלי להסתכל. +2.',{g:2},'הרופא'),()=>res('״שוחד?! עם צ׳יפ מפלסטיק?!״',{sus:25},'הרופא'))},
+  {t:'לשמור ולפדות אצל שמוליק',c:['r1','+60 מטבעות'],go:()=>{addCoins(60);return res(`שמוליק פדה לך את הצ׳יפ: +60 ${COIN}. ״אל תספר לרס״ר.״`,{},'שמוליק הדילר')}}]});
+BJ_TALK.deal.push('קלפים חמים מהתנור!','מי שמנצח מקבל. מי שמפסיד, ש״ג.','הרס״ר ישב פה אתמול. עדיין בוכה.');
+BJ_TALK.bust.push('22? גם מספר החיילים שראו את זה.','הקלפים אוהבים אותך. פחות ממני.');
+BJ_TALK.win.push('לקחת! אני כותב את זה בדו״ח.','אני משלם, אבל בלב שבור.');
+BJ_TALK.lose.push('תודה על התרומה לקרן הש״ג.','יאללה, עוד יד. המזל מסתובב.');
+BJ_TALK.hot.push('שושי! תביאי מטף!','אני מתקשר למג״ד. זה לא חוקי.');
 function bjRollMod(ride){const st=store.get('gm_bjday',{n:0,dry:0});let k;
  if(BJ_FORCE)k=BJ_FORCE;
  else if(!st.n)k='tired';
@@ -4734,7 +4809,7 @@ function bjApply(i,a,v){const G=BJ&&BJ.G;if(!G)return;let ok=false;
  else ok=bjAct(G,i,a);
  if(ok){if(i===BJ.me&&(a==='double'||a==='split'))bjSay(a==='double'?'dbl':'split');bjAfter()}}
 function bjMy(a,v){if(!BJ)return;if(BJ.host){bjApply(BJ.me,a,v);return}if(!BJ.G||BJ.pend===BJ.G.seq)return;BJ.pend=BJ.G.seq;pvpSend({t:'qa',a,v});bjRender()}
-function bjTick(){if(!BJ)return;const tm=$('#bjTm');if(BJ.mode!=='online')return;const left=Math.max(0,BJ.tEnd-Date.now());if(tm)tm.style.width=Math.min(100,left/220)+'%';
+function bjTick(){if(!BJ)return;const tm=$('#bjTm');if(BJ.mode!=='online'){BJ.tk=(BJ.tk||0)+1;if(BJ.tk%24===0){BJ.news=bjNews();const e=$('#bjTk');if(e){e.textContent=BJ.news;e.classList.remove('in');void e.offsetWidth;e.classList.add('in')}}return}const left=Math.max(0,BJ.tEnd-Date.now());if(tm)tm.style.width=Math.min(100,left/220)+'%';
  if(!BJ.host||!BJ.G||left>0)return;const G=BJ.G;
  if(G.phase==='bet'||G.phase==='done'){let any=false;G.seats.forEach(s=>{if(!s.ready&&s.chips>=G.min){s.bet=Math.max(G.min,Math.min(s.last||s.bet||G.min,s.chips));s.ready=true;any=true}});if(any){G.seq++;bjTryDeal();bjAfter()}}
  else if(G.phase==='ins'){G.seats.forEach((s,i)=>{if(s.insQ)bjInsure(G,i,false)});bjAfter()}
@@ -4758,7 +4833,11 @@ function bjRoundEnd(){const G=BJ.G,s=G.seats[BJ.me];if(!s.hands.length||BJ.fxRou
  if(BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'){const M=BJ_MODS[BJ.mod];s.hands.forEach(h=>{if(h.net>0)bonus+=(h.res==='bj'&&M.bj?h.bet*M.bj:Math.round(h.net*M.m))-h.net});
   const room=BJ.start+BJ.g0*12-s.chips;if(bonus>=room){bonus=Math.max(0,room);BJ.broke=true}
   if(bonus>0){s.chips+=bonus;bjSync();BJ.bonusWhy=M.ic+' '+M.n;const big=bonus>=BJ.g*2,tot=s.net+bonus,broke=BJ.broke;setTimeout(()=>{if(!BJ)return;bjBurst(broke?'שמוליק פשט רגל!':'+'+tot+' ימים!',big||broke?'gold':'pink');if(broke)BJ.bub='לקחת לי את כל הקופה של היום! 😭';SFX.jack();crowdCheer();bjConf(big?70:30);buzz([60,40,60,40,120])},1300)}else bonus=0}
- BJ.bonus=bonus;st.hands++;if(s.net>0)st.wins++;st.bjs+=bjs;st.biggest=Math.max(st.biggest,s.net+bonus);st.streak=Math.max(st.streak,BJ.streak);if(BJ.mode==='solo')st.net+=s.net+bonus;store.set('gm_bjstats',st);
+ BJ.bonus=bonus;let jp=0;
+ if(BJ.mode==='solo'){let pot=bjPot()+Math.max(1,Math.round(s.hands.reduce((a,h)=>a+h.bet,0)*.08));const hit=s.hands.some(h=>h.res==='bj'&&((h.cards[0]/13|0)===(h.cards[1]/13|0)));
+  if(hit){jp=pot;pot=500;s.chips+=jp;bjSync();BJ.bonus+=jp;BJ.bonusWhy='💎 ג׳קפוט הש״ג';setTimeout(()=>{bjBurst('💎 JACKPOT!','gold');SFX.jack();crowdCheer();bjConf(90);buzz([80,40,80,40,200]);toastMsg('💎','ג׳קפוט הש״ג!','+'+jp+' '+COIN)},1500)}
+  store.set('gm_bjpot',pot);const pv=$('#bjPotV');if(pv)pv.textContent=pot}
+ st.hands++;if(s.net>0)st.wins++;st.bjs+=bjs;st.biggest=Math.max(st.biggest,s.net+bonus+jp);st.streak=Math.max(st.streak,BJ.streak);if(BJ.mode==='solo')st.net+=s.net+bonus+jp;store.set('gm_bjstats',st);
  if(bjs)unlock('bj');if(BJ.streak>=5)unlock('bjhot');
  const L=$('#bjL'),dl=L&&L.querySelector('.bjdl .pkav'),dbust=bjTot(G.dealer).t>21;
  s.hands.forEach((h,j)=>{const el=L&&L.querySelector(`[data-h="${BJ.me}-${j}"] .bjbet`);if(!el)return;if(h.net>0)pkFly(dl,el,Math.min(7,2+Math.round(h.net/Math.max(1,h.bet))*2),300+j*140);else if(h.net<0&&!h.sur)pkFly(el,dl,3,300+j*140)});
@@ -4784,12 +4863,13 @@ function bjClick(e){const b=e.target.closest('button');if(!b||!BJ)return;const G
  if(a==='x2'){BJ.bet=Math.min(G.max,G.seats[BJ.me].chips,(BJ.bet||0)*2);pkS.chips(3);bjRender();return}
  if(a==='loan'){store.set('gm_bjloan',todayKey());addCoins(50);BJ.wallet+=50;G.seats[0].chips+=50;BJ.bet=25;SFX.win();toastMsg('🪙','שמוליק נתן לך 50 '+COIN,'מגיע לך. פעם ביום.');bjRender();return}
  if(a==='ride'){SFX.tick();bjRide();return}
+ if(a==='visitback'){const o=bjVisitOut(),cb=BJ.cb;bjClose();cb&&cb(o);return}
  if(a==='dayback'){const fin=RUN.total,diff=fin-BJ.start,cb=BJ.onDone;bjClose();cb&&cb(diff);return}
  if(a==='deal'){if(!G)return;const min=G.fixed||G.min;if((G.fixed?G.fixed:BJ.bet)<min||G.seats[BJ.me].chips<min){const s=$('#bjBetV');if(s){s.classList.remove('nope');void s.offsetWidth;s.classList.add('nope')}SFX.tick();return}
   if(BJ.mode!=='online')store.set('gm_bjlast',BJ.bet);pkS.chips(4);bjMy('ready',BJ.bet);if(BJ.host&&BJ.mode!=='online'&&G.phase==='play'&&Math.random()<.35)bjSay('deal');return}
  if(a==='insY'||a==='insN'){bjMy('ins',a==='insY');return}
  if(['hit','stand','double','split','surrender'].includes(a)){SFX.tick();bjMy(a)}}
-const bjResTxt=n=>n?`<bdi dir="ltr">${n>0?'+'+n:'−'+(-n)}</bdi> ${BJ.mode==='solo'?COIN:bjUnit()}`:'PUSH';
+const bjResTxt=n=>BJ&&BJ.mode==='visit'?(()=>{const o=bjVisitOut();return o.g?`<bdi dir="ltr">+${o.g}</bdi> ימים`:o.sus?'חשד +18':'PUSH'})():n?`<bdi dir="ltr">${n>0?'+'+n:'−'+(-n)}</bdi> ${BJ.mode==='solo'?COIN:bjUnit()}`:'PUSH';
 function bjDayAct(G,S){let act;const d=RUN.total-BJ.start,last=(S.net||0)+(BJ.fxRound===G.round?BJ.bonus||0:0),ride=last>0&&BJ.rides<2&&!BJ.broke&&d+last<=BJ.g0*12;
   act=`<div class="bjact"><p class="bjdaysum">${BJ.broke?`👑 ריקנת את הקופה של שמוליק! +${d} ימים · סה״כ ${RUN.total}`:d>0?`${BJ.rides?'עדיין ברווח! ':'ניצחת! '}+${d} ימים · סה״כ ${RUN.total}`:d<0?`שמוליק לקח ${-d} ימים · סה״כ ${RUN.total}`:BJ.rides?`הרווח נשרף 💀 · נשארת עם ${RUN.total}`:`Push · נשארת עם ${RUN.total}`}</p>
    ${ride?`<div class="bjrow ridebox"><button class="bjb stand" data-a="dayback" type="button">💰 קח<small>+${d} ימים</small></button><button class="bjb ride" data-a="ride" type="button">🔥 כפול או כלום<small>${last} ימים · ${BJ.rides?'סיבוב אחרון!':'אולי ג׳קפוט 👀'}</small></button></div>`
@@ -4829,7 +4909,8 @@ function bjRender(){const L=$('#bjL');if(!L||!BJ)return;const G=BJ.G;
  /* controls */
  let act='';const wt=t=>`<div class="bjact wait">${t}</div>`;const other=two?G.seats[1-me]:null;
  if(G.phase==='over'||(G.phase==='done'&&bjOverCond(G)))act=wt('יד אחרונה! סופרים צ׳יפים... 🧮');
- else if(BJ.mode==='day'&&(BJ.rolling||G.phase==='bet'))act=`<div class="bjact wait">🎰 מגלגלים את הסיבוב...</div>`;
+ else if(BJ.mode==='visit'&&G.phase==='done')act=bjVisitAct();
+ else if((BJ.mode==='day'||BJ.mode==='visit')&&(BJ.rolling||G.phase==='bet'))act=`<div class="bjact wait">🎰 מגלגלים את הסיבוב...</div>`;
  else if(BJ.mode==='day'&&G.phase==='done')act=bjDayAct(G,S);
  else if((G.phase==='bet'||G.phase==='done')&&!S.ready){const c=S.chips,canLoan=BJ.mode==='solo'&&c<5&&store.get('gm_bjloan','')!==todayKey();
   if(c<G.min&&BJ.mode!=='day')act=canLoan?`<div class="bjact"><p class="bjdaysum">נגמרו לך המטבעות.</p><button class="bjdeal" data-a="loan" type="button">🤝 שמוליק, תלווה לי 50 ${COIN}</button></div>`:wt(BJ.mode==='solo'?'נגמרו לך המטבעות. תשחק ריצה ותחזור, שמוליק מחכה.':'נגמרו לך הצ׳יפים. מחכה לסוף...');
@@ -4843,15 +4924,15 @@ function bjRender(){const L=$('#bjL');if(!L||!BJ)return;const G=BJ.G;
   act=`<div class="bjact"><div class="bjhint">💡 הספר אומר: <b>${N[hint][0]}</b>${S.hands.length>1?` · יד ${G.turn[1]+1} מתוך ${S.hands.length}`:''}</div><div class="bjrow">${['hit','stand','double','split','surrender'].filter(k=>O[k]).map(k=>`<button class="bjb ${k}${k===hint?' rec':''}" data-a="${k}" type="button">${N[k][0]}<small>${N[k][1]}</small></button>`).join('')}</div></div>`}
  else if(G.phase==='play')act=wt(G.turn[0]===me?'...':`${escH(G.seats[G.turn[0]].name)} חושב...`);
  else act=wt('שמוליק הופך קלפים... 🥁');
- const title=BJ.mode==='day'?(BJ.rides?`🔥 כפול או כלום ${BJ.rides}/2 · ${BJ.g} ימים`:`יד על ${BJ.g} ימים`):BJ.mode==='online'?`${G.coop?'ביחד מול הדילר':'אחד מול השני'} · יד ${Math.max(1,G.round)}/${G.rounds}`:`הקופה שלך: ${S.chips} ${COIN}`;
+ const title=BJ.mode==='visit'?'🤫 יד מהירה מאחורי הגב של הרופא':BJ.mode==='day'?(BJ.rides?`🔥 כפול או כלום ${BJ.rides}/2 · ${BJ.g} ימים`:`יד על ${BJ.g} ימים`):BJ.mode==='online'?`${G.coop?'ביחד מול הדילר':'אחד מול השני'} · יד ${Math.max(1,G.round)}/${G.rounds}`:`הקופה שלך: ${S.chips} ${COIN}`;
  L.innerHTML=`<div class="bjt">
-  <div class="bjhead">${BJ.mode==='day'?'':'<button class="pkq" id="bjQuit" type="button">קום</button>'}<span>${title}</span>${BJ.mode==='online'&&PV&&PV.peer?'<button class="pkq" id="bjChat" type="button">💬</button>':''}${BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'?`<em class="bjhot m-${BJ.mod}">${BJ_MODS[BJ.mod].ic}${BJ_MODS[BJ.mod].m>1?' ×'+BJ_MODS[BJ.mod].m:''}</em>`:BJ.streak>=2?`<em class="bjhot">🔥 ${BJ.streak}</em>`:''}</div>
-  ${BJ.mode==='online'?'<div class="pktimer"><i id="bjTm"></i></div>':''}
-  <div class="bjarena"><div class="bjfelt${two?' two':''}${BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'?' ev-'+BJ.mod:''}"><i class="bjbulbs"></i>
+  <div class="bjhead">${BJ.mode==='day'||BJ.mode==='visit'?'':'<button class="pkq" id="bjQuit" type="button">קום</button>'}<span>${title}</span>${BJ.mode==='solo'?`<em class="bjpot">💎 <b id="bjPotV">${bjPot()}</b></em>`:''}${BJ.mode==='online'&&PV&&PV.peer?'<button class="pkq" id="bjChat" type="button">💬</button>':''}${(BJ.mode==='day'||BJ.mode==='visit')&&BJ.mod&&BJ.mod!=='none'?`<em class="bjhot m-${BJ.mod}">${BJ_MODS[BJ.mod].ic}${BJ_MODS[BJ.mod].m>1?' ×'+BJ_MODS[BJ.mod].m:''}</em>`:BJ.streak>=2?`<em class="bjhot">🔥 ${BJ.streak}</em>`:''}</div>
+  ${BJ.mode==='online'?'<div class="pktimer"><i id="bjTm"></i></div>':`<div class="bjtick"><span id="bjTk" class="in">${escH(BJ.news||(BJ.news=bjNews()))}</span></div>`}
+  <div class="bjarena"><div class="bjfelt${two?' two':''}${(BJ.mode==='day'||BJ.mode==='visit')&&BJ.mod&&BJ.mod!=='none'?' ev-'+BJ.mod:''}"><i class="bjbulbs"></i>
    <div class="bjshoe" aria-hidden="true"><i></i><i></i><i></i></div>
    <div class="bjdl"><span class="pkav">${portrait(BJ_DLR.char)}<i class="bow">🎀</i></span><span class="nm"><b>${BJ_DLR.n}</b><span>Dealer</span></span>${BJ.bub?`<i class="pkbub bjbub new" id="bjBub"></i>`:''}</div>
    <div class="bjdc"><div class="bjcards">${G.dealer.length?bjCardsHTML('d',dCards,flipIdx):'<span class="pc slot"></span><span class="pc slot"></span>'}</div>${G.dealer.length?`<span class="bjtot${!G.hole&&dTot>21?' bust':''}">${dT}</span>`:''}</div>
-   <div class="bjmid">${res||(BJ.mode==='day'&&BJ.mod&&BJ.mod!=='none'?`<div class="bjmod m-${BJ.mod}"><b>${BJ_MODS[BJ.mod].ic} ${BJ_MODS[BJ.mod].n}</b><span>${BJ_MODS[BJ.mod].d}</span></div>`:arc)}</div>
+   <div class="bjmid">${res||((BJ.mode==='day'||BJ.mode==='visit')&&BJ.mod&&BJ.mod!=='none'?`<div class="bjmod m-${BJ.mod}"><b>${BJ_MODS[BJ.mod].ic} ${BJ_MODS[BJ.mod].n}</b><span>${BJ_MODS[BJ.mod].d}</span></div>`:arc)}</div>
    <div class="bjseats">${seats}</div>
   </div></div>
   ${act}</div>`;
@@ -4862,7 +4943,7 @@ function bjRender(){const L=$('#bjL');if(!L||!BJ)return;const G=BJ.G;
  if(G.phase==='over'&&BJ.mode==='online')bjOnlineFinish()}
 /* ---- lobby ---- */
 function showBjLobby(){const ov=$('#overlay');ov.hidden=false;const c=getCoins(),st=bjStats();
- ov.innerHTML=`<div class="sheet pvp bjlobby"><div class="bjneon">21</div><div class="tag">6 חפיסות · שמוליק מחלק</div><h2>בלאק ג׳ק בש״ג</h2>
+ ov.innerHTML=`<div class="sheet pvp bjlobby"><div class="bjneon">21</div><div class="tag">6 חפיסות · שמוליק מחלק</div><h2>בלאק ג׳ק בש״ג</h2><div class="bjpotl">💎 ג׳קפוט הש״ג: <b>${bjPot()}</b> ${COIN}<small>נופל על בלאק ג׳ק בצבע אחד</small></div>
   <div class="bjdlr"><span class="pkav">${portrait(BJ_DLR.char)}</span><p>״שב, שב. אצל שמוליק הבית מזמין... לפחות בהתחלה.״</p></div>
   <div class="pkrec"><div><b>${st.wins}</b><span>ידיים שלקחת</span></div><div><b>${st.bjs}</b><span>Blackjacks</span></div><div><b>${st.streak?'🔥'+st.streak:'—'}</b><span>רצף שיא</span></div></div>
   <button class="big bjgo" id="bjSolo" type="button">🃏 לשבת לשולחן<small>יש לך ${c} ${COIN} · מינימום 5</small></button>
@@ -5012,7 +5093,7 @@ function showStart(){
 }
 
 /* ================= mobile, pause, updates ================= */
-const VERSION='6.2';
+const VERSION='6.3';
 function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p)}catch(e){}}
 let gs=null;
 room.addEventListener('pointerdown',e=>{if(S&&S.mode==='fight'&&!e.target.closest('.fly'))gs={x:e.clientX,y:e.clientY}});
